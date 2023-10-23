@@ -24,7 +24,7 @@
 
   The ClickOnce client is hosted on Factum ID servers. On the download page you can install both the client and the client prerequisites. Once installed, the icon will appear on the desktop.
 
-  ![Image-01](./images/Image-01.png "Image 01")
+  ![Image-01](./images/Image-01.png)
 
   *Image 01: SealSign ClickOnce icon.*
 
@@ -73,13 +73,13 @@
 
   Once the client is installed the icon will appear on the desktop, to launch it just click on it, the following message will appear.
 
-  ![Image-02](./images/Image-02.png "Image 02")
+  ![Image-02](./images/Image-02.png)
 
   *Image 02: Client message*
 
   The client can be configured to start when logged on to Windows, to do this right click on the icon and click on the option "Run on computer startup".
 
-  ![Image-03](./images/Image-03.png "Image 03")
+  ![Image-03](./images/Image-03.png)
 
   *Image 03: Contextual menu of the tool*
 
@@ -91,55 +91,55 @@
 
   Installing the certificate in the store. The certificate to be installed must contain the public key and the private key. To install it, double click on the file. An installation wizard is displayed.
 
-  ![Image-04](./images/Image-04.png "Image 04")
+  ![Image-04](./images/Image-04.png)
 
   *Image 04: Certificate import wizard*
 
   Select the "Local computer" store and click "Next". On the next screen, click "Next".
 
-  ![Image-05](./images/Image-05.png "Image 05")
+  ![Image-05](./images/Image-05.png)
 
   *Image 05: Selection of the certificate to import*
 
   In the next screen we enter the certificate password and click "Next".
 
-  ![Image-06](./images/Image-06.png "Image 06")
+  ![Image-06](./images/Image-06.png)
 
   *Image 06: Protection of the private key*
 
   On the next screen check the option "Place all certificates in the following store" and select the "Personal" store and click "Next".
 
-  ![Image-07](./images/Image-07.png "Image 07")
+  ![Image-07](./images/Image-07.png)
 
   *Image 07: Location of the certificates*
 
   In the summary window, click "Finish".
 
-  ![Image-08](./images/Image-08.png "Image 08")
+  ![Image-08](./images/Image-08.png)
 
   *Image 08: Completion of the import*
 
   If there is no problem we should see the following message:
 
-  ![Image-09](./images/Image-09.png "Image 09")
+  ![Image-09](./images/Image-09.png)
 
   *Image 09: Certificate successfully imported*
 
   Once the certificate is installed, the certificate manager is launched, for this we press the Windows+ R key and enter "certlm.msc", inside the Personal store we look for the certificate we imported previously.
 
-  ![Image-10](./images/Image-10.png "Image 10")
+  ![Image-10](./images/Image-10.png)
 
   *Image 10: Certificate Store*
 
   Double-clicking on the certificate will display the certificate details.
 
-  ![Image-11](./images/Image-11.png "Image 11")
+  ![Image-11](./images/Image-11.png)
 
   *Image 11: Certificate properties*
 
   In the tab details select the property "Fingerprint".
 
-  ![Image-12](./images/Image-12.png "Image 12")
+  ![Image-12](./images/Image-12.png)
 
   *Image 12: Fingerprint of the certificate*
 
@@ -148,7 +148,7 @@
   ```
   This last instruction associates the certificate to port 8082.
 
-  ![Image-13](./images/Image-13.png "Image 13")
+  ![Image-13](./images/Image-13.png)
 
   #### 4.2.2. Use SSL
 
@@ -252,13 +252,13 @@
 
   This is an example of a valid XML: 
 
-  ![Image-14](./images/Image-14.png "Image 14")
+  ![Image-14](./images/Image-14.png)
 
   The XML defines the screens that will be present with the screen node. Each screen node can have several controls inside, these controls can be either labels, defined in the text nodes, or checkboxes, defined in the checkbox nodes. These checkboxes can be mandatory in order to advance in the signing process. Whether they are mandatory or not is defined in the mandatory attribute of the checkbox node of the XML file, if its value is 1 it is mandatory and if it is 0 it is optional. 
 
   In addition to this screen configuration, some of the parameters are used to configure the look & feel. 
 
-  ![Image-15](./images/Image-15.png "Image 15")
+  ![Image-15](./images/Image-15.png)
 
   It is recommended to download the example code from FactumID's GitHub page to familiarize yourself with these parameters and see how they affect the screen. 
 
@@ -301,7 +301,7 @@
 
   This is an example of a valid XML: 
 
-  ![Image-16](./images/Image-16.png "Image 16").
+  ![Image-16](./images/Image-16.png)
 
   The XML defines the screens that will be present with the screen node. In addition to this screen configuration, some of the parameters are used to configure the look & feel, such as font color, logo, and text size.  
 
