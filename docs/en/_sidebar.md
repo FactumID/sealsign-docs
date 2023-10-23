@@ -8,5 +8,5 @@
 
 <!--* [Home](/)-->
 * [Monitoring](/en/monitor/monitor)
-<!--* [Clickonce](/en-us/clickonce/clickonce)
-* [Biosigner](/en-us/biosigner)-->
+* [Clickonce](/en/clickonce/clickonce)
+<!--* [Biosigner](/en-us/biosigner)-->
