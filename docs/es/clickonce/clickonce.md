@@ -24,7 +24,7 @@
 
   El cliente de ClickOnce está hospedado en los servidores de Factum ID. En la página de descarga se puede instalar tanto el cliente como los prerrequisitos del mismo. Una vez instalado aparecerá el icono en el escritorio.
 
-  ![Image-01]("./images/Image-01.png", "Imagen 01")
+  ![Image-01](./images/Image-01.png "Imagen 01")
 
   *Imagen 01: Icono de SealSign ClickOnce*
 
@@ -75,13 +75,13 @@
 
   Una vez instalado el cliente aparecerá el icono en el escritorio, para lanzarlo sólo hay que hacer click en él, aparecerá el siguiente mensaje.
 
-  ![Image-02]("./images/Image-02.png", "Imagen 02")
+  ![Image-02](./images/Image-02.png "Imagen 02")
 
   *Imagen 02: Mensaje del Cliente*
 
   El cliente se puede configurar para que se arranque cuando se inicie sesión en Windows, para ello hay que hacer click con el botón derecho sobre el icono y pulsar sobre la opción “Ejecutar al arrancar el equipo”.
 
-  ![Image-03]("./images/Image-03.png", "Imagen 03")
+  ![Image-03](./images/Image-03.png "Imagen 03")
 
   *Imagen 03: Menú contextual de la herramienta*
 
@@ -93,55 +93,55 @@
 
   Instalación del certificado en el almacén. El certificado a instalar tiene que contener la clave pública y la clave privada. Para instalarlo hacemos doble click sobre el archivo. Se muestra un asistente para hacer la instalación.
 
-  ![Image-04]("./images/Image-04.png", "Imagen 04")
+  ![Image-04](./images/Image-04.png "Imagen 04")
 
   *Imagen 04: Asistente de importación de certificados*
 
   Seleccionamos el almacén “Equipo local” y pulsamos “Siguiente”. En la siguiente pantalla, pulsamos “Siguiente”.
 
-  ![Image-05]("./images/Image-05.png", "Imagen 05")
+  ![Image-05](./images/Image-05.png "Imagen 05")
 
   *Imagen 05: Elección del certificado a importar*
 
   En la siguiente pantalla introducimos la contraseña del certificado y pulsamos “Siguiente”
 
-  ![Image-06]("./images/Image-06.png", "Imagen 06")
+  ![Image-06](./images/Image-06.png "Imagen 06")
 
   *Imagen 06: Protección de la clave privada*
 
   En la siguiente pantalla marcar la opción “Colocar todos los certificados en el siguiente almacén” y seleccionar el almacén “Personal” y pulsar “Siguiente”.
 
-  ![Image-07]("./images/Image-07.png", "Imagen 07")
+  ![Image-07](./images/Image-07.png "Imagen 07")
 
   *Imagen 07: Ubicación de los certificados*
 
   En la ventana de resumen, pulsar “Finalizar”
 
-  ![Image-08]("./images/Image-08.png", "Imagen 08")
+  ![Image-08](./images/Image-08.png "Imagen 08")
 
   *Imagen 08: Finalización de la importación*
 
   Si no hay ningún problema deberíamos ver el siguiente mensaje:
 
-  ![Image-09]("./images/Image-09.png", "Imagen 09")
+  ![Image-09](./images/Image-09.png "Imagen 09")
 
   *Imagen 09: Certificado importado correctamente*
 
   Una vez instalado el certificado, se lanza el administrador de certificados, para ello pulsamos la tecla Windows+  R  e  introducimos  “certlm.msc”,  dentro  del  almacén Personalbuscamos  el  certificado  que  importamos anteriormente.
 
-  ![Image-10]("./images/Image-10.png", "Imagen 10")
+  ![Image-10](./images/Image-10.png "Imagen 10")
 
   *Imagen 10: Almacén de certificados*
 
   Haciendo doble click sobre el certificado se mostrarán los detalles del mismo.
 
-  ![Image-11]("./images/Image-11.png", "Imagen 11")
+  ![Image-11](./images/Image-11.png "Imagen 11")
 
   *Imagen 11: Propiedades del certificado*
 
   En la pestaña detalles seleccionar la propiedad “Huella digital”
 
-  ![Image-12]("./images/Image-12.png", "Imagen 12")
+  ![Image-12](./images/Image-12.png "Imagen 12")
 
   *Imagen 12: Huella digital del certificado*
 
@@ -150,7 +150,7 @@
   ```
   Con esta última instrucción se asocia el certificado al puerto 8082.
 
-  ![Image-13]("./images/Image-13.png", "Imagen 13")
+  ![Image-13](./images/Image-13.png "Imagen 13")
 
   #### 4.2.2. Utilizar SSL
 
@@ -254,13 +254,13 @@
 
   Este es un ejemplo de un XML válido: 
 
-  ![Image-14]("./images/Image-14.png", "Imagen 14")
+  ![Image-14](./images/Image-14.png "Imagen 14")
 
   En el XML se definen las pantallas que va a haber con el nodo screen. Cada nodo screen puede tener varios controles dentro, estos controles pueden ser o bien etiquetas, definidas en los nodos text, o checkboxes, definidos en los nodos checkbox. Estos checkboxes pueden ser obligatorios para poder avanzar en el proceso de firma. Si son obligatorios o no se define en el atributo mandatory del nodo checkbox del fichero XML, si su valor es 1 es obligatorio y si es 0 es opcional. 
 
   Además de esta configuración de pantallas, se utilizan algunos de los parámetros para configurar el look & feel. 
 
-  ![Image-15]("./images/Image-15.png", "Imagen 15")
+  ![Image-15](./images/Image-15.png "Imagen 15")
 
   Es recomendable descargar el código de ejemplo desde la página de GitHub de FactumID para familiarizarse con esos parámetros y ver cómo afectan a la pantalla. 
 
@@ -303,7 +303,7 @@
 
   Este es un ejemplo de un XML válido: 
 
-  ![Image-16]("./images/Image-16.png", "Imagen 16")
+  ![Image-16](./images/Image-16.png "Imagen 16")
 
   En el XML se define las pantalla que va a haber con el nodo screen. Además de esta configuración de pantallas, se utilizan algunos de los parámetros para 	configurar el look & feel, como el color de letra, el logo, y el tamaño de los textos.  
 
