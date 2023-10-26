@@ -6,14 +6,14 @@ During the installation, you must indicate from the list of available web sites,
 SealSign BSS biometric signature service, the name of the virtual directory and the Application Pool of the application configured in the IIS.
 configured in the IIS (SealSignAppPool in this case).
 
-![bss setup](./images/image-01.png)
+![bss setup](./images/image-02.png)
 
 <center><i>Image 01: Configuration during installation of the BSS module.</i></center>
 
 After installation it has been added as an additional program in the list of programs in the Control Panel, and in the
 IIS will be displayed as a web application.
 
-![bss iis](./images/image-02.png)
+![bss iis](./images/image-03.png)
 
 <center><i>Image 02: Module already integrated as a web application in IIS.</i></center>
 
