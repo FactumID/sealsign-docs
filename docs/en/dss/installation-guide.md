@@ -245,6 +245,10 @@ SealSign DSS.
 
 It is necessary to add the users who are going to administer from SealSignDSSWeb to the local or domain group SealSignDSS Admins, the users who are going to upload their own certificates and create their usage rules must be in the SealSignDSS Power Users group.
 
+![Image-23](./images/image-23.png)
+
+<center><i>Local users and groups</i></center>
+
 ## 4. Installation of SealSign DSS Modules
 
 ### 4.1. DSS Service Module (electronic signature)
