@@ -241,7 +241,7 @@ and all the elements that the product needs for its correct functioning will be 
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.
 
-### 3.3. Modify Local Groups
+### 3.3. Authorization permissions
 
 It is necessary to add the users who are going to administer from SealSignDSSWeb to the local or domain group SealSignDSS Admins, the users who are going to upload their own certificates and create their usage rules must be in the SealSignDSS Power Users group.
 
