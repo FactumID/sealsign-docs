@@ -1,75 +1,82 @@
-## 1. Introduction
+## 1. Introducción
 
-SealSign DSS (Digital Signature Services) is a product aimed at facilitating the integration of electronic signatures in corporate applications.
-in corporate applications. The product is made up of a series of modules, whose installation systems are based on MSI 3.0 technology.
-based on MSI 3.0 technology.
+SealSign DSS (Digital Signature Services) es un producto dirigido a facilitar la integración de la firma electrónica
+en las aplicaciones corporativas. El producto está compuesto por una serie de módulos, cuyos sistemas de
+instalación están basados en la tecnología MSI 3.0.
 
-The installation of the SealSign DSS module is followed by the installation of other modules, one or several of them depending on the needs.
-depending on the needs, with the DSS Service module being the only one whose installation is mandatory,
-as it is the tool used by all the others.
+La instalación del módulo SealSign DSS va seguido de la instalación de otros módulos, un módulo o varios de
+ellos dependiendo de las necesidades, siendo el módulo de DSS Service el único cuya instalación es obligatoria,
+ya que es la herramienta que utilizan todos los demás.
 
 ![Image-01](./images/image-01.png)
 
-<center><i>Image 01: SealSign modules</i></center>
+<center><i>Image 01: Módulos de SealSign</i></center>
 
-Below is a summary of the features of each one.
+A continuación, se muestra un resumen con las características de cada uno.
 
-- **DSS Web Module (administration and configuration)**: This module is the web tool for
-and administration tool of the SealSign DSS solution, which is used to manage the other modules (except for the Revoke module).
-modules (except the Revoke module). Therefore, its installation is essential in case you want to install any other module.
-install any other module.
+- **Módulo DSS Web (administración y configuración)**: Este módulo es la herramienta web de
+configuración y administración de la solución SealSign DSS, que se utiliza para gestionar los demás
+módulos (excepto el módulo Revoke). Por tanto, su instalación es imprescindible en caso de querer
+instalar cualquier otro módulo.
 
-- **DSS Service module (electronic signature)**: This module incorporates the electronic signature engine and the SOA interfaces of the web service required for the
-SOA interfaces of the web service required to access its functionality. Its installation is
-mandatory.
+- **Módulo DSS Service (firma electrónica)**: Este módulo incorpora el motor de firma electrónica y los
+interfaces SOA del servicio web necesario para acceder a su funcionalidad. Su instalación es
+obligatoria.
 
-- **Revoke module**: This module is the certificate validation authority, it works as a certificate validation centralizer.
-centralizer of certificate validations. It is totally independent of the others and also has its own
-has its own administration console.
+- **Módulo Revoke**: Este módulo es la autoridad de validación de certificados, funciona como un
+centralizador de validaciones de certificados. Es totalmente independiente de los demás y además
+tiene una consola propia de administración.
 
-- **DSS TSA module (time stamp issuing)**: This module incorporates the time stamping authority, and should only be installed if
-This module incorporates the time stamping authority, and should be installed only if time stamps are to be issued. The TSA module makes use of the
-DSS Service module for its configuration and the DSS Web module for its administration.
+- **Módulo DSS TSA (emisión de sellos de tiempo)**: Este módulo incorpora la autoridad de sellado de
+tiempo, y se debe instalar solamente si se van a emitir sellos de tiempo. El módulo TSA hace uso del
+módulo DSS Service para su configuración y del módulo DSS Web para su administración.
 
-- **DSS OTP (One Time Password Signature) module**: This is the SealSign OTPSS module, which incorporates the One Time Password signature engine.
-One Time Password signature engine. It uses the DSS Service module to carry out its tasks, based on
-web services and the DSS Web module for administration.
+- **Módulo DSS OTP (Firma One Time Password)**: Es el módulo de SealSign OTPSS, incorpora el motor
+de firma One Time Password. Utiliza el módulo DSS Service para efectuar sus tareas, basándose en
+servicios web y en el módulo DSS Web para su administración.
 
-Due to the nature of the product, its installation is only possible on Microsoft Windows operating systems.
-and before such installation it is necessary to perform some fundamental preliminary steps, which cannot be avoided.
+Debido a la naturaleza del producto su instalación solo es posible en sistemas operativos Microsoft Windows
+y antes de dicha instalación hay que realizar unos pasos previos fundamentales, que no se pueden obviar.
 
-This guide will show both these preliminary steps and the actual installation of the DSS modules and their configuration.
-DSS modules, as well as their configuration. The installation and configuration of the SealSign modules that are not DSS
-(CKC, BSS) are covered in other guides.
+En esta guía se van a mostrar tanto dichos pasos previos como la instalación propiamente dicha de los módulos
+DSS, así como su configuración. La instalación y configuración de los módulos de SealSign que no son DSS
+(CKC, BSS) se contempla en otras guías.
 
-Both the texts and images used in this guide are based on a Microsoft Windows 2012 operating system.
-Windows 2012, although any system administrator will be able to install the product in other versions.
-versions.
+Tanto los textos como las imágenes utilizadas en esta guía están basados en un sistema operativo Microsoft
+Windows 2012, aunque cualquier administrador de sistemas podrá realizar la instalación del producto en otras
+versiones.
 
-## 2. SealSign DSS installation requirements
+## 2. Requisitos de instalación de SealSign DSS
 
-SealSign DSS is a server solution that publishes its functionality through an SOA interface. This solution
-is designed for corporate environments that must meet the following requirements:
+SealSign DSS es una solución servidora que publica su funcionalidad a través de un interfaz SOA. Dicha solución
+está diseñada para entornos corporativos que deben cumplir los siguientes requisitos:
 
-- **Microsoft Windows operating system**. Although in specific scenarios SealSign DSS can be installed on client operating systems, it is recommended that the product be installed on one of the following
-client operating systems, it is recommended to install the product on one of the following operating systems: WS 2008, WS 2008 R2, WS 2012, WS 2012 R2 and W2016.
+- **Sistema operativo Microsoft Windows**. Aunque en escenarios específicos SealSign DSS se puede
+instalar en sistemas operativos cliente, se recomienda instalar el producto sobre uno de los siguientes
+sistemas operativos servidor: WS 2008, WS 2008 R2, WS 2012, WS 2012 R2 y W2016.
 
 - **.NET Framework 4.6.2**
 
 - **IIS 7**. Internet Information Server.
 
-- **Database manager (SQL Server, Oracle or PostGreSQL)**: Configuration data, audit, SealSign DSS configuration, audit, cache, etc. data are stored in a database. Although in certain scenarios scenarios it will be possible to use free versions of these databases, it is recommended to use the full versions of SQL Server, Oracle 11g R2 and PostGreSQL 9.6 or higher.
+- **Gestor de base de datos (SQL Server, Oracle o PostGreSQL)**: Los datos de configuración, auditoría,
+caché, etcétera de SealSign DSS se almacenan en una base de datos. Aunque en determinados
+escenarios será posible utilizar versiones gratuitas de estas bases de datos, se recomienda utilizar las
+versiones completas de SQL Server, Oracle 11g R2 y PostGreSQL 9.6 o superior.
 
-The SealSign DSS architecture rests on the application services of the Microsoft platform, for so you need to add the application server role and the web server role (IIS) through the server management tool. The following points detail which options should be configured in these servers.
+La arquitectura de SealSign DSS descansa sobre los servicios de aplicaciones de la plataforma Microsoft, por
+lo que es necesario añadir el rol de servidor de aplicaciones y el rol de servidor web (IIS) a través de la
+herramienta de gestión del servidor. Los siguientes puntos detallan qué opciones deben estar configuradas en
+estos servidores.
 
-### 2.1. Installation of Operating System Roles
+### 2.1. Instalación de roles de Sistema Operativo
 
-SealSign DSS requires the installation of some operating system roles. In order to install them it is necessary
-run the InstallPrerequisites.ps1 script located at the following path:
+SealSign DSS necesita la instalación de unos roles de sistema operativo. Para poder instalarlos es necesario
+ejecutar el script InstallPrerequisites.ps1 que se encuentra ubicado en la ruta siguiente:
 
 **\\\\SealSign_Engine/server/PrequisitesPowerShellScripts/InstallPrerequisites.ps1**
 
-Below are the lists of roles and features:
+A continuación, se muestran las listas de roles y características:
 
 - FileAndStorage-Services 
 - Storage-Services 
@@ -128,172 +135,178 @@ Below are the lists of roles and features:
 - WAS-Config-APIs 
 - WoW64-Support
 
-## 3. Pre-configuration of the environment
+## 3. Configuración previa del entorno
 
-Once you have the elements indicated in the previous point, it is necessary to configure of these. The installation of the final product depends fundamentally on the correct execution of the Next steps.
+Una vez que se dispone de los elementos indicados en el punto anterior, es necesario realizar la configuración
+de estos. La instalación del producto final depende fundamentalmente de que se realicen correctamente los
+siguientes pasos.
 
-### 3.1. IIS 7 or IIS 7.5 Application Pool Configuration
+### 3.1. Configuración del Application Pool de IIS 7 o IIS 7.5
 
-This article shows the steps to follow to create a website with IIS 7, in case you are not have one, or want to create one expressly for SealSign DSS.
+En este artículo se muestran los pasos a realizar para crear un sitio web con IIS 7, en caso de que no se
+disponga de uno, o de que se quiera crear uno expresamente para SealSign DSS.
 
-A new Application Pool can be created exclusively for the product, although it is also possible to use an existing one as long as it has the configurations that will be shown in this section. 
+Se puede crear un nuevo Application Pool exclusivamente para el producto, aunque también es posible utilizar
+uno existente siempre y cuando disponga de las configuraciones que se van a mostrar en este apartado.
 
-Starting with the IIS 7.0 version, the default Application Pools are executed with virtual accounts and it is recommended maintain this configuration, unless it is strictly necessary to use an existing account. The use of Virtual accounts is a security mechanism, since these accounts have limited permissions. In this case The virtual account to be used is the default one: *ApplicationPoolIdentity*.
+A partir de la versión IIS 7.0 los *Application Pools* por defecto se ejecutan con cuentas virtuales y se recomienda
+mantener dicha configuración, salvo que sea estrictamente necesario utilizar una cuenta ya existente. El uso de
+cuentas virtuales es un mecanismo de seguridad, ya que dichas cuentas tienen permisos limitados. En este caso
+la cuenta virtual que se va a utilizar es la que viene por defecto: *ApplicationPoolIdentity*.
 
-The creation of an IIS Application Pool is done from the IIS administration console, the IIS Manager
-and specifically from the context menu of the Application Pool section. The name of the Application Pool is
-indifferent (SealSignAppPool in this case), but it must run with .NET version 4.0.30319, in addition
-It is recommended that the integration mode chosen be Integrated (see image below).
+La creación de un *Application Pool* de IIS se hace a partir de la consola de administración de IIS, el *IIS Manager*
+y concretamente desde el menú contextual del apartado *Application Pool*. El nombre del *Application Pool* es
+indiferente (*SealSignAppPool* en este caso), pero sí debe ejecutarse con la versión *4.0.30319* de .NET, además
+es recomendable que el modo de integración elegido sea *Integrated* (véase imagen siguiente).
 
 ![Image-02](./images/image-02.png)
 
-<center><i>Image 02: SealSign modules</i></center>
+<center><i>Image 02: Creación de un nuevo Application Pool</i></center>
 
-Once you have an Application Pool, it is necessary to configure it and modify certain values, to do this
-You must access the advanced options of the Application Pool through the context menu:
+Una vez que se dispone de un Application Pool es necesario configurarlo y modificar ciertos valores, para ello
+hay que acceder a las opciones avanzadas del Application Pool a través del menú contextual:
 
-- In the Identity option, the account that will be used to run the Application Pool will be established, the
-virtual account is reflected with the name ApplicationPoolIdentity and is the recommended one, although such
-and as mentioned it is possible to choose another of the available ones.
+- En la opción Identity se establecerá la cuenta que se va a utilizar para ejecutar el Application Pool, la
+cuenta virtual viene reflejada con el nombre ApplicationPoolIdentity y es la recomendable, aunque tal
+y como se ha mencionado es posible elegir otra de las disponibles.
 
-- In the Load User Profile option, the value must be set to True. This is due to
-that the DSS product performs operations that, by the very nature of Microsoft Windows, are
-They are stored in a certificate store in the Microsoft Windows registry itself. To
-accessing said certificate store the Application Pool must be able to load the certificate profile
-user.
+- En la opción Load User Profile hay que establecer obligatoriamente el valor a True. Esto es debido a
+que el producto DSS realiza operaciones que, por la propia naturaleza de Microsoft Windows, se
+guardan en un almacén de certificados en el propio registro de Microsoft Windows. Para poder
+acceder a dicho almacén de certificados el Application Pool debe ser capaz de cargar el perfil de
+usuario.
 
 ![Image-03](./images/image-03.png)
 
-<center><i>Image 03: Advanced options for the created Application Pool</i></center>
+<center><i>Image 03: Opciones avanzadas del Application Pool creado</i></center>
 
-### 3.2. Creation of the database
+### 3.2. Creación de la base de datos
 
-As already mentioned, the use of a database is necessary to store various information.
-that the product requires. This section details the necessary configurations for the databases.
-SQL Server, Oracle and PostGreSQL.
+Como ya se ha mencionado es necesaria la utilización de una base de datos para almacenar diversa información
+que precisa el producto. En este apartado se detallan las configuraciones necesarias para las bases de datos
+SQL Server, Oracle y PostGreSQL.
 
 #### 3.2.1. SQL Server
 
-If using SQL Server, it is necessary to create a new database for SealSign DSS. The name of
-said database is indifferent (SealSignDSS in this case), and will be used later in the chains of
-Connection. Once this database has been created, it is necessary to perform the following actions:
+En caso de utilizar SQL Server es necesario crear una nueva base de datos para SealSign DSS. El nombre de
+dicha base de datos es indiferente (SealSignDSS en este caso), y se utilizará más adelante en las cadenas de
+conexión. Una vez creada dicha base de datos es necesario realizar las siguientes acciones:
 
-- Run the table creation script. A file is included in the product installation package
-sql for SQL Server. This file must be executed on the created database, and it will be generated in
-It contains all the elements that the product needs for its correct functioning.
+- **Ejecutar el script de creación de tablas**. En el paquete de instalación del producto se incluye un fichero
+sql para SQL Server. Este archivo hay que ejecutarlo sobre la base de datos creada, y se generarán en
+la misma todos los elementos que el producto necesita para su correcto funcionamiento.
 
 **\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_v4.0_MSSQL.sql**
 ![Image-04](./images/image-04.png)
 
-<center><i>Image 03: Execution of the sql file in the created database</i></center>
+<center><i>Image 03: Ejecución del fichero sql en la base de datos creada</i></center>
 
-- **Configure database access permissions**. In the case of using integrated security for
-access the database, it is necessary to provide write (datawriter) and read permissions
-(datareader) to the user login with which the *IIS Application Pool* that contains the
-Applications. The following Microsoft guide details how to perform this configuration. If I dont know
-uses integrated security, you will also need to have a user with the permissions
-mentioned.
+- **Configurar los permisos de acceso a la base de datos**. En el caso de utilizar seguridad integrada para
+acceder a la base de datos, es necesario proporcionar permisos de escritura (*datawriter*) y lectura
+(*datareader*) al login del usuario con el que se ejecutará el *Application Pool* de IIS que contiene las
+aplicaciones. En la siguiente guía de Microsoft se detalla cómo realizar esta configuración. Si no se
+utiliza seguridad integrada, habrá que disponer igualmente de un usuario con los permisos
+mencionados.
 
-As mentioned above, it is recommended to use a virtual account to run the
-IIS Application Pool (*ApplicationPoolIdentity* in this case), and therefore it is recommended to use this same
-account to access the database. This account according to the nomenclature used internally by Microsoft
-It is *IIS APPPOOL*. Hence the login name is *IIS APPPOOL\SealSignAppPool*.
+Tal y como se ha mencionado anteriormente, es recomendable utilizar una cuenta virtual para ejecutar el
+*Application Pool* de IIS (*ApplicationPoolIdentity* en este caso), y por tanto se recomienda utilizar esta misma
+cuenta para acceder a la base de datos. Esta cuenta según la nomenclatura utilizada internamente por Microsoft
+es *IIS APPPOOL*. De ahí que el nombre del login sea *IIS APPPOOL\SealSignAppPool*.
 
 ![Image-05](./images/image-05.png)
 
-<center><i>Image 05: Login name configuration</i></center>
+<center><i>Image 05: Configuración del Login name</i></center>
 
 #### 3.2.2. Oracle
 
-If you use Oracle, it is necessary to create a new tablespace for SealSign DSS, just like with SQL
-Server the name of said tablespace is irrelevant. It is also necessary to have an account with
-write and read permissions on the tables in the tablespace.
+En caso de utilizar Oracle es necesario crear un nuevo tablespace para SealSign DSS, al igual que con SQL
+Server el nombre de dicho tablespace es indiferente. También es necesario disponer de una cuenta con
+permisos de escritura y lectura sobre las tablas del tablespace.
 
-Once said tablespace has been created, it is necessary to perform the following actions:
+Una vez creado dicho tablespace es necesario realizar las siguientes acciones:
 
-- Install the Oracle Data Access Components (ODAC) component for Microsoft Windows,
-including the Oracle Data Provider module.
+- Instalar el componente Oracle Data Access Components (ODAC) para Microsoft Windows,
+incluyendo el módulo Oracle Data Provider.
 
-- Give execute permissions on the Oracle dbms_crypto cryptography package to the user of the
+- Dar permisos de ejecución sobre el paquete de criptografía dbms_crypto de Oracle para el usuario del
 tablespace.
 
-- Run the table creation script. A file is included in the product installation package
-sql for Oracle. This file must be executed on the created tablespace, and it will be generated in the same
-all the elements that the product needs for its correct operation.
+- Ejecutar el script de creación de tablas. En el paquete de instalación del producto se incluye un fichero
+sql para Oracle. Este archivo hay que ejecutarlo sobre el tablespace creado, y se generarán en el mismo
+todos los elementos que el producto necesita para su correcto funcionamiento.
 
 **\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_v4.0_ORACLE.sql**
 
-Once these configurations have been made, the system is now ready to install the necessary modules.
+Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
 SealSign DSS.
 
 #### 3.2.3. PostGreSQL
 
-If you use PostGreSQL, it is necessary to create a new DB for SealSign DSS, as with SQL.
-Server the name of said DB is irrelevant. It is also necessary to have an account with permissions
-of writing and reading on the database tables.
+En caso de utilizar PostGreSQL es necesario crear una nueva BBDD para SealSign DSS, al igual que con SQL
+Server el nombre de dicho BBDD es indiferente. También es necesario disponer de una cuenta con permisos
+de escritura y lectura sobre las tablas de la BBDD.
 
-Once said DB has been created, it is necessary to execute the table creation script. In the installation package
-An sql file for PostGreSQL is included in the product. This file must be executed on the created DB,
-and all the elements that the product needs for its correct functioning will be generated therein.
+Una vez creado dicha BBDD es necesario ejecutar el script de creación de tablas. En el paquete de instalación
+del producto se incluye un fichero sql para PostGreSQL. Este archivo hay que ejecutarlo sobre la BBDD creada,
+y se generarán en el mismo todos los elementos que el producto necesita para su correcto funcionamiento.
 
 **\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_v4.0_PostgreSQL.sql**
 
-Once these configurations have been made, the system is now ready to install the necessary modules.
+Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
 SealSign DSS.
 
-### 3.3. Authorization permissions
+### 3.3. Permisos de autorización
 
-It is necessary to add the users who are going to administer from SealSignDSSWeb to the local or domain group SealSignDSS Admins, the users who are going to upload their own certificates and create their usage rules must be in the SealSignDSS Power Users group.
+Es necesario agregar los usuarios que van a administrar desde SealSignDSSWeb al grupo local o de dominio SealSignDSS Admins, los usuarios que van a subir sus propios certificados y crear sus reglas de uso deben estar en el grupo SealSignDSS Power Users.
 
 ![Image-23](./images/image-23.png)
 
-<center><i>Local users and groups</i></center>
+<center><i>Usuarios locales y grupos</i></center>
 
-## 4. Installation of SealSign DSS Modules
+## 4. Instalación de los módulos de SealSign DSS
 
-### 4.1. DSS Service Module (electronic signature)
+### 4.1. Módulo DSS Service (firma electrónica)
 
-As mentioned above, this module installs a set of web services. These will be based
-both in the IIS and in the database to carry out its work. This is why after installation there is
-You have to configure it so that it can use these services.
+Tal y como se ha mencionado anteriormente, este módulo instala un conjunto de servicios web. Estos se basarán
+tanto en el IIS como en la base de datos para efectuar su labor. Es por ello por lo que tras la instalación hay
+que configurarlo para que pueda utilizar dichos servicios.
 
-#### 4.1.1. Installing the DSS Service module
+#### 4.1.1. Instalación del módulo DSS Service
 
-The installation of the module is carried out like many Microsoft Windows programs, that is, following the
-steps of an assistant.
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente.
 
-During the installation, you must indicate from the list of available websites, the one where you want to install the
-SealSign DSS electronic signature service, the virtual directory name, and the *Application Pool*
-which was configured in IIS (*SealSignAppPool* in this case).
+Durante la instalación, hay que indicar de la lista de sitios web disponibles, aquel en el que se desea instalar el
+servicio de firma electrónica SealSign DSS, el nombre del directorio virtual y el *Application Pool* de aplicación
+que se configuró en el IIS (*SealSignAppPool* en este caso).
 
 ![Image-06](./images/image-06.png)
 
-<center><i>Image 06: Configuration during installation of the DSS Service module</i></center>
+<center><i>Image 06: Configuración durante la instalación del módulo DSS Service</i></center>
 
-After installation it has been added as another program in the list of programs in the Control Panel, and in the
-IIS will be displayed as a web application.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS se mostrará como una aplicación web.
 
 ![Image-07](./images/image-07.png)
 
-<center><i>Image 07: Module already integrated as a web application in IIS</i></center>
+<center><i>Image 07: Módulo ya integrado como aplicación web en IIS</i></center>
 
-#### 4.1.2. DSS Service Module Configuration
+#### 4.1.2. Configuración del módulo DSS Service
 
-Once the module is installed, it is necessary to configure it so that it correctly uses both the database,
-like the IIS.
+Una vez instalado el módulo es necesario configurarlo para que utilice correctamente tanto la base de datos,
+como el IIS.
 
-**CONFIGURATION OF THE CONNECTION TO THE DATABASE**
+**CONFIGURACION DE LA CONEXION A LA BASE DE DATOS**
 
-It is done in the configuration file *connectionStrings.config*. This is located in the directory
-*SealSignDSSService* of the Web site where the product is installed.
+Se realiza en el fichero de configuración ***connectionStrings.config***. Este se encuentra ubicado en el directorio
+***SealSignDSSService*** del sitio Web donde se haya instalado el producto.
 
 **\InetPub\wwwroot\SealSignDssService**
 ![Image-08](./images/image-08.png)
 
 - **SQL Server**
 
-    This file includes the connection string to the database previously created in SQL Server
-    (SealSignDSS):
+    Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server (SealSignDSS):
 
     ```xml
     <connectionStrings>
@@ -306,31 +319,26 @@ It is done in the configuration file *connectionStrings.config*. This is located
     </connectionStrings>
     ```
 
-    If the database used is SQL Server, you will simply have to modify the parameters
-    above to adapt to the configuration previously made in the database. In this direction
-    You can learn about creating connection strings in SQL Server.
+    En caso de que la base de datos utilizada sea SQL Server simplemente habrá que modificar los parámetros anteriores para adaptarse a la configuración realizada anteriormente en la base de datos. En esta dirección se puede obtener información sobre la creación de cadenas de conexión en SQL Server.
 
 - **Oracle**
 
-    If the database is Oracle, the following parameters must be modified:
+    En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:
 
-    - Change the value of the FactoryProvider key and set it to System.Data.OracleClient in the file
-    web.config located in the same directory as the connectionStrings.config file.
+    - Cambiar el valor de la clave *FactoryProvider* y establecerlo a *System.Data.OracleClient* en el fichero ***web.config*** ubicado en el mismo directorio en el que se encuentra el fichero ***connectionStrings.config***.
 
-    - In the connectionStrings tag you must configure the connection string for access to Oracle. In
-    At this address it is possible to learn about creating connection strings in Oracle.
+    - En la etiqueta *connectionStrings* hay que configurar la cadena de conexión para el acceso a Oracle. En esta dirección es posible informarse sobre la creación de cadenas de conexión en Oracle.
 
-    - You must modify the connectionString attribute of the SealSignDSSConnectionString tag, and
-    set it with the following format:
+    - Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:
 
     ```xml
     Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=XXX)(HOST=XXX)(PORT=XXX))
     (CONNECT_DATA=(SID=XXX)));User Id=UserID;Password=Password;
     ```
 
-    An example of a connection could be the following:
+    Un ejemplo de conexión podría ser el siguiente:
 
-    - **web.config file**:
+    - **Fichero web.config**:
 
     ```xml
         ...
@@ -340,7 +348,7 @@ It is done in the configuration file *connectionStrings.config*. This is located
         </appSettings>
         ...
     ```
-    - **connectionStrings.config file**:
+    - **Fichero connectionStrings.config**:
 
     ```xml
     <connectionStrings>
@@ -353,25 +361,22 @@ It is done in the configuration file *connectionStrings.config*. This is located
 
 - **PostgreSQL**
 
-    If the database is PostGre, the following parameters must be modified:
+    En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:
 
-    - Change the value of the FactoryProvider key and set it to Npgsql in the web.config file located
-    in the same directory where the connectionStrings.config file is located.
+    - Cambiar el valor de la clave *FactoryProvider* y establecerlo a *Npgsql* en el fichero ***web.config*** ubicado en el mismo directorio en el que se encuentra el fichero ***connectionStrings.config***.
 
-    - In the connectionStrings tag you must configure the connection string for access to PostGre.
-    At this URL address https://www.connectionstrings.com/npgsql/ it is possible to obtain information about the
-    creating connection strings in Oracle.
+    - En la etiqueta *connectionStrings* hay que configurar la cadena de conexión para el acceso a PostGre.
+    En esta dirección URL https://www.connectionstrings.com/npgsql/ es posible informarse sobre la creación de cadenas de conexión en Oracle.
 
-    - You must modify the connectionString attribute of the SealSignDSSConnectionString tag, and
-    set it with the following format:
+    - Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:
 
     ```xml
     server=XXXX;userid=XXXX;password=XXXX;database=XXXX
     ```
 
-    An example of a connection could be the following:
+    Un ejemplo de conexión podría ser el siguiente:
 
-    **web.config file**:
+    **Fichero web.config**:
 
     ```xml
         ...
@@ -382,7 +387,7 @@ It is done in the configuration file *connectionStrings.config*. This is located
         ...
     ```
 
-    **connectionStrings.config file**:
+    **Fichero connectionStrings.config**:
 
     ```xml
         <connectionStrings>
@@ -392,65 +397,70 @@ It is done in the configuration file *connectionStrings.config*. This is located
         </connectionStrings>
     ```
 
-**MODULE CONFIGURATION IN IIS**
+**CONFIGURACION DEL MODULO EN EL IIS**
 
-When accessing the web service, it is necessary that you have the necessary permissions. Both the
-Web application and server require Windows Integrated Security (*Windows Authentication*) to
-its correct operation. This implies that this type of authentication must be activated. The
-*Anonymous Authentication* is enabled by default and should not be disabled. It needs to continue like this. On the other hand, it is optional (although recommended depending on the scenario) to activate the basic authentication (*Basic Authentication*). Thanks to this, users with technologies other than those of Microsoft Windows (iOS, Android, Java, Linux, etc.) may consume said web service and therefore use the product.
+A la hora de acceder al servicio web, es necesario que se dispongan de los permisos necesarios. Tanto la
+aplicación web como el servidor requieren de seguridad integrada de Windows (*Windows Authentication*) para
+su correcto funcionamiento. Esto implica que hay que activar este tipo de autenticación obligatoriamente. La
+autenticación anónima (*Anonymous Authentication*) está por defecto activada y no debe deshabilitarse, es
+necesario que siga así. En cambio es opcional, (aunque recomendable dependiendo del escenario), activar la
+autenticación básica (*Basic Authentication*). Gracias a esto los usuarios con tecnologías distintas a las de
+Microsoft Windows (iOS, Android, Java, Linux, etcétera) podrán consumir dicho servicio web y por tanto utilizar
+el producto.
 
 ![Image-09](./images/image-09.png)
 
-<center><i>Image 09: Configuring DSS Service module permissions in IIS</i></center>
+<center><i>Image 09: Configuración de los permisos del módulo DSS Service en el IIS</i></center>
 
-If you activate basic authentication, it is highly recommended to use SSL.
+En caso de activar la autenticación básica es altamente recomendable utilizar SSL.
 
-### 4.2. DSS Web module (administration and configuration)
+### 4.2. Módulo DSS Web (administración y configuración)
 
-As mentioned above, this module installs an administration tool with
-web application format, which is used by the other modules, therefore, its installation is mandatory.
-This module is based on IIS to carry out its work, therefore, after installation it must be configured so that
-can use this service.
+Tal y como se ha mencionado anteriormente, este módulo instala una herramienta de administración con
+formato de aplicación web, que es utilizada por los demás módulos, por tanto, su instalación es obligatoria.
+Este módulo se basa en el IIS para efectuar su labor, por ello, tras la instalación hay que configurarlo para que
+pueda utilizar dicho servicio.
 
-Once the installation and configuration is complete, a user must be given permissions on the system to
-that managed SealSign. The fact that the installation and configuration is carried out does not mean that you can
-access the administration website.
+Una vez finalizada la instalación y la configuración, habría que dar permisos a un usuario en el sistema para
+que administrase SealSign. El hecho de que se realice la instalación y la configuración no implica que se pueda
+acceder a la web de administración.
 
-#### 4.2.1. Installation of the DSS Web Module
+#### 4.2.1. Instalación del módulo DSS Web
 
-The installation of the module is carried out like many Microsoft Windows programs, that is, following the
-steps of an assistant. The process is the same as the one carried out before installing the DSS module
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo con anterioridad a instalar el módulo DSS
 Service.
 
-During the installation, you must indicate from the list of available websites, the one where you want to install the
-management web service in addition to the virtual directory and the *Application Pool* that are
-configured in IIS (*SealSignAppPool* in this case).
+Durante la instalación, hay que indicar de la lista de sitios Web disponibles, aquel en el que se desea instalar el
+servicio web de administración además del directorio virtual y el *Application Pool* de aplicación que se
+configuró en el IIS (*SealSignAppPool* en este caso).
 
 ![Image-010](./images/image-10.png)
 
-<center><i>Image 10: Configuration during DSS Web module installation</i></center>
+<center><i>Image 10: Configuración durante la instalación del módulo DSS Web</i></center>
 
-After installation it has been added as another program in the list of programs in the Control Panel.
-Microsoft Windows, and in IIS it will also appear as a web application, along with the DSS Service.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control de
+Microsoft Windows, y en el IIS también se mostrará como una aplicación web, junto al DSS Service.
 
 ![Image-011](./images/image-11.png)
 
-<center><i>Image 11: Module already integrated as a web application in IIS</i></center>
+<center><i>Image 11: Módulo ya integrado como aplicación web en IIS</i></center>
 
-#### 4.2.2. DSS Web Module Configuration
+#### 4.2.2. Configuración del módulo DSS Web
 
-For it to work correctly, you must have the DSS Service module referenced and you must modify the
-authentication in IIS.
+Para que funcione correctamente debe tener referenciado el módulo DSS Service y hay que modificar la
+autenticación en el IIS.
 
-**CONFIGURATION OF THE REFERENCE TO THE DSS SERVICE MODULE**
+**CONFIGURACION DE LA REFERENCIA AL MODULO DSS SERVICE**
 
-It is done in the configuration file ***endpoints.config***. This is located in the directory
-***SealSignDSSWeb*** of the website where the product has been installed. This file includes, among others
-configurations, the addresses of three web services provided by the DSS Service. Specifically they are
-the administration web service (*AdminService.svc*), the audit service (*AuditService.svc*) and the repository service
-document security (*SecureStorage.svc*).
-If the installation of the services established by default has been carried out, it will not be necessary
-modify this file.
+Se realiza en el fichero de configuración ***endpoints.config***. Este se encuentra ubicado en el directorio
+***SealSignDSSWeb*** del sitio Web donde se haya instalado el producto. Dicho fichero incluye entre otras
+configuraciones, las direcciones de tres servicios web proporcionados por el DSS Service. Concretamente son
+el servicio web de administración (*AdminService.svc*), el de auditoría (*AuditService.svc*) y el de repositorio
+seguro de documentos (*SecureStorage.svc*).
+
+En caso de que se haya realizado la instalación de los servicios establecida por defecto no será necesario
+modificar este archivo.
 
 ```xml
     <client>
@@ -466,46 +476,46 @@ modify this file.
     </client>
 ```
 
-At this address you can obtain information about the displayed parameters.
+En esta dirección se puede obtener información sobre los parámetros mostrados.
 
-#### 4.2.3. Configuring the module in IIS
+#### 4.2.3. Configuración del módulo en el IIS
 
-For the correct functioning of the administration web application it is necessary to modify the authentication
-in the IIS. To do this, access for anonymous users must be disabled (*Anonymous Authentication*) and
-Enable Windows-based authentication (*Windows Authentication*).
+Para el correcto funcionamiento de la aplicación web de administración es necesario modificar la autenticación
+en el IIS. Para ello hay que deshabilitar el acceso para los usuarios anónimos (*Anonymous Authentication*) y
+habilitar la autenticación basada en Windows (*Windows Authentication*).
 
 ![Image-012](./images/image-12.png)
 
-<center><i>Image 12: Configuring DSS Web Module Permissions in IIS</i></center>
+<center><i>Image 12: Configuración de los permisos del módulo DSS Web en el IIS</i></center>
 
-### 4.3. DSS TSA module
+### 4.3. Módulo DSS TSA
 
-As mentioned above, this module installs the timestamping authority. As
-that in the previous ones you have to configure the connection string to the database once it has finished
-installation.
+Tal y como se ha mencionado anteriormente, este módulo instala la autoridad de sellado de tiempo. Al igual
+que en los anteriores hay que configurar la cadena de conexión a la base de datos una vez que haya finalizado
+la instalación.
 
-#### 4.3.1. Installing the DSS TSA module
+#### 4.3.1. Instalación del módulo DSS TSA
 
-The installation of the module is carried out like many Microsoft Windows programs, that is, following the
-steps of an assistant. The process is the same as the one carried out previously when installing the DSS modules
-Service and DSS Web.
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo anteriormente al instalar los módulos DSS
+Service y DSS Web.
 
 ![Image-013](./images/image-13.png)
 
-<center><i>Image 13: Configuration during installation of the DSS TSA module</i></center>
+<center><i>Image 13: Configuración durante la instalación del módulo DSS TSA</i></center>
 
-After installation it has been added as another program in the list of programs in the Control Panel, and in the
-IIS will also appear as a web application, along with DSS Service and DSS Web.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS también se mostrará como una aplicación web, junto al DSS Service y al DSS Web.
 
 ![Image-014](./images/image-14.png)
 
-<center><i>Image 14: Module already integrated as a web application in IIS</i></center>
+<center><i>Image 14: Módulo ya integrado como aplicación web en IIS</i></center>
 
-#### 4.3.2. DSS TSA Module Configuration
+#### 4.3.2. Configuración del módulo DSS TSA
 
-It is done in the configuration file ***connectionStrings.config***. This is located in the directory
-***SealSign DSS TSA*** from the website where the product is installed. By default, this file includes the string
-connection to the database created previously in SQL Server (*SealSignDSS*).
+Se realiza en el fichero de configuración ***connectionStrings.config***. Este se encuentra ubicado en el directorio
+***SealSign DSS TSA*** del sitio Web donde se haya instalado el producto. Dicho fichero por defecto incluye la cadena
+de conexión a la base de datos creada anteriormente en SQL Server (*SealSignDSS*).
 
 ```xml
    <connectionStrings>
@@ -518,39 +528,39 @@ connection to the database created previously in SQL Server (*SealSignDSS*).
     </connectionStrings> 
 ```
 
-The connection string configuration is exactly the same as previously done in the
-DSS Service module. The administrator must follow the steps indicated in that section to establish the
-proper connection in SQL Server, Oracle or PostGreSQL.
+La configuración de la cadena de conexión es exactamente la misma que la realizada anteriormente en el
+módulo DSS Service. El administrador deberá seguir los pasos indicados en ese apartado para establecer la
+conexión adecuada en SQL Server, Oracle o PostGreSQL.
 
-### 4.4. DSS Revoke module (Validation Authority)
+### 4.4. Módulo DSS Revoke (Autoridad de Validación)
 
-DSS Revoke is a local digital certificate validation authority that allows you to integrate into the
-organization of multiple external PSCs maintaining control of the validation process, centralizing the
-revocation checking and providing auditing functions, caching, downloading CRLs and OCSP responses
-and local revocation lists.
+DSS Revoke es una autoridad de validación de certificados digitales local que permite integrar en la
+organización múltiples PSCs externos manteniendo el control del proceso de validación, centralizando la
+comprobación de revocación y aportando funciones de auditoría, caché, descarga de CRLs y respuestas OCSP
+y listas locales de revocación.
 
-#### 4.4.1. DSS Revoke Module Installation
+#### 4.4.1. Instalación del módulo DSS Revoke
 
-The installation of the module is carried out like many Microsoft Windows programs, that is, following the
-steps of an assistant. The process is the same as the one carried out previously when installing the DSS modules
-Service and DSS Web.
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo anteriormente al instalar los módulos DSS
+Service y DSS Web.
 
 ![Image-015](./images/image-15.png)
 
-<center><i>Image 15: Configuration during installation of the DSS TSA module</i></center>
+<center><i>Image 15: Configuración durante la instalación del módulo DSS TSA</i></center>
 
-After installation it has been added as another program in the list of programs in the Control Panel, and in the
-IIS will also appear as a web application, along with DSS Service and DSS Web.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS también se mostrará como una aplicación web, junto al DSS Service y al DSS Web.
 
 ![Image-016](./images/image-16.png)
 
-<center><i>Image 16: Module already integrated as a web application in IIS</i></center>
+<center><i>Image 16: Módulo ya integrado como aplicación web en IIS</i></center>
 
-#### 4.4.2. DSS Revoke Module Configuration
+#### 4.4.2. Configuración del módulo DSS Revoke
 
-It is done in the configuration file ***connectionStrings.config***. This is located in the directory
-***RevokeClientWS*** from the Web site where the product is installed. By default, this file includes the string
-connection to the database created previously in SQL Server (*SealSignDSS*).
+Se realiza en el fichero de configuración ***connectionStrings.config***. Este se encuentra ubicado en el directorio
+***RevokeClientWS*** del sitio Web donde se haya instalado el producto. Dicho fichero por defecto incluye la cadena
+de conexión a la base de datos creada anteriormente en SQL Server (*SealSignDSS*).
 
 ```xml
     <connectionStrings>
@@ -563,47 +573,46 @@ connection to the database created previously in SQL Server (*SealSignDSS*).
     </connectionStrings>
 ```
 
-The connection string configuration is exactly the same as previously done in the
-DSS Service module. The administrator must follow the steps indicated in that section to establish the
-proper connection in SQL Server, Oracle or PostGreSQL.
+La configuración de la cadena de conexión es exactamente la misma que la realizada anteriormente en el
+módulo DSS Service. El administrador deberá seguir los pasos indicados en ese apartado para establecer la
+conexión adecuada en SQL Server, Oracle o PostGreSQL.
 
-### 4.5. OTPSS module (One Time Password Signature Service)
+### 4.5. Módulo OTPSS (One Time Password Signature Service)
 
-#### 4.5.1. OTPSS Module Installation
+#### 4.5.1. Instalación del módulo OTPSS
 
-The installation of the module is carried out like many Microsoft Windows programs, that is, following the
-steps of an assistant.
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente.
 
-During the installation, you must indicate from the list of available websites, the one where you want to install the
-SealSign DSS electronic signature service, the virtual directory name, and the application Application Pool
-which was configured in IIS (SealSignAppPool in this case).
+Durante la instalación, hay que indicar de la lista de sitios web disponibles, aquel en el que se desea instalar el
+servicio de firma electrónica SealSign DSS, el nombre del directorio virtual y el Application Pool de aplicación
+que se configuró en el IIS (SealSignAppPool en este caso).
 
 ![Image-017](./images/image-17.png)
 
-<center><i>Image 17: Configuration during installation of the OTPSS module</i></center>
+<center><i>Image 17: Configuración durante la instalación del módulo OTPSS</i></center>
 
-After installation it has been added as another program in the list of programs in the Control Panel, and in the
-IIS will be displayed as a web application.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS se mostrará como una aplicación web.
 
 ![Image-018](./images/image-18.png)
 
-<center><i>Image 18: Module already integrated as a web application in IIS</i></center>
+<center><i>Image 18: Módulo ya integrado como aplicación web en IIS</i></center>
 
 ![Image-019](./images/image-19.png)
 
-#### 4.5.2. OTPSS Module Configuration
+#### 4.5.2. Configuración del módulo OTPSS
 
-It is done in the configuration file ***connectionStrings.config***. This is located in the directory
-***SealSignOTPSSService*** of the Web site where the product is installed. This file includes the string
-connection to the database created previously in SQL Server (*SealSignDSS*), plus other parameters
-What must be considered:
+Se realiza en el fichero de configuración ***connectionStrings.config***. Este se encuentra ubicado en el directorio
+***SealSignOTPSSService*** del sitio Web donde se haya instalado el producto. Dicho fichero incluye la cadena de
+conexión a la base de datos creada anteriormente en SQL Server (*SealSignDSS*), además de otros parámetros
+que hay que tener en cuenta:
 
 **\InetPub\wwwroot\SealSignOTPSSService**
 
 - **SQL SERVER**
 
-    This file includes the connection string to the database previously created in SQL Server
-    (SealSignDSS):
+    Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server (SealSignDSS):
 
     ```xml
         <connectionStrings>
@@ -616,25 +625,22 @@ What must be considered:
 
 - **ORACLE**
 
-    If the database is Oracle, the following parameters must be modified:
+    En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:
 
-    - Change the value of the FactoryProvider key and set it to System.Data.OracleClient in the file
-    web.config located in the same directory as the connectionStrings.config file.
+    - Cambiar el valor de la clave *FactoryProvider* y establecerlo a *System.Data.OracleClient* en el fichero ***web.config*** ubicado en el mismo directorio en el que se encuentra el fichero ***connectionStrings.config***.
 
-    - In the connectionStrings tag you must configure the connection string for access to Oracle. In
-    At this address it is possible to learn about creating connection strings in Oracle.
+    - En la etiqueta *connectionStrings* hay que configurar la cadena de conexión para el acceso a Oracle. En esta dirección es posible informarse sobre la creación de cadenas de conexión en Oracle.
 
-    - You must modify the connectionString attribute of the SealSignDSSConnectionString tag, and
-    set it with the following format:
+    - Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:
 
     ```xml
     Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=XXX)(HOST=XXX)(PORT=XXX))
     (CONNECT_DATA=(SID=XXX)));User Id=UserID;Password=Password;
     ```
 
-    An example of a connection could be the following:
+    Un ejemplo de conexión podría ser el siguiente:
     
-    - **web.config file**:
+    - **Fichero web.config**:
 
     ```xml
         ...
@@ -645,7 +651,7 @@ What must be considered:
         ...
     ```
 
-    - **ConnectionStrings.config file**:
+    - **Fichero connectionStrings.config**:
 
     ```xml
         <connectionStrings>
@@ -657,25 +663,23 @@ What must be considered:
     ```
 - **POSTGRESQL**
 
-    If the database is PostGre, the following parameters must be modified:
+    En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:
 
-    - Change the value of the FactoryProvider key and set it to Npgsql in the web.config file located
-    in the same directory where the connectionStrings.config file is located.
+    - Cambiar el valor de la clave *FactoryProvider* y establecerlo a *Npgsql* en el fichero ***web.config*** ubicado en el mismo directorio en el que se encuentra el fichero ***connectionStrings.config***.
 
-    - In the connectionStrings tag you must configure the connection string for access to PostGre.
-    At this URL address https://www.connectionstrings.com/npgsql/ it is possible to obtain information about the
-    creating connection strings in Oracle.
+    - En la etiqueta connectionStrings hay que configurar la cadena de conexión para el acceso a PostGre.
+    En esta dirección URL https://www.connectionstrings.com/npgsql/ es posible informarse sobre la
+    creación de cadenas de conexión en Oracle.
 
-    - You must modify the connectionString attribute of the SealSignDSSConnectionString tag, and
-    set it with the following format:
+    - Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:
 
     ```xml
     server=XXXX;userid=XXXX;password=XXXX;database=XXXX
     ```
 
-    An example of a connection could be the following:
+    Un ejemplo de conexión podría ser el siguiente:
 
-    - **web.config file**:
+    - **Fichero web.config**:
 
         ```xml
             ...
@@ -686,7 +690,7 @@ What must be considered:
             ...
 
         ```
-    - **ConnectionStrings.config file**:
+    - **Fichero connectionStrings.config**:
 
         ```xml
             <connectionStrings>
@@ -696,62 +700,62 @@ What must be considered:
             </connectionStrings>
         ```
 
-## 5. Troubleshooting Installation Problems
+## 5. Resolución de problemas de instalación
 
-The installation process of electronic signature services includes a monitoring system and
-SealSign's own error tracking. In this way all errors, warnings and informational messages are
-logged in their own application log integrated into Microsoft Windows. If you identify any
-problem in the services, it is recommended to review the SealSign DSS log.
+El proceso de instalación de los servicios de firma electrónica incluye un sistema de monitorización y
+seguimiento de errores propio de SealSign. De esta forma todos los errores, avisos y mensajes informativos se
+registran en su propio Log de aplicación integrado en Microsoft Windows. En caso de identificar algún
+problema en los servicios se recomienda revisar el log SealSign DSS.
 
 ![Image-020](./images/image-20.png)
 
-<center><i>Image 20: Microsoft Windows Event Viewer</i></center>
+<center><i>Image 20: Visor de eventos de Microsoft Windows</i></center>
 
-The most common problems that can occur during the installation of SealSign DSS are those caused
-for obtaining the license, and its identifier is 3011.
+Los problemas más comunes que pueden ocurrir durante la instalación de SealSign DSS son los ocasionados
+por la obtención de la licencia, y su identificador es el 3011.
 
 ```note 
-    The “SealSign Monitoring Guide” includes full details on how to
-    monitor the health status of the platform and see the possible errors that may occur
-    during use.
+    En la “Guía de monitorización de SealSign”, se incluyen todos los detalles acerca de cómo
+    monitorizar el estado de salud de la plataforma y ver los posibles errores que se pueden dar
+    durante su utilización.
 ```
 
 ### 5.1. Error 80070005
 
-This error generally occurs when the user the *Application Pool* is configured with does not have
-permissions to instantiate the license management component. Said component is registered in the machine
-during the installation process. The generated message is the following:
+Este error se produce generalmente cuando el usuario con el que está configurado el Application Pool no tiene
+permisos para instanciar el componente de gestión de licencias. Dicho componente se registra en la maquina
+durante el proceso de instalación. El mensaje generado es el siguiente:
 
 ```An error has occurred obtaining license information: 
     Retrieving the COM class factory for component with CLSID {554A6D3B-2FEF-4C2F-B34C-AF6185EB2759} failed due to the following error: 80070005. at SealSignDSSLibrary.SealSignDSSLicense.InitializeLicense(String licenseFile)
 ```
 
-To solve this, simply provide activation permissions to the *Application Pool* user. This could be done
-do with the ***DCOMCNFG.EXE*** tool, looking for the ***LicProtector Server*** component:
+Para solucionarlo, basta con proporcionar permisos de activación al usuario del *Application Pool*. Esto se pude
+hacer con la herramienta ***DCOMCNFG.EXE***, buscando el componente ***LicProtector Server***:
 
 ![Image-021](./images/image-21.png)
 
-<center><i>Image 21: DCOMCNFG.EXE Tool</i></center>
+<center><i>Image 21: Herramienta DCOMCNFG.EXE</i></center>
 
-Through the right button you can access the properties of this element, where the tab is
-Security, from which you can give permissions to the Application Pool user.
+A través del botón de derecho se puede acceder a las propiedades de este elemento, donde está la pestaña
+Security, desde la cual se podrá dar permisos al usuario del Application Pool.
 
 ![Image-022](./images/image-22.png)
 
-<center><i>Image 21: Permission settings</i></center>
+<center><i>Image 21: Permission settingsConfiguración de permisos</i></center>
 
 ### 5.2. Error 80040154
 
-This error generally occurs in 64-bit environments when the activation settings of the
-license management component has been modified or deleted. Said component is registered in the machine
-during the installation process.
+Este error se produce generalmente en entornos de 64 bits cuando la configuración de activación del
+componente de gestión de licencias se ha modificado o borrado. Dicho componente se registra en la maquina
+durante el proceso de instalación.
 
-The generated message is the following:
+El mensaje generado es el siguiente:
 
 ```An error has occurred obtaining license information:
     Retrieving the COM class factory for component with CLSID {554A6D3B-2FEF-4C2F-B34C-AF6185EB2759} failed due to the
     following error: 80040154. at SealSignDSSLicense.SealSignDSSLicense.InitializeLicense(String licenseFile)
 ```
 
-To regenerate the component activation configuration, you can execute the ***DllSurrogate.reg*** file
-supplied with installation modules.
+Para regenerar la configuración de activación del componente se puede ejecutar el fichero ***DllSurrogate.reg***
+provisto con los módulos de instalación.

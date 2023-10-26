@@ -1,31 +1,36 @@
-## 1. BSS module installation
+## 1. Instalación del módulo BSS
 
-The module is installed in the same way as many Microsoft Windows programs, i.e. by following the steps of a wizard.
+La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente.
 
-During the installation, you must indicate from the list of available web sites, the one on which you want to install the SealSign DSS electronic signature service, the name of the virtual directory and the Application Pool of the application.
-SealSign BSS biometric signature service, the name of the virtual directory and the Application Pool of the application configured in the IIS.
-configured in the IIS (SealSignAppPool in this case).
+Durante la instalación, hay que indicar de la lista de sitios web disponibles, aquel en el que se desea instalar el
+servicio de firma electrónica SealSign DSS, el nombre del directorio virtual y el Application Pool de aplicación
+que se configuró en el IIS (SealSignAppPool en este caso).
 
 ![bss setup](./images/image-02.png)
 
-<center><i>Image 01: Configuration during installation of the BSS module.</i></center>
+<center><i>Image 01: Configuración durante la instalación del módulo BSS.</i></center>
 
-After installation it has been added as an additional program in the list of programs in the Control Panel, and in the
-IIS will be displayed as a web application.
+Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS se mostrará como una aplicación web.
 
 ![bss iis](./images/image-03.png)
 
-<center><i>Image 02: Module already integrated as a web application in IIS.</i></center>
+<center><i>Image 02: Módulo ya integrado como aplicación web en IIS.</i></center>
 
-## 2. BSS module configuration
+## 2. Configuración del módulo BSS
 
-This is done in the configuration file connectionStrings.config. This is located in the SealSignBSSService directory of the Web site where the product is installed. This file includes the connection string to the database previously created in SQL Server (SealSignDSS), in addition to other parameters that must be taken into account parameters to be taken into account:
+Se realiza en el fichero de configuración connectionStrings.config. Este se encuentra ubicado en el directorio
+SealSignBSSService del sitio Web donde se haya instalado el producto. Dicho fichero incluye la cadena de
+conexión a la base de datos creada anteriormente en SQL Server (SealSignDSS), además de otros parámetros
+que hay que tener en cuenta:
 
 **\InetPub\wwwroot\SealSignBSSService**
 
 ### 1.1. SQL Server
 
-This file includes the connection string to the database created earlier in SQL Server (SealSignDSS):
+Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server
+(SealSignDSS):
 
 ```xml
   <connectionStrings>
@@ -40,22 +45,25 @@ This file includes the connection string to the database created earlier in SQL 
 
 ### 1.2. Oracle
 
-In case the database is Oracle, the following parameters must be modified:
+En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:
 
-- Change the value of the FactoryProvider key and set it to System.Data.OracleClient in the file web.config file located in the same directory as the connectionStrings.config file.
+- Cambiar el valor de la clave FactoryProvider y establecerlo a System.Data.OracleClient en el fichero
+web.config ubicado en el mismo directorio en el que se encuentra el fichero connectionStrings.config.
 
-- In the connectionStrings tag you have to configure the connection string for Oracle access. At this address provides information on the creation of connection strings in Oracle.
+- En la etiqueta connectionStrings hay que configurar la cadena de conexión para el acceso a Oracle. En
+esta dirección es posible informarse sobre la creación de cadenas de conexión en Oracle.
 
-- The connectionString attribute of the SealSignDSSConnectionString tag has to be modified and set it to the following format:
+- Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y
+establecerlo con el siguiente formato:
 
 ```xml
   Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=XXX)(HOST=XXX)(PORT=XXX))
   (CONNECT_DATA=(SID=XXX)));User Id=identificadorUsuario;Password=Contraseña;
 ```
 
-For example:
+Un ejemplo de conexión podría ser el siguiente:
 
-- **web.config**
+- **Fichero web.config**
 
   ```xml
     ...
@@ -66,7 +74,7 @@ For example:
     ...
   ```
 
-- **connectionStrings.config**
+- **Fichero connectionStrings.config**
 
   ```xml
     <connectionStrings>
@@ -79,20 +87,24 @@ For example:
 
 ### 1.2. PostGreSQL
 
-In case the database is PostGre, the following parameters must be modified:
+En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:
 
-- Change the value of the FactoryProvider key and set it to Npgsql in the web.config file located in the same directory where the connectionStrings.config file is located.
+- Cambiar el valor de la clave FactoryProvider y establecerlo a Npgsql en el fichero web.config ubicado
+en el mismo directorio en el que se encuentra el fichero connectionStrings.config
 
-- In the connectionStrings tag, the connection string for accessing PostGre must be configured. At this URL https://www.connectionstrings.com/npgsql/ it is possible to get information about the creation of connection strings in Oracle. creation of connection strings in PostGreSQL.
+- En la etiqueta connectionStrings hay que configurar la cadena de conexión para el acceso a PostGre.
+En esta dirección URL https://www.connectionstrings.com/npgsql/ es posible informarse sobre la
+creación de cadenas de conexión en Oracle.
 
-- The connectionString attribute of the SealSignDSSConnectionString tag must be modified, and set it to the following format:
+- Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y
+establecerlo con el siguiente formato:
 
 ```xml
   server=XXXX;userid=XXXX;password=XXXX;database=XXXX
 ```
-For example:
+Un ejemplo de conexión podría ser el siguiente:
 
-- **web.config**
+- **Fichero web.config**
 
   ```xml
     ...
@@ -103,7 +115,7 @@ For example:
     ...
   ```
 
-- **connectionStrings.config**
+- **Fichero connectionStrings.config**
 
   ```xml
     <connectionStrings>

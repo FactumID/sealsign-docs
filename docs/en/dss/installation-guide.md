@@ -147,7 +147,7 @@ It is recommended that the integration mode chosen be Integrated (see image belo
 
 ![Image-02](./images/image-02.png)
 
-<center><i>Image 02: SealSign modules</i></center>
+<center><i>Image 02: Creating a new Application Pool</i></center>
 
 Once you have an Application Pool, it is necessary to configure it and modify certain values, to do this
 You must access the advanced options of the Application Pool through the context menu:
@@ -178,14 +178,14 @@ If using SQL Server, it is necessary to create a new database for SealSign DSS. 
 said database is indifferent (SealSignDSS in this case), and will be used later in the chains of
 Connection. Once this database has been created, it is necessary to perform the following actions:
 
-- Run the table creation script. A file is included in the product installation package
+- **Run the table creation script**. A file is included in the product installation package
 sql for SQL Server. This file must be executed on the created database, and it will be generated in
 It contains all the elements that the product needs for its correct functioning.
 
 **\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_v4.0_MSSQL.sql**
 ![Image-04](./images/image-04.png)
 
-<center><i>Image 03: Execution of the sql file in the created database</i></center>
+<center><i>Image 04: Execution of the sql file in the created database</i></center>
 
 - **Configure database access permissions**. In the case of using integrated security for
 access the database, it is necessary to provide write (datawriter) and read permissions
