@@ -253,11 +253,13 @@ SealSign DSS.
 
 ## 4. Installation of SealSign DSS Modules
 
+### 4.1. DSS Service Module (electronic signature)
+
 As mentioned above, this module installs a set of web services. These will be based
 both in the IIS and in the database to carry out its work. This is why after installation there is
 You have to configure it so that it can use these services.
 
-### 4.1. DSS Service Module (electronic signature)
+#### 4.1.1. Installing the DSS Service module
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant.
@@ -277,7 +279,7 @@ IIS will be displayed as a web application.
 
 <center><i>Image 07: Module already integrated as a web application in IIS</i></center>
 
-#### 4.1.1. Installing the DSS Service module
+#### 4.1.2. DSS Service Module Configuration
 
 Once the module is installed, it is necessary to configure it so that it correctly uses both the database,
 like the IIS.
@@ -391,9 +393,6 @@ It is done in the configuration file *connectionStrings.config*. This is located
                 database=SealSignDSS”/>
         </connectionStrings>
     ```
-
-
-#### 4.1.2. DSS Service Module Configuration
 
 **MODULE CONFIGURATION IN IIS**
 
