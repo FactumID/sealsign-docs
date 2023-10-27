@@ -7,6 +7,7 @@
 **On Premise**
 
 <!--* [Home](/)-->
+* [Licencias](/es/license/license)
 * [Monitorización](/es/monitor/monitor)
 * [Clickonce](/es/clickonce/clickonce)
 * [DSS (Digital Signature Services)](/es/dss/installation-guide)
