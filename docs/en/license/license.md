@@ -11,10 +11,7 @@ This document is valid for any product in the SealSign® family, therefore, vali
 - SealSign® DSR
 - SealSign® BAS
 
-``` note
-Although “SealSign® DSS” appears as a product in the images in this document, this
-This document is applicable to the rest of the SealSign® family products mentioned above.
-```
+> Although “SealSign® DSS” appears as a product in the images in this document, this This document is applicable to the rest of the SealSign® family products mentioned above.
 
 # 2. SealSign® License Management - Options
 
@@ -234,9 +231,14 @@ assumptions:
 SealSignDSS Service (Electronic Signature) of the SealSign® family. These examples are applicable to the rest
 of products from the SealSign® family as stated in the introduction of this document.
 
-**View license status** SealSignADM.exe -p -l SealSignDSS.lic
-**Activate license** SealSignADM.exe -a -e email@domain.com -s XXXXX-XXXXXXXXXX-XXXXX-XXXXX-XXXXX -l SealSignDSS.lic
-**Deactivate license** SealSignADM.exe -x -l SealSignDSS.lic
-**Reactivate license** SealSignADM.exe -r -l SealSignDSS.lic
-**Check License Status** SealSignADM.exe -c -l SealSignDSS.lic
-**Show License Viewer** SealSignADM.exe -v -l SealSignDSS.lic
+> **View license status** SealSignADM.exe -p -l SealSignDSS.lic
+>
+> **Activate license** SealSignADM.exe -a -e email@domain.com -s XXXXX-XXXXXXXXXX-XXXXX-XXXXX-XXXXX -l SealSignDSS.lic
+>
+> **Deactivate license** SealSignADM.exe -x -l SealSignDSS.lic
+>
+> **Reactivate license** SealSignADM.exe -r -l SealSignDSS.lic
+>
+> **Check License Status** SealSignADM.exe -c -l SealSignDSS.lic
+>
+> **Show License Viewer** SealSignADM.exe -v -l SealSignDSS.lic

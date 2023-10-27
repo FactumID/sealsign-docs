@@ -11,10 +11,7 @@ Este documento es válido para cualquier producto de la familia de SealSign®, p
 - SealSign® DSR
 - SealSign® BAS
 
-```note
-Aunque en las imágenes de este documento aparezca “SealSign® DSS” como producto, este
-documento es aplicable al resto de productos de la familia SealSign® mencionados anteriormente.
-```
+> Aunque en las imágenes de este documento aparezca “SealSign® DSS” como producto, este documento es aplicable al resto de productos de la familia SealSign® mencionados anteriormente.
 
 # 2. Administración de Licencias de SealSign® - Opciones
 
@@ -234,9 +231,14 @@ supuestos:
 SealSignDSS Service (Firma electrónica) de la familia SealSign®. Estos ejemplos son aplicables al resto
 de productos de la familia SealSign® como dice la introducción de este documento.
 
-**Visualizar el estado de la licencia** SealSignADM.exe -p -l SealSignDSS.lic
-**Activar licencia** SealSignADM.exe -a -e email@dominio.com -s XXXXX-XXXXXXXXXX-XXXXX-XXXXX-XXXXX -l SealSignDSS.lic
-**Desactivar licencia** SealSignADM.exe -x -l SealSignDSS.lic
-**Reactivar licencia** SealSignADM.exe -r -l SealSignDSS.lic
-**Comprobar el Estado de la Licencia** SealSignADM.exe -c -l SealSignDSS.lic
-**Mostrar el Visor de Licencias** SealSignADM.exe -v -l SealSignDSS.lic
+> **Visualizar el estado de la licencia** SealSignADM.exe -p -l SealSignDSS.lic
+>
+> **Activar licencia** SealSignADM.exe -a -e email@dominio.com -s XXXXX-XXXXXXXXXX-XXXXX-XXXXX-XXXXX -l SealSignDSS.lic
+>
+> **Desactivar licencia** SealSignADM.exe -x -l SealSignDSS.lic
+>
+> **Reactivar licencia** SealSignADM.exe -r -l SealSignDSS.lic
+>
+> **Comprobar el Estado de la Licencia** SealSignADM.exe -c -l SealSignDSS.lic
+>
+> **Mostrar el Visor de Licencias** SealSignADM.exe -v -l SealSignDSS.lic
