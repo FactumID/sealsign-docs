@@ -11,6 +11,6 @@
 * [Monitoring](/en/monitor/monitor)
 * [Clickonce](/en/clickonce/clickonce)
 * [DSS (Digital Signature Services)](/en/dss/installation-guide)
-* [BSS (Biometric Signature Services)](/en/bss/bss)
+* [BSS (Biometric Signature Services)](/en/bss/installation-guide)
 
 <!--* [Biosigner](/en-us/biosigner)-->
