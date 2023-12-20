@@ -4,6 +4,9 @@
 
   SealSign's ClickOnce client replaces the Java Applet in Windows environments. Its deployment is based on Microsoft's ClickOnce technology, which allows the deployment of applications over the Internet. The client is able to communicate bidirectionally with the browser that has launched the signature request to achieve a behavior similar to the integration of the Applet with the browser using JavaScript. This communication is achieved using Microsoft's SignalR. More information about SignalR can be found on the official SignalR website.
 
+  From the following link you can access a project that contains an example of how to integrate with the SealSign Signature Client (ClickOnce):
+   - https://github.com/FactumID/SealSignClickOnceClientWebExample
+
 ## 2. Minimum requirements
 
 - The client runs on .Net Framework 4.5.
