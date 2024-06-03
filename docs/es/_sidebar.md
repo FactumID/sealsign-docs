@@ -6,6 +6,7 @@
 
 **On Premise**
 
+* [Dominios y direcciones](/es/cloud/ips)
 <!--* [Home](/)-->
 * [Licencias](/es/license/license)
 * [Monitorización](/es/monitor/monitor)

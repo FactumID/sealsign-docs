@@ -7,6 +7,7 @@
 **On Premise**
 
 <!--* [Home](/)-->
+* [Domains and IP addresses](/en/cloud/ips)
 * [Licences](/en/license/license)
 * [Monitoring](/en/monitor/monitor)
 * [Clickonce](/en/clickonce/clickonce)
