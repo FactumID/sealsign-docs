@@ -2,7 +2,10 @@
 
 ## 1. Introducción
 
-  El cliente ClickOnce de SealSign viene a sustituir en entornos Windows al Applet de Java. Su despliegue está basado en la tecnología ClickOnce de Microsoft que permite el despliegue de aplicaciones por internet. Para más información deberá visitarse el sitio de Microsoft.El cliente es capaz de comunicarse de forma bidireccional con el navegador que ha lanzado la petición de firma para conseguir un comportamiento similar a la integración del Applet con el navegador utilizando JavaScript. Esta comunicación se consigue utilizando SignalRde Microsoft. Para más información sobre SignalRpuede visitarse el sitio oficial de SignalR.
+  El cliente ClickOnce de SealSign viene a sustituir en entornos Windows al Applet de Java. Su despliegue está basado en la tecnología ClickOnce de Microsoft que permite el despliegue de aplicaciones por internet. Para más información deberá visitarse el sitio de Microsoft. El cliente es capaz de comunicarse de forma bidireccional con el navegador que ha lanzado la petición de firma para conseguir un comportamiento similar a la integración del Applet con el navegador utilizando JavaScript. Esta comunicación se consigue utilizando SignalR de Microsoft. Para más información sobre SignalR puede visitarse el sitio oficial de SignalR.
+
+  Desde el siguiente enlace podran acceder a un proyecto que contiene un ejemplo de como integrarse con el cliente de firma SealSign Signature Cliente (ClickOnce):
+   - https://github.com/FactumID/SealSignClickOnceClientWebExample
 
 ## 2. Requisitos mínimos
 
