@@ -1,1 +1,1 @@
-* [English](/es/cloud/ips)
+* [Español](/es/cloud/ips)
