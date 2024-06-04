@@ -403,7 +403,30 @@ its correct operation. This implies that this type of authentication must be act
 
 <center><i>Image 09: Configuring DSS Service module permissions in IIS</i></center>
 
-If you activate basic authentication, it is highly recommended to use SSL.
+If you activate basic authentication, it is highly recommended to use SSL/TLS.
+
+
+**SSL/TLS CONFIGURATION**
+
+For more information about how to configure IIS/SSL check [https://learn.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis](https://learn.microsoft.com/en-us/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
+
+***Configuring WCF Bindings in SealSign with SSL***
+
+To configure WCF in any of the SealSign modules to use SSL, simply make the following change to the `Web.config` of the module in question:
+
+```
+<!--<services configSource="servicesnossl.config"/>-->
+<services configSource="servicesssl.config"/>
+```
+
+***Configuring WCF Bindings in SealSign without SSL***
+
+To configure WCF in any of the SealSign modules to not use SSL, simply make the following change to the `Web.config` of the module in question:
+
+```
+<services configSource="servicesnossl.config"/>
+<!--<services configSource="servicesssl.config"/>-->
+```
 
 ### 4.2. DSS Web module (administration and configuration)
 

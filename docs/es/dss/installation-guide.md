@@ -412,7 +412,32 @@ el producto.
 
 <center><i>Image 09: Configuración de los permisos del módulo DSS Service en el IIS</i></center>
 
-En caso de activar la autenticación básica es altamente recomendable utilizar SSL.
+En caso de activar la autenticación básica es altamente recomendable utilizar SSL/TLS.
+
+
+**CONFIGURACION POR SSL/TLS**
+
+Para más información de cómo configurar IIS/SSL véase [https://learn.microsoft.com/es-ES/iis/manage/configuring-security/how-to-set-up-ssl-on-iis](https://learn.microsoft.com/es-ES/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
+
+***Configuración de los Bindings WCF en SealSign con SSL***
+
+Para configurar WCF en cualquiera de los módulos de SealSign para que usen SSL simplemente hay que realizar
+el siguiente cambio en el `Web.config` del módulo en cuestión:
+
+```
+<!--<services configSource="servicesnossl.config"/>-->
+<services configSource="servicesssl.config"/>
+```
+
+***Configuración de los Bindings WCF en SealSign sin SSL***
+
+Para configurar WCF en cualquiera de los módulos de SealSign para que no usen SSL simplemente hay que
+realizar el siguiente cambio en el `Web.config` del módulo en cuestión:
+
+```
+<services configSource="servicesnossl.config"/>
+<!--<services configSource="servicesssl.config"/>-->
+```
 
 ### 4.2. Módulo DSS Web (administración y configuración)
 
