@@ -65,7 +65,7 @@ To view the list of configured PKCS#11 providers on the server, you can follow t
 3. The list of all configured PKCS#11 providers on the server will appear.
 
 
-![9_image_1.png](./images/9_image_1.png)
+![mainmenu-pkcs11.png](./images/mainmenu-pkcs11.png)
 
 #### 2.3.2. Add A New Supplier Pkcs#11
 
@@ -755,6 +755,8 @@ Once a certificate has been added to the server, the administrator can perform t
 The administration and configuration of the user's certificate by SealSign DSS is done centrally through the user web. To open this, it is simply necessary to run an instance in a browser to the following address:
 http://servername.portnumber/SealSignDSSWeb/users/ 
 and a username/password will be requested to access the user's administration web site and his certificates.
+
+![user-certificates](./images/user-certificates.png)
 
 Once inside the user's website, he can perform different operations:
 

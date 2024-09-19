@@ -79,7 +79,7 @@ Para ver la lista de proveedores PKCS\#11 configurados en el servidor se pueden 
 
 3. Aparecerá la lista de todos los proveedores PKCS\#11 configurados en el servidor.
 
-![9_image_1.png](./images/9_image_1.png)
+![mainmenu-pkcs11.png](./images/mainmenu-pkcs11.png)
 
 #### 2.3.2. Añadir Un Nuevo Proveedor Pkcs#11
 
@@ -519,7 +519,7 @@ La sección de configuración personalizada permite la individualización de los
 
 Contiene el listado de las entidades con la clave compartida con el cliente para la selección de las configuraciones. Dichos registros tienen un campo identificador, nombre, descripción y certificados asignados para cifrado y firma de apoyo.
 
-![59_image_1.png](./images/59_image_1.png)
+![mainmenu-pkcs11.png](./images/mainmenu-pkcs11.png)
 
 A través de esta pantalla podemos acceder a las siguientes acciones para la parametrización de las firmas:
 
@@ -778,6 +778,8 @@ Una vez hemos añadido un certificado en el servidor, el administrador realizar 
 **OPERACIONES SOBRE EL CERTIFICADO DE UN USUARIO**
 
 La administración y configuración del certificado de usuario por parte de SealSign DSS se realiza de manera centralizada mediante la web de usuario. Para abrir esta, simplemente será necesario ejecutar una instancia en un navegador hasta la dirección http://servername.portnumber/SealSignDSSWeb/users/ y se pedirá usuario/contraseña para poder acceder a la web de administración del usuario y sus certificados.
+
+![user-certificates](./images/user-certificates.png)
 
 Una vez dentro de la web del usuario, él puede realizar diferentes operaciones:
 
