@@ -777,7 +777,8 @@ durante el proceso de instalación.
 
 El mensaje generado es el siguiente:
 
-```An error has occurred obtaining license information:
+```
+An error has occurred obtaining license information:
     Retrieving the COM class factory for component with CLSID {554A6D3B-2FEF-4C2F-B34C-AF6185EB2759} failed due to the
     following error: 80040154. at SealSignDSSLicense.SealSignDSSLicense.InitializeLicense(String licenseFile)
 ```
