@@ -34,7 +34,7 @@ En algunos escenarios es posible que no haya conexión con el servidor de firma 
 
 ## Captura Desconectada
 
-Mediante la llamada al panel de firma se realiza la obtención de los datos biométricos y la operación criptográfica. En lugar de los datos obtenidos del servicio en una llamada normal, se obtiene el token biométrico pasando el documento a firmar como parámetro. Posteriormente, se obtiene también la instancia temporal generada en cliente
+Mediante la llamada al panel de firma se realiza la obtención de los datos biométricos y la operación criptográfica. En lugar de los datos obtenidos del servicio en una llamada normal, se obtiene el token biométrico pasando el documento a firmar como parámetro. Posteriormente, se obtiene también la instancia temporal generada en cliente.
 
 El panel de firma se establece en el layout mediante el siguiente View:
 

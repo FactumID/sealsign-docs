@@ -182,7 +182,7 @@ Connection. Once this database has been created, it is necessary to perform the 
 sql for SQL Server. This file must be executed on the created database, and it will be generated in
 It contains all the elements that the product needs for its correct functioning.
 
-**\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_v4.0_MSSQL.sql**
+**\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_vX.X_MSSQL.sql**
 ![Image-04](./images/image-04.png)
 
 <center><i>Image 04: Execution of the sql file in the created database</i></center>
@@ -221,7 +221,7 @@ tablespace.
 sql for Oracle. This file must be executed on the created tablespace, and it will be generated in the same
 all the elements that the product needs for its correct operation.
 
-**\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_v4.0_ORACLE.sql**
+**\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_vX.X_ORACLE.sql**
 
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.
@@ -236,7 +236,7 @@ Once said DB has been created, it is necessary to execute the table creation scr
 An sql file for PostGreSQL is included in the product. This file must be executed on the created DB,
 and all the elements that the product needs for its correct functioning will be generated therein.
 
-**\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_v4.0_PostgreSQL.sql**
+**\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_vX.X_PostgreSQL.sql**
 
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.

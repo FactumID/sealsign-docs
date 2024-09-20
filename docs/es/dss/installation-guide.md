@@ -196,7 +196,7 @@ conexión. Una vez creada dicha base de datos es necesario realizar las siguient
 sql para SQL Server. Este archivo hay que ejecutarlo sobre la base de datos creada, y se generarán en
 la misma todos los elementos que el producto necesita para su correcto funcionamiento.
 
-**\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_v4.0_MSSQL.sql**
+**\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_vX.X_MSSQL.sql**
 ![Image-04](./images/image-04.png)
 
 <center><i>Image 03: Ejecución del fichero sql en la base de datos creada</i></center>
@@ -235,7 +235,7 @@ tablespace.
 sql para Oracle. Este archivo hay que ejecutarlo sobre el tablespace creado, y se generarán en el mismo
 todos los elementos que el producto necesita para su correcto funcionamiento.
 
-**\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_v4.0_ORACLE.sql**
+**\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_vX.X_ORACLE.sql**
 
 Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
 SealSign DSS.
@@ -250,7 +250,7 @@ Una vez creado dicha BBDD es necesario ejecutar el script de creación de tablas
 del producto se incluye un fichero sql para PostGreSQL. Este archivo hay que ejecutarlo sobre la BBDD creada,
 y se generarán en el mismo todos los elementos que el producto necesita para su correcto funcionamiento.
 
-**\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_v4.0_PostgreSQL.sql**
+**\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_vX.X_PostgreSQL.sql**
 
 Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
 SealSign DSS.
