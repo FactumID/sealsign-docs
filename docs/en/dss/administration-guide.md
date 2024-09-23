@@ -72,15 +72,15 @@ To view the list of configured PKCS#11 providers on the server, you can follow t
 
 To add a new PKCS#11 provider, follow these steps:
 
-4. On the main webpage of the administration section, select the "Manage the registration of PKCS#11 providers" link from the Main Tasks group. There is also a link to access this page from the list of PKCS#11 providers viewed earlier.
+1. On the main webpage of the administration section, select the "Manage the registration of PKCS#11 providers" link from the Main Tasks group. There is also a link to access this page from the list of PKCS#11 providers viewed earlier.
 
-5. Specify the configuration parameters for the provider:
+2. Specify the configuration parameters for the provider:
 
- - a. The "Name" field is a required label to identify the provider being configured.
+    1. The "Name" field is a required label to identify the provider being configured.
 
- - b. The "Library" field specifies the complete path of the dynamic link library (DLL) of the PKCS#11 provider. Ensure that the provider is correctly installed on all SealSign DSS servers for proper functionality.
+    2. The "Library" field specifies the complete path of the dynamic link library (DLL) of the PKCS#11 provider. Ensure that the provider is correctly installed on all SealSign DSS servers for proper functionality.
 
-6. Click the "Insert" button to save the changes.
+3. Click the "Insert" button to save the changes.
 
 
 ### 2.3.3. Edit Pkcs#11 Supplier

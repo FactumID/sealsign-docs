@@ -87,15 +87,15 @@ Para ver la lista de proveedores PKCS\#11 configurados en el servidor se pueden 
 
 Para añadir un nuevo proveedor PKCS\#11, se pueden realizar los siguientes pasos:
 
-4. En la página principal de la web de Administración seleccionar el enlace Registrar un nuevo proveedor PKCS\#11 del grupo Tareas Relativas a la Configuración General de la Plataforma. Existe también un enlace desde la lista de proveedores PKCS\#11 consultada en el apartado anterior.
+1. En la página principal de la web de Administración seleccionar el enlace Registrar un nuevo proveedor PKCS\#11 del grupo Tareas Relativas a la Configuración General de la Plataforma. Existe también un enlace desde la lista de proveedores PKCS\#11 consultada en el apartado anterior.
 
-5. Especificar los parámetros de configuración del proveedor:
+2. Especificar los parámetros de configuración del proveedor:
   
-  - a. El campo Nombre es un campo obligatorio que sirve de etiqueta para conocer el proveedor que se está tratando.
+  1. El campo Nombre es un campo obligatorio que sirve de etiqueta para conocer el proveedor que se está tratando.
 
-  - b. El campo Librería es el path completo de la librería de enlace dinámico (DLL) del proveedor PKCS\#11. Para su correcto funcionamiento, es necesario asegurarse de que el proveedor esté correctamente instalado en todos los servidores de SealSign DSS.
+  2. El campo Librería es el path completo de la librería de enlace dinámico (DLL) del proveedor PKCS\#11. Para su correcto funcionamiento, es necesario asegurarse de que el proveedor esté correctamente instalado en todos los servidores de SealSign DSS.
 
-6. Pulsar el botón Insertar.
+3. Pulsar el botón Insertar.
 
 ### 2.3.3. Modificar Un Proveedor Pkcs#11
 
