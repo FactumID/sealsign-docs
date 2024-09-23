@@ -1,1 +1,1 @@
-* [English](/es/license/license)
+* [Español](/es/license/license)
