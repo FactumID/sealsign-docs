@@ -1,3 +1,5 @@
+# **Licencias**
+
 # 1. Introducción
 
 En este documento se describirá la herramienta de licenciamiento de la familia de productos de SealSign® así

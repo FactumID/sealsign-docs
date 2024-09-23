@@ -1,6 +1,6 @@
 # **Guía de monitorización de SealSign (incluye DSS, BSS, CKC)**
 
-## 1. Instrumentación
+# 1. Instrumentación
 
 Los servicios SealSign proveen diversos tipos de instrumentos que permiten controlar el estado y comportamiento de la aplicación por su administrador.
 
@@ -36,13 +36,13 @@ Los elementos disponibles son los siguientes:
   conocer qué operaciones se realizan en el sistema, quién las realiza y el resultado de estas. Este
   registro se almacena en la BBDD de SealSign.
 
-## 2. Monitorización
+# 2. Monitorización
 
-### 2.1. Heartbeat
+## 2.1. Heartbeat
 
 En algunas instalaciones es necesario implementar un mecanismo de heartbeat que permita, aun sin peticiones de clientes, determinar el estado de salud de la plataforma. Los servicios SealSign permiten realizar una comprobación básica a partir de la versión 2.10 mediante una llamada SOAP al método HeartBeat. Dicho método realizará las inicializaciones típicas de una operación de firma (acceso a licencias, acceso a BBDD, etcétera). A continuación, se muestra un ejemplo de llamada, un ejemplo de respuesta correcta y otro con error de acceso a BBDD.
 
-#### 2.1.1. Ejemplo de llamada
+### 2.1.1. Ejemplo de llamada
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -54,7 +54,7 @@ xmlns:tem="http://tempuri.org/">
 </soapenv:Envelope>
 ```
 
-#### 2.1.2. Ejemplo de respuesta correcta
+### 2.1.2. Ejemplo de respuesta correcta
 
 ```xml
 <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
@@ -85,11 +85,11 @@ En este caso las respuestas son exactamente iguales, salvo las rutas, que difier
 
 ![case 3](./images/monitor-case3.png)
 
-## 3. Referencia de Eventos
+# 3. Referencia de Eventos
 
 Cada evento, además de una descripción y los parámetros más significativos del problema, incluye una representación de la pila con el método que produce el error.
 
-### 3.1. Categorías
+## 3.1. Categorías
 
 - **Eventos de Desarrollo:** Los eventos bajo esta categoría están relacionados con aspectos de desarrollo
   e integración en la plataforma. Las acciones por realizar corresponden al desarrollador de la aplicación
@@ -101,7 +101,7 @@ Cada evento, además de una descripción y los parámetros más significativos d
   y no afectan al funcionamiento de la plataforma. Dependiendo del error pueden ser necesarias
   acciones correctoras por parte del administrador de la plataforma.
 
-### 3.2. Posibles Eventos
+## 3.2. Posibles Eventos
 
 A continuación, se muestra una tabla con los problemas más comunes que pueden ocurrir durante la operación de SealSign. Estos eventos se registran en el log de aplicación específico de SealSign.
 

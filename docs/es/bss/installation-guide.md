@@ -1,4 +1,6 @@
-## 1. Instalación del módulo BSS
+# **BSS Guía de Instalación**
+
+# 1. Instalación del módulo BSS
 
 La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
 pasos de un asistente.
@@ -18,7 +20,7 @@ IIS se mostrará como una aplicación web.
 
 <center><i>Image 02: Módulo ya integrado como aplicación web en IIS.</i></center>
 
-## 2. Configuración del módulo BSS
+# 2. Configuración del módulo BSS
 
 Se realiza en el fichero de configuración connectionStrings.config. Este se encuentra ubicado en el directorio
 SealSignBSSService del sitio Web donde se haya instalado el producto. Dicho fichero incluye la cadena de
@@ -27,7 +29,7 @@ que hay que tener en cuenta:
 
 **\InetPub\wwwroot\SealSignBSSService**
 
-### 1.1. SQL Server
+# 1.1. SQL Server
 
 Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server
 (SealSignDSS):
@@ -43,7 +45,7 @@ Dicho fichero incluye la cadena de conexión a la base de datos creada anteriorm
   </connectionStrings>
 ```
 
-### 1.2. Oracle
+# 1.2. Oracle
 
 En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:
 
@@ -85,7 +87,7 @@ Un ejemplo de conexión podría ser el siguiente:
     </connectionStrings>
   ```
 
-### 1.2. PostGreSQL
+# 1.2. PostGreSQL
 
 En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:
 

@@ -1,4 +1,6 @@
-## 1. Introduction
+# **DSS Installation Guide**
+
+# 1. Introduction
 
 SealSign DSS (Digital Signature Services) is a product aimed at facilitating the integration of electronic signatures in corporate applications.
 in corporate applications. The product is made up of a series of modules, whose installation systems are based on MSI 3.0 technology.
@@ -46,7 +48,7 @@ Both the texts and images used in this guide are based on a Microsoft Windows 20
 Windows 2012, although any system administrator will be able to install the product in other versions.
 versions.
 
-## 2. SealSign DSS installation requirements
+# 2. SealSign DSS installation requirements
 
 SealSign DSS is a server solution that publishes its functionality through an SOA interface. This solution
 is designed for corporate environments that must meet the following requirements:
@@ -62,7 +64,7 @@ client operating systems, it is recommended to install the product on one of the
 
 The SealSign DSS architecture rests on the application services of the Microsoft platform, for so you need to add the application server role and the web server role (IIS) through the server management tool. The following points detail which options should be configured in these servers.
 
-### 2.1. Installation of Operating System Roles
+## 2.1. Installation of Operating System Roles
 
 SealSign DSS requires the installation of some operating system roles. In order to install them it is necessary
 run the InstallPrerequisites.ps1 script located at the following path:
@@ -128,11 +130,11 @@ Below are the lists of roles and features:
 - WAS-Config-APIs 
 - WoW64-Support
 
-## 3. Pre-configuration of the environment
+# 3. Pre-configuration of the environment
 
 Once you have the elements indicated in the previous point, it is necessary to configure of these. The installation of the final product depends fundamentally on the correct execution of the Next steps.
 
-### 3.1. IIS 7 or IIS 7.5 Application Pool Configuration
+## 3.1. IIS 7 or IIS 7.5 Application Pool Configuration
 
 This article shows the steps to follow to create a website with IIS 7, in case you are not have one, or want to create one expressly for SealSign DSS.
 
@@ -166,13 +168,13 @@ user.
 
 <center><i>Image 03: Advanced options for the created Application Pool</i></center>
 
-### 3.2. Creation of the database
+## 3.2. Creation of the database
 
 As already mentioned, the use of a database is necessary to store various information.
 that the product requires. This section details the necessary configurations for the databases.
 SQL Server, Oracle and PostGreSQL.
 
-#### 3.2.1. SQL Server
+### 3.2.1. SQL Server
 
 If using SQL Server, it is necessary to create a new database for SealSign DSS. The name of
 said database is indifferent (SealSignDSS in this case), and will be used later in the chains of
@@ -203,7 +205,7 @@ It is *IIS APPPOOL*. Hence the login name is *IIS APPPOOL\SealSignAppPool*.
 
 <center><i>Image 05: Login name configuration</i></center>
 
-#### 3.2.2. Oracle
+### 3.2.2. Oracle
 
 If you use Oracle, it is necessary to create a new tablespace for SealSign DSS, just like with SQL
 Server the name of said tablespace is irrelevant. It is also necessary to have an account with
@@ -226,7 +228,7 @@ all the elements that the product needs for its correct operation.
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.
 
-#### 3.2.3. PostGreSQL
+### 3.2.3. PostGreSQL
 
 If you use PostGreSQL, it is necessary to create a new DB for SealSign DSS, as with SQL.
 Server the name of said DB is irrelevant. It is also necessary to have an account with permissions
@@ -241,7 +243,7 @@ and all the elements that the product needs for its correct functioning will be 
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.
 
-### 3.3. Authorization permissions
+## 3.3. Authorization permissions
 
 It is necessary to add the users who are going to administer from SealSignDSSWeb to the local or domain group SealSignDSS Admins, the users who are going to upload their own certificates and create their usage rules must be in the SealSignDSS Power Users group.
 
@@ -249,15 +251,15 @@ It is necessary to add the users who are going to administer from SealSignDSSWeb
 
 <center><i>Local users and groups</i></center>
 
-## 4. Installation of SealSign DSS Modules
+# 4. Installation of SealSign DSS Modules
 
-### 4.1. DSS Service Module (electronic signature)
+## 4.1. DSS Service Module (electronic signature)
 
 As mentioned above, this module installs a set of web services. These will be based
 both in the IIS and in the database to carry out its work. This is why after installation there is
 You have to configure it so that it can use these services.
 
-#### 4.1.1. Installing the DSS Service module
+### 4.1.1. Installing the DSS Service module
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant.
@@ -277,7 +279,7 @@ IIS will be displayed as a web application.
 
 <center><i>Image 07: Module already integrated as a web application in IIS</i></center>
 
-#### 4.1.2. DSS Service Module Configuration
+### 4.1.2. DSS Service Module Configuration
 
 Once the module is installed, it is necessary to configure it so that it correctly uses both the database,
 like the IIS.
@@ -428,7 +430,7 @@ To configure WCF in any of the SealSign modules to not use SSL, simply make the 
 <!--<services configSource="servicesssl.config"/>-->
 ```
 
-### 4.2. DSS Web module (administration and configuration)
+## 4.2. DSS Web module (administration and configuration)
 
 As mentioned above, this module installs an administration tool with
 web application format, which is used by the other modules, therefore, its installation is mandatory.
@@ -439,7 +441,7 @@ Once the installation and configuration is complete, a user must be given permis
 that managed SealSign. The fact that the installation and configuration is carried out does not mean that you can
 access the administration website.
 
-#### 4.2.1. Installation of the DSS Web Module
+### 4.2.1. Installation of the DSS Web Module
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant. The process is the same as the one carried out before installing the DSS module
@@ -460,7 +462,7 @@ Microsoft Windows, and in IIS it will also appear as a web application, along wi
 
 <center><i>Image 11: Module already integrated as a web application in IIS</i></center>
 
-#### 4.2.2. DSS Web Module Configuration
+### 4.2.2. DSS Web Module Configuration
 
 For it to work correctly, you must have the DSS Service module referenced and you must modify the
 authentication in IIS.
@@ -491,7 +493,7 @@ modify this file.
 
 At this address you can obtain information about the displayed parameters.
 
-#### 4.2.3. Configuring the module in IIS
+### 4.2.3. Configuring the module in IIS
 
 For the correct functioning of the administration web application it is necessary to modify the authentication
 in the IIS. To do this, access for anonymous users must be disabled (*Anonymous Authentication*) and
@@ -501,13 +503,13 @@ Enable Windows-based authentication (*Windows Authentication*).
 
 <center><i>Image 12: Configuring DSS Web Module Permissions in IIS</i></center>
 
-### 4.3. DSS TSA module
+## 4.3. DSS TSA module
 
 As mentioned above, this module installs the timestamping authority. As
 that in the previous ones you have to configure the connection string to the database once it has finished
 installation.
 
-#### 4.3.1. Installing the DSS TSA module
+### 4.3.1. Installing the DSS TSA module
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant. The process is the same as the one carried out previously when installing the DSS modules
@@ -524,7 +526,7 @@ IIS will also appear as a web application, along with DSS Service and DSS Web.
 
 <center><i>Image 14: Module already integrated as a web application in IIS</i></center>
 
-#### 4.3.2. DSS TSA Module Configuration
+### 4.3.2. DSS TSA Module Configuration
 
 It is done in the configuration file ***connectionStrings.config***. This is located in the directory
 ***SealSign DSS TSA*** from the website where the product is installed. By default, this file includes the string
@@ -545,14 +547,14 @@ The connection string configuration is exactly the same as previously done in th
 DSS Service module. The administrator must follow the steps indicated in that section to establish the
 proper connection in SQL Server, Oracle or PostGreSQL.
 
-### 4.4. DSS Revoke module (Validation Authority)
+## 4.4. DSS Revoke module (Validation Authority)
 
 DSS Revoke is a local digital certificate validation authority that allows you to integrate into the
 organization of multiple external PSCs maintaining control of the validation process, centralizing the
 revocation checking and providing auditing functions, caching, downloading CRLs and OCSP responses
 and local revocation lists.
 
-#### 4.4.1. DSS Revoke Module Installation
+### 4.4.1. DSS Revoke Module Installation
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant. The process is the same as the one carried out previously when installing the DSS modules
@@ -569,7 +571,7 @@ IIS will also appear as a web application, along with DSS Service and DSS Web.
 
 <center><i>Image 16: Module already integrated as a web application in IIS</i></center>
 
-#### 4.4.2. DSS Revoke Module Configuration
+### 4.4.2. DSS Revoke Module Configuration
 
 It is done in the configuration file ***connectionStrings.config***. This is located in the directory
 ***RevokeClientWS*** from the Web site where the product is installed. By default, this file includes the string
@@ -590,9 +592,9 @@ The connection string configuration is exactly the same as previously done in th
 DSS Service module. The administrator must follow the steps indicated in that section to establish the
 proper connection in SQL Server, Oracle or PostGreSQL.
 
-### 4.5. OTPSS module (One Time Password Signature Service)
+## 4.5. OTPSS module (One Time Password Signature Service)
 
-#### 4.5.1. OTPSS Module Installation
+### 4.5.1. OTPSS Module Installation
 
 The installation of the module is carried out like many Microsoft Windows programs, that is, following the
 steps of an assistant.
@@ -614,7 +616,7 @@ IIS will be displayed as a web application.
 
 ![Image-019](./images/image-19.png)
 
-#### 4.5.2. OTPSS Module Configuration
+### 4.5.2. OTPSS Module Configuration
 
 It is done in the configuration file ***connectionStrings.config***. This is located in the directory
 ***SealSignOTPSSService*** of the Web site where the product is installed. This file includes the string
@@ -719,7 +721,7 @@ What must be considered:
             </connectionStrings>
         ```
 
-## 5. Troubleshooting Installation Problems
+# 5. Troubleshooting Installation Problems
 
 The installation process of electronic signature services includes a monitoring system and
 SealSign's own error tracking. In this way all errors, warnings and informational messages are
@@ -739,7 +741,7 @@ for obtaining the license, and its identifier is 3011.
     during use.
 ```
 
-### 5.1. Error 80070005
+## 5.1. Error 80070005
 
 This error generally occurs when the user the *Application Pool* is configured with does not have
 permissions to instantiate the license management component. Said component is registered in the machine
@@ -763,7 +765,7 @@ Security, from which you can give permissions to the Application Pool user.
 
 <center><i>Image 21: Permission settings</i></center>
 
-### 5.2. Error 80040154
+## 5.2. Error 80040154
 
 This error generally occurs in 64-bit environments when the activation settings of the
 license management component has been modified or deleted. Said component is registered in the machine

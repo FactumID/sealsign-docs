@@ -1,4 +1,6 @@
-## 1. Introducción
+# **Guía de Administración**
+
+# 1. Introducción
 
 SealSign DSS (Digital Signature Services) es un producto desarrollado íntegramente por Factum Identity dirigido a facilitar la integración de la firma electrónica en las aplicaciones corporativas.
 
@@ -31,9 +33,9 @@ Para la resolución de aquellos escenarios en los que no es fácilmente adaptabl
 
 Por último, SealSign dispone de un servicio de auditoría configurable que permite trazar todas las operaciones de firma, validación y sello de tiempo realizadas por el servidor.
 
-## 2. Tareas De Configuración
+# 2. Tareas De Configuración
 
-### 2.1. Herramienta De Administración
+## 2.1. Herramienta De Administración
 
 La administración y configuración de SealSign DSS se realiza de manera centralizada mediante la web de administración. Para abrir esta, simplemente será necesario ejecutar una instancia en un navegador hasta la dirección:
 
@@ -41,7 +43,7 @@ La administración y configuración de SealSign DSS se realiza de manera central
 
 A la hora de ejecutar la herramienta de administración, por defecto, sólo los usuarios miembros del grupo SealSignDSS Admins del servidor pueden administrar la configuración de SealSign. Por tanto, la primera tarea que debe realizar un administrador antes de poder administrar el servidor es añadir las cuentas de usuario adecuadas a dicho grupo.
 
-### 2.2. Configuración De Parámetros Del Proxy Corporativo
+## 2.2. Configuración De Parámetros Del Proxy Corporativo
 
 Para cumplir con los requisitos de los distintos tipos de firma, el servidor de SealSign DSS puede necesitar comunicación con proveedores externos que proporcionan servicios variados como, por ejemplo, servicios de sellado de tiempo o de validación de certificados. 
 
@@ -65,11 +67,11 @@ Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar
 
 ![8_image_1.png](./images/8_image_1.png)
 
-### 2.3. Gestión De Proveedores Pkcs#11
+## 2.3. Gestión De Proveedores Pkcs#11
 
 A la hora de acceder a contenedores de certificados externos, SealSign DSS puede utilizar, además de los proveedores de servicios criptográficos (CSPs) instalados en el equipo, otros módulos PKCS\#11 desarrollados por terceros. Para ello, además de la instalación del proveedor en el servidor, es necesario configurar la lista de proveedores PKCS\#11 que debe manejar SealSign DSS.
 
-#### 2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados
+### 2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados
 
 Para ver la lista de proveedores PKCS\#11 configurados en el servidor se pueden realizar los siguientes pasos:
 
@@ -81,7 +83,7 @@ Para ver la lista de proveedores PKCS\#11 configurados en el servidor se pueden 
 
 ![mainmenu-pkcs11.png](./images/mainmenu-pkcs11.png)
 
-#### 2.3.2. Añadir Un Nuevo Proveedor Pkcs#11
+### 2.3.2. Añadir Un Nuevo Proveedor Pkcs#11
 
 Para añadir un nuevo proveedor PKCS\#11, se pueden realizar los siguientes pasos:
 
@@ -95,7 +97,7 @@ Para añadir un nuevo proveedor PKCS\#11, se pueden realizar los siguientes paso
 
 6. Pulsar el botón Insertar.
 
-#### 2.3.3. Modificar Un Proveedor Pkcs#11
+### 2.3.3. Modificar Un Proveedor Pkcs#11
 
 Para modificar la configuración de un proveedor PKCS\#11 se pueden realizar los siguientes pasos:
 1. Acceder a la Lista de Proveedores PKCS\#11, para ello, en la página principal seleccionar el enlace Gestionar el registro de proveedores PKCS\#11 del grupo Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Proveedores PKCS\#11 del menú de la izquierda.
@@ -106,7 +108,7 @@ Para modificar la configuración de un proveedor PKCS\#11 se pueden realizar los
 
 4. Pulsar el botón Guardar.
 
-#### 2.3.4. Eliminar Un Proveedor Pkcs#11
+### 2.3.4. Eliminar Un Proveedor Pkcs#11
 
 Para eliminar un proveedor PKCS\#11 se pueden realizar los siguientes pasos:
 1. Acceder a la Lista de Proveedores PKCS\#11, para ello, en la página principal seleccionar el enlace Gestionar el registro de proveedores PKCS\#11 del grupo Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Proveedores PKCS\#11 del menú de la izquierda.
@@ -114,7 +116,7 @@ Para eliminar un proveedor PKCS\#11 se pueden realizar los siguientes pasos:
 2. En la lista de proveedores PKCS\#11, pulsar la Cruz que se encuentra a la izquierda del proveedor que se desee eliminar.
 
 
-### 2.11. Gestión De Entidades
+## 2.11. Gestión De Entidades
 
 Se creará una nueva sección en "Entidades" que será desde donde se podrán visualizar, crear y editar nuevas entidades.
 
@@ -137,7 +139,7 @@ Al entrar en este apartado se visualizará un listado de entidades con clave ún
 
 - Description: campo de texto de 255 caracteres, no será obligatorio.
 
-## 3. Configuración De Parámetros De Firma Electrónica
+# 3. Configuración De Parámetros De Firma Electrónica
 
 
 SealSign DSS permite realizar la configuración de algunos parámetros de firma electrónica de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:
@@ -211,7 +213,7 @@ SealSign DSS permite realizar la configuración de algunos parámetros de firma 
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 3.1.Configuración De Parámetros De Verificación De Firma Electrónica
+## 3.1.Configuración De Parámetros De Verificación De Firma Electrónica
 
 SealSign DSS permite realizar la configuración de algunos parámetros que regirán el proceso de verificación de firma electrónica. Dicha configuración se realiza mediante los siguientes pasos:
 1. Abrir la web de administración de SealSign DSS.
@@ -230,7 +232,7 @@ SealSign DSS permite realizar la configuración de algunos parámetros que regir
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-## 4. Configuración De Parámetros De Firma Biométrica
+# 4. Configuración De Parámetros De Firma Biométrica
 
 SealSign BSS permite realizar la configuración de algunos parámetros de firma manuscrita de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:
 1. Abrir la web de administración de SealSign.
@@ -274,7 +276,7 @@ SealSign BSS permite realizar la configuración de algunos parámetros de firma 
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 4.1. Configuración De Parámetros De Verificación De Firma Biométrica
+## 4.1. Configuración De Parámetros De Verificación De Firma Biométrica
 
 SealSign BSS permite realizar la configuración de algunos parámetros que regirán el proceso de verificación de la firma biométrica. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:
 1. Abrir la web de administración de SealSign.
@@ -291,7 +293,7 @@ SealSign BSS permite realizar la configuración de algunos parámetros que regir
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 4.2.Configuración De La Firma Electrónica De Apoyo
+## 4.2.Configuración De La Firma Electrónica De Apoyo
 
 Dentro de las funcionalidades provistas por SealSign BSS está la posibilidad de añadir una firma electrónica en el servidor para asegurar que los datos biométricos son válidos y no se modifican tras la firma.
 
@@ -318,7 +320,7 @@ Para configurar estos parámetros el administrador puede realizar los siguientes
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 4.3.Configuración Del Cifrado De Datos Biométricos
+## 4.3.Configuración Del Cifrado De Datos Biométricos
 
 A la hora de asegurar los datos biométricos incluidos en un documento, SealSign BSS permite la posibilidad de configurar un certificado emitido por la propia organización o por un tercero de confianza cuya clave pública sea utilizada para cifrar dicha información biométrica. De este modo, la información biométrica se cifrará tanto con el certificado de firma electrónica de apoyo (si se configuró esta posibilidad) como con este nuevo certificado.
 
@@ -336,11 +338,11 @@ Para configurar el certificado de cifrado de datos biométricos, el administrado
 
 6. Pulsar el botón Importar.
 
-### 4.4.Configuración Personalizada
+## 4.4.Configuración Personalizada
 
 Las configuraciones de los parámetros predeterminados de la firma electrónica de respaldo de la firma biométrica. La sección de configuración personalizada permite la individualización de los parámetros de firma para distintas casuísticas.
 
-#### 4.4.1 Parámetros de firma para entidades
+### 4.4.1 Parámetros de firma para entidades
 
 Contiene el listado de las entidades con la clave compartida con el cliente para la selección de las configuraciones. Dichos registros tienen un campo identificador, nombre, descripción y certificados asignados para cifrado y firma de apoyo.
 
@@ -361,7 +363,7 @@ A través de esta pantalla podemos acceder a las siguientes acciones para la par
 - Búsqueda: Filtrado de la tabla con criterio de búsqueda por nombre o clave de identidad.
 
 
-#### 4.4.2. Creación de Entidad de configuración
+### 4.4.2. Creación de Entidad de configuración
 
 ![53_image_1.png](./images/53_image_1.png)
 
@@ -388,7 +390,7 @@ A través de esta pantalla podemos acceder a las siguientes acciones para la par
 4. Por último, pulsar el botón Guardar para actualizar la configuración.
 
 
-#### 4.4.3. Configuración por defecto
+### 4.4.3. Configuración por defecto
 
 Este apartado brinda la posibilidad de crear una configuración para las firmas que se aplica a todas aquellas que no especifiquen lo contrario dentro de la petición de la solicitud.
 
@@ -410,7 +412,7 @@ Este apartado brinda la posibilidad de crear una configuración para las firmas 
 
 4. Por último, pulsar el botón Guardar para crear o actualizar la configuración.
 
-## 5. Configuración De Parámetros De Firma Otp
+# 5. Configuración De Parámetros De Firma Otp
 
 SealSign OTPSS permite realizar la configuración de algunos parámetros de la firma de contraseña única de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:
 
@@ -464,7 +466,7 @@ SealSign OTPSS permite realizar la configuración de algunos parámetros de la f
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 5.1.Configuración De La Firma Electrónica De Apoyo
+## 5.1.Configuración De La Firma Electrónica De Apoyo
 
 Dentro de las funcionalidades provistas por SealSign OTPSS está la posibilidad de añadir una firma electrónica en el servidor para asegurar que los datos son válidos y no se modifican tras la firma.
 
@@ -493,7 +495,7 @@ Para configurar estos parámetros el administrador puede realizar los siguientes
 
 4. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 5.2.Configuración Del Cifrado De Metadatos
+## 5.2.Configuración Del Cifrado De Metadatos
 
 A la hora de asegurar los datos del firmante incluidos en un documento, SealSign OTPSS permite la posibilidad de configurar un certificado emitido por la propia organización o por un tercero de confianza cuya clave pública sea utilizada para cifrar dicha información biométrica. De este modo, la información se cifrará tanto con el certificado de firma electrónica de apoyo (si se configuró esta posibilidad) como con este nuevo certificado.
 
@@ -509,13 +511,13 @@ Para configurar el certificado de cifrado de metadatos, el administrador debe re
 5. En la página de selección de fichero, buscar el fichero con el certificado en cuestión y añadir la información de contacto del certificado 
 6. Pulsar el botón Importar.
 
-### 5.3.Configuración Personalizada
+## 5.3.Configuración Personalizada
 
 Las configuraciones de los parámetros predeterminados de la firma electrónica de respaldo de la firma OTP.
 
 La sección de configuración personalizada permite la individualización de los parámetros de firma para distintas casuísticas.
 
-### 5.3.1. Parámetros de firma para entidades
+## 5.3.1. Parámetros de firma para entidades
 
 Contiene el listado de las entidades con la clave compartida con el cliente para la selección de las configuraciones. Dichos registros tienen un campo identificador, nombre, descripción y certificados asignados para cifrado y firma de apoyo.
 
@@ -536,7 +538,7 @@ A través de esta pantalla podemos acceder a las siguientes acciones para la par
 - Búsqueda: Filtrado de la tabla con criterio de búsqueda por nombre o clave de identidad.
 
 
-### 5.3.2. Creación de Entidad de configuración
+## 5.3.2. Creación de Entidad de configuración
 
 ![60_image_1.png](./images/60_image_1.png)
 
@@ -565,7 +567,7 @@ A través de esta pantalla podemos acceder a las siguientes acciones para la par
 4. Por último, pulsar el botón Guardar para actualizar la configuración.
 
 
-### 5.3.3. Configuración por defecto
+## 5.3.3. Configuración por defecto
 
 Este apartado brinda la posibilidad de crear una configuración para las firmas que se aplica a todas aquellas que no especifiquen lo contrario dentro de la petición de la solicitud.
 
@@ -592,15 +594,15 @@ Este apartado brinda la posibilidad de crear una configuración para las firmas 
 
 4. Por último, pulsar el botón Guardar para crear o actualizar la configuración.
 
-## 6. Gestión De Claves Centralizadas
+# 6. Gestión De Claves Centralizadas
 
 Dentro de las funcionalidades provistas por SealSign DSS está la posibilidad de realizar firma electrónica de documentos con certificados almacenados en el servidor. Los certificados de servidor de SealSign DSS pueden residir dentro de la plataforma de firma o referenciar almacenes externos Windows y PKCS\#11. El administrador deberá configurar qué certificados de servidor van a poderse usar y quién va a tener acceso a cada uno de ellos para las operaciones de firma realizadas por la plataforma.
 
-### 6.1.Gestión De Certificados De Servidor
+## 6.1.Gestión De Certificados De Servidor
 
 En este menú de la administración se pueden añadir las referencias a certificados tanto internos como externos que posteriormente estarán disponibles para la creación de Reglas de Uso en los mismos.
 
-#### 6.1.1. Consulta De La Lista De Certificados De Servidor
+### 6.1.1. Consulta De La Lista De Certificados De Servidor
 
 Para ver la lista de los certificados de servidor disponibles se pueden realizar los siguientes pasos:
 
@@ -626,7 +628,7 @@ Para ver la lista de los certificados de servidor disponibles se pueden realizar
   -	Borrar Certificado: Esta opción permite eliminar el certificado de la plataforma.
 
 
-#### 6.1.2. Añadir Un Nuevo Certificado De Servidor
+### 6.1.2. Añadir Un Nuevo Certificado De Servidor
 
 Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los siguientes pasos:
 
@@ -652,7 +654,7 @@ Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los
 
 3. Pulsando el botón Importar el certificado quedará guardado dentro del almacén de certificados de SealSign.
 
-#### 6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor
+### 6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor
 
 Cuando el certificado esté almacenado en un lugar externo al almacén de certificados servidor de SealSign, será necesario añadir una referencia al mismo en la configuración de los certificados de servidor. Para ello se deberán realizar los siguientes pasos:
 
@@ -688,7 +690,7 @@ Cuando el certificado esté almacenado en un lugar externo al almacén de certif
 
 3. Pulsando el botón Insertar el certificado quedará guardado dentro del almacén de certificados de SealSign.
 
-#### 6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp
+### 6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp
 
 Esta configuración es necesaria para utilizar el servicio de Windows SealSign Certificates Expiration Service.
 
@@ -754,7 +756,7 @@ NOTA: Las notificaciones semanales se llevarán a cabo cada lunes, y las mensual
 
 
 
-#### 6.1.5. Modificar Un Certificado De Servidor
+### 6.1.5. Modificar Un Certificado De Servidor
 
 Para modificar la configuración de un proveedor PKCS\#11 se pueden realizar los siguientes pasos:
 1. Acceder a los certificados de servidor, para ello, en la página principal seleccionar el enlace Gestionar certificados de servidor del grupo Tareas Relativas a Certificados de Servidor o bien seleccionar el enlace Certificados de Servidor del menú de la izquierda.
@@ -783,7 +785,7 @@ La administración y configuración del certificado de usuario por parte de Seal
 
 Una vez dentro de la web del usuario, él puede realizar diferentes operaciones:
 
-#### 6.1.6. Consulta de la lista de Certificados de Servidor
+### 6.1.6. Consulta de la lista de Certificados de Servidor
 
 Para ver la lista de los certificados de servidor disponibles se pueden realizar los siguientes pasos:
 
@@ -811,7 +813,7 @@ Acciones sobre los Certificados: En el listado de certificados, las acciones dis
 
 ![certificate-list-menu](./images/certificate-list-menu.png)
 
-#### 6.1.7. Añadir Un Nuevo Certificado De Servidor
+### 6.1.7. Añadir Un Nuevo Certificado De Servidor
 
 Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los siguientes pasos:
 1. En la página principal de la web deberá seleccionar el enlace Importar un nuevo certificado de servidor.
@@ -837,7 +839,7 @@ Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los
 
 3. Pulsando el botón Importar el certificado quedará guardado dentro del almacén de certificados de SealSign.
 
-#### 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor
+### 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor
 
 Cuando el certificado esté almacenado en un lugar externo al almacén de certificados servidor de SealSign, será necesario añadir una referencia al mismo en la configuración de los certificados de servidor. Para ello se deberán realizar los siguientes pasos:
 
@@ -869,11 +871,11 @@ Cuando el certificado esté almacenado en un lugar externo al almacén de certif
 
 - Pulsando el botón Insertar el certificado quedará guardado dentro del almacén de certificados de SealSign.
 
-### 6.2.Reglas De Uso
+## 6.2.Reglas De Uso
 
 SealSign DSS permite la asociación de los certificados centralizados en las plataformas a reglas de uso que definirán quién y cómo puede utilizarlos.
 
-#### 6.2.1. Consulta De La Lista De Reglas De Uso
+### 6.2.1. Consulta De La Lista De Reglas De Uso
 
 Para ver la lista de Reglas de Uso disponibles se pueden realizar los siguientes pasos:
 
@@ -890,7 +892,7 @@ d.	Se podrán filtrar las reglas de uso por certificado asociado y por rango de 
 ![usage-rules](./images/usage-rules.png)
 
 
-#### 6.2.2. Añadir Una Nueva Regla De Uso
+### 6.2.2. Añadir Una Nueva Regla De Uso
 
 Para añadir una nueva Regla de Uso a la lista, se pueden realizar los siguientes pasos:
 1. Seleccionamos el enlace Añadir una nueva regla de uso desde la lista de reglas de uso consultada en el apartado anterior.
@@ -908,7 +910,7 @@ Para añadir una nueva Regla de Uso a la lista, se pueden realizar los siguiente
 
 ![add-usage-rule](./images/add-usage-rule.png)
 
-#### 6.2.3. Modificar Una Regla De Uso
+### 6.2.3. Modificar Una Regla De Uso
 
 Para modificar la configuración de una regla de uso se pueden realizar los siguientes pasos:
 
@@ -942,7 +944,7 @@ Estos filtros se dividen en las siguientes categorías:
 
 3.	Pulsando el botón Guardar se actualizará la configuración de la regla de uso.
 
-#### 6.2.4. Eliminar Una Regla De Uso
+### 6.2.4. Eliminar Una Regla De Uso
 
 Para eliminar una regla de uso se pueden realizar los siguientes pasos:
 1. Acceder a la lista de reglas de uso, para ello, en menú de la izquierda seleccionar el enlace Reglas de Uso del grupo Claves Centralizadas.
@@ -951,7 +953,7 @@ Para eliminar una regla de uso se pueden realizar los siguientes pasos:
 
 ![remove-usage-rule](./images/remove-usage-rule.png)
 
-#### 6.2.5. Eliminar Un Certificado De Servidor
+### 6.2.5. Eliminar Un Certificado De Servidor
 
 Para eliminar un certificado de servidor se pueden realizar los siguientes pasos:
 
@@ -959,11 +961,11 @@ Para eliminar un certificado de servidor se pueden realizar los siguientes pasos
 
 2. En la lista de certificados de servidor, pulsar la Cruz que se encuentra a la izquierda del certificado que se desee eliminar.
 
-### 6.3.Repositorio Seguro
+## 6.3.Repositorio Seguro
 
 SealSign DSR permite realizar la configuración los parámetros funcionales del repositorio seguro de documentos. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:
 
-#### 6.3.1. Búsqueda En El Repositorio De DSR
+### 6.3.1. Búsqueda En El Repositorio De DSR
 
 Para facilitar la administración de DSR y la gestión de su contenido se ha desarrollado una página específica dentro de la administración para la búsqueda de objetos documentales insertados en DSR. 
 
@@ -999,7 +1001,7 @@ Ejemplo:
 
 Pulsar el botón Buscar y aparecerán los resultados de la búsqueda según los filtros proporcionados. Se puede acceder al contenido del documento haciendo click en el link asociado al mismo.
 
-## 7. Configuración De La Autoridad Local De Sellado De Tiempo
+# 7. Configuración De La Autoridad Local De Sellado De Tiempo
 
 SealSign DSS permite tanto utilizar una autoridad local para crear los sellos de tiempo de las firmas electrónicas como utilizar proveedores externos de sellado de tiempo. Para configurar la autoridad local de sellado de tiempo de SealSign se deben realizar los siguientes pasos:
 1. Abrir la web de administración de SealSign DSS.
@@ -1013,11 +1015,11 @@ SealSign DSS permite tanto utilizar una autoridad local para crear los sellos de
 
 6. Por último, pulsar el botón Guardar para actualizar la configuración del servidor.
 
-### 7.1.Gestión De Servidores De Sellado De Tiempo
+## 7.1.Gestión De Servidores De Sellado De Tiempo
 
 En aquellos escenarios en los que se deseen utilizar autoridades de sellado de tiempo externas será necesario añadir los parámetros de conexión adecuados en la configuración de SealSign DSS.
 
-#### 7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo
+### 7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo
 
 Para ver la lista de los servidores de sellado de tiempo disponibles se pueden realizar los siguientes pasos:
 1. Abrir la web de administración de SealSign DSS. 
@@ -1026,7 +1028,7 @@ Para ver la lista de los servidores de sellado de tiempo disponibles se pueden r
 
 3. Aparecerá la lista de todos los servidores de sellado de tiempo que podrán ser utilizados en los procesos de firma.
 
-#### 7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo
+### 7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo
 
 Para añadir un nuevo servidor de sellado de tiempo a la lista, se pueden realizar los siguientes pasos:
 
@@ -1046,7 +1048,7 @@ En la página de servidores TSA configurar los siguientes valores:
 
 2. Pulsando el botón Insertar la configuración del nuevo servidor de sellado de tiempo se añadirá a SealSign.
 
-#### 7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo
+### 7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo
 
 Para modificar la configuración de un servidor de sellado de tiempo se pueden realizar los siguientes pasos:
 
@@ -1060,7 +1062,7 @@ enlace desde la lista de certificados de servidores de sellado de tiempo consult
 
 4. Pulsar el botón Guardar para actualizar la configuración del servidor.
 
-#### 7.1.4. Eliminar Un Servidor De Sellado De Tiempo
+### 7.1.4. Eliminar Un Servidor De Sellado De Tiempo
 
 Para eliminar un servidor de sellado de tiempo se pueden realizar los siguientes pasos:
 
@@ -1068,12 +1070,12 @@ Para eliminar un servidor de sellado de tiempo se pueden realizar los siguientes
 
 2. En la lista de servidores TSA, pulsar la Cruz que se encuentra a la izquierda del servidor que se desee eliminar.
 
-## 8. Auditoría
+# 8. Auditoría
 
 
 SealSign DSS dispone de un sistema de auditoría que permitirá al administrador conocer qué operaciones se realizan en el sistema, quien las realiza y el resultado de estas. En este apartado se describe cómo configurar y visualizar la auditoría de SealSign DSS.
 
-### 8.1.Configuración De La Auditoría
+## 8.1.Configuración De La Auditoría
 
 Para configurar el servicio de auditoría de SealSign DSS se deben realizar los siguientes pasos:
 1. En la página principal seleccionar el enlace Configurar parámetros de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Configuración Auditoría del menú de la izquierda.
@@ -1082,7 +1084,7 @@ Para configurar el servicio de auditoría de SealSign DSS se deben realizar los 
 
 3. Pulsar el botón Guardar.
 
-### 8.2.Consultar El Registro De Auditoría
+## 8.2.Consultar El Registro De Auditoría
 
 Para ver el contenido del registro de auditoría se deben realizar los siguientes pasos:
 1. En la página principal seleccionar el enlace Ver registro de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Registro de Auditoría del menú de la izquierda.
@@ -1093,14 +1095,14 @@ Para ver el contenido del registro de auditoría se deben realizar los siguiente
 
 4. Pulsando las flechas que aparecen en la parte inferior de la tabla de resultados se puede navegar por las páginas de resultado de la consulta.
 
-### 8.3.Eliminar El Contenido Del Registro De Auditoría
+## 8.3.Eliminar El Contenido Del Registro De Auditoría
 
 Para eliminar el contenido de todas las entradas del registro de auditoría se pueden seguir los siguientes pasos:
 1. En la página principal seleccionar el enlace Ver registro de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Registro de Auditoría del menú de la izquierda.
 
 2. Pulsar el enlace Borrar todas las entradas del registro de auditoría que se encuentra debajo del resultado de la consulta.
 
-## 9. Resolución De Problemas
+# 9. Resolución De Problemas
 
 
 Durante el proceso de instalación de SealSign, en el visor de sucesos de cada servidor se creará un log específico, denominado SealSign DSS. Si sucede algún error en la operativa del servidor, además de reportarse en la auditoría del producto, se irán incluyendo eventos con la descripción completa del error en el log creado a tal fin.

@@ -1,3 +1,5 @@
+# **Licenses**
+
 # 1. Introduction
 
 This document will describe the licensing tool for the SealSign® family of products as follows:

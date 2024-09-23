@@ -1,6 +1,6 @@
-# **SealSign monitoring guide (include DSS, BSS, CKC)**
+# **Monitoring guide (include DSS, BSS, CKC)**
 
-## 1. Instrumentation
+# 1. Instrumentation
 
 The services have various instrument types so that the administrator can control the application's status and performance
 
@@ -32,13 +32,13 @@ The following elements ara available:
 
 - **Audit log:** SealSign has an auditing system so that the administrator can ascertain what operations are running in the system, who is running them and their results. This recor is stored in the SealSign DB.
 
-## 2. Monitoring
+# 2. Monitoring
 
-### 2.1. Heartbeat
+## 2.1. Heartbeat
 
 Some installations require the incorporation of a heartbeat mechanism to determine the platform health status even with no client request. The SealSign services enable a basic check from version 2.10 through a SOAP call to the HeartBeat method. This method will execute the normal initializations of a signing operation (access to licenses, access to DB, etc.). The following examples illustrate a call, correct response and DB access error response: 
 
-#### 2.1.1. Request example
+### 2.1.1. Request example
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
@@ -50,7 +50,7 @@ xmlns:tem="http://tempuri.org/">
 </soapenv:Envelope>
 ```
 
-#### 2.1.2. Correct response example
+### 2.1.2. Correct response example
 
 ```xml
 <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
@@ -81,17 +81,17 @@ In this case the responses are exactly the same, except for the paths, which dif
 
 ![case 3](./images/monitor-case3.png)
 
-## 3. Events reference
+# 3. Events reference
 
 In addition to a description and most significant parameters of the issue, each event includes a representation of the stack with the method causing the error.
 
-### 3.1. Categories
+## 3.1. Categories
 
 - **Development events:** Events under this category are linked to development and integration aspects on the platform. The actions to undertake correspond to the developer of the client application and no actions need be taken by the platform administrator.
 - **Critical events:** Critical events entail an issue that prevents platform operation at a general level. Urgent corrective actions from the platform administrator will be required.
 - **Operation events:**  Status events entail a problem associated with a specific operation and do not affect platform operation. Depending on the error, corrective actions from the platform administrator may be necessary. 
 
-### 3.2. Events
+## 3.2. Events
 
 Below are some of the most common issues that could occur during SealSign DSS operation. These events are recorded in the SealSign DSS specific application log. 
 

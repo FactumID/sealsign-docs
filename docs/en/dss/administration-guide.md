@@ -1,5 +1,6 @@
+# **Administration Guide**
 
-## 1. Introduction
+# 1. Introduction
 
 SealSign DSS is a product developed by Factum Identity that facilitates the integration of electronic signing in corporate applications. Although the basic process of electronic signing is straightforward, there are many different signature profiles and formats, as well as external elements such as CRLs or OCSP responses from certification authorities, time-stamping certificates, etc. Additionally, many of these profiles require obtaining elements outside of the system, such as a user signing a document from a remote location using a web browser.
 
@@ -17,16 +18,16 @@ However, there are still challenges to be addressed in electronic signing, such 
 
 Finally, SealSign provides an audit service that can track all signing, validation, and time-stamping operations performed by the server.
 
-## 2. Task Configuration
+# 2. Task Configuration
 
-### 2.1. Administration Tool
+## 2.1. Administration Tool
 
 Centralized management and configuration of SealSign DSS is carried out through a web-based administration platform. To access this, simply launch an instance in a browser by visiting the address:
  **http://servername:portnumber/SealSignDSSWeb**.
 
 By default, when executing the administration tool, only users who are members of the SealSignDSS Admins group on the server can administer the SealSign configuration. Therefore, the first task that an administrator must perform before being able to manage the server is to add the appropriate user accounts to this group.
 
-### 2.2.Corporate Proxy Parameters Configuration
+## 2.2.Corporate Proxy Parameters Configuration
 
 To meet the requirements of different types of signatures, the SealSign DSS server may need to communicate with external providers offering various services such as time-stamping or certificate validation services. 
 
@@ -50,11 +51,11 @@ Relative tasks to the general platform configuration or select the left-hand men
 
 ![8_image_1.png](./images/8_image_1.png)
 
-### 2.3. Manage PKcs#11 Providers
+## 2.3. Manage PKcs#11 Providers
 
 When accessing external container certificates, SealSign DSS can use, in addition to the cryptographic service providers (CSPs) installed on the device, other PKCS#11 modules developed by third parties. To do this, in addition to installing the provider on the server, it is necessary to configure the list of PKCS#11 providers that SealSign DSS must manage.
 
-#### 2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query
+### 2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query
 
 To view the list of configured PKCS#11 providers on the server, you can follow these steps:
 
@@ -67,7 +68,7 @@ To view the list of configured PKCS#11 providers on the server, you can follow t
 
 ![mainmenu-pkcs11.png](./images/mainmenu-pkcs11.png)
 
-#### 2.3.2. Add A New Supplier Pkcs#11
+### 2.3.2. Add A New Supplier Pkcs#11
 
 To add a new PKCS#11 provider, follow these steps:
 
@@ -82,7 +83,7 @@ To add a new PKCS#11 provider, follow these steps:
 6. Click the "Insert" button to save the changes.
 
 
-#### 2.3.3. Edit Pkcs#11 Supplier
+### 2.3.3. Edit Pkcs#11 Supplier
 
 To modify the configuration of a PKCS#11 provider, follow these steps:
 
@@ -94,7 +95,7 @@ To modify the configuration of a PKCS#11 provider, follow these steps:
 
 4. Click the "Save" button.
 
-#### 2.3.4. Remove Pkcs#11 Supplier
+### 2.3.4. Remove Pkcs#11 Supplier
 
 To eliminate a PKCS#11 provider, you can follow these steps:
 
@@ -103,7 +104,7 @@ To eliminate a PKCS#11 provider, you can follow these steps:
 2. In the list of PKCS#11 providers, click the cross icon located to the left of the provider you wish to eliminate.
 
 
-### 2.11. Manage Entities
+## 2.11. Manage Entities
 
 In the Entities section, you will be able to create entities, which can have personalized usage configurations, such as using a different support certificate for each entity.
 
@@ -125,7 +126,7 @@ On entering this section, a list of entities with a unique key and a description
 - Description: text field of 255 characters, not compulsory.
 
 
-## 3. Electronic Signature Parameters Configuration
+# 3. Electronic Signature Parameters Configuration
 
 SealSign DSS allows you to configure some parameters of electronic signatures in a general and centralized manner. To configure these parameters, the administrator can follow these steps:
 
@@ -197,7 +198,7 @@ SealSign DSS allows you to configure some parameters of electronic signatures in
 
 4. Finally, click the "Save" button to update the configuration settings.
 
-### 3.1.Configuration Of Electronic Signature Verification Parameters
+## 3.1.Configuration Of Electronic Signature Verification Parameters
 
 SealSign DSS allows the configuration of some parameters that will govern the electronic signature verification process. This configuration is carried out by means of the following steps:
 1. Open the SealSign DSS administration website.
@@ -216,7 +217,7 @@ SealSign DSS allows the configuration of some parameters that will govern the el
 
 4. Finally, click the Save button to update the server configuration.
 
-## 4. Configuration Of Biometric Signature Parameters
+# 4. Configuration Of Biometric Signature Parameters
 
 SealSign BSS allows the configuration of some handwritten signature parameters in a general and centralised manner. To configure these parameters, the administrator can carry out the following steps:
 1. Open the SealSign administration website.
@@ -260,7 +261,7 @@ SealSign BSS allows the configuration of some handwritten signature parameters i
 
 4. Finally, click on the Save button to update the server configuration.
 
-### 4.1. Configuration of Biometric Signature Verification Parameters
+## 4.1. Configuration of Biometric Signature Verification Parameters
 
 SealSign BSS allows the configuration of some parameters that will govern the biometric signature verification process. To configure these parameters, the administrator can carry out the following steps:
 
@@ -278,7 +279,7 @@ SealSign BSS allows the configuration of some parameters that will govern the bi
 
 4. Finally, click the Save button to update the server configuration.
 
-### 4.2.Configuración De La Firma Electrónica De Apoyo
+## 4.2. Backup Electronic Signature Configuration
 
 Among the functionalities provided by SealSign BSS is the possibility of adding an electronic signature on the server to ensure that the biometric data are valid and are not modified after the signature.
 
@@ -306,7 +307,7 @@ To configure these parameters, the administrator can perform the following steps
 
 4. Finally, click on the Save button to update the server configuration.
 
-### 4.3.Biometric Data Encryption Settings
+## 4.3.Biometric Data Encryption Settings
 
 When securing the biometric data included in a document, SealSign BSS allows the possibility of configuring a certificate issued by the organisation itself or by a trusted third party whose public key is used to encrypt the biometric information. In this way, the biometric information will be encrypted both with the supporting electronic signature certificate (if this possibility has been configured) and with this new certificate.
 
@@ -324,11 +325,11 @@ To configure the biometric data encryption certificate, the administrator must c
 
 6. Click the Import button.
 
-### 4.4.Custom Configuration
+## 4.4.Custom Configuration
 
 The configurations of the default parameters of the biometric signature back-up electronic signature. The custom configuration section allows the individualisation of signature parameters for different cases.
 
-#### 4.4.1 Signature parameters for Entities
+### 4.4.1 Signature parameters for Entities
 
 Contains the list of entities with the key shared with the client for the selection of configurations. These records have an identifier field, name, description and certificates assigned for encryption and signature support.
 
@@ -349,7 +350,7 @@ Through this screen we can access the following actions for the parameterisation
 - Search: Filtering of the table with search criteria by name or identity key.
 
 
-#### 4.4.2. Creation of Configuration Entity
+### 4.4.2. Creation of Configuration Entity
 
 ![53_image_1.png](./images/53_image_1.png)
 
@@ -376,7 +377,7 @@ Through this screen we can access the following actions for the parameterisation
 4. Finally, click on the Save button to update the configuration.
 
 
-#### 4.4.3. Default configuration
+### 4.4.3. Default configuration
 
 This section provides the possibility to create a configuration for signatures that applies to all signatures that do not specify otherwise within the request of the application.
 
@@ -398,7 +399,7 @@ This section provides the possibility to create a configuration for signatures t
 
 4. Finally, click on the Save button to create or update the configuration.
 
-## 5. Otp Signature Parameter Configuration
+# 5. Otp Signature Parameter Configuration
 
 SealSign OTPSS allows the configuration of some parameters of the one-time password signature in a general and centralised way. To configure these parameters, the administrator can carry out the following steps:
 
@@ -437,7 +438,7 @@ SealSign OTPSS allows the configuration of some parameters of the one-time passw
 
 4. Finally, click on the Save button to update the server configuration.
 
-### 5.1.Configuration of the Backup Electronic Signature
+## 5.1.Configuration of the Backup Electronic Signature
 
 Among the functionalities provided by SealSign OTPSS is the possibility of adding an electronic signature on the server to ensure that the data is valid and is not modified after signing.
 
@@ -466,7 +467,7 @@ To configure these parameters, the administrator can perform the following steps
 
 4. Finally, click on the Save button to update the server configuration.
 
-### 5.2.Metadata Encryption Configuration
+## 5.2.Metadata Encryption Configuration
 
 When securing the signatory's data included in a document, SealSign OTPSS allows the possibility of configuring a certificate issued by the organisation itself or by a trusted third party whose public key is used to encrypt this biometric information. In this way, the information will be encrypted both with the supporting electronic signature certificate (if this possibility has been configured) and with this new certificate.
 
@@ -483,13 +484,13 @@ To configure the metadata encryption certificate, the administrator must perform
 
 6. Click the Import button.
 
-### 5.3.Custom Settings
+## 5.3.Custom Settings
 
 The configurations of the default parameters of the electronic signature backing up the OTP signature.
 
 The custom configuration section allows the individualisation of the signature parameters for different cases.
 
-#### 5.3.1. Signature parameters for Entities
+### 5.3.1. Signature parameters for Entities
 
 Contains the list of entities with the key shared with the client for the selection of configurations. These records have an identifier field, name, description and certificates assigned for encryption and signature support.
 
@@ -510,7 +511,7 @@ Through this screen we can access the following actions for the parameterisation
 - Search: Filtering of the table with search criteria by name or identity key.
 
 
-#### 5.3.2. Creation of Configuration Entity
+### 5.3.2. Creation of Configuration Entity
 
 ![60_image_1.png](./images/60_image_1.png)
 
@@ -539,7 +540,7 @@ Through this screen we can access the following actions for the parameterisation
 4. Finally, click on the Save button to update the configuration.
 
 
-#### 5.3.3. Default configuration
+### 5.3.3. Default configuration
 
 This section provides the possibility to create a configuration for signatures that applies to all signatures that do not specify otherwise within the request of the application.
 
@@ -567,15 +568,15 @@ This section provides the possibility to create a configuration for signatures t
 4. Finally, click the Save button to create or update the configuration.
 
 
-## 6. Centralized Key Management
+# 6. Centralized Key Management
 
 Among the functionalities provided by SealSign DSS is the possibility of electronically signing documents with certificates stored on the server. SealSign DSS server certificates can reside within the signature platform or refer to external Windows and PKCS stores. The administrator must configure which server certificates can be used and who will have access to each of them for the signature operations performed by the platform.
 
-### 6.1.Server Certificates Management
+## 6.1.Server Certificates Management
 
 In this administration menu you can add references to internal and external certificates that will later be available for the creation of Rules of Use in them.
 
-#### 6.1.1. Viewing the List of Server Certificates
+### 6.1.1. Viewing the List of Server Certificates
 
 To view the list of available server certificates, you can perform the following steps:
 
@@ -600,7 +601,7 @@ To view the list of available server certificates, you can perform the following
   - Delete Certificate: This option allows you to delete the certificate from the platform.
 
 
-#### 6.1.2. Adding a New Server Certificate
+### 6.1.2. Adding a New Server Certificate
 
 To add a new server certificate to the list, the following steps can be performed:
 
@@ -626,7 +627,7 @@ To add a new server certificate to the list, the following steps can be performe
 
 3. By clicking on the Import button, the certificate will be saved in the SealSign certificate store.
 
-#### 6.1.3. Add a Reference to an External Server Certificate
+### 6.1.3. Add a Reference to an External Server Certificate
 
 When the certificate is stored in a location external to the SealSign server certificate store, it will be necessary to add a reference to it in the server certificate configuration. To do this, the following steps must be performed:
 
@@ -662,7 +663,7 @@ When the certificate is stored in a location external to the SealSign server cer
 
 3. By clicking on the Insert button, the certificate will be saved in the SealSign certificate store.
 
-#### 6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration
+### 6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration
 
 This configuration is required to use the Windows SealSign Certificates Expiration Service.
 
@@ -728,7 +729,7 @@ NOTE: Weekly notifications will be carried out every Monday, and monthly notific
 - Notification sending time (hh:mm): Time when the notification service will be executed. It must have the following format hh:mm.
 
 
-#### 6.1.5. Modifying a Server Certificate
+### 6.1.5. Modifying a Server Certificate
 
 To modify the configuration of a PKCS provider, the following steps can be performed:
 
@@ -760,7 +761,7 @@ and a username/password will be requested to access the user's administration we
 
 Once inside the user's website, he can perform different operations:
 
-#### 6.1.6. Viewing the List of Server Certificates
+### 6.1.6. Viewing the List of Server Certificates
 
 To view the list of available server certificates, the following steps can be performed:
 
@@ -788,7 +789,7 @@ Actions on Certificates: In the list of certificates, the available actions are 
 
 ![certificate-list-menu](./images/certificate-list-menu.png)
 
-#### 6.1.7. Adding a New Server Certificate
+### 6.1.7. Adding a New Server Certificate
 
 To add a new server certificate to the list, the following steps can be performed:
 1. On the main page of the website you will need to select the Import a new server certificate link.
@@ -813,7 +814,7 @@ To add a new server certificate to the list, the following steps can be performe
 
 3. By clicking on the Import button, the certificate will be saved in the SealSign certificate store.
 
-#### 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor
+### 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor
 
 Add a Reference to an External Server Certificate
 
@@ -848,11 +849,11 @@ When the certificate is stored in a location external to the SealSign server cer
 
 - By clicking on the Insert button, the certificate will be saved in the SealSign certificate store.
 
-### 6.2.Usage Rules
+## 6.2.Usage Rules
 
 SealSign DSS allows the association of certificates centralized in the platforms to usage rules that define who can use them and how.
 
-#### 6.2.1. Viewing the List of Usage Rules
+### 6.2.1. Viewing the List of Usage Rules
 
 To view the list of available Usage Rules, the following steps can be performed:
 
@@ -868,7 +869,7 @@ d.	The usage rules can be filtered by associated certificate and by date range.
 
 ![usage-rules](./images/usage-rules.png)
 
-#### 6.2.2. Adding a New Usage Rule
+### 6.2.2. Adding a New Usage Rule
 
 To add a new Usage Rule to the list, the following steps can be performed:
 1. Select the Add a new usage rule link from the list of usage rules consulted in the previous section.
@@ -885,7 +886,7 @@ To add a new Usage Rule to the list, the following steps can be performed:
 
 ![add-usage-rule](./images/add-usage-rule.png)
 
-#### 6.2.3. Modify the Configuration of a Usage Rule
+### 6.2.3. Modify the Configuration of a Usage Rule
 
 To modify the configuration of a usage rule the following steps can be performed:
 
@@ -920,7 +921,7 @@ These filters are divided into the following categories:
 3.	Pressing the Save button will update the usage rule configuration.
 
 
-#### 6.2.4. Deleting a Usage Rule
+### 6.2.4. Deleting a Usage Rule
 
 To delete a usage rule you can perform the following steps:
 1. Access the list of usage rules, to do so, in the left menu select the Usage Rules link from the Centralized Keys group.
@@ -929,18 +930,18 @@ To delete a usage rule you can perform the following steps:
 
 ![remove-usage-rule](./images/remove-usage-rule.png)
 
-#### 6.2.5. Deleting a Server Certificate
+### 6.2.5. Deleting a Server Certificate
 
 To delete a server certificate you can perform the following steps:
 1. Access the server certificates, to do this, on the main page select the Manage Server Certificates link from the Server Certificate Related Tasks group or select the Server Certificates link from the left menu.
 
 2. In the list of server certificates, click on the Cross to the left of the certificate to be deleted.
 
-### 6.3.EArchive
+## 6.3.EArchive
 
 SealSign DSR allows you to configure the functional parameters of the secure document repository. To configure these parameters, the administrator can perform the following steps:
 
-#### 6.3.1. Search in the EArchive (DSR) Repository
+### 6.3.1. Search in the EArchive (DSR) Repository
 
 To facilitate the administration of DSR and the management of its content, a specific page has been developed within the administration for the search of documentary objects inserted in DSR. 
 
@@ -977,7 +978,7 @@ Example:
 
 Click on the Search button and the search results will appear according to the filters provided. The content of the document can be accessed by clicking on the link associated with it.
 
-## 7. Configuration of Local Time-Stamping Authority
+# 7. Configuration of Local Time-Stamping Authority
 
 SealSign DSS allows either using a local authority to create time stamps for electronic signatures or using external time stamping providers. To configure the SealSign local time-stamping authority, the following steps must be performed:
 1. Open the SealSign DSS administration web.
@@ -991,11 +992,11 @@ SealSign DSS allows either using a local authority to create time stamps for ele
 
 6. Finally, click on the Save button to update the server configuration.
 
-### 7.1. Time Stamping Server Management
+## 7.1. Time Stamping Server Management
 
 In those scenarios where external time-stamping authorities are to be used, it will be necessary to add the appropriate connection parameters in the SealSign DSS configuration.
 
-#### 7.1.1. Viewing the Time Stamping Server List
+### 7.1.1. Viewing the Time Stamping Server List
 
 To view the list of available time-stamping servers, you can perform the following steps:
 1. Open the SealSign DSS administration web site. 
@@ -1004,7 +1005,7 @@ To view the list of available time-stamping servers, you can perform the followi
 
 3. The list of all time-stamping servers that can be used in the signing process will be displayed.
 
-#### 7.1.2. Adding a New Time Stamping Server
+### 7.1.2. Adding a New Time Stamping Server
 
 To add a new time stamping server to the list, the following steps can be performed:
 
@@ -1024,7 +1025,7 @@ On the TSA Servers page configure the following values:
 
 2. By clicking the Insert button the new time-stamping server configuration will be added to SealSign.
 
-#### 7.1.3. Modifying the Configuration of a Time Stamping Server
+### 7.1.3. Modifying the Configuration of a Time Stamping Server
 
 To modify the configuration of a time-stamping server the following steps can be performed:
 
@@ -1038,7 +1039,7 @@ link from the list of time-stamping server certificates consulted in the previou
 
 4. Click the Save button to update the server configuration.
 
-#### 7.1.4. Deleting a Time Stamping Server
+### 7.1.4. Deleting a Time Stamping Server
 
 To remove a time-stamping server you can perform the following steps:
 
@@ -1046,11 +1047,11 @@ To remove a time-stamping server you can perform the following steps:
 
 2. In the list of TSA servers, click on the Cross to the left of the server to be removed.
 
-## 8. Audit
+# 8. Audit
 
 SealSign DSS has an auditing system that will allow the administrator to know what operations are performed in the system, who performs them and the result of these operations. This section describes how to configure and view the SealSign DSS audit.
 
-### 8.1. Audit Configuration
+## 8.1. Audit Configuration
 
 To configure the SealSign DSS audit service, the following steps must be performed:
 1. On the main page, select the Configure Audit Parameters link from the Audit Related Tasks group or select the Audit Configuration link from the menu on the left.
@@ -1059,7 +1060,7 @@ To configure the SealSign DSS audit service, the following steps must be perform
 
 3. Click the Save button.
 
-### 8.2.Viewing the Audit Log
+## 8.2.Viewing the Audit Log
 
 To view the contents of the audit log, the following steps must be performed:
 1. On the main page select the View Audit Log link from the Audit Related Tasks group or select the Audit Log link from the left menu.
@@ -1070,13 +1071,13 @@ To view the contents of the audit log, the following steps must be performed:
 
 4. By clicking on the arrows at the bottom of the result table, you can browse through the result pages of the query.
 
-### 8.3.Deleting Audit Log Contents
+## 8.3.Deleting Audit Log Contents
 
 To delete the contents of all audit log entries the following steps can be taken:
 1. On the main page select the View Audit Log link from the Audit-Related Tasks group or select the Audit Log link from the left menu.
 
 2. Click the Delete all audit log entries link located below the query result.
 
-## 9. Troubleshooting
+# 9. Troubleshooting
 
 During the SealSign installation process, a specific log, called SealSign DSS, will be created in the event viewer of each server. If any error occurs in the server's operation, in addition to being reported in the product's audit, events with the complete description of the error will be included in the log created for this purpose.

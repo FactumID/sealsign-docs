@@ -1,4 +1,6 @@
-## 1. BSS module installation
+# **BSS Installation Guide**
+
+# 1. BSS module installation
 
 The module is installed in the same way as many Microsoft Windows programs, i.e. by following the steps of a wizard.
 
@@ -17,13 +19,13 @@ IIS will be displayed as a web application.
 
 <center><i>Image 02: Module already integrated as a web application in IIS.</i></center>
 
-## 2. BSS module configuration
+# 2. BSS module configuration
 
 This is done in the configuration file connectionStrings.config. This is located in the SealSignBSSService directory of the Web site where the product is installed. This file includes the connection string to the database previously created in SQL Server (SealSignDSS), in addition to other parameters that must be taken into account parameters to be taken into account:
 
 **\InetPub\wwwroot\SealSignBSSService**
 
-### 1.1. SQL Server
+## 1.1. SQL Server
 
 This file includes the connection string to the database created earlier in SQL Server (SealSignDSS):
 
@@ -38,7 +40,7 @@ This file includes the connection string to the database created earlier in SQL 
   </connectionStrings>
 ```
 
-### 1.2. Oracle
+## 1.2. Oracle
 
 In case the database is Oracle, the following parameters must be modified:
 
@@ -77,7 +79,7 @@ For example:
     </connectionStrings>
   ```
 
-### 1.2. PostGreSQL
+## 1.2. PostGreSQL
 
 In case the database is PostGre, the following parameters must be modified:
 
