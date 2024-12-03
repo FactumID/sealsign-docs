@@ -254,6 +254,14 @@ y se generarán en el mismo todos los elementos que el producto necesita para su
 
 **\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_vX.X_PostgreSQL.sql**
 
+Es aconsejable cambiar la zona horaria de la Base de Datos de SealSign a UTC. Esto se puede hacer mediante esta query:
+
+`SET TIME ZONE 'Etc/UTC';`
+
+Podemos consultar que el valor con esta query:
+
+`SHOW TIME ZONE;`
+
 Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
 SealSign DSS.
 

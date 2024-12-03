@@ -240,6 +240,14 @@ and all the elements that the product needs for its correct functioning will be 
 
 **\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_vX.X_PostgreSQL.sql**
 
+It is advisable to change the time zone to UTC. You can set the time zone using this query:
+
+`SET TIME ZONE 'Etc/UTC';`
+
+Check the value using this query:
+
+`SHOW TIME ZONE;`
+
 Once these configurations have been made, the system is now ready to install the necessary modules.
 SealSign DSS.
 
