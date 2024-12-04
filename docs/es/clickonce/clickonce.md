@@ -251,9 +251,12 @@
     - Botón Cancelar – en todas las pantallas 
     - Botón Rechazar – en todas las pantallas 
     - Texto OPCIONAL superior en la pantalla de firma 
-    - XML con la configuración del formulario del panel de firma 
+    - XML con la configuración del formulario de las pantallas previas (Opcional, se puede dejar en blanco en caso de que no se deseen mostrar pantallas previas)  
+    _**NOTA: Este parametro es opcional solo en versiones superiores a la v4.4**_
+    - XML con la configuración del formulario de la pantalla final con el panel de firma (Opcional, se puede dejar en blanco en caso de que no se desee personalizar la pantalla final)  
+    _**NOTA:Este para metro se añade apartir de versiones superiores a la 4.4**_
     - Parametros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
-  - **Formulario**: Para el proceso de firma manuscrita se puede añadir un formulario en el que el usuario deba seleccionar varios checks para poder avanzar en el proceso y, finalmente, realizar la firma. La configuración de este formulario es el último parámetro de los descritos en el apartado anterior.
+  - **Formulario de pantallas previas**: Para el proceso de firma manuscrita se puede añadir un formulario en el que el usuario deba seleccionar varios checks para poder avanzar en el proceso y, finalmente, realizar la firma. La configuración de este formulario es el último parámetro de los descritos en el apartado anterior.
 
   Este es un ejemplo de un XML válido: 
 
@@ -264,6 +267,12 @@
   Además de esta configuración de pantallas, se utilizan algunos de los parámetros para configurar el look & feel. 
 
   ![Image-15](./images/Image-15.png)
+
+  - **Formulario de personalización de pantalla final**: Para el proceso de firma manuscrita se puede añadir un formulario XML donde el usuario puede personalizar la pantalla final donde se introduce el garabato de la firma. Esta personalización no permite modificar los botones que aparecen en pantalla final ni la linea de guia para la firma.
+
+  Este es un ejemplo de un XML válido: 
+
+  ![Image-17](./images/Image-17.png)
 
   Es recomendable descargar el código de ejemplo desde la página de GitHub de FactumID para familiarizarse con esos parámetros y ver cómo afectan a la pantalla. 
 
