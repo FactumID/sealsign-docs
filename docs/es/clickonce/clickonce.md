@@ -254,7 +254,7 @@
     - XML con la configuración del formulario de las pantallas previas (Opcional, se puede dejar en blanco en caso de que no se deseen mostrar pantallas previas)  
     _**NOTA: Este parametro es opcional solo en versiones superiores a la v4.4**_
     - XML con la configuración del formulario de la pantalla final con el panel de firma (Opcional, se puede dejar en blanco en caso de que no se desee personalizar la pantalla final)  
-    _**NOTA:Este para metro se añade apartir de versiones superiores a la 4.4**_
+    _**NOTA: Este parametro se añade apartir de versiones superiores a la 4.4**_
     - Parametros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
   - **Formulario de pantallas previas**: Para el proceso de firma manuscrita se puede añadir un formulario en el que el usuario deba seleccionar varios checks para poder avanzar en el proceso y, finalmente, realizar la firma. La configuración de este formulario es el último parámetro de los descritos en el apartado anterior.
 
