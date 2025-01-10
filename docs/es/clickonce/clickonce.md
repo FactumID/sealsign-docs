@@ -272,10 +272,10 @@
     - Botón Rechazar – en todas las pantallas 
     - Texto OPCIONAL superior en la pantalla de firma 
     - XML con la configuración del formulario de las pantallas previas (Opcional, se puede dejar en blanco en caso de que no se deseen mostrar pantallas previas)  
-    _**NOTA: Este parametro es opcional solo en versiones superiores a la v4.4**_
+    _**NOTA: Este parámetro es opcional solo en versiones superiores a la v4.4**_
     - XML con la configuración del formulario de la pantalla final con el panel de firma (Opcional, se puede dejar en blanco en caso de que no se desee personalizar la pantalla final)  
-    _**NOTA: Este parametro se añade apartir de versiones superiores a la 4.4**_
-    - Parametros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
+    _**NOTA: Este parámetro se añade apartir de versiones superiores a la 4.4**_
+    - Parámetros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
   - **Formulario de pantallas previas**: Para el proceso de firma manuscrita se puede añadir un formulario en el que el usuario deba seleccionar varios checks para poder avanzar en el proceso y, finalmente, realizar la firma. La configuración de este formulario es el último parámetro de los descritos en el apartado anterior.
 
   Este es un ejemplo de un XML válido: 
@@ -324,11 +324,11 @@
     - URL de cancelación 
     - Usuario de autenticación básica 
     - Contraseña de autenticación básica 
-    - Usuario al que se le hara el enrollment (Opcional), de no pasar este parametro el enrollment se le aplicara al usuario que autentica el servicio 
+    - Usuario al que se le hara el enrollment (Opcional), de no pasar este parámetro el enrollment se le aplicara al usuario que autentica el servicio 
     - Texto del botón Cancelar 
     - Texto del botón Borrar 
     - Texto del botón Firmar 
-    - Parametros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
+    - Parámetros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
     - XML con la configuración del formulario del panel de firma 
 
   La configuración de este formulario es el último parámetro de los descritos en el apartado anterior. 
