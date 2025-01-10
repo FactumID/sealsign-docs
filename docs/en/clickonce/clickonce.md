@@ -341,3 +341,11 @@
   The XML defines the screens that will be present with the screen node. In addition to this screen configuration, some of the parameters are used to configure the look & feel, such as font color, logo, and text size.  
 
   - **bioEnrollment (string[])**: Launches the face-to-face signature enroolment process parameterized with the configuration passed as an argument. It uses the document provider associated to the document URI and its default parameterization.
+
+
+  ## 4.6 Window
+ To close the window you can invoke the javascript method closeWindow
+
+  ```javascript
+  hub.server.closeWindow();
+  ```

@@ -340,3 +340,11 @@
   En el XML se define las pantalla que va a haber con el nodo screen. Además de esta configuración de pantallas, se utilizan algunos de los parámetros para configurar el look & feel, como el color de letra, el logo, y el tamaño de los textos.  
 
   - **bioEnrollment (string[])**: Lanza el proceso de enroolment presencial de firma parametrizado con la configuración que se pasa por argumento. Usa el document provider asociado a la URI del documento y su parametrización por defecto.
+
+
+  ## 4.6 Ventana
+  Para cerrar la ventana se puede invocar al método de javascript closeWindow
+
+  ```javascript
+  hub.server.closeWindow();
+  ```
