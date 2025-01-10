@@ -2,7 +2,9 @@
 
 # 1. Introducción
 
-  SealSign's ClickOnce client replaces the Java Applet in Windows environments. Its deployment is based on Microsoft's ClickOnce technology, which allows the deployment of applications over the Internet. The client is able to communicate bidirectionally with the browser that has launched the signature request to achieve a behavior similar to the integration of the Applet with the browser using JavaScript. This communication is achieved using Microsoft's SignalR. More information about SignalR can be found on the official SignalR website.
+  SealSign's ClickOnce client replaces the Java Applet in Windows environments. Its deployment is based on Microsoft's ClickOnce technology, which allows the deployment of applications over the Internet. The client is able to communicate bidirectionally with the browser that has launched the signature request to achieve a behavior similar to the integration of the Applet with the browser using JavaScript.
+  
+  This communication is achieved using Microsoft's SignalR. More information about SignalR can be found on the official SignalR website.
 
   From the following link you can access a project that contains an example of how to integrate with the SealSign Signature Client (ClickOnce):
    - https://github.com/FactumID/SealSignClickOnceClientWebExample
@@ -37,9 +39,9 @@
 
   - Unzip the client found in the version 4.6 SDK download.
   - To modify the ClickOnce deployment files, download and install the Windows SDK.
-  - Change the publishing URL with the following command: mage -u SealSignClient.application -pu http://[URL]/SealSignClient.application
-  - Reassign the application manifest with: mage -u SealSignClient.application -AppManifest "Application Files "Application Files SealSignClient_1_0_0_0_0SealSignClient.exe.manifest".
-  - Finally, sign the file with the command: mage -sign SealSignClient.application -cf [certificate path] -pwd [certificate password].
+  - Change the publishing URL with the following command: `mage -u SealSignClient.application -pu http://[URL]/SealSignClient.application`
+  - Reassign the application manifest with: `mage -u SealSignClient.application -AppManifest "Application Files "Application Files SealSignClient_1_0_0_0_0SealSignClient.exe.manifest"`
+  - Finally, sign the file with the command: `mage -sign SealSignClient.application -cf [certificate path] -pwd [certificate password]`
 
   Once these steps are done, the ClickOnce client can be deployed on the server. For everything to work correctly you have to check that the web server has the following MIME types configured:
 
@@ -53,13 +55,33 @@
 
   - Refer to the JavaScript code of the hub, located in the URL: http://localhost:8081/signalr/hubs
 
-  - Indicate the URL of the hub. $.connection.hub.url = "http://localhost:8081/signalr";
+  - Indicate the URL of the hub.
+    ```javascript
+    $.connection.hub.url = "http://localhost:8081/signalr";
+    ```
+
+  - The SignalR's hub name is sealSignHub. 
+    ```javascript
+    var hub = $.connection.sealSignHub;
+    ```
 
   - The application makes calls to different methods of the JavaScript client, either to notify that it is performing some task, or to notify that it has finished that task, or to tell the browser to redirect to a URL. The methods are:
-    - Navigate:the application notifies the client that it should navigate to the URL it passes as a parameter. Normally it will be one of the URLs that have been defined as success, cancellation, rejection or error. Usage: hub.client.Navigate = function (url) { }
-    - AsyncOperationStarted:The application notifies the client that an asynchronous, long-running operation has started. At this point the JavaScript client should relinquish control to the ClickOnce component.   It attaches a message with the details of the operation.   Usage: hub.client.AsyncOperationStarted = function(message){ }
-    - AsyncOperationCompleted:the application notifies the client that it has completed and can take control. Usage: hub.client.AsyncOperationCompleted = function(){ }
-    - AsyncOperationInProgress: the application notifies the client that a signature is already in progress. Usage: hub.client.AsyncOperationInProgress= function(){ }
+    - Navigate:the application notifies the client that it should navigate to the URL it passes as a parameter. Normally it will be one of the URLs that have been defined as success, cancellation, rejection or error. Usage:
+    ```javascript
+    hub.client.Navigate = function (url) {  }
+    ```
+    - AsyncOperationStarted:The application notifies the client that an asynchronous, long-running operation has started. At this point the JavaScript client should relinquish control to the ClickOnce component.   It attaches a message with the details of the operation.   Usage:     
+    ```javascript
+    hub.client.AsyncOperationStarted = function(message){ }
+    ```
+    - AsyncOperationCompleted:the application notifies the client that it has completed and can take control. Usage:    
+    ```javascript
+    hub.client.AsyncOperationCompleted = function(){ }
+    ```
+    - AsyncOperationInProgress: the application notifies the client that a signature is already in progress. Usage:     
+    ```javascript
+    hub.client.AsyncOperationInProgress = function(){ }
+    ```
 
 ## 3.4. Server version configuration
 
@@ -147,7 +169,8 @@
   *Image 12: Fingerprint of the certificate*
 
   With that value, you have to open the console in administrator mode and execute the following command: 
-  ```netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
+  ```
+  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
   ```
   This last instruction associates the certificate to port 8082.
 

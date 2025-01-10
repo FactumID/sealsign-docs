@@ -2,7 +2,9 @@
 
 # 1. Introducción
 
-  El cliente ClickOnce de SealSign viene a sustituir en entornos Windows al Applet de Java. Su despliegue está basado en la tecnología ClickOnce de Microsoft que permite el despliegue de aplicaciones por internet. Para más información deberá visitarse el sitio de Microsoft. El cliente es capaz de comunicarse de forma bidireccional con el navegador que ha lanzado la petición de firma para conseguir un comportamiento similar a la integración del Applet con el navegador utilizando JavaScript. Esta comunicación se consigue utilizando SignalR de Microsoft. Para más información sobre SignalR puede visitarse el sitio oficial de SignalR.
+  El cliente ClickOnce de SealSign viene a sustituir en entornos Windows al Applet de Java. Su despliegue está basado en la tecnología ClickOnce de Microsoft que permite el despliegue de aplicaciones por internet. Para más información deberá visitarse el sitio de Microsoft. El cliente es capaz de comunicarse de forma bidireccional con el navegador que ha lanzado la petición de firma para conseguir un comportamiento similar a la integración del Applet con el navegador utilizando JavaScript.
+  
+  Esta comunicación se consigue utilizando SignalR de Microsoft. Para más información sobre SignalR puede visitarse el sitio oficial de SignalR.
 
   Desde el siguiente enlace podran acceder a un proyecto que contiene un ejemplo de como integrarse con el cliente de firma SealSign Signature Cliente (ClickOnce):
    - https://github.com/FactumID/SealSignClickOnceClientWebExample
@@ -36,10 +38,10 @@
   Si  es  necesario  desplegar  el  cliente  en  otro  servidor  que  no sea  el  de  Factum  Identity,  hay  que  seguir  los siguientes pasos.
 
   - Descomprimir el cliente que se encuentra en la descarga del SDK de la versión 4.6
-  - Para  modificar  los  archivos  de  despliegue  de ClickOncehay  que  descargar  e  instalar  el SDK  de Windows
-  - Cambiar  la  URL  de  publicación  con  el  siguiente  comando: mage -u  SealSignClient.application -pu http://[URL]/SealSignClient.application
-  - Reasignar  el  manifiesto  de  la  aplicación  con: mage -u  SealSignClient.application -AppManifest "Application Files\SealSignClient_1_0_0_0\SealSignClient.exe.manifest"
-  - Finalmente,  firmar  el  archivo  con  el  comando: mage -sign  SealSignClient.application -cf  [ruta  del certificado] -pwd [contraseña del certificado]
+  - Para  modificar  los  archivos  de  despliegue  de ClickOnce hay  que  descargar  e  instalar  el SDK  de Windows
+  - Cambiar  la  URL  de  publicación  con  el  siguiente  comando: `mage -u  SealSignClient.application -pu http://[URL]/SealSignClient.application`
+  - Reasignar  el  manifiesto  de  la  aplicación  con: `mage -u  SealSignClient.application -AppManifest "Application Files\SealSignClient_1_0_0_0\SealSignClient.exe.manifest"`
+  - Finalmente,  firmar  el  archivo  con  el  comando: `mage -sign  SealSignClient.application -cf  [ruta  del certificado] -pwd [contraseña del certificado]`
 
   Una vez hechos estos pasos se puede desplegar en el servidor el cliente de ClickOnce. Para que todo funcione correctamente hay que comprobar que el servidor web tiene los siguientes tipos MIME configurados:
 
@@ -49,23 +51,40 @@
 
   ## 3.3. Configuración del cliente JavaScript
 
-  En este tutorialse explica en detalle cómo configurar un entorno con SignalR, y en el ejemplo alojado en el gitHub de Factumse encuentra todo el código necesario para hacerlo funcionar.Hay  que  tener  en  cuenta  que  una  vez  que  el  cliente  se  ha  lanzado  se  queda  escuchando  en  el  puerto  8081 cuando es http y 8082 cuando se ha configurado la conexión por https. En la parte de JavaScript habrá que:
+  En este tutorial se explica en detalle cómo configurar un entorno con SignalR, y en el ejemplo alojado en el gitHub de Factum se encuentra todo el código necesario para hacerlo funcionar. Hay  que  tener  en  cuenta  que  una  vez  que  el  cliente  se  ha  lanzado  se  queda  escuchando  en  el  puerto  8081 cuando es http y 8082 cuando se ha configurado la conexión por https. En la parte de JavaScript habrá que:
 
   - Referenciar al código JavaScript del hub, situada en la URL: http://localhost:8081/signalr/hubs
 
-  - Indicar cuál es la URL del hub. $.connection.hub.url = "http://localhost:8081/signalr";
+  - Indicar cuál es la URL del hub. 
+  ```javascript
+  $.connection.hub.url = "http://localhost:8081/signalr";
+  ```
 
-  - El nombre del hub de SignalRes sealSignHub. var hub = $.connection.sealSignHub;
-
+  - El nombre del hub de SignalR es sealSignHub. 
+  ```javascript
+  var hub = $.connection.sealSignHub;
+  ```
   - La  aplicación  realiza  llamadas  a  diferentes métodos del cliente JavaScript, tanto  para notificar que está  realizando  alguna  tarea,  como  para  notificar  que  ha  terminado  esa  tarea,  o  para  indicar  al navegador que debe redireccionar a una URL. Los métodos son:
-    - Navigate:la aplicación comunica al cliente que debe navegar a la URL que le pasa por parámetro. Normalmente será una de las URLs que se han definido como de éxito, cancelación, rechazo o error. Uso: hub.client.Navigate = function (url) {  }
-    - AsyncOperationStarted:la  aplicación  notifica  al  cliente  que  ha  comenzado  una  operación asíncrona y de larga duración. A partir de este punto el cliente JavaScriptdebería ceder el control al   componente ClickOnce.   Adjunta   un   mensaje   con   los   detalles   de   la   operación.   Uso: hub.client.AsyncOperationStarted = function(message){ }
-    - AsyncOperationCompleted:la  aplicación  notifica  al  cliente  que  ya  ha  terminado  y  que  puede tomar el control. Uso: hub.client.AsyncOperationCompleted = function(){ }
-    - AsyncOperationInProgress: la aplicación notifica al cliente que ya hay una firma en curso. Uso: hub.client.AsyncOperationInProgress= function(){ }
+    - Navigate:la aplicación comunica al cliente que debe navegar a la URL que le pasa por parámetro. Normalmente será una de las URLs que se han definido como de éxito, cancelación, rechazo o error. Uso: 
+    ```javascript
+    hub.client.Navigate = function (url) {  }
+    ```
+    - AsyncOperationStarted:la  aplicación  notifica  al  cliente  que  ha  comenzado  una  operación asíncrona y de larga duración. A partir de este punto el cliente JavaScriptdebería ceder el control al   componente ClickOnce.   Adjunta   un   mensaje   con   los   detalles   de   la   operación.   Uso: 
+    ```javascript
+    hub.client.AsyncOperationStarted = function(message){ }
+    ```
+    - AsyncOperationCompleted:la  aplicación  notifica  al  cliente  que  ya  ha  terminado  y  que  puede tomar el control. Uso: 
+    ```javascript
+    hub.client.AsyncOperationCompleted = function(){ }
+    ```
+    - AsyncOperationInProgress: la aplicación notifica al cliente que ya hay una firma en curso. Uso: 
+    ```javascript
+    hub.client.AsyncOperationInProgress = function(){ }
+    ```
 
   ## 3.4. Configuración de la versión del servidor
 
-  El  cliente  soporta  tanto  la  versión  3.2  como  la  4.0  de  SealSign,  pero  hay  que  indicar  qué  versión  se  está utilizando. Para configurar la versión que se está utilizando hay que llamar al método setServerVersioncon alguno de estos dos valores:
+  El  cliente  soporta  tanto  la  versión  3.2  como  la  4.0  de  SealSign,  pero  hay  que  indicar  qué  versión  se  está utilizando. Para configurar la versión que se está utilizando hay que llamar al método setServerVersion con alguno de estos dos valores:
 
   - V32: para utilizar la versión 3.2
   - V40: para utilizar la versión 4.0 o posteriores
@@ -92,7 +111,7 @@
 
   ### 4.2.1. Configuración del certificado
 
-  Para poder utilizar una conexión SSL entre la web y el cliente de SealSignhay que instalar un certificado en el equipo cliente y enlazarlo al puerto 8082.
+  Para poder utilizar una conexión SSL entre la web y el cliente de SealSign hay que instalar un certificado en el equipo cliente y enlazarlo al puerto 8082.
 
   Instalación del certificado en el almacén. El certificado a instalar tiene que contener la clave pública y la clave privada. Para instalarlo hacemos doble click sobre el archivo. Se muestra un asistente para hacer la instalación.
 
@@ -130,7 +149,7 @@
 
   *Imagen 09: Certificado importado correctamente*
 
-  Una vez instalado el certificado, se lanza el administrador de certificados, para ello pulsamos la tecla Windows+  R  e  introducimos  “certlm.msc”,  dentro  del  almacén Personalbuscamos  el  certificado  que  importamos anteriormente.
+  Una vez instalado el certificado, se lanza el administrador de certificados, para ello pulsamos la tecla Windows + R  e  introducimos  “certlm.msc”,  dentro  del  almacén Personal buscamos  el  certificado  que  importamos anteriormente.
 
   ![Image-10](./images/Image-10.png)
 
@@ -149,7 +168,8 @@
   *Imagen 12: Huella digital del certificado*
 
   Con ese valor, hay que abrir la consola en modo administrador y ejecutar el siguiente comando: 
-  ```netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
+  ```
+  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
   ```
   Con esta última instrucción se asocia el certificado al puerto 8082.
 
@@ -167,14 +187,14 @@
 
   ### 4.3.1. Filtrado de certificados
 
-  A la hora de realizar la firma digital se pueden filtrar los certificados que se mostrarán en el listado. El filtrado se puede hacer por issuer, por hashy por serial number:
-  - **setCertificateIssuerFilter**: Filtra por issuer, recibe como parámetro los issuersválidos separados por ‘|’. Se usa para mostrar únicamente los certificados del DNIe: hub.server.setCertificateIssuerFilter('AC DNIE 001');
-  - **setCertifciateHashFilter**: Filtra por hash, recibe como parámetro el hashdel certificado con el que se firmará. Uso:hub.server.setCertificateHashFilter('[HASH]');
-  - **setCertificateSerialFilter**: Filtra por el serial numberdel certificado. Uso: hub.server.setCertificateSerialFilter('[SERIAL NUMBER]');
+  A la hora de realizar la firma digital se pueden filtrar los certificados que se mostrarán en el listado. El filtrado se puede hacer por issuer, por hash y por serial number:
+  - **setCertificateIssuerFilter**: Filtra por issuer, recibe como parámetro los issuers válidos separados por ‘|’. Se usa para mostrar únicamente los certificados del DNIe: hub.server.setCertificateIssuerFilter('AC DNIE 001');
+  - **setCertifciateHashFilter**: Filtra por hash, recibe como parámetro el hash del certificado con el que se firmará. Uso:hub.server.setCertificateHashFilter('[HASH]');
+  - **setCertificateSerialFilter**: Filtra por el serial number del certificado. Uso: hub.server.setCertificateSerialFilter('[SERIAL NUMBER]');
 
   ### 4.3.2. Reinicio de filtros
 
-  Para eliminar todos los filtros establecidos a loscertificados hay que llamar a la función resetCertificateFilters.
+  Para eliminar todos los filtros establecidos a los certificados hay que llamar a la función resetCertificateFilters.
 
   ### 4.3.3. Carga de un certificado local
 
@@ -207,14 +227,14 @@
   ### 4.3.5. Uso de Remote Document Provider
 
   Para utilizar los Remote Document Providerhay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
-  - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersioncon el valor ‘V40’.
-  - Llamar a la función setDSSRemoteProviderConfigurationcon los siguientes parámetros:
+  - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersion con el valor ‘V40’.
+  - Llamar a la función setDSSRemoteProviderConfiguration con los siguientes parámetros:
     - url: la url donde está alojado el Remote Document Provider.
     - domain: dominio del usuario con el que se va a autenticar la llamada al Remote Document Provider.
     - user: usuariocon el que se va a autenticar la llamada al Remote Document Provider.
     - password: contraseña del usuario con el que se autenticará la llamada al Remote Document Provider.
     
-  Importante:si llamada necesita ser autenticada, la autenticación será básica.
+  Importante: si llamada necesita ser autenticada, la autenticación será básica.
 
   ## 4.4 Firma Biométrica 
 
@@ -276,12 +296,12 @@
 
   ### 4.4.3 Uso de Remote Document Provider
 
-  Para utilizar los Remote Document Providerhay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
-  - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersioncon el valor ‘V40’.
-  - Llamar a la función setDSSRemoteProviderConfigurationcon los siguientes parámetros:
+  Para utilizar los Remote Document Provider hay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
+  - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersion con el valor ‘V40’.
+  - Llamar a la función setDSSRemoteProviderConfiguration con los siguientes parámetros:
     - url: la url donde está alojado el Remote Document Provider.
     - domain: dominio del usuario con el que se va a autenticar la llamada al Remote Document Provider.
-    - user: usuariocon el que se va a autenticar la llamada al Remote Document Provider.
+    - user: usuario con el que se va a autenticar la llamada al Remote Document Provider.
     - password: contraseña del usuario con el que se autenticará la llamada al Remote Document Provider.
     
   Importante:si llamada necesita ser autenticada, la autenticación será básica.
@@ -302,12 +322,12 @@
     - Parametros de personalizacion global (Tipo de letra, Ancho y alto de la venta, Tamaño de letra) 
     - XML con la configuración del formulario del panel de firma 
 
-  La configuración de este formulario es el último parámetro de los descritos en el   apartado anterior. 
+  La configuración de este formulario es el último parámetro de los descritos en el apartado anterior. 
 
   Este es un ejemplo de un XML válido: 
 
   ![Image-16](./images/Image-16.png)
 
-  En el XML se define las pantalla que va a haber con el nodo screen. Además de esta configuración de pantallas, se utilizan algunos de los parámetros para 	configurar el look & feel, como el color de letra, el logo, y el tamaño de los textos.  
+  En el XML se define las pantalla que va a haber con el nodo screen. Además de esta configuración de pantallas, se utilizan algunos de los parámetros para configurar el look & feel, como el color de letra, el logo, y el tamaño de los textos.  
 
   - **bioEnrollment (string[])**: Lanza el proceso de enroolment presencial de firma parametrizado con la configuración que se pasa por argumento. Usa el document provider asociado a la URI del documento y su parametrización por defecto.
