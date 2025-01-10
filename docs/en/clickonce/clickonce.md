@@ -272,7 +272,10 @@
     - Cancel button - on all screens 
     - Reject button - on all screens 
     - OPTIONAL text above on the signature screen 
-    - XML with signature panel form settings 
+    - XML with the configuration of the previous screens form (Optional, can be left blank if previous screens are not desired)  
+    _**NOTE: This parameter is optional only in versions higher than v4.4**_
+    - XML with the configuration of the final screen form with the signature panel (Optional, can be left blank if the final screen is not to be customized)  
+    _**NOTE: This parameter is added in versions higher than 4.4**_
     - Global Customization Parameters (Font, Sale Width and Height, Font Size) 
   - **Form**: For the handwritten signature process a form can be added in which the user must select several checks in order to advance in the process and finally sign the signature. The configuration of this form is the last parameter of those described in the previous section.
 
@@ -286,12 +289,18 @@
 
   ![Image-15](./images/Image-15.png)
 
+  - **Final Screen Customization Form**: For the handwritten signature process, an XML form can be added where the user can customize the final screen where the signature scribble is entered. This customization does not allow modification of the buttons that appear on the final screen nor the signature guideline line.
+
+  This is an example of a valid XML: 
+
+  ![Image-17](./images/Image-17.png)
+
   It is recommended to download the example code from FactumID's GitHub page to familiarize yourself with these parameters and see how they affect the screen. 
 
     - **bioSign(string[])**: Launches the signature process parameterized with the configuration passed as an argument. Uses the document provider associated with the document URI and its default setting. 
     - **bioSign(string[], string)**: Launches the signature process parameterized with the configuration passed by argument. It uses the document provider associated to the URI of the document to which the parameters of the second argument are passed. 
     - **bioSignUrl(string[], string)**: Launches the signature process parameterized with the configuration passed by argument. The document whose URL has been given is signed, it uses the document provider associated to the document URI and its default parameterization.  
-    - bioSignUrl(string[], string, string)**: Launches the signature process parameterized with the configuration passed by argument. The document whose URL has been given is signed, it uses the document provider associated to the URI of the document to which the parameters of the second argument are passed.  
+    - **bioSignUrl(string[], string, string)**: Launches the signature process parameterized with the configuration passed by argument. The document whose URL has been given is signed, it uses the document provider associated to the URI of the document to which the parameters of the second argument are passed.  
     - **bioSignBase64(string[], string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, uses the document provider associated to the URI of the document and its default parameterization. 
     - **bioSignBase64(string[], string, string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, it uses the document provider associated to the URI of the document to which the parameters of the second argument are passed.
 
