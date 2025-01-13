@@ -938,7 +938,7 @@ Estos filtros se dividen en las siguientes categorías:
 
 ![usage-rules-processes](./images/usage-rules-processes.png)
 
-**URLs:** En este apartado gestionamos desde que URL se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de URL especificados en la regla. Este filtro admite como carácter comodín el %. Este filtro solo aplica al navegador Internet Explorer, es decir, al proceso iexplore.exe.
+**URLs:** En este apartado gestionamos desde que URL se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de URL especificados en la regla. Este filtro admite como carácter comodín el %. Este filtro aplica a los navegadores Chrome y Edge.
 
 ![usage-rules-urls](./images/usage-rules-urls.png)
 

@@ -914,7 +914,7 @@ These filters are divided into the following categories:
 
 ![usage-rules-processes](./images/usage-rules-processes.png)
 
-**URLs:** In this section we manage from which URL the rule of use can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of URLs specified in the rule. This filter admits as wildcard character the %. This filter only applies to the Internet Explorer browser, that is, to the iexplore.exe process.
+**URLs:** In this section we manage from which URL the rule of use can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of URLs specified in the rule. This filter admits as wildcard character the %. This filter applies to Chrome and Edge browsers.
 
 ![usage-rules-urls](./images/usage-rules-urls.png)
 
