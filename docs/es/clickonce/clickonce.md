@@ -369,7 +369,7 @@
   ```
   NOTA: Al llamar a la función CloseWindow, se cerrará la ventana de firma, y en la función AsyncOperationComplete se indicará en la respuesta el estado ```CanceledExternally```, lo que significa que el proceso de firma ha sido cancelado externamente.
 
-  ## 4.7 Lanzar precesos externos
+  ## 4.7 Lanzar procesos externos
   Función que ejecuta un comando y que permite lanzar procesos externos desde el app de firma. Uso: 
 
   ```javascript
