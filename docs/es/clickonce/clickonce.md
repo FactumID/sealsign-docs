@@ -66,21 +66,40 @@
   ```
   - La  aplicación  realiza  llamadas  a  diferentes métodos del cliente JavaScript, tanto  para notificar que está  realizando  alguna  tarea,  como  para  notificar  que  ha  terminado  esa  tarea,  o  para  indicar  al navegador que debe redireccionar a una URL. Los métodos son:
     - Navigate:la aplicación comunica al cliente que debe navegar a la URL que le pasa por parámetro. Normalmente será una de las URLs que se han definido como de éxito, cancelación, rechazo o error. Uso: 
-    ```javascript
-    hub.client.Navigate = function (url) {  }
-    ```
+      ```javascript
+      hub.client.Navigate = function (url) {  }
+      ```
     - AsyncOperationStarted:la  aplicación  notifica  al  cliente  que  ha  comenzado  una  operación asíncrona y de larga duración. A partir de este punto el cliente JavaScriptdebería ceder el control al   componente ClickOnce.   Adjunta   un   mensaje   con   los   detalles   de   la   operación.   Uso: 
-    ```javascript
-    hub.client.AsyncOperationStarted = function(message){ }
-    ```
-    - AsyncOperationCompleted:la  aplicación  notifica  al  cliente  que  ya  ha  terminado  y  que  puede tomar el control. Uso: 
-    ```javascript
-    hub.client.AsyncOperationCompleted = function(){ }
-    ```
+      ```javascript
+      hub.client.AsyncOperationStarted = function(message){ }
+      ```
+    - AsyncOperationCompleted:la  aplicación  notifica  al  cliente  que  ya  ha  terminado  y  que  puede tomar el control. La función recibira por parametro un Json con la información del estado del proceso de firma realizado, junto al documento en Base64.
+
+      Json recibido por parametro:
+
+      ```json 
+      { 
+        "Content":null, // Documento en Base64
+        "Custody":false, // Si se configuró la custodia documental
+        "FileName":null, // Nombre del documento
+        "BiometricSignatureGraph":"", // Grafo de la firma en formato jpg
+        "Signed":false, // Si la firma se ha realizado 
+        "Status":"Canceled", // Estatus de la firma en formato texto (Canceled, CanceledExternally, Rejected, Finish)
+        "Error":false, // Si se producido un error
+        "ErrorMessage":null, // Mensaje de error 
+        "IsExternalBiometricSignature":false, // Si es una firma externa
+        "IsCertificateSignature":false, // Si es una firma con certificado
+        "IsBiometricSignature":true // Si es una firma biométrica
+      } 
+      ```
+      Uso: 
+      ```javascript
+      hub.client.AsyncOperationCompleted = function(response){ }
+      ```
     - AsyncOperationInProgress: la aplicación notifica al cliente que ya hay una firma en curso. Uso: 
-    ```javascript
-    hub.client.AsyncOperationInProgress = function(){ }
-    ```
+      ```javascript
+      hub.client.AsyncOperationInProgress = function(){ }
+      ```
 
   ## 3.4. Configuración de la versión del servidor
 
@@ -347,4 +366,12 @@
 
   ```javascript
   hub.server.closeWindow();
+  ```
+  NOTA: Al llamar a la función CloseWindow, se cerrará la ventana de firma, y en la función AsyncOperationComplete se indicará en la respuesta el estado ```CanceledExternally```, lo que significa que el proceso de firma ha sido cancelado externamente.
+
+  ## 4.7 Lanzar precesos externos
+  Función que ejecuta un comando y que permite lazar procesos externos desde el app de firma. Uso: 
+
+  ```javascript
+  hub.server.launchExternalApp(command);
   ```
