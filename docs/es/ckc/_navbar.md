@@ -1,4 +1,4 @@
-* [Español](/es/license/license)
+* [English](/en/ckc/central-key-control)
 
 <!--* Getting started
   * [Quick start](quickstart.md)

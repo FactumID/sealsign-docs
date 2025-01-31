@@ -1,4 +1,4 @@
-* [English](/en/monitor/monitor)
+* [English](/en/license/license)
 
 <!--* Empezar
   * [Empezar](quickstart.md)

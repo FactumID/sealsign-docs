@@ -13,6 +13,7 @@
 * [DSS Instalación](/es/dss/installation-guide)
 * [DSS Administración](/es/dss/administration-guide)
 * [BSS Instalación](/es/bss/installation-guide)
+* [CKC](/es/ckc/central-key-control)
 <!--* [Biosigner](/es-es/biosigner)-->
 
 **Cloud**
