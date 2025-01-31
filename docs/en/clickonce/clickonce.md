@@ -67,21 +67,40 @@
 
   - The application makes calls to different methods of the JavaScript client, either to notify that it is performing some task, or to notify that it has finished that task, or to tell the browser to redirect to a URL. The methods are:
     - Navigate:the application notifies the client that it should navigate to the URL it passes as a parameter. Normally it will be one of the URLs that have been defined as success, cancellation, rejection or error. Usage:
-    ```javascript
-    hub.client.Navigate = function (url) {  }
-    ```
+      ```javascript
+      hub.client.Navigate = function (url) {  }
+      ```
     - AsyncOperationStarted:The application notifies the client that an asynchronous, long-running operation has started. At this point the JavaScript client should relinquish control to the ClickOnce component.   It attaches a message with the details of the operation.   Usage:     
-    ```javascript
-    hub.client.AsyncOperationStarted = function(message){ }
-    ```
-    - AsyncOperationCompleted:the application notifies the client that it has completed and can take control. Usage:    
-    ```javascript
-    hub.client.AsyncOperationCompleted = function(){ }
-    ```
+      ```javascript
+      hub.client.AsyncOperationStarted = function(message){ }
+      ```
+    - AsyncOperationCompleted:the application notifies the client that it has completed and can take control. The function will receive a JSON parameter containing information about the status of the completed signing process, along with the document in Base64 format. 
+    
+      Json received as a parameter:
+
+      ```json
+      { 
+        "Content": null, // Document in Base64
+        "Custody": false, // Whether document custody was configured
+        "FileName": null, // Name of the document
+        "BiometricSignatureGraph": "", // Signature graph in jpg format
+        "Signed": false, // Whether the signature was completed
+        "Status": "Canceled", // Signature status in text format (Canceled, CanceledExternally, Rejected, Finish)
+        "Error": false, // Whether an error occurred
+        "ErrorMessage": null, // Error message
+        "IsExternalBiometricSignature": false, // Whether it is an external signature
+        "IsCertificateSignature": false, // Whether it is a certificate-based signature
+        "IsBiometricSignature": true // Whether it is a biometric signature
+      } 
+      ```
+      Usage:    
+      ```javascript
+      hub.client.AsyncOperationCompleted = function(response){ }
+      ```
     - AsyncOperationInProgress: the application notifies the client that a signature is already in progress. Usage:     
-    ```javascript
-    hub.client.AsyncOperationInProgress = function(){ }
-    ```
+      ```javascript
+      hub.client.AsyncOperationInProgress = function(){ }
+      ```
 
 ## 3.4. Server version configuration
 
@@ -348,4 +367,12 @@
 
   ```javascript
   hub.server.closeWindow();
+  ```
+NOTE: When calling the CloseWindow function, the signature window will close, and the AsyncOperationComplete function will indicate a response status of   ```CanceledExternally```, signifying that the signing process was canceled externally
+
+  ## 4.7 Launch External Processes
+Function that executes a command and allows launching external processes from the signing app
+
+  ```javascript
+  hub.server.launchExternalApp(command);
   ```
