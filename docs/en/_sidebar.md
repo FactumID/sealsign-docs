@@ -14,6 +14,7 @@
 * [DSS Administration](/en/dss/administration-guide)
 * [BSS](/en/bss/installation-guide)
 * [CKC](/en/ckc/central-key-control)
+* [Changelog](/en/changelog/changelog)
 <!--* [Biosigner](/en-us/biosigner)-->
 
 **Cloud**
