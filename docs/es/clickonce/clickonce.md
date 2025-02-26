@@ -375,3 +375,69 @@
   ```javascript
   hub.server.launchExternalApp(command);
   ```
+
+# 5. Solución de problemas
+
+Para solventar posibles errores con el cliente de firma **SealSign Signature Client**, intente aplicar alguna de las acciones de la siguiente lista:
+
+## 1. Cierre y Reinicie el Cliente de Firma
+- Cierre el aplicativo **SealSign Signature Client** manualmente desde la barra de tareas.
+- Refresque la caché del navegador y lance el proceso de firma nuevamente.  
+
+> **Nota:**  
+> La caché se puede refrescar ejecutando el comando:  
+> ```plaintext
+> CTRL + SHIFT + R
+> ```  
+> en la página [sealsign.es](https://sealsign.es).
+
+![Image-18](./images/Image-18.png)
+
+### Cómo cerrar el aplicativo:
+Haga **clic derecho** en el icono de **SealSign** que se encuentra en ejecución en la barra de tareas y selecciónelo para cerrarlo.
+
+![Image-19](./images/Image-19.png)
+
+---
+
+## 2. Reinstale el Cliente de Firma
+- Desinstale el aplicativo **SealSign Signature Client**.  
+- Proceda a instalarlo nuevamente.  
+- Refresque la caché del navegador (CTRL + SHIFT + R en [sealsign.es](https://sealsign.es)).  
+- Lance el proceso de firma de nuevo.
+
+---
+
+## 3. Pruebe con un Navegador Distinto
+- Intente realizar la firma con un navegador distinto al que se está usando.  
+- **Si funciona con el nuevo navegador**, notifique al soporte el error, indicando el nombre del navegador donde se produjo el problema.
+
+---
+
+## 4. Eliminación Completa del Cliente de Firma (Última Opción)
+Si las opciones anteriores no solucionan el problema, elimine todo rastro del cliente de firma siguiendo estos pasos:
+
+1. Verifique que el aplicativo `SealSign Signature Client` no se encuentra en ejecución.  
+2. Elimine el contenido de las siguientes rutas en el explorador de archivos de Windows:  
+  - ```plaintext
+    %UserProfile%\AppData\Local\Apps
+    ```
+  - ```plaintext
+    %UserProfile%\AppData\Roaming\11paths
+    ```
+3. Ejecute un CMD como administrador y ejecute el siguiente comando:  
+   ```bash
+   reg delete HKCU\SOFTWARE\Classes\clickonce
+   ```
+## Información a Remitir al Departamento de Soporte
+
+En caso de que ninguna de las acciones anteriormente comentadas haya solventado el problema, se deberá remitir la siguiente información al departamento de soporte:
+
+- 🖥️ **Tipo/Modelo** y **nombre del ordenador** en el que se está llevando a cabo la firma.  
+- 🌐 **Nombre y versión del navegador** que se está usando para realizar la firma.  
+- ✍️ **Tipo/Modelo de la tableta digital**, en caso de estar realizando una firma biométrica.  
+- 🖼️ **Evidencias o capturas del error** que se está produciendo.  
+- 📝 **Breve descripción de los pasos** que ejecutó el firmante al momento de realizar la firma.  
+- 📂 **Adjunte el log** que se encuentra en la siguiente ruta:  
+  ```plaintext
+  %UserProfile%\AppData\Roaming\sealsignBSSClient

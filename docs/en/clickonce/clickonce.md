@@ -376,3 +376,70 @@ Function that executes a command and allows launching external processes from th
   ```javascript
   hub.server.launchExternalApp(command);
   ```
+  
+# 5. Troubleshooting
+
+To resolve potential issues with the **SealSign Signature Client**, try applying one of the actions from the following list:
+
+## 1. Close and Restart the Signature Client
+- Manually close the **SealSign Signature Client** application from the taskbar.  
+- Refresh the browser cache and launch the signing process again.  
+
+> **Note:**  
+> You can refresh the cache by executing the following command:  
+> ```plaintext
+> CTRL + SHIFT + R
+> ```  
+> on the page [sealsign.es](https://sealsign.es).
+
+![Image-18](./images/Image-18.png)
+
+### How to close the application:
+Right-click on the **SealSign** icon running in the taskbar and select it to close.
+
+![Image-19](./images/Image-19.png)
+
+---
+
+## 2. Reinstall the Signature Client
+- Uninstall the **SealSign Signature Client** application.  
+- Proceed to reinstall it.  
+- Refresh the browser cache (CTRL + SHIFT + R on [sealsign.es](https://sealsign.es)).  
+- Launch the signing process again.
+
+---
+
+## 3. Try a Different Browser
+- Attempt the signing process using a different browser.  
+- **If it works with the new browser**, report the issue to support, indicating the name of the browser where the problem occurred.
+
+---
+
+## 4. Complete Removal of the Signature Client (Last Resort)
+If the previous options do not resolve the issue, remove all traces of the signature client by following these steps:
+
+1. Verify that the `SealSign Signature Client` application is not running.  
+2. Delete the contents of the following paths in the Windows File Explorer:  
+  - ```plaintext
+    %UserProfile%\AppData\Local\Apps
+    ```
+  - ```plaintext
+    %UserProfile%\AppData\Roaming\11paths
+    ```
+3. Run CMD as an administrator and execute the following command:  
+    ```bash
+    reg delete HKCU\SOFTWARE\Classes\clickonce
+    ```
+## Information to Send to the Support Department
+
+If none of the previously mentioned actions resolve the issue, the following information must be sent to the support department:
+
+- 🖥️ **Type/Model** and **name of the computer** where the signing process is being performed.  
+- 🌐 **Name and version of the browser** being used for signing.  
+- ✍️ **Type/Model of the digital tablet**, if performing a biometric signature.  
+- 🖼️ **Evidence or screenshots of the error** encountered.  
+- 📝 **Brief description of the steps** followed by the signer during the signing process.  
+- 📂 **Attach the log file** located at the following path:  
+
+```plaintext
+%UserProfile%\AppData\Roaming\sealsignBSSClient
