@@ -16,7 +16,7 @@
 - Se añade funcionalidad para ofuscar la información del DNI, NIE y NIF que aparece en el widget de la firma con certificado.
 
 #### Bugs
-- Se arregla problema al eliminar usuarios desde el panel de usuarios (power user).
+- Se arregla problema al eliminar certificados desde el panel de usuarios (power user).
 
 ---
 

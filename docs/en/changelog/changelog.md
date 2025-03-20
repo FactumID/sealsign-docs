@@ -18,7 +18,7 @@
 
 #### Bugs
 
-- Fixed issue when deleting users from the user panel (power user).
+- Fixed issue when deleting certificates from the user panel (power user).
 
 ---
 
