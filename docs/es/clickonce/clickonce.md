@@ -257,14 +257,19 @@
 
   ## 4.4 Firma Biométrica 
 
-  ### 4.4.1 Configuración del dispositivo
+  ### 4.4.1 Requisitos previos para poder realizar la firma biometrica
+
+  - En caso de realizar la firma con tabletas ePad-Ink es necesario tener instalado en el ordenador el driver de ePad de 32 bits.
+  - En caso de realizar la firma con una wacom STU-540 o superior se debe tener instalado en el ordenador Java de 32 bits 
+
+  ### 4.4.2 Configuración del dispositivo
 
   Las siguientes funciones solo afectan a los dispositivos Wacom: 
 
   - **setClearImage**: Establece la imagen de fondo de la tableta cuando se completa el proceso de firma. La imagen se pasa en base64. 
   - **setClearImageUrl**: Establece la imagen de fondo de la tableta cuando se completa el proceso de firma. La imagen está alojada en la URL pasada por parámetro. 
   
-  ### 4.4.2 Firma del documento
+  ### 4.4.3 Firma del documento
 
   - **Parámetros**: El primer parámetro de las diferentes firmas de los métodos de firma biométrica es un array de string que configura el comportamiento del componente. 
     - URI del documento 
@@ -322,7 +327,7 @@
     - **bioSignBase64(string[], string)**: Lanza el proceso de firma parametrizado con la configuración que se pasa por argumento. Se firma el documento que se ha puesto en el segundo parámetro en base64, usa el document provider asociado a la URI del documento y su parametrización por defecto. 
     - **bioSignBase64(string[], string, string)**: Lanza el proceso de firma parametrizado con la configuración que se pasa por argumento. Se firma el documento que se ha puesto en el segundo parámetro en base64, usa el document provider asociado a la URI del documento al que se le pasan los parámetros del segundo argumento. 
 
-  ### 4.4.3 Uso de Remote Document Provider
+  ### 4.4.4 Uso de Remote Document Provider
 
   Para utilizar los Remote Document Provider hay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
   - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersion con el valor ‘V40’.

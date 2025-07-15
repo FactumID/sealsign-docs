@@ -258,14 +258,19 @@
 
 ## 4.4 Biometric Signature 
 
-  ### 4.4.1 Device settings
+### 4.4.1 Prerequisites for Performing Biometric Signing
 
-  The following functions only affect Wacom devices: 
+- If signing with ePad-Ink tablets, a 32-bit ePad driver must be installed on the computer.
+- If signing with a Wacom STU-540 or higher, 32-bit Java must be installed on the computer.
 
-  - **setClearImage**: Sets the background image of the tablet when the signature process is completed. The image is passed in base64. 
-  - **setClearImageUrl**: Sets the background image of the tablet when the signing process is completed. The image is hosted at the URL passed by parameter.
+### 4.4.2 Device settings
+
+The following functions only affect Wacom devices: 
+
+- **setClearImage**: Sets the background image of the tablet when the signature process is completed. The image is passed in base64. 
+- **setClearImageUrl**: Sets the background image of the tablet when the signing process is completed. The image is hosted at the URL passed by parameter.
   
-### 4.4.2 Document Signature
+### 4.4.3 Document Signature
 
   - **Parameters**: The first parameter of the different signatures of the biometric signature methods is a string array that configures the behavior of the component. 
     - Document URI 
@@ -323,7 +328,7 @@
     - **bioSignBase64(string[], string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, uses the document provider associated to the URI of the document and its default parameterization. 
     - **bioSignBase64(string[], string, string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, it uses the document provider associated to the URI of the document to which the parameters of the second argument are passed.
 
-  ### 4.4.3 Using Remote Document Provider
+  ### 4.4.4 Using Remote Document Provider
 
   In order to use the Remote Document Provider, the configuration parameters must be configured, for this purpose the following steps must be followed:
   - Set the server version to 4.0 by calling the setServerVersion method with the value 'V40'.
