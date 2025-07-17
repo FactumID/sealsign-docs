@@ -89,13 +89,17 @@
 
 ### 4.10.5
 #### Features
-    - Added functionality to automatically delete logs older than 14 days.
-    - Added functionality to allow a new signing process to start while the certificate signing window is still waiting for the user to close it.
+
+- Added functionality to automatically delete logs older than 14 days.
+- Added functionality to allow a new signing process to start while the certificate signing window is still waiting for the user to close it.
 
 #### Bugs
-    - Corrected the path for the startup file, which is used when the "automatic start with Windows" checkbox is selected.
-    - Fixed an issue with paths handled by the Run-JavaProxyBss.bat file.
-    - Corrected a problem with the automatic update of Java libraries and the launch .bat file.
+
+- Corrected the path for the startup file, which is used when the "automatic start with Windows" checkbox is selected.
+- Fixed an issue with paths handled by the Run-JavaProxyBss.bat file.
+- Corrected a problem with the automatic update of Java libraries and the launch .bat file.
+
+---
 
 ### 4.10.4
 #### Features
