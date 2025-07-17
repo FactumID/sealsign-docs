@@ -83,6 +83,18 @@
 
 # Clickonce
 
+### 4.10.5
+#### Funcionalidades
+
+    - Se añade funcionalidad que permite organizar eliminar automáticamente los logs que tenga mas de 14 días de antigüedad.
+    - Se añade funcionalidad para permitir iniciar una nueva firma mientras la ventana de firma con certificado aún está esperando a que el usuario la cierre.
+
+#### Bugs
+
+    - Se corrige ruta del fichero de arranque, que se usa al marcar el check de inicio automático al arrancar Windows.
+    - Se arregla problema con las rutas manejadas por el fichero Run-JavaProxyBss.bat
+    - Se corrige problema en la actualización automática de las librerías de java y el .bat de lanzamiento.
+
 ### 4.10.4
 #### Funcionalidades
 
