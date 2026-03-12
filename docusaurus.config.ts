@@ -99,4 +99,6 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 };
 
-export default config;
+export default {
+  trailingSlash: false, // 'false' is usually cleaner for GH Pages
+};
