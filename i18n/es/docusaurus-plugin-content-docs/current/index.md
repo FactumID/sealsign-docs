@@ -10,15 +10,15 @@ Elige la firma digital que mejor se adapte a tu necesidad: firma digital, firma 
 
 ## On Premise
 
-- [Licencias](license/license)
-- [Monitor](monitor/monitor)
-- [ClickOnce](clickonce/clickonce)
-- [DSS](dss/installation-guide)
-- [BSS](bss/installation-guide)
-- [CKC](ckc/central-key-control)
-- [Changelog](changelog/changelog)
+- [Licencias](/license/)
+- [Monitor](/monitor/)
+- [ClickOnce](/clickonce/)
+- [DSS](/dss/installation-guide)
+- [BSS](/bss/installation-guide)
+- [CKC](/ckc/central-key-control)
+- [Changelog](/changelog/)
 
 ## Cloud
 
-- [IPS](cloud/ips)
-- [Biométrico](cloud/biometric)
+- [IPS](/cloud/ips)
+- [Biométrico](/cloud/biometric)

@@ -10,15 +10,15 @@ Choose the digital signature that best fits your needs: digital signature, certi
 
 ## On Premise
 
-- [Licenses](license/license)
-- [Monitor](monitor/monitor)
-- [ClickOnce](clickonce/clickonce)
-- [DSS](dss/installation-guide)
-- [BSS](bss/installation-guide)
-- [CKC](ckc/central-key-control)
-- [Changelog](changelog/changelog)
+- [Licenses](/license/)
+- [Monitor](/monitor/)
+- [ClickOnce](/clickonce/)
+- [DSS](/dss/installation-guide)
+- [BSS](/bss/installation-guide)
+- [CKC](/ckc/central-key-control)
+- [Changelog](/changelog/)
 
 ## Cloud
 
-- [IPS](cloud/ips)
-- [Biometric](cloud/biometric)
+- [IPS](/cloud/ips)
+- [Biometric](/cloud/biometric)
