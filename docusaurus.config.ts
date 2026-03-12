@@ -74,7 +74,7 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'SealSign Logo',
-        src: 'img/sealsign-logo.webp',
+        src: 'img/sealsign-logo.png',
       },
       items: [
         {
