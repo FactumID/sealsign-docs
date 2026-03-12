@@ -59,8 +59,8 @@ const config: Config = {
 
   themeConfig: {
     tableOfContents: {
-      minHeadingLevel: 1,
-      maxHeadingLevel: 6,
+      minHeadingLevel: 2,
+      maxHeadingLevel: 4,
     },
 
     // Replace with your project's social card
