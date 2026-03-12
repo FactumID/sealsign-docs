@@ -59,7 +59,7 @@ const config: Config = {
 
   themeConfig: {
     tableOfContents: {
-      minHeadingLevel: 2,
+      minHeadingLevel: 1,
       maxHeadingLevel: 4,
     },
 
