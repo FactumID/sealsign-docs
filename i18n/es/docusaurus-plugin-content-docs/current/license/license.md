@@ -1,5 +1,5 @@
 ﻿# Licencias
-# 1. Introducción
+## 1. Introducción
 
 En este documento se describirá la herramienta de licenciamiento de la familia de productos de SealSign® así
 como cada una de sus opciones tanto desde el interfaz gráfico como desde línea de comandos.
@@ -14,7 +14,7 @@ Este documento es válido para cualquier producto de la familia de SealSign®, p
 
 > Aunque en las imágenes de este documento aparezca “SealSign® DSS” como producto, este documento es aplicable al resto de productos de la familia SealSign® mencionados anteriormente.
 
-# 2. Administración de Licencias de SealSign® - Opciones
+## 2. Administración de Licencias de SealSign® - Opciones
 
 La Administración de licencias de SealSign® está situada en el Panel de Control. Si el sistema operativo del
 equipo es Windows 2008 o superior, la Administración de licencias de SealSign® se encuentra dentro de la
@@ -51,9 +51,9 @@ la licencia.
 - **Visor de Licencias**: Muestra una ventana con información más detallada de la licencia y su estado
 (códigos de asociación al hardware, última verificación online, etc.).
 
-# 3. Activación de la Licencia
+## 3. Activación de la Licencia
 
-## 3.1 Activación de la Licencia por Internet
+#### 3.1 Activación de la Licencia por Internet
 
 Una vez instalado el producto de SealSign® en un servidor, éste debe ser activado antes de 90 días. Para
 realizar la activación por internet, el administrador deberá realizar los siguientes pasos:
@@ -100,7 +100,7 @@ cambio como se muestra en la siguiente imagen:
 ![Image-08](./images/image-08.png)
 <center><i>Imagen 08: Aspecto de la ventana "Administración de Licencias de SealSign" tras activar la licencia</i></center>
 
-## 3.2 Activación de la licencia por correo electrónico o por fax
+#### 3.2 Activación de la licencia por correo electrónico o por fax
 
 Si el equipo no dispone de conexión a internet, el administrador podrá realizar la activación de la licencia
 mediante correo electrónico o fax. Para ello se deberán realizar los siguientes pasos:
@@ -143,7 +143,7 @@ pulsar el botón Aplique la Clave para cada una de ellas.
 
 12. Si la activación ha sido correcta, en la pestaña de Licenciamiento se verá reflejado el cambio.
 
-# 4. Desactivación de la Licencia
+## 4. Desactivación de la Licencia
 
 Este proceso requiere de conexión a Internet. Para realizar la desactivación, el administrador deberá realizar
 los siguientes pasos:
@@ -161,7 +161,7 @@ quedara como:
 ![Image-12](./images/image-12.png)
 <center><i>Imagen 12: Ventana "Administración de Licencias de SealSign" una vez desactivada la licencia</i></center>
 
-# 5. Reactivación de la Licencia
+## 5. Reactivación de la Licencia
 
 Este proceso requiere de conexión a Internet. Para realizar la reactivación, el administrador deberá realizar
 los siguientes pasos:
@@ -179,7 +179,7 @@ quedara como:
 ![Image-14](./images/image-14.png)
 <center><i>Imagen 14: Ventana "Administración de Licencias de SealSign" una vez reactivada la licencia</i></center>
 
-# 6. Comprobación del estado de la Licencia
+## 6. Comprobación del estado de la Licencia
 
 Este proceso requiere de conexión a Internet. Para realizar la comprobación de estado, el administrador deberá
 realizar los siguientes pasos:
@@ -200,7 +200,7 @@ estado es correcto aparecerá un mensaje como:
 Si se produce algun error en la comprobacion o la licencia no es correcta aparecerá un mensaje de error en
 lugar del mostrado anteriormente.
 
-# 7. Mostrar el Visor de Licencias
+## 7. Mostrar el Visor de Licencias
 
 Para mostrar información detallada del estado de la licencia, el administrador deberá realizar los siguientes
 pasos:
@@ -221,7 +221,7 @@ En esta ventana podemos aplicar claves de activación, ver el codigo de licencia
 (13), la clave de activacion aplicada, la fecha del fichero de licencia asi como otros datos relevantes para
 SmartAccess.
 
-# 8. Gestión de Licencias a través de línea de comandos
+## 8. Gestión de Licencias a través de línea de comandos
 
 En los ejemplos de línea de comandos que se mostraran a continuación se están utilizando los siguientes
 supuestos:

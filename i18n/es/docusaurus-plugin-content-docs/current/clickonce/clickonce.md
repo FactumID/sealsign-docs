@@ -1,5 +1,5 @@
 ﻿# SealSign Signature Client (ClickOnce)
-# 1. Introducción
+## 1. Introducción
 
   El cliente ClickOnce de SealSign viene a sustituir en entornos Windows al Applet de Java. Su despliegue está basado en la tecnología ClickOnce de Microsoft que permite el despliegue de aplicaciones por internet. Para más información deberá visitarse el sitio de Microsoft. El cliente es capaz de comunicarse de forma bidireccional con el navegador que ha lanzado la petición de firma para conseguir un comportamiento similar a la integración del Applet con el navegador utilizando JavaScript.
   
@@ -8,7 +8,7 @@
   Desde el siguiente enlace podran acceder a un proyecto que contiene un ejemplo de como integrarse con el cliente de firma SealSign Signature Cliente (ClickOnce):
    - https://github.com/FactumID/SealSignClickOnceClientWebExample
 
-# 2. Requisitos mínimos
+## 2. Requisitos mínimos
 
   - El cliente funciona con .Net Framework 4.5
   - Los sistemas operativos soportados son:
@@ -22,9 +22,9 @@
     - Google Chrome a partir de la versión 50
     - Mozilla Firefox a partir de la versión 46
 
-# 3. Tareas comunes
+## 3. Tareas comunes
 
-  ## 3.1. Instalación off-premises
+  #### 3.1. Instalación off-premises
 
   El cliente de ClickOnce está hospedado en los servidores de Factum ID. En la página de descarga se puede instalar tanto el cliente como los prerrequisitos del mismo. Una vez instalado aparecerá el icono en el escritorio.
 
@@ -32,7 +32,7 @@
 
   *Imagen 01: Icono de SealSign ClickOnce*
 
-  ## 3.2. Instalación on-premises
+  #### 3.2. Instalación on-premises
 
   Si  es  necesario  desplegar  el  cliente  en  otro  servidor  que  no sea  el  de  Factum  Identity,  hay  que  seguir  los siguientes pasos.
 
@@ -48,7 +48,7 @@
   - .manifest –> application/x-ms-manifest
   - .deploy –> application/octet-stream
 
-  ## 3.3. Configuración del cliente JavaScript
+  #### 3.3. Configuración del cliente JavaScript
 
   En este tutorial se explica en detalle cómo configurar un entorno con SignalR, y en el ejemplo alojado en el gitHub de Factum se encuentra todo el código necesario para hacerlo funcionar. Hay  que  tener  en  cuenta  que  una  vez  que  el  cliente  se  ha  lanzado  se  queda  escuchando  en  el  puerto  8081 cuando es http y 8082 cuando se ha configurado la conexión por https. En la parte de JavaScript habrá que:
 
@@ -100,7 +100,7 @@
       hub.client.AsyncOperationInProgress = function(){ }
       ```
 
-  ## 3.4. Configuración de la versión del servidor
+  #### 3.4. Configuración de la versión del servidor
 
   El  cliente  soporta  tanto  la  versión  3.2  como  la  4.0  de  SealSign,  pero  hay  que  indicar  qué  versión  se  está utilizando. Para configurar la versión que se está utilizando hay que llamar al método setServerVersion con alguno de estos dos valores:
 
@@ -109,9 +109,9 @@
 
   Si no se llamara a la función, por defecto se utilizará la versión 3.2.
 
-# 4. Casos de uso
+## 4. Casos de uso
 
-  ## 4.1. Ejecución del cliente y lanzar al arrancar Windows
+  #### 4.1. Ejecución del cliente y lanzar al arrancar Windows
 
   Una vez instalado el cliente aparecerá el icono en el escritorio, para lanzarlo sólo hay que hacer click en él, aparecerá el siguiente mensaje.
 
@@ -125,9 +125,9 @@
 
   *Imagen 03: Menú contextual de la herramienta*
 
-  ## 4.2. Utilizar conexión SSL
+  #### 4.2. Utilizar conexión SSL
 
-  ### 4.2.1. Configuración del certificado
+  ###### 4.2.1. Configuración del certificado
 
   Para poder utilizar una conexión SSL entre la web y el cliente de SealSign hay que instalar un certificado en el equipo cliente y enlazarlo al puerto 8082.
 
@@ -193,32 +193,32 @@
 
   ![Image-13](./images/Image-13.png)
 
-  ### 4.2.2. Utilizar SSL
+  ###### 4.2.2. Utilizar SSL
 
   Para que el cliente utilice una conexión SSL hay que seleccionar la opción.
   - Referenciar al código JavaScript del hub, situada en la URL: https://localhost:8082/signalr/hubs
   - Indicar cuál es la URL del hub. $.connection.hub.url = "https://localhost:8082/signalr";
 
-  ## 4.3. Firma Digital
+  #### 4.3. Firma Digital
 
   Aquí se describe qué funciones se publican para realizar la firma digital de documentos, así como las funciones del cliente JavaScript que se invocan para notificar el progreso y la finalización del proceso.
 
-  ### 4.3.1. Filtrado de certificados
+  ###### 4.3.1. Filtrado de certificados
 
   A la hora de realizar la firma digital se pueden filtrar los certificados que se mostrarán en el listado. El filtrado se puede hacer por issuer, por hash y por serial number:
   - **setCertificateIssuerFilter**: Filtra por issuer, recibe como parámetro los issuers válidos separados por ‘|’. Se usa para mostrar únicamente los certificados del DNIe: hub.server.setCertificateIssuerFilter('AC DNIE 001');
   - **setCertifciateHashFilter**: Filtra por hash, recibe como parámetro el hash del certificado con el que se firmará. Uso:hub.server.setCertificateHashFilter('[HASH]');
   - **setCertificateSerialFilter**: Filtra por el serial number del certificado. Uso: hub.server.setCertificateSerialFilter('[SERIAL NUMBER]');
 
-  ### 4.3.2. Reinicio de filtros
+  ###### 4.3.2. Reinicio de filtros
 
   Para eliminar todos los filtros establecidos a los certificados hay que llamar a la función resetCertificateFilters.
 
-  ### 4.3.3. Carga de un certificado local
+  ###### 4.3.3. Carga de un certificado local
 
   Se puede realizar la firma de un documento utilizando un certificado almacenado en local, para ello hay que llamar a la función loadLocalCertificate, para dejar de usar ese certificado hay que llamar a la función clearLocalCertificate. 
 
-  ### 4.3.4. Firma del documento 
+  ###### 4.3.4. Firma del documento 
 
   Se puede realizar el proceso de firma de las siguientes formas. 
 
@@ -242,7 +242,7 @@
   - **digitalMultiSign (string[], string)**: Se firma una lista de documentos utilizando la configuración por defecto del document provider 
   - **digitalMultiSign (string[], string, string)**: Se firma una lista de documentos que se han pasado como parámetro. El último parámetro son los parámetros para utilizar con el document provider. 
 
-  ### 4.3.5. Uso de Remote Document Provider
+  ###### 4.3.5. Uso de Remote Document Provider
 
   Para utilizar los Remote Document Providerhay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
   - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersion con el valor ‘V40’.
@@ -254,21 +254,21 @@
     
   Importante: si llamada necesita ser autenticada, la autenticación será básica.
 
-  ## 4.4 Firma Biométrica 
+  #### 4.4 Firma Biométrica 
 
-  ### 4.4.1 Requisitos previos para poder realizar la firma biometrica
+  ###### 4.4.1 Requisitos previos para poder realizar la firma biometrica
 
   - En caso de realizar la firma con tabletas ePad-Ink es necesario tener instalado en el ordenador el driver de ePad de 32 bits.
   - En caso de realizar la firma con una wacom STU-540 o superior se debe tener instalado en el ordenador Java de 32 bits 
 
-  ### 4.4.2 Configuración del dispositivo
+  ###### 4.4.2 Configuración del dispositivo
 
   Las siguientes funciones solo afectan a los dispositivos Wacom: 
 
   - **setClearImage**: Establece la imagen de fondo de la tableta cuando se completa el proceso de firma. La imagen se pasa en base64. 
   - **setClearImageUrl**: Establece la imagen de fondo de la tableta cuando se completa el proceso de firma. La imagen está alojada en la URL pasada por parámetro. 
   
-  ### 4.4.3 Firma del documento
+  ###### 4.4.3 Firma del documento
 
   - **Parámetros**: El primer parámetro de las diferentes firmas de los métodos de firma biométrica es un array de string que configura el comportamiento del componente. 
     - URI del documento 
@@ -326,7 +326,7 @@
     - **bioSignBase64(string[], string)**: Lanza el proceso de firma parametrizado con la configuración que se pasa por argumento. Se firma el documento que se ha puesto en el segundo parámetro en base64, usa el document provider asociado a la URI del documento y su parametrización por defecto. 
     - **bioSignBase64(string[], string, string)**: Lanza el proceso de firma parametrizado con la configuración que se pasa por argumento. Se firma el documento que se ha puesto en el segundo parámetro en base64, usa el document provider asociado a la URI del documento al que se le pasan los parámetros del segundo argumento. 
 
-  ### 4.4.4 Uso de Remote Document Provider
+  ###### 4.4.4 Uso de Remote Document Provider
 
   Para utilizar los Remote Document Provider hay que configurar los parámetros de configuración, para ello hay que seguir los siguientes pasos:
   - Configurar la versión del servidor a la 4.0 realizando una llamada al método setServerVersion con el valor ‘V40’.
@@ -338,7 +338,7 @@
     
   Importante:si llamada necesita ser autenticada, la autenticación será básica.
 
-  ## 4.5 Enrollment
+  #### 4.5 Enrollment
 
   - **Parámetros**: El primer parámetro de las diferentes firmas de los métodos de firma biométrica es un array de string que configura el comportamiento del componente. 
     - URL del servicio 
@@ -365,7 +365,7 @@
   - **bioEnrollment (string[])**: Lanza el proceso de enroolment presencial de firma parametrizado con la configuración que se pasa por argumento. Usa el document provider asociado a la URI del documento y su parametrización por defecto.
 
 
-  ## 4.6 Ventana
+  #### 4.6 Ventana
   Para cerrar la ventana se puede invocar al método de javascript closeWindow
 
   ```javascript
@@ -373,18 +373,18 @@
   ```
   NOTA: Al llamar a la función CloseWindow, se cerrará la ventana de firma, y en la función AsyncOperationComplete se indicará en la respuesta el estado ```CanceledExternally```, lo que significa que el proceso de firma ha sido cancelado externamente.
 
-  ## 4.7 Lanzar procesos externos
+  #### 4.7 Lanzar procesos externos
   Función que ejecuta un comando y que permite lanzar procesos externos desde el app de firma. Uso: 
 
   ```javascript
   hub.server.launchExternalApp(command);
   ```
 
-# 5. Solución de problemas
+## 5. Solución de problemas
 
 Para solventar posibles errores con el cliente de firma **SealSign Signature Client**, intente aplicar alguna de las acciones de la siguiente lista:
 
-## 1. Cierre y Reinicie el Cliente de Firma
+#### 1. Cierre y Reinicie el Cliente de Firma
 - Cierre el aplicativo **SealSign Signature Client** manualmente desde la barra de tareas.
 - Refresque la caché del navegador y lance el proceso de firma nuevamente.  
 
@@ -397,14 +397,14 @@ Para solventar posibles errores con el cliente de firma **SealSign Signature Cli
 
 ![Image-18](./images/Image-18.png)
 
-### Cómo cerrar el aplicativo:
+###### Cómo cerrar el aplicativo:
 Haga **clic derecho** en el icono de **SealSign** que se encuentra en ejecución en la barra de tareas y selecciónelo para cerrarlo.
 
 ![Image-19](./images/Image-19.png)
 
 ---
 
-## 2. Reinstale el Cliente de Firma
+#### 2. Reinstale el Cliente de Firma
 - Desinstale el aplicativo **SealSign Signature Client**.  
 - Proceda a instalarlo nuevamente.  
 - Refresque la caché del navegador (CTRL + SHIFT + R en [sealsign.es](https://sealsign.es)).  
@@ -412,13 +412,13 @@ Haga **clic derecho** en el icono de **SealSign** que se encuentra en ejecución
 
 ---
 
-## 3. Pruebe con un Navegador Distinto
+#### 3. Pruebe con un Navegador Distinto
 - Intente realizar la firma con un navegador distinto al que se está usando.  
 - **Si funciona con el nuevo navegador**, notifique al soporte el error, indicando el nombre del navegador donde se produjo el problema.
 
 ---
 
-## 4. Eliminación Completa del Cliente de Firma (Última Opción)
+#### 4. Eliminación Completa del Cliente de Firma (Última Opción)
 Si las opciones anteriores no solucionan el problema, elimine todo rastro del cliente de firma siguiendo estos pasos:
 
 1. Verifique que el aplicativo `SealSign Signature Client` no se encuentra en ejecución.  
@@ -433,7 +433,7 @@ Si las opciones anteriores no solucionan el problema, elimine todo rastro del cl
    ```bash
    reg delete HKCU\SOFTWARE\Classes\clickonce
    ```
-## Información a Remitir al Departamento de Soporte
+#### Información a Remitir al Departamento de Soporte
 
 En caso de que ninguna de las acciones anteriormente comentadas haya solventado el problema, se deberá remitir la siguiente información al departamento de soporte:
 

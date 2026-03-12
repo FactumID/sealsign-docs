@@ -1,5 +1,5 @@
 ﻿# SealSign Signature Client (ClickOnce)
-# 1. Introducción
+## 1. Introducción
 
   SealSign's ClickOnce client replaces the Java Applet in Windows environments. Its deployment is based on Microsoft's ClickOnce technology, which allows the deployment of applications over the Internet. The client is able to communicate bidirectionally with the browser that has launched the signature request to achieve a behavior similar to the integration of the Applet with the browser using JavaScript.
   
@@ -8,7 +8,7 @@
   From the following link you can access a project that contains an example of how to integrate with the SealSign Signature Client (ClickOnce):
    - https://github.com/FactumID/SealSignClickOnceClientWebExample
 
-# 2. Minimum requirements
+## 2. Minimum requirements
 
 - The client runs on .Net Framework 4.5.
   - Supported operating systems are:
@@ -22,9 +22,9 @@
     - Google Chrome from version 50 onwards
     - Mozilla Firefox from version 46 onwards
 
-# 3. Common tasks
+## 3. Common tasks
 
-  ## 3.1. Off-premises Installation
+  #### 3.1. Off-premises Installation
 
   The ClickOnce client is hosted on Factum ID servers. On the download page you can install both the client and the client prerequisites. Once installed, the icon will appear on the desktop.
 
@@ -32,7 +32,7 @@
 
   *Image 01: SealSign ClickOnce icon.*
 
-  ## 3.2. On-premises installation
+  #### 3.2. On-premises installation
 
   If it is necessary to deploy the client on a server other than the Factum Identity server, the following steps must be followed.
 
@@ -48,7 +48,7 @@
   - .manifest -> application/x-ms-manifest
   - .deploy -> application/octet-stream
 
-  ## 3.3. JavaScript client configuration
+  #### 3.3. JavaScript client configuration
 
   This tutorial explains in detail how to configure an environment with SignalR, and in the example hosted on Factum's gitHub you will find all the necessary code to make it work, it should be noted that once the client has been launched, it listens on port 8081 when it is http and 8082 when the connection has been configured by https. In the JavaScript part it will be necessary to:
 
@@ -101,7 +101,7 @@
       hub.client.AsyncOperationInProgress = function(){ }
       ```
 
-## 3.4. Server version configuration
+#### 3.4. Server version configuration
 
   The client supports both SealSign version 3.2 and 4.0, but it is necessary to indicate which version is being used. To configure the version being used, the setServerVersion method must be called with one of these two values:
 
@@ -110,9 +110,9 @@
 
   If the function is not called, version 3.2 will be used by default.
 
-# 4. Use cases
+## 4. Use cases
 
-  ## 4.1. Running the client and launching at Windows startup
+  #### 4.1. Running the client and launching at Windows startup
 
   Once the client is installed the icon will appear on the desktop, to launch it just click on it, the following message will appear.
 
@@ -126,7 +126,7 @@
 
   *Image 03: Contextual menu of the tool*
 
-## 4.2. Using SSL connection
+#### 4.2. Using SSL connection
 
   To use the secure **SSL (HTTPS)** connection, the **SealSign Signature Client must be installed**.
 
@@ -140,7 +140,7 @@
       
   ---
 
-  ## Behavior when SSL configuration is not authorized
+  #### Behavior when SSL configuration is not authorized
 
   If the authorization is **not accepted** or the required credentials are **not provided**, the SSL configuration **will not be applied** and the Signing Client will operate using an **HTTP connection**.
 
@@ -148,7 +148,7 @@
 
   ---
 
-  ## How to prevent the authorization prompt from appearing
+  #### How to prevent the authorization prompt from appearing
 
   To prevent this prompt from appearing repeatedly, you can **disable automatic SSL management**:
 
@@ -160,7 +160,7 @@
 
   ---
 
-  ## Proper SSL (HTTPS) connection activation
+  #### Proper SSL (HTTPS) connection activation
 
   If authorization is accepted or credentials are entered correctly:
 
@@ -170,7 +170,7 @@
       
   ---
 
-  ## Important note for environments with many non-privileged users
+  #### Important note for environments with many non-privileged users
 
   In environments where **most users do not have administrator privileges** and **manually entering credentials on each machine is not feasible**, the following procedure is recommended:
 
@@ -184,7 +184,7 @@
 
   4. Execute section **4.2.1** of this documentation.
 
-  ### 4.2.1. Certificate Configuration
+  ###### 4.2.1. Certificate Configuration
 
   In order to use an SSL connection between the web and the SealSignh client, a certificate must be installed on the client computer and bound to port 8082.
 
@@ -250,32 +250,32 @@
 
   ![Image-13](./images/Image-13.png)
 
-  ### 4.2.2. Use SSL
+  ###### 4.2.2. Use SSL
 
   In order for the client to use an SSL connection, the option must be selected.
   - Refer to the JavaScript code of the hub, located in the URL: https://localhost:8082/signalr/hubs
   - Indicate the URL of the hub. $.connection.hub.url = "https://localhost:8082/signalr";
 
-  ## 4.3. Digital Signature
+  #### 4.3. Digital Signature
 
   This describes which functions are published to perform the digital signature of documents, as well as the JavaScript client functions that are invoked to notify the progress and completion of the process.
 
-  ### 4.3.1. Certificate filtering
+  ###### 4.3.1. Certificate filtering
 
   When performing the digital signature it is possible to filter the certificates that will be displayed in the list. The filtering can be done by issuer, by hashy by serial number:
   - **setCertificateIssuerFilter**: Filter by issuer, receives as parameter the valid issuers separated by '|'. Used to show only DNIe certificates: hub.server.setCertificateIssuerFilter('AC DNIE 001');
   - **setCertifciateHashFilter**: Filter by hash, receives as parameter the hash of the certificate to sign with. Usage:hub.server.setCertificateHashFilter('[HASH]');
   - **setCertificateSerialFilter**: Filter by the serial number of the certificate. Usage: hub.server.setCertificateSerialFilter('[SERIAL NUMBER]');
 
-### 4.3.2. Resetting filters
+###### 4.3.2. Resetting filters
 
   To remove all filters set on certificates, the resetCertificateFilters function must be called.
 
-  ### 4.3.3. Loading a local certificate
+  ###### 4.3.3. Loading a local certificate
 
   A document can be signed using a locally stored certificate by calling the function loadLocalCertificate, to stop using this certificate call the function clearLocalCertificate. 
 
-  ### 4.3.4. Document Signature 
+  ###### 4.3.4. Document Signature 
 
   The signing process can be performed in the following ways. 
 
@@ -299,7 +299,7 @@
   - **digitalMultiSign (string[], string)**: A list of documents is signed using the default configuration of the document provider. 
   - **digitalMultiSign (string[], string, string)**: A list of documents passed as parameter is signed. The last parameter is the parameters to use with the document provider.
 
-### 4.3.5. Using Remote Document Provider
+###### 4.3.5. Using Remote Document Provider
 
   In order to use the Remote Document Provider, the configuration parameters must be set, for which the following steps must be followed:
   - Set the server version to 4.0 by calling the setServerVersion method with the value 'V40'.
@@ -311,21 +311,21 @@
     
   Important: if the call needs to be authenticated, the authentication will be basic.
 
-## 4.4 Biometric Signature 
+#### 4.4 Biometric Signature 
 
-### 4.4.1 Prerequisites for Performing Biometric Signing
+###### 4.4.1 Prerequisites for Performing Biometric Signing
 
 - If signing with ePad-Ink tablets, a 32-bit ePad driver must be installed on the computer.
 - If signing with a Wacom STU-540 or higher, 32-bit Java must be installed on the computer.
 
-### 4.4.2 Device settings
+###### 4.4.2 Device settings
 
 The following functions only affect Wacom devices: 
 
 - **setClearImage**: Sets the background image of the tablet when the signature process is completed. The image is passed in base64. 
 - **setClearImageUrl**: Sets the background image of the tablet when the signing process is completed. The image is hosted at the URL passed by parameter.
   
-### 4.4.3 Document Signature
+###### 4.4.3 Document Signature
 
   - **Parameters**: The first parameter of the different signatures of the biometric signature methods is a string array that configures the behavior of the component. 
     - Document URI 
@@ -383,7 +383,7 @@ The following functions only affect Wacom devices:
     - **bioSignBase64(string[], string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, uses the document provider associated to the URI of the document and its default parameterization. 
     - **bioSignBase64(string[], string, string)**: Launches the signature process parameterized with the configuration passed by argument. It signs the document set in the second parameter in base64, it uses the document provider associated to the URI of the document to which the parameters of the second argument are passed.
 
-  ### 4.4.4 Using Remote Document Provider
+  ###### 4.4.4 Using Remote Document Provider
 
   In order to use the Remote Document Provider, the configuration parameters must be configured, for this purpose the following steps must be followed:
   - Set the server version to 4.0 by calling the setServerVersion method with the value 'V40'.
@@ -395,7 +395,7 @@ The following functions only affect Wacom devices:
     
   Important: if the call needs to be authenticated, the authentication will be basic.
 
-## 4.5 Enrollment
+#### 4.5 Enrollment
 
   - **Parameters**: The first parameter of the different signatures of the biometric signature methods is a string array that configures the behavior of the component. 
     - Service URL 
@@ -422,7 +422,7 @@ The following functions only affect Wacom devices:
   - **bioEnrollment (string[])**: Launches the face-to-face signature enroolment process parameterized with the configuration passed as an argument. It uses the document provider associated to the document URI and its default parameterization.
 
 
-  ## 4.6 Window
+  #### 4.6 Window
  To close the window you can invoke the javascript method closeWindow
 
   ```javascript
@@ -430,18 +430,18 @@ The following functions only affect Wacom devices:
   ```
 NOTE: When calling the CloseWindow function, the signature window will close, and the AsyncOperationComplete function will indicate a response status of   ```CanceledExternally```, signifying that the signing process was canceled externally
 
-  ## 4.7 Launch External Processes
+  #### 4.7 Launch External Processes
 Function that executes a command and allows launching external processes from the signing app
 
   ```javascript
   hub.server.launchExternalApp(command);
   ```
   
-# 5. Troubleshooting
+## 5. Troubleshooting
 
 To resolve potential issues with the **SealSign Signature Client**, try applying one of the actions from the following list:
 
-## 1. Close and Restart the Signature Client
+#### 1. Close and Restart the Signature Client
 - Manually close the **SealSign Signature Client** application from the taskbar.  
 - Refresh the browser cache and launch the signing process again.  
 
@@ -454,14 +454,14 @@ To resolve potential issues with the **SealSign Signature Client**, try applying
 
 ![Image-18](./images/Image-18.png)
 
-### How to close the application:
+###### How to close the application:
 Right-click on the **SealSign** icon running in the taskbar and select it to close.
 
 ![Image-19](./images/Image-19.png)
 
 ---
 
-## 2. Reinstall the Signature Client
+#### 2. Reinstall the Signature Client
 - Uninstall the **SealSign Signature Client** application.  
 - Proceed to reinstall it.  
 - Refresh the browser cache (CTRL + SHIFT + R on [sealsign.es](https://sealsign.es)).  
@@ -469,13 +469,13 @@ Right-click on the **SealSign** icon running in the taskbar and select it to clo
 
 ---
 
-## 3. Try a Different Browser
+#### 3. Try a Different Browser
 - Attempt the signing process using a different browser.  
 - **If it works with the new browser**, report the issue to support, indicating the name of the browser where the problem occurred.
 
 ---
 
-## 4. Complete Removal of the Signature Client (Last Resort)
+#### 4. Complete Removal of the Signature Client (Last Resort)
 If the previous options do not resolve the issue, remove all traces of the signature client by following these steps:
 
 1. Verify that the `SealSign Signature Client` application is not running.  
@@ -490,7 +490,7 @@ If the previous options do not resolve the issue, remove all traces of the signa
     ```bash
     reg delete HKCU\SOFTWARE\Classes\clickonce
     ```
-## Information to Send to the Support Department
+#### Information to Send to the Support Department
 
 If none of the previously mentioned actions resolve the issue, the following information must be sent to the support department:
 

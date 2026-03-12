@@ -1,5 +1,5 @@
 ﻿# Licenses
-# 1. Introduction
+## 1. Introduction
 
 This document will describe the licensing tool for the SealSign® family of products as follows:
 like each of its options both from the graphical interface and from the command line.
@@ -14,7 +14,7 @@ This document is valid for any product in the SealSign® family, therefore, vali
 
 > Although “SealSign® DSS” appears as a product in the images in this document, this This document is applicable to the rest of the SealSign® family products mentioned above.
 
-# 2. SealSign® License Management - Options
+## 2. SealSign® License Management - Options
 
 SealSign® License Management is located in the Control Panel. If the operating system of the
 computer is Windows 2008 or later, SealSign® License Management is located within the
@@ -51,9 +51,9 @@ the license.
 - **License Viewer**: Shows a window with more detailed information about the license and its status
 (hardware association codes, last online verification, etc.).
 
-# 3. License Activation
+## 3. License Activation
 
-## 3.1 License Activation over the Internet
+#### 3.1 License Activation over the Internet
 
 Once the SealSign® product is installed on a server, it must be activated within 90 days. For
 To activate online, the administrator must perform the following steps:
@@ -100,7 +100,7 @@ change as shown in the following image:
 ![Image-08](./images/image-08.png)
 <center><i>Image 08: What the "SealSign License Management" window looks like after activating the license</i></center>
 
-## 3.2 License activation by email or fax
+#### 3.2 License activation by email or fax
 
 If the computer does not have an internet connection, the administrator can activate the license
 via email or fax. To do this, the following steps must be carried out:
@@ -143,7 +143,7 @@ Press the Apply Key button for each of them.
 
 12. If the activation has been correct, the Licensing tab will show the
 
-# 4. License Deactivation 
+## 4. License Deactivation 
 
 This process requires an Internet connection. To carry out the deactivation, the administrator must perform
 the following steps:
@@ -161,7 +161,7 @@ it will look like:
 ![Image-12](./images/image-12.png)
 <center><i>Image 12: "SealSign License Management" window once the license is deactivated</i></center>
 
-# 5. License Reactivation
+## 5. License Reactivation
 
 This process requires an Internet connection. To reactivate, the administrator must perform
 the following steps:
@@ -179,7 +179,7 @@ it will look like:
 ![Image-12](./images/image-12.png)
 <center><i>Image 12: "SealSign License Management" window once the license has been reactivated</i></center>
 
-# 6. Checking License Status
+## 6. Checking License Status
 
 This process requires an Internet connection. To perform the health check, the administrator must
 perform the following steps:
@@ -200,7 +200,7 @@ status is correct a message will appear like:
 If an error occurs during the check or the license is not correct, an error message will appear in
 instead of the one shown above.
 
-# 7. Show License Viewer
+## 7. Show License Viewer
 
 To display detailed license status information, the administrator must perform the following
 Steps:
@@ -221,7 +221,7 @@ In this window we can apply activation keys, see the license code associated wit
 (13), the activation key applied, the date of the license file as well as other relevant data for
 SmartAccess.
 
-# 8. License Management via command line
+## 8. License Management via command line
 
 In the command line examples that will be shown below, the following are being used
 assumptions:
