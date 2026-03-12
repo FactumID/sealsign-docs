@@ -1,0 +1,14 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.On Premise": {
+    "message": "On Premise",
+    "description": "The label for category 'On Premise' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Cloud": {
+    "message": "Cloud",
+    "description": "The label for category 'Cloud' in sidebar 'tutorialSidebar'"
+  }
+}
