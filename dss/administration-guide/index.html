@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en-US" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-dss/administration-guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Administration Guide | SealSign Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.sealsign.es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://docs.sealsign.es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://docs.sealsign.es/dss/administration-guide"><meta data-rh="true" property="og:locale" content="en_US"><meta data-rh="true" property="og:locale:alternate" content="es_ES"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Administration Guide | SealSign Docs"><meta data-rh="true" name="description" content="SealSign DSS is a product developed by Factum Identity that facilitates the integration of electronic signing in corporate applications. Although the basic process of electronic signing is straightforward, there are many different signature profiles and formats, as well as external elements such as CRLs or OCSP responses from certification authorities, time-stamping certificates, etc. Additionally, many of these profiles require obtaining elements outside of the system, such as a user signing a document from a remote location using a web browser."><meta data-rh="true" property="og:description" content="SealSign DSS is a product developed by Factum Identity that facilitates the integration of electronic signing in corporate applications. Although the basic process of electronic signing is straightforward, there are many different signature profiles and formats, as well as external elements such as CRLs or OCSP responses from certification authorities, time-stamping certificates, etc. Additionally, many of these profiles require obtaining elements outside of the system, such as a user signing a document from a remote location using a web browser."><link data-rh="true" rel="canonical" href="https://docs.sealsign.es/dss/administration-guide"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/administration-guide" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/es/dss/administration-guide" hreflang="es-ES"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/administration-guide" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Administration Guide","item":"https://docs.sealsign.es/dss/administration-guide"}]}</script><link rel="stylesheet" href="/assets/css/styles.6c1a53d7.css">
+<script src="/assets/js/runtime~main.8b100b44.js" defer="defer"></script>
+<script src="/assets/js/main.240e049d.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/dss/administration-guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en-US">English</a></li><li><a href="/es/dss/administration-guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="es-ES">Español</a></li></ul></div><a href="https://github.com/factumid/sealsign-docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/"><span title="Welcome to SealSign Documentation" class="linkLabel_WmDU">Welcome to SealSign Documentation</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/license/"><span title="On Premise" class="categoryLinkLabel_W154">On Premise</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/license/"><span title="Licenses" class="linkLabel_WmDU">Licenses</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/monitor/"><span title="Monitoring guide (include DSS, BSS, CKC)" class="linkLabel_WmDU">Monitoring guide (include DSS, BSS, CKC)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/clickonce/"><span title="SealSign Signature Client (ClickOnce)" class="linkLabel_WmDU">SealSign Signature Client (ClickOnce)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/dss/installation-guide"><span title="DSS Installation Guide" class="linkLabel_WmDU">DSS Installation Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/dss/administration-guide"><span title="Administration Guide" class="linkLabel_WmDU">Administration Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/bss/installation-guide"><span title="BSS Installation Guide" class="linkLabel_WmDU">BSS Installation Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/ckc/central-key-control"><span title="Central Key Control" class="linkLabel_WmDU">Central Key Control</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/changelog/"><span title="Changelog" class="linkLabel_WmDU">Changelog</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/cloud/ips"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/cloud/ips"><span title="ips" class="linkLabel_WmDU">ips</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/cloud/biometric"><span title="Biometric Signature" class="linkLabel_WmDU">Biometric Signature</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">On Premise</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Administration Guide</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Administration Guide</h1></header>
+<h1>1. Introduction</h1>
+<p>SealSign DSS is a product developed by Factum Identity that facilitates the integration of electronic signing in corporate applications. Although the basic process of electronic signing is straightforward, there are many different signature profiles and formats, as well as external elements such as CRLs or OCSP responses from certification authorities, time-stamping certificates, etc. Additionally, many of these profiles require obtaining elements outside of the system, such as a user signing a document from a remote location using a web browser.</p>
+<p>SealSign DSS solves these problems by providing a unified and transparent way to manage all of the elements involved in the electronic signing process. It supports multiple signature profiles and can access external providers to obtain all of the required elements. The current version of SealSign DSS supports the following signature formats: CMS, CAdES, XMLDigSig, XAdES, PDF, PAdES, Microsoft Office, and OpenOffice.</p>
+<p>One of the advantages of SealSign DSS is distributed signing, which allows for a flexible and simple solution to handle complex scenarios. Distributed signing involves performing the entire signing process on the server side except for hash encryption, which occurs on the client-side where the user&#x27;s private key is located. This unifies and optimizes the retrieval of external elements and reduces the amount of information exchanged.</p>
+<p>SealSign DSS also provides validation services using TrustID Revoke Server, which allows for obtaining the state of any certificate by connecting to multiple certification authority providers in a centralized and configurable manner.</p>
+<p>One of the challenges in electronic signing is managing certificates and keys used for document signing. SealSign DSS addresses this problem by providing an internal database for storing certificates and keys within its configuration database. Additionally, it can use certificates stored in external almacenes, such as Windows certificate stores or PKCS#11.</p>
+<p>SealSign DSS also provides time-stamping services using an authority local or external to the organization. In version 4.3, SealSign OTPSS (One Time Password Signature Services) is introduced, a product developed by Factum Identity for integrating unique one-time password signing in corporate applications.</p>
+<p>However, there are still challenges to be addressed in electronic signing, such as user reluctance or lack of knowledge about digital signatures, and the inability to use secure storage devices like smart cards in certain mobile terminals. SealSign OTPSS addresses these issues by providing a unique one-time password signature solution for situations where it is difficult or impossible to use digital certificates.</p>
+<p>Finally, SealSign provides an audit service that can track all signing, validation, and time-stamping operations performed by the server.</p>
+<h1>2. Task Configuration</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-administration-tool">2.1. Administration Tool<a href="#21-administration-tool" class="hash-link" aria-label="Direct link to 2.1. Administration Tool" title="Direct link to 2.1. Administration Tool" translate="no">​</a></h2>
+<p>Centralized management and configuration of SealSign DSS is carried out through a web-based administration platform. To access this, simply launch an instance in a browser by visiting the address:
+<strong><code>http://servername:portnumber/SealSignDSSWeb</code></strong>.</p>
+<p>By default, when executing the administration tool, only users who are members of the SealSignDSS Admins group on the server can administer the SealSign configuration. Therefore, the first task that an administrator must perform before being able to manage the server is to add the appropriate user accounts to this group.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="22corporate-proxy-parameters-configuration">2.2.Corporate Proxy Parameters Configuration<a href="#22corporate-proxy-parameters-configuration" class="hash-link" aria-label="Direct link to 2.2.Corporate Proxy Parameters Configuration" title="Direct link to 2.2.Corporate Proxy Parameters Configuration" translate="no">​</a></h2>
+<p>To meet the requirements of different types of signatures, the SealSign DSS server may need to communicate with external providers offering various services such as time-stamping or certificate validation services.</p>
+<p>If communication is conducted through a corporate proxy server, it will be necessary to configure the proxy parameters in the SealSign administration web interface. To configure the proxy parameters in the SealSign server, the following steps can be taken:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration website.</p>
+</li>
+<li class="">
+<p>In the main page, select the link <strong>Configure corporate proxy parameters</strong> from the group.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="7_image_0.png" src="/assets/images/7_image_0-15a39e9ed18c45299dddf3b08ac60f9c.png" width="576" height="124" class="img_ev3q"></p>
+<p>Relative tasks to the general platform configuration or select the left-hand menu link Proxy Configuration</p>
+<ol start="3">
+<li class="">
+<p>The text will appear: The parameters configuration page will appear..</p>
+</li>
+<li class="">
+<p>Select Use Proxy and the rest of the page parameters.</p>
+</li>
+<li class="">
+<p>Set the values for the Host Name and Port fields. If the proxy is authenticated, you will need to configure a user account and password.</p>
+</li>
+<li class="">
+<p>Finally, click the Save button to update the server configuration.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="8_image_1.png" src="/assets/images/8_image_1-9b3a778eb8560edc25564fa2861af819.png" width="696" height="488" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-manage-pkcs11-providers">2.3. Manage PKcs#11 Providers<a href="#23-manage-pkcs11-providers" class="hash-link" aria-label="Direct link to 2.3. Manage PKcs#11 Providers" title="Direct link to 2.3. Manage PKcs#11 Providers" translate="no">​</a></h2>
+<p>When accessing external container certificates, SealSign DSS can use, in addition to the cryptographic service providers (CSPs) installed on the device, other PKCS#11 modules developed by third parties. To do this, in addition to installing the provider on the server, it is necessary to configure the list of PKCS#11 providers that SealSign DSS must manage.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="231-pkcs11-configured-pkcs11-suppliers-query">2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query<a href="#231-pkcs11-configured-pkcs11-suppliers-query" class="hash-link" aria-label="Direct link to 2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query" title="Direct link to 2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query" translate="no">​</a></h3>
+<p>To view the list of configured PKCS#11 providers on the server, you can follow these steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration web interface.</p>
+</li>
+<li class="">
+<p>On the main page, select the &quot;Manage the registration of PKCS#11 Providers&quot; link in the Main Task group or select the &quot;PKCS#11 Providers&quot; menu on the left.</p>
+</li>
+<li class="">
+<p>The list of all configured PKCS#11 providers on the server will appear.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="mainmenu-pkcs11.png" src="/assets/images/mainmenu-pkcs11-9aa2b1ea15476fee4ff5ca9eeb6c2fa8.png" width="776" height="396" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="232-add-a-new-supplier-pkcs11">2.3.2. Add A New Supplier Pkcs#11<a href="#232-add-a-new-supplier-pkcs11" class="hash-link" aria-label="Direct link to 2.3.2. Add A New Supplier Pkcs#11" title="Direct link to 2.3.2. Add A New Supplier Pkcs#11" translate="no">​</a></h3>
+<p>To add a new PKCS#11 provider, follow these steps:</p>
+<ol>
+<li class="">
+<p>On the main webpage of the administration section, select the &quot;Manage the registration of PKCS#11 providers&quot; link from the Main Tasks group. There is also a link to access this page from the list of PKCS#11 providers viewed earlier.</p>
+</li>
+<li class="">
+<p>Specify the configuration parameters for the provider:</p>
+<ol>
+<li class="">
+<p>The &quot;Name&quot; field is a required label to identify the provider being configured.</p>
+</li>
+<li class="">
+<p>The &quot;Library&quot; field specifies the complete path of the dynamic link library (DLL) of the PKCS#11 provider. Ensure that the provider is correctly installed on all SealSign DSS servers for proper functionality.</p>
+</li>
+</ol>
+</li>
+<li class="">
+<p>Click the &quot;Insert&quot; button to save the changes.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="233-edit-pkcs11-supplier">2.3.3. Edit Pkcs#11 Supplier<a href="#233-edit-pkcs11-supplier" class="hash-link" aria-label="Direct link to 2.3.3. Edit Pkcs#11 Supplier" title="Direct link to 2.3.3. Edit Pkcs#11 Supplier" translate="no">​</a></h3>
+<p>To modify the configuration of a PKCS#11 provider, follow these steps:</p>
+<ol>
+<li class="">
+<p>Access the List of PKCS#11 Providers by selecting the &quot;Manage the registration of PKCS#11 providers&quot; link in the Main Tasks page or by clicking on the &quot;PKCS#11 Providers&quot; menu on the left.</p>
+</li>
+<li class="">
+<p>Select the provider you want to modify from the list.</p>
+</li>
+<li class="">
+<p>Make the desired modifications.</p>
+</li>
+<li class="">
+<p>Click the &quot;Save&quot; button.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="234-remove-pkcs11-supplier">2.3.4. Remove Pkcs#11 Supplier<a href="#234-remove-pkcs11-supplier" class="hash-link" aria-label="Direct link to 2.3.4. Remove Pkcs#11 Supplier" title="Direct link to 2.3.4. Remove Pkcs#11 Supplier" translate="no">​</a></h3>
+<p>To eliminate a PKCS#11 provider, you can follow these steps:</p>
+<ol>
+<li class="">
+<p>Access the List of PKCS#11 Providers by selecting the &quot;Manage the registration of PKCS#11 providers&quot; link in the Main Tasks page or by clicking on the &quot;PKCS#11 Providers&quot; menu on the left.</p>
+</li>
+<li class="">
+<p>In the list of PKCS#11 providers, click the cross icon located to the left of the provider you wish to eliminate.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="211-manage-entities">2.11. Manage Entities<a href="#211-manage-entities" class="hash-link" aria-label="Direct link to 2.11. Manage Entities" title="Direct link to 2.11. Manage Entities" translate="no">​</a></h2>
+<p>In the Entities section, you will be able to create entities, which can have personalized usage configurations, such as using a different support certificate for each entity.</p>
+<p>The fields that will be displayed in this section are:</p>
+<ul>
+<li class="">Key</li>
+<li class="">Name</li>
+<li class="">Description</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="43_image_1.png" src="/assets/images/43_image_1-000b4cc003abd48990fd8f43a875e3fe.png" width="287" height="221" class="img_ev3q"></p>
+<p>On entering this section, a list of entities with a unique key and a description will be displayed, if any configuration has already been created. From the &quot;Add a new entity&quot; link you will access the entity creation screen where two configuration parameters will appear.</p>
+<p><img decoding="async" loading="lazy" alt="44_image_2.png" src="data:image/png;base64,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" width="175" height="233" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>KEY: must be unique as it is the identifier that customers will use to select the configuration they wish to use. The maximum number of characters is 150 and is mandatory.</p>
+</li>
+<li class="">
+<p>Name: compulsory text field of 150 characters.</p>
+</li>
+<li class="">
+<p>Description: text field of 255 characters, not compulsory.</p>
+</li>
+</ul>
+<h1>3. Electronic Signature Parameters Configuration</h1>
+<p>SealSign DSS allows you to configure some parameters of electronic signatures in a general and centralized manner. To configure these parameters, the administrator can follow these steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the &quot;Manage Electronic Signature Parameters&quot; link in the Main Tasks menu or click on the &quot;Signature Parameters&quot; link in the left-hand menu.</p>
+</li>
+<li class="">
+<p>On the parameter page, you can configure the following values:</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>a: General Parameters of Signature:</p>
+<p>i. Check Certificate Chain Validation indicates if the server should build the certificate chain corresponding to the signed certificate received, so that if the chain is not valid and trusted in the server, the server will return an error during the signing process.</p>
+<p>ii. Check Revocation Status indicates if the server should verify if the signed certificate is revoked or not, so that if the certificate is revoked, the server will return an error during the signing process.</p>
+<p>iii. Server Time Stamp for Signature by Default allows selecting, from the list of configured servers for time stamping in SealSign, which server will be used in signature operations that require time stamps.</p>
+<p>iv. Server Backup Time Stamp for Signature by Default allows selecting, from the list of configured servers for time stamping in SealSign, which server will be used in signature operations that require time stamps in the backup server.</p>
+</li>
+<li class="">
+<p>b: Signature of XML Documents (XAdES):</p>
+<p>i. Add XPath Transformation eliminates previous signatures before applying the XPath transformation to the document before signing.</p>
+<p>ii. XAdES-X Signature Type 2 indicates the type of signature used.</p>
+</li>
+<li class="">
+<p>c: CMS Signature (CAdES):</p>
+<p>i. The CAdES-X Signature Type 2 field allows configuring signatures with the CAdES-X and CAdES-XL profile to comply with type 2 of the CAdES-X standard instead of type 1 (default value).</p>
+</li>
+<li class="">
+<p>d: PDF Document Signing (PAdES Basic):</p>
+<p>i. The Include Timestamp field allows configuring whether to include a timestamp when signing PDF documents.</p>
+<p>ii. The Include Revocation Information field indicates whether the signature shall include the CRLs or OCSP responses.</p>
+<p>CRLs or OCSP responses related to the certificates involved in the process will be included in the signature.</p>
+<p>iii. The Display Signature Widget field indicates whether the PDF document resulting from the signature will display the signature widget with the signature information.</p>
+<p>iv. The Position Widget Automatically field indicates whether the signature widget is positioned automatically or whether the values configured in the following 2 fields must be used. If the widget is positioned automatically it will appear in the top right corner of the resulting PDF document.</p>
+<p>v. The Widget Position - X-Coordinate field allows you to set the X-coordinate of the widget&#x27;s position in pixel
+of the Widget position in pixels from the bottom left corner of the page.</p>
+<p>vi. The Widget Position - Y-Coordinate field allows you to set the Y-coordinate of the Widget position in pixels from the bottom left corner of the page. vi.
+coordinate of the Widget&#x27;s position in pixels from the bottom left corner of the page.</p>
+<p>vii. The Automatic Widget Size field indicates whether the signature viewer will be resized automatically or whether the values configured in the next 2 fields should be used.</p>
+<p>viii. The Widget Height field allows configuring, in pixels, the height of the signature viewer.</p>
+<p>ix. The Widget Width field allows configuring, in pixels, the width of the signature display.</p>
+<p>x. The Widget Rotation field allows you to select the angle of rotation of the signature viewer. Possible values are 0º, 90º, 180º and 270º.</p>
+<p>xi. The Include Widget on All Pages field indicates whether the signature viewer shall be displayed on all pages of the document.</p>
+<p>xii. The Include Widget Only on Page Number field indicates the number of the page on which the signature viewer shall be displayed.</p>
+<p>xiii. The Include Background Image field allows configuring the inclusion of an image in the signature widget.</p>
+<p>xiv. The Background Image field allows the selection of a file with the image to be displayed as the background of the Widget. It is important to mention that the file must be in JPEG 2000 format and that a normal JPEG file is not valid as a background image.</p>
+<p>xv. The Image Height field allows configuring, in pixels, the height of the image selected in the previous field.</p>
+<p>xvi. The Image Width field allows setting, in pixels, the width, in pixels, of the image selected in the Background Image field.</p>
+<p>xvii. The AutoFit Image field indicates whether the background image shall be stretched to cover the width of the signature viewer.</p>
+</li>
+</ul>
+<ol start="4">
+<li class="">Finally, click the &quot;Save&quot; button to update the configuration settings.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31configuration-of-electronic-signature-verification-parameters">3.1.Configuration Of Electronic Signature Verification Parameters<a href="#31configuration-of-electronic-signature-verification-parameters" class="hash-link" aria-label="Direct link to 3.1.Configuration Of Electronic Signature Verification Parameters" title="Direct link to 3.1.Configuration Of Electronic Signature Verification Parameters" translate="no">​</a></h2>
+<p>SealSign DSS allows the configuration of some parameters that will govern the electronic signature verification process. This configuration is carried out by means of the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Manage electronic signature verification parameters link from the Electronic Signature and Verification Tasks group or select the Verification Parameters link from the menu on the left.</p>
+</li>
+<li class="">
+<p>On the signature verification parameters page the following values can be configured:</p>
+<p>a. The Check Signing Certificate Certificate Chain field indicates whether the server shall construct the certificate chain corresponding to the signing certificate, so that if the chain is not valid and trusted by the SealSign server, the server will return an error in the verification process.</p>
+<p>b. The Check Revocation Status field indicates whether the server shall verify whether the signing certificate is revoked or not, so that if the certificate is revoked, the server shall return an error in the verification process.</p>
+<p>c. The Include extended timestamp information field indicates whether the response of the verification process shall include the information corresponding to each of the timestamps and their signatures.</p>
+<p>d. The Include only document type signatures in PDF files field indicates whether the PDF document verification process shall include all extended signatures (e.g. PDF encryption signatures) or only document type signatures (user signatures).</p>
+</li>
+<li class="">
+<p>Finally, click the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h1>4. Configuration Of Biometric Signature Parameters</h1>
+<p>SealSign BSS allows the configuration of some handwritten signature parameters in a general and centralised manner. To configure these parameters, the administrator can carry out the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Manage biometric signature parameters link from the Biometric Signature and Verification Tasks group or select the Signature Parameters link from the Biometric Signature section of the menu on the left.</p>
+</li>
+<li class="">
+<p>The following values can be configured in the signature parameters page:</p>
+<p>a. General Signature Parameters:</p>
+<p>i. The Verify Signatory&#x27;s Biometric Identity field indicates whether the server shall verify the biometric data of the signature before including it in the document to be signed.</p>
+<p>ii. The Include Timestamp field indicates whether the server shall add a timestamp to the biometric signature.</p>
+<p>b. Graphical Representation of the Signature:
+i. The Display Signature Widget field indicates whether the resulting document after signature shall display the signature widget with the signature information.</p>
+<p>ii. The Include Document Hash as Watermark field indicates whether the resulting document shall display the hash as a watermark in the signature widget.</p>
+<p>iii. The Widget Position - X-Coordinate field allows setting the X-coordinate of the widget&#x27;s position in pixel
+of the Widget position in pixels from the bottom left corner of the page.</p>
+<p>iv. The Widget Position - Y-Coordinate field allows you to set the Y-coordinate of the Widget&#x27;s position in pixels from the bottom left corner of the page. iv.
+coordinate of the Widget&#x27;s position in pixels from the bottom left corner of the page.</p>
+<p>v. The Automatic Widget Size field indicates whether the signature viewer will be resized automatically or whether the values configured in the following 2 fields should be used.</p>
+<p>vi. The Widget Height field allows configuring, in pixels, the height of the signature display.</p>
+<p>vii. The Widget Width field allows configuration, in pixels, of the width of the signature viewer.</p>
+<p>viii. The Widget Rotation field allows the selection of the rotation angle of the signature viewer. Possible values are 0º, 90º, 180º and 270º.</p>
+<p>ix. The Include Widget on All Pages field indicates whether the signature viewer will be displayed on all pages of the document.</p>
+<p>x. The Include Widget Only on Page Number field indicates the number of the page on which the signature viewer shall be displayed.</p>
+<p>xi. The On Last Page field indicates whether the widget is to be added on the last page only.</p>
+<p>xii. The Offset field on the page (positive or negative).</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-configuration-of-biometric-signature-verification-parameters">4.1. Configuration of Biometric Signature Verification Parameters<a href="#41-configuration-of-biometric-signature-verification-parameters" class="hash-link" aria-label="Direct link to 4.1. Configuration of Biometric Signature Verification Parameters" title="Direct link to 4.1. Configuration of Biometric Signature Verification Parameters" translate="no">​</a></h2>
+<p>SealSign BSS allows the configuration of some parameters that will govern the biometric signature verification process. To configure these parameters, the administrator can carry out the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Manage biometric signature verification parameters link from the Biometric Signature and Verification Tasks group or select the Verification Parameters link from the Biometric Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>The following values can be configured on the signature verification parameters page:</p>
+<p>a. The Positive Recognition Threshold field indicates the range that the server should apply when validating a biometric signature as a valid signature.</p>
+<p>b. The Custom Score Threshold field (Format 0.00) allows the inclusion of a custom value for the applicable Score, outside the default values set in the previous field.</p>
+<p>c. The field Include Electronic Signature Information xxxxx.</p>
+</li>
+<li class="">
+<p>Finally, click the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-backup-electronic-signature-configuration">4.2. Backup Electronic Signature Configuration<a href="#42-backup-electronic-signature-configuration" class="hash-link" aria-label="Direct link to 4.2. Backup Electronic Signature Configuration" title="Direct link to 4.2. Backup Electronic Signature Configuration" translate="no">​</a></h2>
+<p>Among the functionalities provided by SealSign BSS is the possibility of adding an electronic signature on the server to ensure that the biometric data are valid and are not modified after the signature.</p>
+<p>It is necessary to indicate that the configured certificate will be used to encrypt the stored biometric data, for this reason, it is important that the certificate used for the supporting signature has a key length that allows the biometric data to be safeguarded for the maximum amount of time.</p>
+<p>To configure these parameters, the administrator can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the link Manage biometric signature support electronic signature parameters from the Biometric Signature and Verification Tasks group or select the Support Electronic Signature link from the Biometric Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>In the general signature parameters page the following values can be configured:</p>
+<p>a. The field Include Electronic Signature in Document triggers the generation of the supporting electronic signature in the document.</p>
+<p>b. The Use Certificate To Encrypt Biometric Data field indicates whether the certificate shall be used not only to sign the document but also to encrypt the biometric data included in the document.</p>
+<p>c. The Use Biometric Image as Signature Background in Supported Formats field allows using the handwritten signature network as the image background of the electronic signature.</p>
+<p>d. The Electronic Signature Type field indicates which type of electronic signature shall be added to the document.</p>
+<p>i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. The Abstract Function Algorithm (Hash) field indicates which type of hash will be generated for the supporting electronic signature.</p>
+<p>f. The Signature Server Certificate field allows the selection of the server certificate with which the supporting electronic signature will be made. This certificate must have been previously added to the SealSign DSS central certificate repository.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43biometric-data-encryption-settings">4.3.Biometric Data Encryption Settings<a href="#43biometric-data-encryption-settings" class="hash-link" aria-label="Direct link to 4.3.Biometric Data Encryption Settings" title="Direct link to 4.3.Biometric Data Encryption Settings" translate="no">​</a></h2>
+<p>When securing the biometric data included in a document, SealSign BSS allows the possibility of configuring a certificate issued by the organisation itself or by a trusted third party whose public key is used to encrypt the biometric information. In this way, the biometric information will be encrypted both with the supporting electronic signature certificate (if this possibility has been configured) and with this new certificate.</p>
+<p>To configure the biometric data encryption certificate, the administrator must carry out the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>Select the Biometric Data Encryption link in the Biometric Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>Enable the field Include Trusted Third Party Certificate.</p>
+</li>
+<li class="">
+<p>Click on the Import button.</p>
+</li>
+<li class="">
+<p>On the file selection page, browse for the file with the certificate in question and add the certificate&#x27;s contact information.</p>
+</li>
+<li class="">
+<p>Click the Import button.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="44custom-configuration">4.4.Custom Configuration<a href="#44custom-configuration" class="hash-link" aria-label="Direct link to 4.4.Custom Configuration" title="Direct link to 4.4.Custom Configuration" translate="no">​</a></h2>
+<p>The configurations of the default parameters of the biometric signature back-up electronic signature. The custom configuration section allows the individualisation of signature parameters for different cases.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="441-signature-parameters-for-entities">4.4.1 Signature parameters for Entities<a href="#441-signature-parameters-for-entities" class="hash-link" aria-label="Direct link to 4.4.1 Signature parameters for Entities" title="Direct link to 4.4.1 Signature parameters for Entities" translate="no">​</a></h3>
+<p>Contains the list of entities with the key shared with the client for the selection of configurations. These records have an identifier field, name, description and certificates assigned for encryption and signature support.</p>
+<p><img decoding="async" loading="lazy" alt="52_image_0.png" src="/assets/images/52_image_0-116c473a5c972799f68d49666b86f58c.png" width="565" height="241" class="img_ev3q"></p>
+<p>Through this screen we can access the following actions for the parameterisation of signatures:</p>
+<ul>
+<li class="">
+<p>Default support electronic signature: From here we can create the configuration that all the requests in the system take as predefined. When the request does not explicitly include the identification of a specific configuration, it takes this configuration.</p>
+</li>
+<li class="">
+<p>New configuration: From this panel we can create new configurations for different signature cases. Any request sent with the identifier of the configuration created takes the parameters of this one.</p>
+</li>
+<li class="">
+<p>Refresh list: Refreshes the results of the table.</p>
+</li>
+<li class="">
+<p>Delete configuration: By means of the x present in the first column of every entry in the table, we can delete the configuration created.</p>
+</li>
+<li class="">
+<p>Modify configuration: Each identifier in the Key column allows us to click and access the modification panel of the configuration created.</p>
+</li>
+<li class="">
+<p>Search: Filtering of the table with search criteria by name or identity key.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="442-creation-of-configuration-entity">4.4.2. Creation of Configuration Entity<a href="#442-creation-of-configuration-entity" class="hash-link" aria-label="Direct link to 4.4.2. Creation of Configuration Entity" title="Direct link to 4.4.2. Creation of Configuration Entity" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="53_image_1.png" src="/assets/images/53_image_1-d6d5c7c98c48ba1c245fed27ff4d1a19.png" width="515" height="141" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Customised Signature Settings link from the Biometric Signature Tasks group or select the Customised Biometric Signature Settings link from the left-hand menu.</p>
+</li>
+<li class="">
+<p>On the Create Custom Signature Settings page the following values can be configured:</p>
+<p>a. Entity Key: Selection of the key of the previously configured Entities.</p>
+<p>b. Certificate for the support signature: Certificate assigned to make the support signature for biometric signatures. Certificate for the configuration, one of the two available certificates must be selected. If none is selected, the default certificate will be used.</p>
+<p>c. Summary Function Algorithm (Hash):</p>
+<p>i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>d. Electronic Signature Type:</p>
+<p>i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. Use Certificate To Encrypt Biometric Signature Data: Selection indicating whether we want this same certificate to be used for data encryption.</p>
+<p>f. Certificate for Biometric Data Encryption: Selection of a different certificate for the biometric signature metadata encryption.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the configuration.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="443-default-configuration">4.4.3. Default configuration<a href="#443-default-configuration" class="hash-link" aria-label="Direct link to 4.4.3. Default configuration" title="Direct link to 4.4.3. Default configuration" translate="no">​</a></h3>
+<p>This section provides the possibility to create a configuration for signatures that applies to all signatures that do not specify otherwise within the request of the application.</p>
+<p><img decoding="async" loading="lazy" alt="54_image_2.png" src="/assets/images/54_image_2-bdca72489d5cff8973ea98fd86bdc3fe.png" width="427" height="250" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Customised Signature Settings link from the Biometric Signature Tasks group or select the Customised Biometric Signature Settings link from the left-hand menu.</p>
+</li>
+<li class="">
+<p>On the Create Signature Default Settings page the following values can be configured:</p>
+<p>a. Include Electronic Signature in the Document: Activates the generation of the supporting electronic signature in the document.</p>
+<p>b. Use Certificate to Encrypt Biometric Data: Indicates whether the certificate will be used not only to sign the document but also to encrypt the biometric data included in it.</p>
+<p>c. Type of Electronic Signature:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. Hash Function Algorithm:
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3 f. Signature Server Certificate: Selection of the certificate for the default configuration of the requests.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to create or update the configuration.</p>
+</li>
+</ol>
+<h1>5. Otp Signature Parameter Configuration</h1>
+<p>SealSign OTPSS allows the configuration of some parameters of the one-time password signature in a general and centralised way. To configure these parameters, the administrator can carry out the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Signature Parameters link in the OTP Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>On the signature parameters page, the following values can be configured:</p>
+<p>a. General Signature Parameters:
+i. The Include Remote OTP Code Provider field indicates whether the OTP code is to be generated by a remote provider or whether it is to be generated by the platform itself.</p>
+<p>ii. The Send Type field indicates the method of sending the OTP code. You can choose between none, email or SMS.</p>
+<p>iii. The Expiration time field indicates the life time, in seconds, of an OTP code once it has been generated.</p>
+<p>iv. The Code length field indicates the length of the OTP codes that are generated from the platform.</p>
+<p>v. The Code Generation Algorithm field indicates which algorithm will be used to generate the OTP code. You can select between SHA1, SHA256, SHA512.</p>
+<p>vi. The Allowed Verification Attempts field indicates the maximum allowed number of verifications that can be performed on the One Time Password.</p>
+<p>vii. The Widget Height field allows you to set, in pixels, the height of the signature viewer.</p>
+<p>viii. The Widget Width field allows setting, in pixels, the width of the signature viewer.</p>
+<p>ix. The Widget Rotation field allows the selection of the rotation angle of the signature viewer. Possible values are 0º, 90º, 180º and 270º.</p>
+<p>x. The Include Widget on All Pages field indicates whether the signature viewer shall be displayed on all pages of the document.</p>
+<p>xi. The Include Widget Only on Page Number field indicates the number of the page on which the signature viewer shall be displayed.</p>
+<p>xii. The On Last Page field indicates whether the widget is to be added on the last page only.</p>
+<p>xiii. The Offset field on the page (positive or negative).</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51configuration-of-the-backup-electronic-signature">5.1.Configuration of the Backup Electronic Signature<a href="#51configuration-of-the-backup-electronic-signature" class="hash-link" aria-label="Direct link to 5.1.Configuration of the Backup Electronic Signature" title="Direct link to 5.1.Configuration of the Backup Electronic Signature" translate="no">​</a></h2>
+<p>Among the functionalities provided by SealSign OTPSS is the possibility of adding an electronic signature on the server to ensure that the data is valid and is not modified after signing.</p>
+<p>It is necessary to indicate that the certificate configured will be used to encrypt the signatory&#x27;s data stored, for this reason, it is important that the certificate used for the supporting signature has a key length that allows the biometric data to be safeguarded for as long as possible.</p>
+<p>To configure these parameters, the administrator can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page, select the Electronic Support Signature link from the OTP Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>On the general signature parameters page, the following values can be configured:</p>
+<p>a. The Use Certificate To Encrypt Biometric Data field indicates whether the certificate will be used, not only to sign the document, but also to encrypt the biometric data included in it.</p>
+<p>b. The Electronic Signature Type field indicates which type of electronic signature shall be added to the document.</p>
+<p>i. Enveloped
+ii. Enveloping
+iii. Detached<br>
+<!-- -->iv. DetachedInternal</p>
+<p>c. The Abstract Function Algorithm (Hash) field indicates which type of hash will be generated for the supporting e-signature.</p>
+<p>d. The Signature Server Certificate field allows the selection of the server certificate with which the supporting electronic signature will be made. This certificate must have been previously added to the SealSign DSS central certificate repository.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52metadata-encryption-configuration">5.2.Metadata Encryption Configuration<a href="#52metadata-encryption-configuration" class="hash-link" aria-label="Direct link to 5.2.Metadata Encryption Configuration" title="Direct link to 5.2.Metadata Encryption Configuration" translate="no">​</a></h2>
+<p>When securing the signatory&#x27;s data included in a document, SealSign OTPSS allows the possibility of configuring a certificate issued by the organisation itself or by a trusted third party whose public key is used to encrypt this biometric information. In this way, the information will be encrypted both with the supporting electronic signature certificate (if this possibility has been configured) and with this new certificate.</p>
+<p>To configure the metadata encryption certificate, the administrator must perform the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>Select the Metadata Encryption link in the OTP Signature section of the left-hand menu.</p>
+</li>
+<li class="">
+<p>Enable the Include Trusted Third Party Certificate field.</p>
+</li>
+<li class="">
+<p>Click the Import button.</p>
+</li>
+<li class="">
+<p>On the file selection page, browse for the file with the certificate in question and add the certificate&#x27;s contact information.</p>
+</li>
+<li class="">
+<p>Click the Import button.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="53custom-settings">5.3.Custom Settings<a href="#53custom-settings" class="hash-link" aria-label="Direct link to 5.3.Custom Settings" title="Direct link to 5.3.Custom Settings" translate="no">​</a></h2>
+<p>The configurations of the default parameters of the electronic signature backing up the OTP signature.</p>
+<p>The custom configuration section allows the individualisation of the signature parameters for different cases.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="531-signature-parameters-for-entities">5.3.1. Signature parameters for Entities<a href="#531-signature-parameters-for-entities" class="hash-link" aria-label="Direct link to 5.3.1. Signature parameters for Entities" title="Direct link to 5.3.1. Signature parameters for Entities" translate="no">​</a></h3>
+<p>Contains the list of entities with the key shared with the client for the selection of configurations. These records have an identifier field, name, description and certificates assigned for encryption and signature support.</p>
+<p><img decoding="async" loading="lazy" alt="59_image_1.png" src="/assets/images/59_image_1-5b333ba46126a4105cf9c12d33bbabf9.png" width="558" height="210" class="img_ev3q"></p>
+<p>Through this screen we can access the following actions for the parameterisation of signatures:</p>
+<ul>
+<li class="">
+<p>Default support electronic signature: From here we can create the configuration that all the requests in the system take as predefined. When the request does not explicitly include the identification of a specific configuration, it takes this configuration.</p>
+</li>
+<li class="">
+<p>New configuration: From this panel we can create new configurations for different signature cases. Any request sent with the identifier of the configuration created takes the parameters of this one.</p>
+</li>
+<li class="">
+<p>Refresh list: Refreshes the results of the table.</p>
+</li>
+<li class="">
+<p>Delete configuration: By means of the x present in the first column of every entry in the table, we can delete the configuration created.</p>
+</li>
+<li class="">
+<p>Modify configuration: Each identifier in the Key column allows us to click and access the modification panel of the configuration created.</p>
+</li>
+<li class="">
+<p>Search: Filtering of the table with search criteria by name or identity key.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="532-creation-of-configuration-entity">5.3.2. Creation of Configuration Entity<a href="#532-creation-of-configuration-entity" class="hash-link" aria-label="Direct link to 5.3.2. Creation of Configuration Entity" title="Direct link to 5.3.2. Creation of Configuration Entity" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="60_image_1.png" src="/assets/images/60_image_1-789bc6bc4b4e45946c81bc0cadc3dfa5.png" width="556" height="156" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Open the SealSign administration web site.</p>
+</li>
+<li class="">
+<p>On the main page select the Custom Signature Settings link from the OTP Signature Related Tasks group or select the Custom OTP Signature Settings link from the left menu.</p>
+</li>
+<li class="">
+<p>On the Create Custom Signature Settings page the following values can be configured:</p>
+<p>a. Entity Key: Selection of the key of the previously configured Entities.</p>
+<p>b. Certificate for support signature: Certificate assigned to do the support signature for OTP signatures. Certificate for the configuration, one of the two available certificates must be selected.</p>
+<p>If none is selected, the default certificate will be used.</p>
+<p>c. Summary Function Algorithm (Hash):
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>d. Electronic Signature Type:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal</p>
+<p>e. Use Certificate To Encrypt OTP Signature Data: Selection that indicates if we want this same certificate to be used for data encryption.</p>
+<p>f. One Time Password Certificate for metadata encryption: Selection of a different certificate for OTP signature metadata encryption.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the configuration.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="533-default-configuration">5.3.3. Default configuration<a href="#533-default-configuration" class="hash-link" aria-label="Direct link to 5.3.3. Default configuration" title="Direct link to 5.3.3. Default configuration" translate="no">​</a></h3>
+<p>This section provides the possibility to create a configuration for signatures that applies to all signatures that do not specify otherwise within the request of the application.</p>
+<p><img decoding="async" loading="lazy" alt="61_image_3.png" src="/assets/images/61_image_3-fd467f0ce6ddb98487b65a414808e230.png" width="365" height="184" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Open the SealSign administration web site.</p>
+</li>
+<li class="">
+<p>On the main page select the Custom Signature Settings link from the OTP Signature Related Tasks group or select the Custom OTP Signature Settings link from the left menu.</p>
+</li>
+<li class="">
+<p>On the Create Signature Default Settings page the following values can be configured:</p>
+<p>a. Use Certificate To Encrypt OTP Signature Data: Indicate whether the default certificate is also used to encrypt the OTP signature data.</p>
+<p>b. Use Biometric Image as Signature Background in Supported Formats: Allows to use the graph of the handwritten signature as the background image of the electronic signature.</p>
+<p>c. Electronic Signature Type:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal</p>
+<p>d. Summary Function Algorithm (Hash):
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>e. Signature Server Certificate: Selection of the certificate for the default configuration of the requests.</p>
+</li>
+<li class="">
+<p>Finally, click the Save button to create or update the configuration.</p>
+</li>
+</ol>
+<h1>6. Centralized Key Management</h1>
+<p>Among the functionalities provided by SealSign DSS is the possibility of electronically signing documents with certificates stored on the server. SealSign DSS server certificates can reside within the signature platform or refer to external Windows and PKCS stores. The administrator must configure which server certificates can be used and who will have access to each of them for the signature operations performed by the platform.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61server-certificates-management">6.1.Server Certificates Management<a href="#61server-certificates-management" class="hash-link" aria-label="Direct link to 6.1.Server Certificates Management" title="Direct link to 6.1.Server Certificates Management" translate="no">​</a></h2>
+<p>In this administration menu you can add references to internal and external certificates that will later be available for the creation of Rules of Use in them.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="611-viewing-the-list-of-server-certificates">6.1.1. Viewing the List of Server Certificates<a href="#611-viewing-the-list-of-server-certificates" class="hash-link" aria-label="Direct link to 6.1.1. Viewing the List of Server Certificates" title="Direct link to 6.1.1. Viewing the List of Server Certificates" translate="no">​</a></h3>
+<p>To view the list of available server certificates, you can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration web site.</p>
+</li>
+<li class="">
+<p>On the main page, select the Manage Server Certificates link from the Server Certificate Tasks group, or select the Server Certificates link from the left-hand menu called Centralized Keys.</p>
+</li>
+<li class="">
+<p>The list of all server certificates that can be used in signing processes will be displayed.</p>
+</li>
+</ol>
+<p><strong>Expired Certificates:</strong> In the list, expired certificates will be highlighted in red, with the expiration date in bright red for easy identification.</p>
+<p><strong>Lock Icon:</strong> On the left side border, a padlock icon will appear indicating whether the certificate has the lock check activated.</p>
+<p><strong>Actions on Certificates:</strong> In the list of certificates, the available actions are now grouped in a single button. Pressing it will display a menu with the following options:</p>
+<ul>
+<li class="">
+<p>Usage Rules: This option redirects to the usage rules section, where the list of usage rules associated to that certificate is displayed.</p>
+</li>
+<li class="">
+<p>Audit Log: This option redirects to the audit log section, where a list of all the actions performed with that certificate is displayed.</p>
+</li>
+<li class="">
+<p>Download Public Key: This option allows downloading the certificate&#x27;s public key.</p>
+</li>
+<li class="">
+<p>Delete Certificate: This option allows you to delete the certificate from the platform.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="612-adding-a-new-server-certificate">6.1.2. Adding a New Server Certificate<a href="#612-adding-a-new-server-certificate" class="hash-link" aria-label="Direct link to 6.1.2. Adding a New Server Certificate" title="Direct link to 6.1.2. Adding a New Server Certificate" translate="no">​</a></h3>
+<p>To add a new server certificate to the list, the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>On the main page of the Administration web site, select the Import a new server certificate link from the Server Certificate Tasks group. There is also a link from the list of server certificates consulted in the previous section.</p>
+</li>
+<li class="">
+<p>On the Server Certificates page, configure the following settings:</p>
+<p>a. The File field allows you to select the .pfx file containing the certificate to be imported into the SealSign certificate store.</p>
+<p>b. In the Password field, the password of the file selected in the previous field must be indicated.</p>
+<p>c. In the Remember Password value, specify whether the server should store the password of this file so as not to require it again when the certificate is to be used or whether, on the contrary, the user will be required to provide this password each time.</p>
+<p>d. The Descriptive Name field allows, optionally, to indicate a longer description of the certificate.</p>
+<p>e. The Owner Managed Only field allows the certificate owner to restrict the management and use of the certificate to his or her Windows user only. This way, no other user or system administrator will be able to use it.</p>
+<p>f. The Owner field indicates the name of the Windows user account that will act as the owner of the new certificate and will therefore have access to it. In addition to the owner it is possible to create delegates who will also be able to use this certificate. The creation of delegates is done by modifying the server certificate settings after adding it for the first time.</p>
+<p>g. In the value Require SealSign Password it is possible to force the need to create a specific SealSign password required each time the certificate is to be used within the platform.</p>
+<p>h. The SealSign Password field will be set to the password commented in the previous field.</p>
+</li>
+<li class="">
+<p>By clicking on the Import button, the certificate will be saved in the SealSign certificate store.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="613-add-a-reference-to-an-external-server-certificate">6.1.3. Add a Reference to an External Server Certificate<a href="#613-add-a-reference-to-an-external-server-certificate" class="hash-link" aria-label="Direct link to 6.1.3. Add a Reference to an External Server Certificate" title="Direct link to 6.1.3. Add a Reference to an External Server Certificate" translate="no">​</a></h3>
+<p>When the certificate is stored in a location external to the SealSign server certificate store, it will be necessary to add a reference to it in the server certificate configuration. To do this, the following steps must be performed:</p>
+<ol>
+<li class="">
+<p>On the main page of the Administration web page select the link Add a reference to an external server certificate from the Server Certificate Related Tasks group. There is also a link from the list of server certificates consulted in the previous section.</p>
+</li>
+<li class="">
+<p>On the Server certificate references page configure the following values:</p>
+<p>a. In the Warehouse Type field, select the type of warehouse containing the certificate. Specifically you can select between the values:</p>
+<p>i. WindowsStore for certificates stored in the current Windows user&#x27;s certificate store.</p>
+<p>ii. WindowsSystemStore for certificates stored in the SealSign server&#x27;s computer certificate store.</p>
+<p>iii. PKCS11Store for certificates stored in external stores accessible through a PCKS11 module.</p>
+<p>b. After selecting the type of store, click on the Select Certificate button.</p>
+<p>A window will appear that will either show the available certificates (WindowsStore and WindowsSystemStore) or request the selection of the PKCS11 Provider, the Slot and the Password to access the certificate (PKCS11Store).</p>
+<p>c. Once the certificate is selected, the page will display the Subject, Serial Number, Issuing Entity, Validity Dates and if there is a Password Required by the Store.</p>
+<p>d. The Descriptive Name field allows you to optionally enter a longer description of the certificate.</p>
+<p>e. The Owner field indicates the name of the Windows user account that will act as the owner of the new certificate and will therefore have access to it. In addition to the owner it is possible to create delegates who will also be able to use this certificate. The creation of delegates is done by modifying the server certificate settings after adding it for the first time.</p>
+<p>f. In the Remember Password value it is specified whether the server should store the password for this certificate in order not to require it again when it is going to be used or if, on the contrary, the user will be required to provide this password each time.</p>
+<p>g. In the Password field, the password for the selected certificate must be specified.</p>
+<p>h. In the Require SealSign Password value it is possible to force the need to create a specific SealSign password required each time the certificate is to be used within the platform.</p>
+<p>i. The SealSign Password field will be configured with the password commented in the previous field.</p>
+</li>
+<li class="">
+<p>By clicking on the Insert button, the certificate will be saved in the SealSign certificate store.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="614-sealsign-certificates-expiration-service-smtp-configuration">6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration<a href="#614-sealsign-certificates-expiration-service-smtp-configuration" class="hash-link" aria-label="Direct link to 6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration" title="Direct link to 6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration" translate="no">​</a></h3>
+<p>This configuration is required to use the Windows SealSign Certificates Expiration Service.</p>
+<p>The service allows automatically sending a daily mailing list of all the expired and expiring certificates of all users, as well as sending a list to each user with their expiring certificates.</p>
+<p>It is carried out from the SealSign administration web site:</p>
+<p><img decoding="async" loading="lazy" alt="64_image_0.png" src="/assets/images/64_image_0-ce3b256b74eba29d09dffd9ea8b93674.png" width="614" height="293" class="img_ev3q"></p>
+<p>The configuration is divided into 2 parts. The parameters of sending mails through SMTP and the parameters of certificate expiration.</p>
+<p>CONFIGURATION OF THE <strong>SMTP</strong> SERVER</p>
+<p><img decoding="async" loading="lazy" alt="65_image_0.png" src="/assets/images/65_image_0-f0cdd227d5228937bac70e6e388e36d9.png" width="369" height="240" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>Email to configure the SMTP account: Email to configure the SMTP account.</p>
+</li>
+<li class="">
+<p>SMTP account password: SMTP configuration email password.</p>
+</li>
+<li class="">
+<p>SMTP server address of the configured account: SMTP server of the configured account. - SMTP Port: SMTP server port.</p>
+</li>
+<li class="">
+<p>Email that appears as sender: Email that will appear as sender.</p>
+</li>
+<li class="">
+<p>Name to be displayed in the sender: Name to be displayed in the sender.</p>
+</li>
+<li class="">
+<p>TLS/SSL: If the SMTP account uses this configuration.</p>
+</li>
+</ul>
+<p><strong>CERTIFICATE EXPIRATION SERVICE PARAMETERS</strong></p>
+<p><img decoding="async" loading="lazy" alt="65_image_1.png" src="/assets/images/65_image_1-11a5010e47c342562336f467e6ad7b53.png" width="360" height="170" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>Emails of general users, separated by (;): List of the emails to which the list of all expired and about to expire certificates of all users will be sent daily.
+The e-mails in this list must be separated by semicolons.</p>
+</li>
+<li class="">
+<p>Number of days of notice of expired certificates: Time in days, prior to the current date in which the existence of an expired certificate will be notified. If a certificate has been expired longer than the time configured in this field, its expiration will no longer be reported.</p>
+</li>
+<li class="">
+<p>Days of notification of certificates about to expire: Time in days, after the current date in which the existence of a certificate about to expire will be notified.</p>
+</li>
+<li class="">
+<p>Notification sending time (hh<!-- -->:mm<!-- -->): It is the time when the email sending service will be executed. It must have the following format hh<!-- -->:mm<!-- -->.</p>
+</li>
+<li class="">
+<p>Notification recipients: Configuration of the users to whom the information of expired and about to expire certificates will be sent by mail.</p>
+<ul>
+<li class="">
+<p>None: To nobody.</p>
+</li>
+<li class="">
+<p>Certificate users: Sending notifications of the certificates about to expire to the certificate users.</p>
+</li>
+<li class="">
+<p>General users: Sending notifications of expired and about to expire certificates to the users configured in “Emails of general users separated by (;)”.</p>
+</li>
+<li class="">
+<p>All: To both certificate users and general users.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>After modifying the configuration it is advisable to restart the SealSign Certificates Expiration Service.</p>
+<p><strong>CERTIFICATE USAGE SERVICE PARAMETERS</strong></p>
+<ul>
+<li class="">
+<p>Recipients of the notifications, separated by (;): List of the mails to which the list of all the certificates that have been used to sign with electronic certificate will be sent daily. The e-mails in this list must be separated by semicolons.</p>
+</li>
+<li class="">
+<p>Period for sending notifications: Period to retrieve the list of certificates used for signing. The available periods are: daily, weekly and monthly. When selecting a period, the list of certificates that will be sent by e-mail will correspond to the previous period, not the current one. For example, if the daily period is selected, the list of certificates sent will be that of the previous day. If the weekly period is selected, the list will be that of the previous week, and so on.</p>
+</li>
+</ul>
+<p>NOTE: Weekly notifications will be carried out every Monday, and monthly notifications every first of the month.</p>
+<ul>
+<li class="">Notification sending time (hh<!-- -->:mm<!-- -->): Time when the notification service will be executed. It must have the following format hh<!-- -->:mm<!-- -->.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="615-modifying-a-server-certificate">6.1.5. Modifying a Server Certificate<a href="#615-modifying-a-server-certificate" class="hash-link" aria-label="Direct link to 6.1.5. Modifying a Server Certificate" title="Direct link to 6.1.5. Modifying a Server Certificate" translate="no">​</a></h3>
+<p>To modify the configuration of a PKCS provider, the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>Access the server certificates, to do so, on the main page select the Manage Server Certificates link from the Server Certificate Related Tasks group or select the Server Certificates link from the left menu.</p>
+</li>
+<li class="">
+<p>In the list of server certificates select the link of the certificate to be modified.</p>
+</li>
+<li class="">
+<p>Click on the Save button to update the certificate configuration on the server.</p>
+</li>
+</ol>
+<p><strong>NEW FUNCTIONS OF THE CERTIFICATE TO MODIFY A SERVER CERTIFICATE</strong>.</p>
+<p>Once a certificate has been added to the server, the administrator can perform two additional operations:</p>
+<ol>
+<li class="">
+<p>change the password to the certificate, but for this he has to know the old one.</p>
+</li>
+<li class="">
+<p>And he can lock the certificate so that it cannot be used.</p>
+</li>
+<li class="">
+<p>Pressing the Save button will update the certificate configuration on the server.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="67_image_0.png" src="data:image/png;base64,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" width="240" height="214" class="img_ev3q"></p>
+<p><strong>OPERATIONS ON A USER&#x27;S CERTIFICATE</strong>.</p>
+<p>The administration and configuration of the user&#x27;s certificate by SealSign DSS is done centrally through the user web. To open this, it is simply necessary to run an instance in a browser to the following address:
+<a href="http://servername.portnumber/SealSignDSSWeb/users/" target="_blank" rel="noopener noreferrer" class="">http://servername.portnumber/SealSignDSSWeb/users/</a>
+and a username/password will be requested to access the user&#x27;s administration web site and his certificates.</p>
+<p><img decoding="async" loading="lazy" alt="user-certificates" src="/assets/images/user-certificates-01ff66ebe0d4cf8d1df979abb9465814.png" width="1792" height="770" class="img_ev3q"></p>
+<p>Once inside the user&#x27;s website, he can perform different operations:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="616-viewing-the-list-of-server-certificates">6.1.6. Viewing the List of Server Certificates<a href="#616-viewing-the-list-of-server-certificates" class="hash-link" aria-label="Direct link to 6.1.6. Viewing the List of Server Certificates" title="Direct link to 6.1.6. Viewing the List of Server Certificates" translate="no">​</a></h3>
+<p>To view the list of available server certificates, the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration website.</p>
+</li>
+<li class="">
+<p>On the main page select the Server Certificates link from the left menu called Centralized Keys.</p>
+</li>
+<li class="">
+<p>The list of server certificates that can be used in the signature processes will appear.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="certificate-list" src="/assets/images/certificate-list-0994caff244f68e49295d29d18e3fd43.png" width="873" height="354" class="img_ev3q"></p>
+<p>Expired Certificates: In the list, the expired certificates will be highlighted in red, with the expiration date in bright red for easy identification.</p>
+<p>Lock Icon: On the left side border, a padlock icon will appear indicating whether the certificate has the lock check activated.</p>
+<p>Actions on Certificates: In the list of certificates, the available actions are now grouped in a single button. Pressing it will display a menu with the following options:</p>
+<ul>
+<li class="">
+<p>Usage Rules: This option redirects to the usage rules section, where the list of usage rules associated to that certificate is displayed.</p>
+</li>
+<li class="">
+<p>Audit Log: This option redirects to the audit log section, where a list of all the actions performed with that certificate is displayed.</p>
+</li>
+<li class="">
+<p>Download Public Key: This option allows downloading the certificate&#x27;s public key.</p>
+</li>
+<li class="">
+<p>Delete Certificate: This option allows you to delete the certificate from the platform.</p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="certificate-list-menu" src="/assets/images/certificate-list-menu-6301364e26445a6418f10ea1a8556272.png" width="881" height="214" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="617-adding-a-new-server-certificate">6.1.7. Adding a New Server Certificate<a href="#617-adding-a-new-server-certificate" class="hash-link" aria-label="Direct link to 6.1.7. Adding a New Server Certificate" title="Direct link to 6.1.7. Adding a New Server Certificate" translate="no">​</a></h3>
+<p>To add a new server certificate to the list, the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>On the main page of the website you will need to select the Import a new server certificate link.</p>
+</li>
+<li class="">
+<p>On the Server Certificates page configure the following values:</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>The File field allows you to select the .pfx file containing the certificate that will be imported into the SealSign certificate store.</p>
+</li>
+<li class="">
+<p>In the Password field, the password of the file selected in the previous field must be specified.</p>
+</li>
+<li class="">
+<p>The Remember Password value specifies whether the server should store the password for this file so as not to require it again when the certificate is used or whether, on the contrary, the user will be required to provide this password each time.</p>
+</li>
+<li class="">
+<p>The Descriptive Name field allows, optionally, to indicate a longer description of the certificate.</p>
+</li>
+<li class="">
+<p>The Owner Managed Only field allows the certificate owner to restrict the management and use of the certificate to his Windows user only. This way, no other user or system administrator will be able to use it.</p>
+</li>
+<li class="">
+<p>The Owner field indicates the name of the Windows user account that will act as the owner of the new certificate and will therefore have access to it. In addition to the owner it is possible to create delegates who will also be able to use this certificate. The creation of delegates is done by modifying the configuration of the server certificate after adding it for the first time.</p>
+</li>
+<li class="">
+<p>In the value Require SealSign Password it is possible to force the need to create a specific SealSign password each time the certificate is to be used within the platform.</p>
+</li>
+<li class="">
+<p>The SealSign Password field will be set to the password commented in the previous field.</p>
+</li>
+</ul>
+<ol start="3">
+<li class="">By clicking on the Import button, the certificate will be saved in the SealSign certificate store.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="618-añadir-una-referencia-a-un-certificado-externo-de-servidor">6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor<a href="#618-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="hash-link" aria-label="Direct link to 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor" title="Direct link to 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor" translate="no">​</a></h3>
+<p>Add a Reference to an External Server Certificate</p>
+<p>When the certificate is stored in a location external to the SealSign server certificate store, it will be necessary to add a reference to it in the server certificate configuration. To do this, the following steps must be performed:</p>
+<ol>
+<li class="">
+<p>On the main page of the Administration web page select the link Add a reference to an external server certificate from the Server Certificate Related Tasks group. There is also a link from the list of server certificates consulted in the previous section.</p>
+</li>
+<li class="">
+<p>On the Server Certificate References page configure the following values:</p>
+</li>
+<li class="">
+<p>WindowsStore for certificates stored in the certificate store of the current Windows user.</p>
+</li>
+<li class="">
+<p>WindowsSystemStore for certificates stored in the SealSign server&#x27;s computer certificate store.</p>
+</li>
+<li class="">
+<p>PKCS11Store for certificates stored in external stores accessible through a PCKS11 module.</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>After selecting the type of store, click on the Select Certificate button. A window will appear that will either show the available certificates (WindowsStore and WindowsSystemStore) or will request the selection of the PKCS11 Provider, the Slot and the Password to access the certificate (PKCS11Store).</p>
+</li>
+<li class="">
+<p>Once the certificate is selected, the page will display the Subject, Serial Number, Issuing Entity, Validity Dates and if there is a Password Required by the Store.</p>
+</li>
+<li class="">
+<p>The Descriptive Name field allows, optionally, to indicate a longer description of the certificate.</p>
+</li>
+<li class="">
+<p>In the Warehouse Type field you can select which type of warehouse contains the certificate. Specifically, you can select from the following values:</p>
+</li>
+<li class="">
+<p>The Owner field indicates the name of the Windows user account that will act as the owner of the new certificate and will therefore have access to it. In addition to the owner it is possible to create delegates who will also be able to use this certificate. The creation of delegates is done by modifying the server certificate settings after adding it for the first time.</p>
+</li>
+<li class="">
+<p>In the Remember Password value you specify whether the server should store the password for this certificate so that it is not required again when it is used, or whether the user will be required to provide this password each time.</p>
+</li>
+<li class="">
+<p>In the Password field, the password for the selected certificate must be entered.</p>
+</li>
+<li class="">
+<p>In the Require SealSign Password value it is possible to force the need to create a specific SealSign password each time the certificate is to be used within the platform.</p>
+</li>
+<li class="">
+<p>The SealSign Password field will be set to the password commented in the previous field. - The Pair with Latch field allows you to protect the certificate by associating it with a Latch mobile app, which allows you to authorize the use of the certificate.</p>
+</li>
+<li class="">
+<p>By clicking on the Insert button, the certificate will be saved in the SealSign certificate store.</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="62usage-rules">6.2.Usage Rules<a href="#62usage-rules" class="hash-link" aria-label="Direct link to 6.2.Usage Rules" title="Direct link to 6.2.Usage Rules" translate="no">​</a></h2>
+<p>SealSign DSS allows the association of certificates centralized in the platforms to usage rules that define who can use them and how.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="621-viewing-the-list-of-usage-rules">6.2.1. Viewing the List of Usage Rules<a href="#621-viewing-the-list-of-usage-rules" class="hash-link" aria-label="Direct link to 6.2.1. Viewing the List of Usage Rules" title="Direct link to 6.2.1. Viewing the List of Usage Rules" translate="no">​</a></h3>
+<p>To view the list of available Usage Rules, the following steps can be performed:</p>
+<ol>
+<li class="">Open the SealSign DSS administration website.</li>
+</ol>
+<p>a. In the left menu select the Usage Rules link from the Centralized Keys group.</p>
+<p>b.	The list of all the usage rules that are available will appear.</p>
+<p>c.	The usage rules can be filtered by criteria (Name, Description, Creator, User, Team name, Processes and URL).</p>
+<p>d.	The usage rules can be filtered by associated certificate and by date range.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules" src="/assets/images/usage-rules-55ab7570fbc002eac8f0bceb6b747cd7.png" width="995" height="378" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="622-adding-a-new-usage-rule">6.2.2. Adding a New Usage Rule<a href="#622-adding-a-new-usage-rule" class="hash-link" aria-label="Direct link to 6.2.2. Adding a New Usage Rule" title="Direct link to 6.2.2. Adding a New Usage Rule" translate="no">​</a></h3>
+<p>To add a new Usage Rule to the list, the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>Select the Add a new usage rule link from the list of usage rules consulted in the previous section.</p>
+</li>
+<li class="">
+<p>A modal will open where the following values can be configured:</p>
+<ol>
+<li class="">The Name field allows us to assign an identifying key to the usage rule.</li>
+<li class="">The Owner field indicates the name of the Windows user account that will act as the owner of the new usage rule.</li>
+<li class="">The Description field allows, optionally, to indicate a more extensive description of the usage rule.</li>
+<li class="">The Valid From field indicates from when the usage rule will be in force, therefore being able to use the certificates associated to it.</li>
+<li class="">The Valid Until field indicates until when the usage rule will be in force.</li>
+</ol>
+</li>
+<li class="">
+<p>Pressing the Insert button the usage rule will be saved.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="add-usage-rule" src="/assets/images/add-usage-rule-8e3ca6a3aaacb1485335c8c0cee2f583.png" width="945" height="625" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="623-modify-the-configuration-of-a-usage-rule">6.2.3. Modify the Configuration of a Usage Rule<a href="#623-modify-the-configuration-of-a-usage-rule" class="hash-link" aria-label="Direct link to 6.2.3. Modify the Configuration of a Usage Rule" title="Direct link to 6.2.3. Modify the Configuration of a Usage Rule" translate="no">​</a></h3>
+<p>To modify the configuration of a usage rule the following steps can be performed:</p>
+<ol>
+<li class="">
+<p>Select the usage rule to be modified from the list consulted in the &#x27;Consultation of the Usage Rules List&#x27; section, or by pressing the &#x27;Edit Usage Rule&#x27; button in the action menu that appears on the right side of the list of rules.</p>
+</li>
+<li class="">
+<p>In the edit mode of the usage rule, you can manage the General parameters that were entered when inserting the usage rule as well as the Usage Filters.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="usage-rules-general" src="/assets/images/usage-rules-general-312e706b5e395a44304cfb3615d409a4.png" width="945" height="623" class="img_ev3q"></p>
+<p>These filters are divided into the following categories:</p>
+<p><strong>Certificates:</strong> In this section we manage which certificates are associated to the usage rule.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-certificates" src="/assets/images/usage-rules-certificates-ba2c1c64ae4ba500917806f231270413.png" width="945" height="339" class="img_ev3q"></p>
+<p><strong>Authorized Users:</strong> In this section we manage which users have access to the usage rule as well as indicating for how long by means of the Valid From and Valid To dates.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-users" src="/assets/images/usage-rules-users-82ac288ad4469d75db69dd1d64008989.png" width="945" height="327" class="img_ev3q"></p>
+<p><strong>Computers:</strong> In this section we manage from which machines have access to the usage rule. With this filter we can configure that a certificate to sign a transaction can only be used from a series of machines specified in the rule. This filter admits as wildcard character the %.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-computers" src="/assets/images/usage-rules-computers-e8398821f9dd869cbd682b16eeaddb1a.png" width="945" height="480" class="img_ev3q"></p>
+<p><strong>Processes:</strong> In this section we manage from which processes (Windows executable name) the usage rule can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of processes specified in the rule. This filter supports % as a wildcard character.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-processes" src="/assets/images/usage-rules-processes-5b1b2f1032f956166d4bac68dd3b5572.png" width="945" height="403" class="img_ev3q"></p>
+<p><strong>URLs:</strong> In this section we manage from which URL the rule of use can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of URLs specified in the rule. This filter admits as wildcard character the %. This filter applies to Chrome and Edge browsers.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-urls" src="/assets/images/usage-rules-urls-c83c71161e9b980c46e5d955def37d4e.png" width="945" height="559" class="img_ev3q"></p>
+<ol start="3">
+<li class="">Pressing the Save button will update the usage rule configuration.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="624-deleting-a-usage-rule">6.2.4. Deleting a Usage Rule<a href="#624-deleting-a-usage-rule" class="hash-link" aria-label="Direct link to 6.2.4. Deleting a Usage Rule" title="Direct link to 6.2.4. Deleting a Usage Rule" translate="no">​</a></h3>
+<p>To delete a usage rule you can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Access the list of usage rules, to do so, in the left menu select the Usage Rules link from the Centralized Keys group.</p>
+</li>
+<li class="">
+<p>In the list of usage rules, click &quot;Delete Usage Rule&quot; on the menu options of a usage rule.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="remove-usage-rule" src="/assets/images/remove-usage-rule-cdceba36d48db7f5becae2b1f639d796.png" width="945" height="353" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="625-deleting-a-server-certificate">6.2.5. Deleting a Server Certificate<a href="#625-deleting-a-server-certificate" class="hash-link" aria-label="Direct link to 6.2.5. Deleting a Server Certificate" title="Direct link to 6.2.5. Deleting a Server Certificate" translate="no">​</a></h3>
+<p>To delete a server certificate you can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Access the server certificates, to do this, on the main page select the Manage Server Certificates link from the Server Certificate Related Tasks group or select the Server Certificates link from the left menu.</p>
+</li>
+<li class="">
+<p>In the list of server certificates, click on the Cross to the left of the certificate to be deleted.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="63earchive">6.3.EArchive<a href="#63earchive" class="hash-link" aria-label="Direct link to 6.3.EArchive" title="Direct link to 6.3.EArchive" translate="no">​</a></h2>
+<p>SealSign DSR allows you to configure the functional parameters of the secure document repository. To configure these parameters, the administrator can perform the following steps:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="631-search-in-the-earchive-dsr-repository">6.3.1. Search in the EArchive (DSR) Repository<a href="#631-search-in-the-earchive-dsr-repository" class="hash-link" aria-label="Direct link to 6.3.1. Search in the EArchive (DSR) Repository" title="Direct link to 6.3.1. Search in the EArchive (DSR) Repository" translate="no">​</a></h3>
+<p>To facilitate the administration of DSR and the management of its content, a specific page has been developed within the administration for the search of documentary objects inserted in DSR.</p>
+<p>To perform a search in DSR:</p>
+<ol>
+<li class="">
+<p>Open the SealSign administration website.</p>
+</li>
+<li class="">
+<p>On the main page select the Repository Search link from the Secure Document Repository Related Tasks group or select the Repository Search link from the Secure Repository section of the left menu.</p>
+</li>
+<li class="">
+<p>The following filters can be configured on the search page:</p>
+<p>a. Start Date, indicates that only document objects inserted with an insertion date greater than or equal to the indicated start date will appear in the search.</p>
+<p>b. End Date, indicates that only document objects inserted with an insertion date less than or equal to the indicated end date will appear in the search.</p>
+<p>c. File Name, indicates that only document objects inserted with a name equal to the name indicated will appear in the search. Wildcards can be used to facilitate the search. The wildcard character is %.</p>
+<p>d. File Path, indicates that only inserted document objects whose insertion Path is equal to the indicated Path will appear in the search. Wildcards can be used to facilitate the search. The wildcard character is %.</p>
+<p>e. File Urn, indicates that only inserted document objects whose insertion Urn is equal to the indicated Urn will appear in the search. Wildcards can be used to facilitate the search. The wildcard character is %. The Urn is the global identifier used by DSR for the inserted document objects.</p>
+<p>f. Search Criteria, which indicates a search statement similar to those used in SQL WHERE clauses. The data on which a search criteria can be set are:
+i. Name ii. Path iii. Uri iv. Owner v. InsertionDate vi. LastAccessDate vii. LastSignedDate viii. UrlSource ix. WebPreview x. MimeType</p>
+</li>
+</ol>
+<p>An example of search criteria would be:</p>
+<p>&quot;NAME LIKE &#x27;%&#x27; OR PATH LIKE &#x27;%&#x27;&quot;</p>
+<p>If there is metadata associated with the repository, this can be used in the search criteria.</p>
+<p>Example:</p>
+<p>&quot;NAME LIKE &#x27;%&#x27; AND METADATA1 LIKE &#x27;%&#x27;&quot;</p>
+<p>Click on the Search button and the search results will appear according to the filters provided. The content of the document can be accessed by clicking on the link associated with it.</p>
+<h1>7. Configuration of Local Time-Stamping Authority</h1>
+<p>SealSign DSS allows either using a local authority to create time stamps for electronic signatures or using external time stamping providers. To configure the SealSign local time-stamping authority, the following steps must be performed:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration web.</p>
+</li>
+<li class="">
+<p>On the main page select the Configure Local Time Stamping Authority link from the Time Stamping Related Tasks group or select the Local Authority link from the left menu.</p>
+</li>
+<li class="">
+<p>On the Configure local time stamping authority page the following values can be configured:</p>
+</li>
+<li class="">
+<p>The Time Stamping Server Certificate field allows you to select the certificate that will be used to sign the time stamps issued by the local authority. This server certificate must have been included in the list of server certificates as explained in the Server Certificate Management section.</p>
+</li>
+<li class="">
+<p>The Store Issued Digital Evidence field allows configuring whether the server should keep a copy of the issued time stamps or not in case a later analysis of the time stamps is needed.</p>
+</li>
+<li class="">
+<p>Finally, click on the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71-time-stamping-server-management">7.1. Time Stamping Server Management<a href="#71-time-stamping-server-management" class="hash-link" aria-label="Direct link to 7.1. Time Stamping Server Management" title="Direct link to 7.1. Time Stamping Server Management" translate="no">​</a></h2>
+<p>In those scenarios where external time-stamping authorities are to be used, it will be necessary to add the appropriate connection parameters in the SealSign DSS configuration.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="711-viewing-the-time-stamping-server-list">7.1.1. Viewing the Time Stamping Server List<a href="#711-viewing-the-time-stamping-server-list" class="hash-link" aria-label="Direct link to 7.1.1. Viewing the Time Stamping Server List" title="Direct link to 7.1.1. Viewing the Time Stamping Server List" translate="no">​</a></h3>
+<p>To view the list of available time-stamping servers, you can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Open the SealSign DSS administration web site.</p>
+</li>
+<li class="">
+<p>On the main page select the Manage connections to sealing authorities link from the Time Stamping Related Tasks group or select the TSA Servers link from the left menu.</p>
+</li>
+<li class="">
+<p>The list of all time-stamping servers that can be used in the signing process will be displayed.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="712-adding-a-new-time-stamping-server">7.1.2. Adding a New Time Stamping Server<a href="#712-adding-a-new-time-stamping-server" class="hash-link" aria-label="Direct link to 7.1.2. Adding a New Time Stamping Server" title="Direct link to 7.1.2. Adding a New Time Stamping Server" translate="no">​</a></h3>
+<p>To add a new time stamping server to the list, the following steps can be performed:</p>
+<ol>
+<li class="">On the main page of the Administration web site select the Add a connection to a time stamping authority link from the Time Stamping Related Tasks group.</li>
+</ol>
+<p>On the TSA Servers page configure the following values:</p>
+<p>a. The Name field indicates the name you want to give to the newly configured TSA server.</p>
+<p>b. The URL field should indicate the URL address of the time stamping server.</p>
+<p>c. The Include Server Certificates in Response value will specify whether the server will include the timestamp generation certificates within the response issued.</p>
+<p>d. The Include a Seed (“Nonce”) value in the Request shall specify whether the SealSign server shall add a different seed within each request to the TSA server.</p>
+<p>e. If the SealSign server requires authentication on HTTP requests, the Use HTTP Authentication field shall be enabled and the appropriate values shall be set in the User Account and Password fields.</p>
+<ol start="2">
+<li class="">By clicking the Insert button the new time-stamping server configuration will be added to SealSign.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="713-modifying-the-configuration-of-a-time-stamping-server">7.1.3. Modifying the Configuration of a Time Stamping Server<a href="#713-modifying-the-configuration-of-a-time-stamping-server" class="hash-link" aria-label="Direct link to 7.1.3. Modifying the Configuration of a Time Stamping Server" title="Direct link to 7.1.3. Modifying the Configuration of a Time Stamping Server" translate="no">​</a></h3>
+<p>To modify the configuration of a time-stamping server the following steps can be performed:</p>
+<p>link from the list of time-stamping server certificates consulted in the previous section.</p>
+<ol>
+<li class="">
+<p>Access the list of time-stamping servers by clicking on the Manage connections to sealing authorities link in the Time Stamping Related Tasks group on the main page or by selecting the TSA Servers link from the left-hand menu.</p>
+</li>
+<li class="">
+<p>In the list of time-stamping servers select the link of the server to be modified.</p>
+</li>
+<li class="">
+<p>Make the corresponding modifications.</p>
+</li>
+<li class="">
+<p>Click the Save button to update the server configuration.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="714-deleting-a-time-stamping-server">7.1.4. Deleting a Time Stamping Server<a href="#714-deleting-a-time-stamping-server" class="hash-link" aria-label="Direct link to 7.1.4. Deleting a Time Stamping Server" title="Direct link to 7.1.4. Deleting a Time Stamping Server" translate="no">​</a></h3>
+<p>To remove a time-stamping server you can perform the following steps:</p>
+<ol>
+<li class="">
+<p>Access the list of time stamping servers, to do so, on the main page the Manage connections to sealing authorities link from the Time Stamping Related Tasks group or select the TSA Servers link from the left menu.</p>
+</li>
+<li class="">
+<p>In the list of TSA servers, click on the Cross to the left of the server to be removed.</p>
+</li>
+</ol>
+<h1>8. Audit</h1>
+<p>SealSign DSS has an auditing system that will allow the administrator to know what operations are performed in the system, who performs them and the result of these operations. This section describes how to configure and view the SealSign DSS audit.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="81-audit-configuration">8.1. Audit Configuration<a href="#81-audit-configuration" class="hash-link" aria-label="Direct link to 8.1. Audit Configuration" title="Direct link to 8.1. Audit Configuration" translate="no">​</a></h2>
+<p>To configure the SealSign DSS audit service, the following steps must be performed:</p>
+<ol>
+<li class="">
+<p>On the main page, select the Configure Audit Parameters link from the Audit Related Tasks group or select the Audit Configuration link from the menu on the left.</p>
+</li>
+<li class="">
+<p>Select the appropriate options depending on whether you want the audit to include responses with error status or with success status.</p>
+</li>
+<li class="">
+<p>Click the Save button.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="82viewing-the-audit-log">8.2.Viewing the Audit Log<a href="#82viewing-the-audit-log" class="hash-link" aria-label="Direct link to 8.2.Viewing the Audit Log" title="Direct link to 8.2.Viewing the Audit Log" translate="no">​</a></h2>
+<p>To view the contents of the audit log, the following steps must be performed:</p>
+<ol>
+<li class="">
+<p>On the main page select the View Audit Log link from the Audit Related Tasks group or select the Audit Log link from the left menu.</p>
+</li>
+<li class="">
+<p>A table will appear with the audit records included in the system on the current date.</p>
+</li>
+<li class="">
+<p>At the top of the page there are some filtering fields with which the administrator can refine the search result. To do so, the administrator must enter/select the appropriate values in the filter fields and press the Search button.</p>
+</li>
+<li class="">
+<p>By clicking on the arrows at the bottom of the result table, you can browse through the result pages of the query.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="83deleting-audit-log-contents">8.3.Deleting Audit Log Contents<a href="#83deleting-audit-log-contents" class="hash-link" aria-label="Direct link to 8.3.Deleting Audit Log Contents" title="Direct link to 8.3.Deleting Audit Log Contents" translate="no">​</a></h2>
+<p>To delete the contents of all audit log entries the following steps can be taken:</p>
+<ol>
+<li class="">
+<p>On the main page select the View Audit Log link from the Audit-Related Tasks group or select the Audit Log link from the left menu.</p>
+</li>
+<li class="">
+<p>Click the Delete all audit log entries link located below the query result.</p>
+</li>
+</ol>
+<h1>9. Troubleshooting</h1>
+<p>During the SealSign installation process, a specific log, called SealSign DSS, will be created in the event viewer of each server. If any error occurs in the server&#x27;s operation, in addition to being reported in the product&#x27;s audit, events with the complete description of the error will be included in the log created for this purpose.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/factumid/sealsign-docs/tree/main/docs/dss/administration-guide.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/dss/installation-guide"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">DSS Installation Guide</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/bss/installation-guide"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">BSS Installation Guide</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#21-administration-tool" class="table-of-contents__link toc-highlight">2.1. Administration Tool</a></li><li><a href="#22corporate-proxy-parameters-configuration" class="table-of-contents__link toc-highlight">2.2.Corporate Proxy Parameters Configuration</a></li><li><a href="#23-manage-pkcs11-providers" class="table-of-contents__link toc-highlight">2.3. Manage PKcs#11 Providers</a><ul><li><a href="#231-pkcs11-configured-pkcs11-suppliers-query" class="table-of-contents__link toc-highlight">2.3.1. Pkcs#11 Configured Pkcs#11 Suppliers Query</a></li><li><a href="#232-add-a-new-supplier-pkcs11" class="table-of-contents__link toc-highlight">2.3.2. Add A New Supplier Pkcs#11</a></li><li><a href="#233-edit-pkcs11-supplier" class="table-of-contents__link toc-highlight">2.3.3. Edit Pkcs#11 Supplier</a></li><li><a href="#234-remove-pkcs11-supplier" class="table-of-contents__link toc-highlight">2.3.4. Remove Pkcs#11 Supplier</a></li></ul></li><li><a href="#211-manage-entities" class="table-of-contents__link toc-highlight">2.11. Manage Entities</a></li><li><a href="#31configuration-of-electronic-signature-verification-parameters" class="table-of-contents__link toc-highlight">3.1.Configuration Of Electronic Signature Verification Parameters</a></li><li><a href="#41-configuration-of-biometric-signature-verification-parameters" class="table-of-contents__link toc-highlight">4.1. Configuration of Biometric Signature Verification Parameters</a></li><li><a href="#42-backup-electronic-signature-configuration" class="table-of-contents__link toc-highlight">4.2. Backup Electronic Signature Configuration</a></li><li><a href="#43biometric-data-encryption-settings" class="table-of-contents__link toc-highlight">4.3.Biometric Data Encryption Settings</a></li><li><a href="#44custom-configuration" class="table-of-contents__link toc-highlight">4.4.Custom Configuration</a><ul><li><a href="#441-signature-parameters-for-entities" class="table-of-contents__link toc-highlight">4.4.1 Signature parameters for Entities</a></li><li><a href="#442-creation-of-configuration-entity" class="table-of-contents__link toc-highlight">4.4.2. Creation of Configuration Entity</a></li><li><a href="#443-default-configuration" class="table-of-contents__link toc-highlight">4.4.3. Default configuration</a></li></ul></li><li><a href="#51configuration-of-the-backup-electronic-signature" class="table-of-contents__link toc-highlight">5.1.Configuration of the Backup Electronic Signature</a></li><li><a href="#52metadata-encryption-configuration" class="table-of-contents__link toc-highlight">5.2.Metadata Encryption Configuration</a></li><li><a href="#53custom-settings" class="table-of-contents__link toc-highlight">5.3.Custom Settings</a><ul><li><a href="#531-signature-parameters-for-entities" class="table-of-contents__link toc-highlight">5.3.1. Signature parameters for Entities</a></li><li><a href="#532-creation-of-configuration-entity" class="table-of-contents__link toc-highlight">5.3.2. Creation of Configuration Entity</a></li><li><a href="#533-default-configuration" class="table-of-contents__link toc-highlight">5.3.3. Default configuration</a></li></ul></li><li><a href="#61server-certificates-management" class="table-of-contents__link toc-highlight">6.1.Server Certificates Management</a><ul><li><a href="#611-viewing-the-list-of-server-certificates" class="table-of-contents__link toc-highlight">6.1.1. Viewing the List of Server Certificates</a></li><li><a href="#612-adding-a-new-server-certificate" class="table-of-contents__link toc-highlight">6.1.2. Adding a New Server Certificate</a></li><li><a href="#613-add-a-reference-to-an-external-server-certificate" class="table-of-contents__link toc-highlight">6.1.3. Add a Reference to an External Server Certificate</a></li><li><a href="#614-sealsign-certificates-expiration-service-smtp-configuration" class="table-of-contents__link toc-highlight">6.1.4. Sealsign Certificates Expiration Service. Smtp Configuration</a></li><li><a href="#615-modifying-a-server-certificate" class="table-of-contents__link toc-highlight">6.1.5. Modifying a Server Certificate</a></li><li><a href="#616-viewing-the-list-of-server-certificates" class="table-of-contents__link toc-highlight">6.1.6. Viewing the List of Server Certificates</a></li><li><a href="#617-adding-a-new-server-certificate" class="table-of-contents__link toc-highlight">6.1.7. Adding a New Server Certificate</a></li><li><a href="#618-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="table-of-contents__link toc-highlight">6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor</a></li></ul></li><li><a href="#62usage-rules" class="table-of-contents__link toc-highlight">6.2.Usage Rules</a><ul><li><a href="#621-viewing-the-list-of-usage-rules" class="table-of-contents__link toc-highlight">6.2.1. Viewing the List of Usage Rules</a></li><li><a href="#622-adding-a-new-usage-rule" class="table-of-contents__link toc-highlight">6.2.2. Adding a New Usage Rule</a></li><li><a href="#623-modify-the-configuration-of-a-usage-rule" class="table-of-contents__link toc-highlight">6.2.3. Modify the Configuration of a Usage Rule</a></li><li><a href="#624-deleting-a-usage-rule" class="table-of-contents__link toc-highlight">6.2.4. Deleting a Usage Rule</a></li><li><a href="#625-deleting-a-server-certificate" class="table-of-contents__link toc-highlight">6.2.5. Deleting a Server Certificate</a></li></ul></li><li><a href="#63earchive" class="table-of-contents__link toc-highlight">6.3.EArchive</a><ul><li><a href="#631-search-in-the-earchive-dsr-repository" class="table-of-contents__link toc-highlight">6.3.1. Search in the EArchive (DSR) Repository</a></li></ul></li><li><a href="#71-time-stamping-server-management" class="table-of-contents__link toc-highlight">7.1. Time Stamping Server Management</a><ul><li><a href="#711-viewing-the-time-stamping-server-list" class="table-of-contents__link toc-highlight">7.1.1. Viewing the Time Stamping Server List</a></li><li><a href="#712-adding-a-new-time-stamping-server" class="table-of-contents__link toc-highlight">7.1.2. Adding a New Time Stamping Server</a></li><li><a href="#713-modifying-the-configuration-of-a-time-stamping-server" class="table-of-contents__link toc-highlight">7.1.3. Modifying the Configuration of a Time Stamping Server</a></li><li><a href="#714-deleting-a-time-stamping-server" class="table-of-contents__link toc-highlight">7.1.4. Deleting a Time Stamping Server</a></li></ul></li><li><a href="#81-audit-configuration" class="table-of-contents__link toc-highlight">8.1. Audit Configuration</a></li><li><a href="#82viewing-the-audit-log" class="table-of-contents__link toc-highlight">8.2.Viewing the Audit Log</a></li><li><a href="#83deleting-audit-log-contents" class="table-of-contents__link toc-highlight">8.3.Deleting Audit Log Contents</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

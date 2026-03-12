@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="es-ES" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-dss/installation-guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">DSS Guía de Instalación | SealSign Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.sealsign.es/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://docs.sealsign.es/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://docs.sealsign.es/es/dss/installation-guide"><meta data-rh="true" property="og:locale" content="es_ES"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="DSS Guía de Instalación | SealSign Docs"><meta data-rh="true" name="description" content="SealSign DSS (Digital Signature Services) es un producto dirigido a facilitar la integración de la firma electrónica"><meta data-rh="true" property="og:description" content="SealSign DSS (Digital Signature Services) es un producto dirigido a facilitar la integración de la firma electrónica"><link data-rh="true" rel="canonical" href="https://docs.sealsign.es/es/dss/installation-guide"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/installation-guide" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/es/dss/installation-guide" hreflang="es-ES"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/installation-guide" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSS Guía de Instalación","item":"https://docs.sealsign.es/es/dss/installation-guide"}]}</script><link rel="stylesheet" href="/es/assets/css/styles.6c1a53d7.css">
+<script src="/es/assets/js/runtime~main.f1a7feb7.js" defer="defer"></script>
+<script src="/es/assets/js/main.215d9b1d.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Saltar al contenido principal"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Saltar al contenido principal</a></div><nav aria-label="Principal" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Alternar barra lateral" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/es/"><div class="navbar__logo"><img src="/es/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/es/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">SealSign</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Español</a><ul class="dropdown__menu"><li><a href="/dss/installation-guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en-US">English</a></li><li><a href="/es/dss/installation-guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="es-ES">Español</a></li></ul></div><a href="https://github.com/factumid/sealsign-docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Cambiar entre modo oscuro y claro (actualmente system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Volver al principio" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Barra lateral de Documentos" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/es/"><span title="Bienvenido a la Documentación de SealSign" class="linkLabel_WmDU">Bienvenido a la Documentación de SealSign</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/es/license/"><span title="On Premise" class="categoryLinkLabel_W154">On Premise</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/license/"><span title="Licencias" class="linkLabel_WmDU">Licencias</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/monitor/"><span title="Guía de monitorización de SealSign (incluye DSS, BSS, CKC)" class="linkLabel_WmDU">Guía de monitorización de SealSign (incluye DSS, BSS, CKC)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/clickonce/"><span title="SealSign Signature Client (ClickOnce)" class="linkLabel_WmDU">SealSign Signature Client (ClickOnce)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/es/dss/installation-guide"><span title="DSS Guía de Instalación" class="linkLabel_WmDU">DSS Guía de Instalación</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/dss/administration-guide"><span title="Guía de Administración" class="linkLabel_WmDU">Guía de Administración</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/bss/installation-guide"><span title="BSS Guía de Instalación" class="linkLabel_WmDU">BSS Guía de Instalación</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/ckc/central-key-control"><span title="Central Key Control" class="linkLabel_WmDU">Central Key Control</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/changelog/"><span title="Changelog" class="linkLabel_WmDU">Changelog</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/es/cloud/ips"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/cloud/ips"><span title="ips" class="linkLabel_WmDU">ips</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/cloud/biometric"><span title="Firma Biométrica" class="linkLabel_WmDU">Firma Biométrica</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Rastro de navegación"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Página de Inicio" class="breadcrumbs__link" href="/es/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">On Premise</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">DSS Guía de Instalación</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">En esta página</button></div><div class="theme-doc-markdown markdown"><header><h1>DSS Guía de Instalación</h1></header>
+<h1>1. Introducción</h1>
+<p>SealSign DSS (Digital Signature Services) es un producto dirigido a facilitar la integración de la firma electrónica
+en las aplicaciones corporativas. El producto está compuesto por una serie de módulos, cuyos sistemas de
+instalación están basados en la tecnología MSI 3.0.</p>
+<p>La instalación del módulo SealSign DSS va seguido de la instalación de otros módulos, un módulo o varios de
+ellos dependiendo de las necesidades, siendo el módulo de DSS Service el único cuya instalación es obligatoria,
+ya que es la herramienta que utilizan todos los demás.</p>
+<p><img decoding="async" loading="lazy" alt="Image-01" src="/es/assets/images/image-01-b661697b54c57a9a6342ac67c3d0ff6d.png" width="858" height="210" class="img_ev3q"></p>
+<center><i>Image 01: Módulos de SealSign</i></center>
+<p>A continuación, se muestra un resumen con las características de cada uno.</p>
+<ul>
+<li class="">
+<p><strong>Módulo DSS Web (administración y configuración)</strong>: Este módulo es la herramienta web de
+configuración y administración de la solución SealSign DSS, que se utiliza para gestionar los demás
+módulos (excepto el módulo Revoke). Por tanto, su instalación es imprescindible en caso de querer
+instalar cualquier otro módulo.</p>
+</li>
+<li class="">
+<p><strong>Módulo DSS Service (firma electrónica)</strong>: Este módulo incorpora el motor de firma electrónica y los
+interfaces SOA del servicio web necesario para acceder a su funcionalidad. Su instalación es
+obligatoria.</p>
+</li>
+<li class="">
+<p><strong>Módulo Revoke</strong>: Este módulo es la autoridad de validación de certificados, funciona como un
+centralizador de validaciones de certificados. Es totalmente independiente de los demás y además
+tiene una consola propia de administración.</p>
+</li>
+<li class="">
+<p><strong>Módulo DSS TSA (emisión de sellos de tiempo)</strong>: Este módulo incorpora la autoridad de sellado de
+tiempo, y se debe instalar solamente si se van a emitir sellos de tiempo. El módulo TSA hace uso del
+módulo DSS Service para su configuración y del módulo DSS Web para su administración.</p>
+</li>
+<li class="">
+<p><strong>Módulo DSS OTP (Firma One Time Password)</strong>: Es el módulo de SealSign OTPSS, incorpora el motor
+de firma One Time Password. Utiliza el módulo DSS Service para efectuar sus tareas, basándose en
+servicios web y en el módulo DSS Web para su administración.</p>
+</li>
+</ul>
+<p>Debido a la naturaleza del producto su instalación solo es posible en sistemas operativos Microsoft Windows
+y antes de dicha instalación hay que realizar unos pasos previos fundamentales, que no se pueden obviar.</p>
+<p>En esta guía se van a mostrar tanto dichos pasos previos como la instalación propiamente dicha de los módulos
+DSS, así como su configuración. La instalación y configuración de los módulos de SealSign que no son DSS
+(CKC, BSS) se contempla en otras guías.</p>
+<p>Tanto los textos como las imágenes utilizadas en esta guía están basados en un sistema operativo Microsoft
+Windows 2012, aunque cualquier administrador de sistemas podrá realizar la instalación del producto en otras
+versiones.</p>
+<h1>2. Requisitos de instalación de SealSign DSS</h1>
+<p>SealSign DSS es una solución servidora que publica su funcionalidad a través de un interfaz SOA. Dicha solución
+está diseñada para entornos corporativos que deben cumplir los siguientes requisitos:</p>
+<ul>
+<li class="">
+<p><strong>Sistema operativo Microsoft Windows</strong>. Aunque en escenarios específicos SealSign DSS se puede
+instalar en sistemas operativos cliente, se recomienda instalar el producto sobre uno de los siguientes
+sistemas operativos servidor: WS 2008, WS 2008 R2, WS 2012, WS 2012 R2 y W2016.</p>
+</li>
+<li class="">
+<p><strong>.NET Framework 4.6.2</strong></p>
+</li>
+<li class="">
+<p><strong>IIS 7</strong>. Internet Information Server.</p>
+</li>
+<li class="">
+<p><strong>Gestor de base de datos (SQL Server, Oracle o PostGreSQL)</strong>: Los datos de configuración, auditoría,
+caché, etcétera de SealSign DSS se almacenan en una base de datos. Aunque en determinados
+escenarios será posible utilizar versiones gratuitas de estas bases de datos, se recomienda utilizar las
+versiones completas de SQL Server, Oracle 11g R2 y PostGreSQL 9.6 o superior.</p>
+</li>
+</ul>
+<p>La arquitectura de SealSign DSS descansa sobre los servicios de aplicaciones de la plataforma Microsoft, por
+lo que es necesario añadir el rol de servidor de aplicaciones y el rol de servidor web (IIS) a través de la
+herramienta de gestión del servidor. Los siguientes puntos detallan qué opciones deben estar configuradas en
+estos servidores.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-instalación-de-roles-de-sistema-operativo">2.1. Instalación de roles de Sistema Operativo<a href="#21-instalación-de-roles-de-sistema-operativo" class="hash-link" aria-label="Enlace directo al 2.1. Instalación de roles de Sistema Operativo" title="Enlace directo al 2.1. Instalación de roles de Sistema Operativo" translate="no">​</a></h2>
+<p>SealSign DSS necesita la instalación de unos roles de sistema operativo. Para poder instalarlos es necesario
+ejecutar el script InstallPrerequisites.ps1 que se encuentra ubicado en la ruta siguiente:</p>
+<p><strong>\\SealSign_Engine/server/PrequisitesPowerShellScripts/InstallPrerequisites.ps1</strong></p>
+<p>A continuación, se muestran las listas de roles y características:</p>
+<ul>
+<li class="">FileAndStorage-Services</li>
+<li class="">Storage-Services</li>
+<li class="">Web-Server</li>
+<li class="">Web-WebServer</li>
+<li class="">Web-Common-Http</li>
+<li class="">Web-Default-Doc</li>
+<li class="">Web-Dir-Browsing</li>
+<li class="">Web-Http-Errors</li>
+<li class="">Web-Static-Content</li>
+<li class="">Web-Http-Redirect</li>
+<li class="">Web-Health</li>
+<li class="">Web-Http-Logging</li>
+<li class="">Web-Log-Libraries</li>
+<li class="">Web-Request-Monitor</li>
+<li class="">Web-Performance</li>
+<li class="">Web-Stat-Compression</li>
+<li class="">Web-Dyn-Compression</li>
+<li class="">Web-Security</li>
+<li class="">Web-Filtering</li>
+<li class="">Web-Basic-Auth</li>
+<li class="">Web-Client-Auth</li>
+<li class="">Web-Digest-Auth</li>
+<li class="">Web-Cert-Auth</li>
+<li class="">Web-IP-Security</li>
+<li class="">Web-Url-Auth</li>
+<li class="">Web-Windows-Auth</li>
+<li class="">Web-App-Dev</li>
+<li class="">Web-Net-Ext</li>
+<li class="">Web-Net-Ext45</li>
+<li class="">Web-Asp-Net45</li>
+<li class="">Web-ISAPI-Ext</li>
+<li class="">Web-ISAPI-Filter</li>
+<li class="">Web-Mgmt-Tools</li>
+<li class="">Web-Mgmt-Console</li>
+<li class="">Web-Mgmt-Compat</li>
+<li class="">Web-Metabase</li>
+<li class="">Web-Scripting-Tools</li>
+<li class="">Web-Mgmt-Service</li>
+<li class="">NET-Framework-Features</li>
+<li class="">NET-Framework-Core</li>
+<li class="">NET-HTTP-Activation</li>
+<li class="">NET-Framework-45-Features</li>
+<li class="">NET-Framework-45-Core</li>
+<li class="">NET-Framework-45-ASPNET</li>
+<li class="">NET-WCF-Services45</li>
+<li class="">NET-WCF-HTTP-Activation45</li>
+<li class="">NET-WCF-TCP-PortSharing45</li>
+<li class="">PowerShellRoot</li>
+<li class="">PowerShell</li>
+<li class="">PowerShell-V2</li>
+<li class="">PowerShell-ISE</li>
+<li class="">WAS</li>
+<li class="">WAS-Process-Model</li>
+<li class="">WAS-NET-Environment</li>
+<li class="">WAS-Config-APIs</li>
+<li class="">WoW64-Support</li>
+</ul>
+<h1>3. Configuración previa del entorno</h1>
+<p>Una vez que se dispone de los elementos indicados en el punto anterior, es necesario realizar la configuración
+de estos. La instalación del producto final depende fundamentalmente de que se realicen correctamente los
+siguientes pasos.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-configuración-del-application-pool-de-iis-7-o-iis-75">3.1. Configuración del Application Pool de IIS 7 o IIS 7.5<a href="#31-configuración-del-application-pool-de-iis-7-o-iis-75" class="hash-link" aria-label="Enlace directo al 3.1. Configuración del Application Pool de IIS 7 o IIS 7.5" title="Enlace directo al 3.1. Configuración del Application Pool de IIS 7 o IIS 7.5" translate="no">​</a></h2>
+<p>En este artículo se muestran los pasos a realizar para crear un sitio web con IIS 7, en caso de que no se
+disponga de uno, o de que se quiera crear uno expresamente para SealSign DSS.</p>
+<p>Se puede crear un nuevo Application Pool exclusivamente para el producto, aunque también es posible utilizar
+uno existente siempre y cuando disponga de las configuraciones que se van a mostrar en este apartado.</p>
+<p>A partir de la versión IIS 7.0 los <em>Application Pools</em> por defecto se ejecutan con cuentas virtuales y se recomienda
+mantener dicha configuración, salvo que sea estrictamente necesario utilizar una cuenta ya existente. El uso de
+cuentas virtuales es un mecanismo de seguridad, ya que dichas cuentas tienen permisos limitados. En este caso
+la cuenta virtual que se va a utilizar es la que viene por defecto: <em>ApplicationPoolIdentity</em>.</p>
+<p>La creación de un <em>Application Pool</em> de IIS se hace a partir de la consola de administración de IIS, el <em>IIS Manager</em>
+y concretamente desde el menú contextual del apartado <em>Application Pool</em>. El nombre del <em>Application Pool</em> es
+indiferente (<em>SealSignAppPool</em> en este caso), pero sí debe ejecutarse con la versión <em>4.0.30319</em> de .NET, además
+es recomendable que el modo de integración elegido sea <em>Integrated</em> (véase imagen siguiente).</p>
+<p><img decoding="async" loading="lazy" alt="Image-02" src="/es/assets/images/image-02-e5d40a692469808a76832ae9e2bdcf71.png" width="766" height="434" class="img_ev3q"></p>
+<center><i>Image 02: Creación de un nuevo Application Pool</i></center>
+<p>Una vez que se dispone de un Application Pool es necesario configurarlo y modificar ciertos valores, para ello
+hay que acceder a las opciones avanzadas del Application Pool a través del menú contextual:</p>
+<ul>
+<li class="">
+<p>En la opción Identity se establecerá la cuenta que se va a utilizar para ejecutar el Application Pool, la
+cuenta virtual viene reflejada con el nombre ApplicationPoolIdentity y es la recomendable, aunque tal
+y como se ha mencionado es posible elegir otra de las disponibles.</p>
+</li>
+<li class="">
+<p>En la opción Load User Profile hay que establecer obligatoriamente el valor a True. Esto es debido a
+que el producto DSS realiza operaciones que, por la propia naturaleza de Microsoft Windows, se
+guardan en un almacén de certificados en el propio registro de Microsoft Windows. Para poder
+acceder a dicho almacén de certificados el Application Pool debe ser capaz de cargar el perfil de
+usuario.</p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Image-03" src="/es/assets/images/image-03-a98d803c2d7ad5c184b4785f3d45a934.png" width="866" height="528" class="img_ev3q"></p>
+<center><i>Image 03: Opciones avanzadas del Application Pool creado</i></center>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-creación-de-la-base-de-datos">3.2. Creación de la base de datos<a href="#32-creación-de-la-base-de-datos" class="hash-link" aria-label="Enlace directo al 3.2. Creación de la base de datos" title="Enlace directo al 3.2. Creación de la base de datos" translate="no">​</a></h2>
+<p>Como ya se ha mencionado es necesaria la utilización de una base de datos para almacenar diversa información
+que precisa el producto. En este apartado se detallan las configuraciones necesarias para las bases de datos
+SQL Server, Oracle y PostGreSQL.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="321-sql-server">3.2.1. SQL Server<a href="#321-sql-server" class="hash-link" aria-label="Enlace directo al 3.2.1. SQL Server" title="Enlace directo al 3.2.1. SQL Server" translate="no">​</a></h3>
+<p>En caso de utilizar SQL Server es necesario crear una nueva base de datos para SealSign DSS. El nombre de
+dicha base de datos es indiferente (SealSignDSS en este caso), y se utilizará más adelante en las cadenas de
+conexión. Una vez creada dicha base de datos es necesario realizar las siguientes acciones:</p>
+<ul>
+<li class=""><strong>Ejecutar el script de creación de tablas</strong>. En el paquete de instalación del producto se incluye un fichero
+sql para SQL Server. Este archivo hay que ejecutarlo sobre la base de datos creada, y se generarán en
+la misma todos los elementos que el producto necesita para su correcto funcionamiento.</li>
+</ul>
+<p><strong>\SealSign_Engine\server\Scripts\SQL Server\SealSignDSS_vX.X_MSSQL.sql</strong>
+<img decoding="async" loading="lazy" alt="Image-04" src="/es/assets/images/image-04-a093542d35993ec70117d24d72d61121.png" width="875" height="876" class="img_ev3q"></p>
+<center><i>Image 03: Ejecución del fichero sql en la base de datos creada</i></center>
+<ul>
+<li class=""><strong>Configurar los permisos de acceso a la base de datos</strong>. En el caso de utilizar seguridad integrada para
+acceder a la base de datos, es necesario proporcionar permisos de escritura (<em>datawriter</em>) y lectura
+(<em>datareader</em>) al login del usuario con el que se ejecutará el <em>Application Pool</em> de IIS que contiene las
+aplicaciones. En la siguiente guía de Microsoft se detalla cómo realizar esta configuración. Si no se
+utiliza seguridad integrada, habrá que disponer igualmente de un usuario con los permisos
+mencionados.</li>
+</ul>
+<p>Tal y como se ha mencionado anteriormente, es recomendable utilizar una cuenta virtual para ejecutar el
+<em>Application Pool</em> de IIS (<em>ApplicationPoolIdentity</em> en este caso), y por tanto se recomienda utilizar esta misma
+cuenta para acceder a la base de datos. Esta cuenta según la nomenclatura utilizada internamente por Microsoft
+es <em>IIS APPPOOL</em>. De ahí que el nombre del login sea <em>IIS APPPOOL\SealSignAppPool</em>.</p>
+<p><img decoding="async" loading="lazy" alt="Image-05" src="/es/assets/images/image-05-ccc49f905cad2333c674ff075f986c62.png" width="773" height="695" class="img_ev3q"></p>
+<center><i>Image 05: Configuración del Login name</i></center>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="322-oracle">3.2.2. Oracle<a href="#322-oracle" class="hash-link" aria-label="Enlace directo al 3.2.2. Oracle" title="Enlace directo al 3.2.2. Oracle" translate="no">​</a></h3>
+<p>En caso de utilizar Oracle es necesario crear un nuevo tablespace para SealSign DSS, al igual que con SQL
+Server el nombre de dicho tablespace es indiferente. También es necesario disponer de una cuenta con
+permisos de escritura y lectura sobre las tablas del tablespace.</p>
+<p>Una vez creado dicho tablespace es necesario realizar las siguientes acciones:</p>
+<ul>
+<li class="">
+<p>Instalar el componente Oracle Data Access Components (ODAC) para Microsoft Windows,
+incluyendo el módulo Oracle Data Provider.</p>
+</li>
+<li class="">
+<p>Dar permisos de ejecución sobre el paquete de criptografía dbms_crypto de Oracle para el usuario del
+tablespace.</p>
+</li>
+<li class="">
+<p>Ejecutar el script de creación de tablas. En el paquete de instalación del producto se incluye un fichero
+sql para Oracle. Este archivo hay que ejecutarlo sobre el tablespace creado, y se generarán en el mismo
+todos los elementos que el producto necesita para su correcto funcionamiento.</p>
+</li>
+</ul>
+<p><strong>\SealSign_Engine\server\Scripts\ORACLE\SealSignDSS_vX.X_ORACLE.sql</strong></p>
+<p>Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
+SealSign DSS.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="323-postgresql">3.2.3. PostGreSQL<a href="#323-postgresql" class="hash-link" aria-label="Enlace directo al 3.2.3. PostGreSQL" title="Enlace directo al 3.2.3. PostGreSQL" translate="no">​</a></h3>
+<p>En caso de utilizar PostGreSQL es necesario crear una nueva BBDD para SealSign DSS, al igual que con SQL
+Server el nombre de dicho BBDD es indiferente. También es necesario disponer de una cuenta con permisos
+de escritura y lectura sobre las tablas de la BBDD.</p>
+<p>Una vez creado dicha BBDD es necesario ejecutar el script de creación de tablas. En el paquete de instalación
+del producto se incluye un fichero sql para PostGreSQL. Este archivo hay que ejecutarlo sobre la BBDD creada,
+y se generarán en el mismo todos los elementos que el producto necesita para su correcto funcionamiento.</p>
+<p><strong>\SealSign_Engine\server\Scripts\PostgreSQL\SealSignDSS_vX.X_PostgreSQL.sql</strong></p>
+<p>Es aconsejable cambiar la zona horaria de la Base de Datos de SealSign a UTC. Esto se puede hacer mediante esta query:</p>
+<p><code>SET TIME ZONE &#x27;Etc/UTC&#x27;;</code></p>
+<p>Podemos consultar que el valor con esta query:</p>
+<p><code>SHOW TIME ZONE;</code></p>
+<p>Una vez realizadas estas configuraciones, el sistema ya está preparado para instalar los módulos necesarios de
+SealSign DSS.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-permisos-de-autorización">3.3. Permisos de autorización<a href="#33-permisos-de-autorización" class="hash-link" aria-label="Enlace directo al 3.3. Permisos de autorización" title="Enlace directo al 3.3. Permisos de autorización" translate="no">​</a></h2>
+<p>Es necesario agregar los usuarios que van a administrar desde SealSignDSSWeb al grupo local o de dominio SealSignDSS Admins, los usuarios que van a subir sus propios certificados y crear sus reglas de uso deben estar en el grupo SealSignDSS Power Users.</p>
+<p><img decoding="async" loading="lazy" alt="Image-23" src="/es/assets/images/image-23-091e59c0ad3634e6c89377f41db6af9d.png" width="1182" height="803" class="img_ev3q"></p>
+<center><i>Usuarios locales y grupos</i></center>
+<h1>4. Instalación de los módulos de SealSign DSS</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-módulo-dss-service-firma-electrónica">4.1. Módulo DSS Service (firma electrónica)<a href="#41-módulo-dss-service-firma-electrónica" class="hash-link" aria-label="Enlace directo al 4.1. Módulo DSS Service (firma electrónica)" title="Enlace directo al 4.1. Módulo DSS Service (firma electrónica)" translate="no">​</a></h2>
+<p>Tal y como se ha mencionado anteriormente, este módulo instala un conjunto de servicios web. Estos se basarán
+tanto en el IIS como en la base de datos para efectuar su labor. Es por ello por lo que tras la instalación hay
+que configurarlo para que pueda utilizar dichos servicios.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="411-instalación-del-módulo-dss-service">4.1.1. Instalación del módulo DSS Service<a href="#411-instalación-del-módulo-dss-service" class="hash-link" aria-label="Enlace directo al 4.1.1. Instalación del módulo DSS Service" title="Enlace directo al 4.1.1. Instalación del módulo DSS Service" translate="no">​</a></h3>
+<p>La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente.</p>
+<p>Durante la instalación, hay que indicar de la lista de sitios web disponibles, aquel en el que se desea instalar el
+servicio de firma electrónica SealSign DSS, el nombre del directorio virtual y el <em>Application Pool</em> de aplicación
+que se configuró en el IIS (<em>SealSignAppPool</em> en este caso).</p>
+<p><img decoding="async" loading="lazy" alt="Image-06" src="/es/assets/images/image-06-ab4af762424124ddbe32187987c6cf56.png" width="676" height="519" class="img_ev3q"></p>
+<center><i>Image 06: Configuración durante la instalación del módulo DSS Service</i></center>
+<p>Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS se mostrará como una aplicación web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-07" src="/es/assets/images/image-07-4d5e423782227bdfe3e9daf2cc978ee5.png" width="699" height="555" class="img_ev3q"></p>
+<center><i>Image 07: Módulo ya integrado como aplicación web en IIS</i></center>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="412-configuración-del-módulo-dss-service">4.1.2. Configuración del módulo DSS Service<a href="#412-configuración-del-módulo-dss-service" class="hash-link" aria-label="Enlace directo al 4.1.2. Configuración del módulo DSS Service" title="Enlace directo al 4.1.2. Configuración del módulo DSS Service" translate="no">​</a></h3>
+<p>Una vez instalado el módulo es necesario configurarlo para que utilice correctamente tanto la base de datos,
+como el IIS.</p>
+<p><strong>CONFIGURACION DE LA CONEXION A LA BASE DE DATOS</strong></p>
+<p>Se realiza en el fichero de configuración <em><strong>connectionStrings.config</strong></em>. Este se encuentra ubicado en el directorio
+<em><strong>SealSignDSSService</strong></em> del sitio Web donde se haya instalado el producto.</p>
+<p><strong>\InetPub\wwwroot\SealSignDssService</strong>
+<img decoding="async" loading="lazy" alt="Image-08" src="/es/assets/images/image-08-c6267c4d21030b7fb5205644e3451a26.png" width="865" height="485" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p><strong>SQL Server</strong></p>
+<p>Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server (SealSignDSS):</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">name</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">SealSignDSSConnectionString</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"></span><br></span><span class="token-line" style="color:#393A34"><span class="token tag" style="color:#00009f">        </span><span class="token tag attr-name" style="color:#00a4db">connectionString</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Data Source=localhost;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">        Initial Catalog=SealSignDSS;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">        Trusted_Connection=Yes;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">        persist security info=False;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">        TrustServerCertificate=True</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+<p>En caso de que la base de datos utilizada sea SQL Server simplemente habrá que modificar los parámetros anteriores para adaptarse a la configuración realizada anteriormente en la base de datos. En esta dirección se puede obtener información sobre la creación de cadenas de conexión en SQL Server.</p>
+</li>
+<li class="">
+<p><strong>Oracle</strong></p>
+<p>En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:</p>
+<ul>
+<li class="">
+<p>Cambiar el valor de la clave <em>FactoryProvider</em> y establecerlo a <em>System.Data.OracleClient</em> en el fichero <em><strong>web.config</strong></em> ubicado en el mismo directorio en el que se encuentra el fichero <em><strong>connectionStrings.config</strong></em>.</p>
+</li>
+<li class="">
+<p>En la etiqueta <em>connectionStrings</em> hay que configurar la cadena de conexión para el acceso a Oracle. En esta dirección es posible informarse sobre la creación de cadenas de conexión en Oracle.</p>
+</li>
+<li class="">
+<p>Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:</p>
+</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=XXX)(HOST=XXX)(PORT=XXX))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">(CONNECT_DATA=(SID=XXX)));User Id=UserID;Password=Password;</span><br></span></code></pre></div></div>
+<p>Un ejemplo de conexión podría ser el siguiente:</p>
+<ul>
+<li class=""><strong>Fichero web.config</strong>:</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">key</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">FactoryProvider</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">value</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">System.Data.OracleClient</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span></code></pre></div></div>
+<ul>
+<li class=""><strong>Fichero connectionStrings.config</strong>:</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    &lt;add name=&quot;SealSignDSSConnectionString&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        connectionString=&quot;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        (HOST=172.54.110.112)(PORT=1521))(CONNECT_DATA=(SID=orcl)));</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        User Id=SealSignDSS; Password=1234546;” /&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p><strong>PostgreSQL</strong></p>
+<p>En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:</p>
+<ul>
+<li class="">
+<p>Cambiar el valor de la clave <em>FactoryProvider</em> y establecerlo a <em>Npgsql</em> en el fichero <em><strong>web.config</strong></em> ubicado en el mismo directorio en el que se encuentra el fichero <em><strong>connectionStrings.config</strong></em>.</p>
+</li>
+<li class="">
+<p>En la etiqueta <em>connectionStrings</em> hay que configurar la cadena de conexión para el acceso a PostGre.
+En esta dirección URL <a href="https://www.connectionstrings.com/npgsql/" target="_blank" rel="noopener noreferrer" class="">https://www.connectionstrings.com/npgsql/</a> es posible informarse sobre la creación de cadenas de conexión en Oracle.</p>
+</li>
+<li class="">
+<p>Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:</p>
+</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">server=XXXX;userid=XXXX;password=XXXX;database=XXXX</span><br></span></code></pre></div></div>
+<p>Un ejemplo de conexión podría ser el siguiente:</p>
+<p><strong>Fichero web.config</strong>:</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">key</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">FactoryProvider</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">value</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Npgsql</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span></code></pre></div></div>
+<p><strong>Fichero connectionStrings.config</strong>:</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;add name=&quot;SealSignDSSConnectionString&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            connectionString=&quot; server=localhost;userid=postgres;password=POSTGRES;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            database=SealSignDSS”/&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+</li>
+</ul>
+<p><strong>CONFIGURACION DEL MODULO EN EL IIS</strong></p>
+<p>A la hora de acceder al servicio web, es necesario que se dispongan de los permisos necesarios. Tanto la
+aplicación web como el servidor requieren de seguridad integrada de Windows (<em>Windows Authentication</em>) para
+su correcto funcionamiento. Esto implica que hay que activar este tipo de autenticación obligatoriamente. La
+autenticación anónima (<em>Anonymous Authentication</em>) está por defecto activada y no debe deshabilitarse, es
+necesario que siga así. En cambio es opcional, (aunque recomendable dependiendo del escenario), activar la
+autenticación básica (<em>Basic Authentication</em>). Gracias a esto los usuarios con tecnologías distintas a las de
+Microsoft Windows (iOS, Android, Java, Linux, etcétera) podrán consumir dicho servicio web y por tanto utilizar
+el producto.</p>
+<p><img decoding="async" loading="lazy" alt="Image-09" src="/es/assets/images/image-09-e9d7c2b602f22f20ba4c73ed66191672.png" width="873" height="302" class="img_ev3q"></p>
+<center><i>Image 09: Configuración de los permisos del módulo DSS Service en el IIS</i></center>
+<p>En caso de activar la autenticación básica es altamente recomendable utilizar SSL/TLS.</p>
+<p><strong>CONFIGURACION POR SSL/TLS</strong></p>
+<p>Para más información de cómo configurar IIS/SSL véase <a href="https://learn.microsoft.com/es-ES/iis/manage/configuring-security/how-to-set-up-ssl-on-iis" target="_blank" rel="noopener noreferrer" class="">https://learn.microsoft.com/es-ES/iis/manage/configuring-security/how-to-set-up-ssl-on-iis</a></p>
+<p><em><strong>Configuración de los Bindings WCF en SealSign con SSL</strong></em></p>
+<p>Para configurar WCF en cualquiera de los módulos de SealSign para que usen SSL simplemente hay que realizar
+el siguiente cambio en el <code>Web.config</code> del módulo en cuestión:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">&lt;!--&lt;services configSource=&quot;servicesnossl.config&quot;/&gt;--&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;services configSource=&quot;servicesssl.config&quot;/&gt;</span><br></span></code></pre></div></div>
+<p><em><strong>Configuración de los Bindings WCF en SealSign sin SSL</strong></em></p>
+<p>Para configurar WCF en cualquiera de los módulos de SealSign para que no usen SSL simplemente hay que
+realizar el siguiente cambio en el <code>Web.config</code> del módulo en cuestión:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">&lt;services configSource=&quot;servicesnossl.config&quot;/&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;!--&lt;services configSource=&quot;servicesssl.config&quot;/&gt;--&gt;</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-módulo-dss-web-administración-y-configuración">4.2. Módulo DSS Web (administración y configuración)<a href="#42-módulo-dss-web-administración-y-configuración" class="hash-link" aria-label="Enlace directo al 4.2. Módulo DSS Web (administración y configuración)" title="Enlace directo al 4.2. Módulo DSS Web (administración y configuración)" translate="no">​</a></h2>
+<p>Tal y como se ha mencionado anteriormente, este módulo instala una herramienta de administración con
+formato de aplicación web, que es utilizada por los demás módulos, por tanto, su instalación es obligatoria.
+Este módulo se basa en el IIS para efectuar su labor, por ello, tras la instalación hay que configurarlo para que
+pueda utilizar dicho servicio.</p>
+<p>Una vez finalizada la instalación y la configuración, habría que dar permisos a un usuario en el sistema para
+que administrase SealSign. El hecho de que se realice la instalación y la configuración no implica que se pueda
+acceder a la web de administración.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="421-instalación-del-módulo-dss-web">4.2.1. Instalación del módulo DSS Web<a href="#421-instalación-del-módulo-dss-web" class="hash-link" aria-label="Enlace directo al 4.2.1. Instalación del módulo DSS Web" title="Enlace directo al 4.2.1. Instalación del módulo DSS Web" translate="no">​</a></h3>
+<p>La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo con anterioridad a instalar el módulo DSS
+Service.</p>
+<p>Durante la instalación, hay que indicar de la lista de sitios Web disponibles, aquel en el que se desea instalar el
+servicio web de administración además del directorio virtual y el <em>Application Pool</em> de aplicación que se
+configuró en el IIS (<em>SealSignAppPool</em> en este caso).</p>
+<p><img decoding="async" loading="lazy" alt="Image-010" src="/es/assets/images/image-10-4d1da4e2fd6484e3a638eff04ca87828.png" width="630" height="500" class="img_ev3q"></p>
+<center><i>Image 10: Configuración durante la instalación del módulo DSS Web</i></center>
+<p>Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control de
+Microsoft Windows, y en el IIS también se mostrará como una aplicación web, junto al DSS Service.</p>
+<p><img decoding="async" loading="lazy" alt="Image-011" src="/es/assets/images/image-11-d50ddce438d7b61ba50f33916d90d49d.png" width="660" height="524" class="img_ev3q"></p>
+<center><i>Image 11: Módulo ya integrado como aplicación web en IIS</i></center>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="422-configuración-del-módulo-dss-web">4.2.2. Configuración del módulo DSS Web<a href="#422-configuración-del-módulo-dss-web" class="hash-link" aria-label="Enlace directo al 4.2.2. Configuración del módulo DSS Web" title="Enlace directo al 4.2.2. Configuración del módulo DSS Web" translate="no">​</a></h3>
+<p>Para que funcione correctamente debe tener referenciado el módulo DSS Service y hay que modificar la
+autenticación en el IIS.</p>
+<p><strong>CONFIGURACION DE LA REFERENCIA AL MODULO DSS SERVICE</strong></p>
+<p>Se realiza en el fichero de configuración <em><strong>endpoints.config</strong></em>. Este se encuentra ubicado en el directorio
+<em><strong>SealSignDSSWeb</strong></em> del sitio Web donde se haya instalado el producto. Dicho fichero incluye entre otras
+configuraciones, las direcciones de tres servicios web proporcionados por el DSS Service. Concretamente son
+el servicio web de administración (<em>AdminService.svc</em>), el de auditoría (<em>AuditService.svc</em>) y el de repositorio
+seguro de documentos (<em>SecureStorage.svc</em>).</p>
+<p>En caso de que se haya realizado la instalación de los servicios establecida por defecto no será necesario
+modificar este archivo.</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">client</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;endpoint address=&quot;http://localhost/SealSignDSSService/AuditService.svc&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">endpoint</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;endpoint address=&quot;http://localhost/SealSignDSSService/AdminService.svc&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">endpoint</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;endpoint address=&quot;http://localhost/SealSignDSRService/SecureStorage.svc&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">endpoint</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">client</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+<p>En esta dirección se puede obtener información sobre los parámetros mostrados.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="423-configuración-del-módulo-en-el-iis">4.2.3. Configuración del módulo en el IIS<a href="#423-configuración-del-módulo-en-el-iis" class="hash-link" aria-label="Enlace directo al 4.2.3. Configuración del módulo en el IIS" title="Enlace directo al 4.2.3. Configuración del módulo en el IIS" translate="no">​</a></h3>
+<p>Para el correcto funcionamiento de la aplicación web de administración es necesario modificar la autenticación
+en el IIS. Para ello hay que deshabilitar el acceso para los usuarios anónimos (<em>Anonymous Authentication</em>) y
+habilitar la autenticación basada en Windows (<em>Windows Authentication</em>).</p>
+<p><img decoding="async" loading="lazy" alt="Image-012" src="/es/assets/images/image-12-1769f7db566d203e1bb1ac1cb5edba57.png" width="869" height="291" class="img_ev3q"></p>
+<center><i>Image 12: Configuración de los permisos del módulo DSS Web en el IIS</i></center>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-módulo-dss-tsa">4.3. Módulo DSS TSA<a href="#43-módulo-dss-tsa" class="hash-link" aria-label="Enlace directo al 4.3. Módulo DSS TSA" title="Enlace directo al 4.3. Módulo DSS TSA" translate="no">​</a></h2>
+<p>Tal y como se ha mencionado anteriormente, este módulo instala la autoridad de sellado de tiempo. Al igual
+que en los anteriores hay que configurar la cadena de conexión a la base de datos una vez que haya finalizado
+la instalación.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="431-instalación-del-módulo-dss-tsa">4.3.1. Instalación del módulo DSS TSA<a href="#431-instalación-del-módulo-dss-tsa" class="hash-link" aria-label="Enlace directo al 4.3.1. Instalación del módulo DSS TSA" title="Enlace directo al 4.3.1. Instalación del módulo DSS TSA" translate="no">​</a></h3>
+<p>La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo anteriormente al instalar los módulos DSS
+Service y DSS Web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-013" src="/es/assets/images/image-13-4558e8c7f4a4c377b2816222e145a6a0.png" width="529" height="447" class="img_ev3q"></p>
+<center><i>Image 13: Configuración durante la instalación del módulo DSS TSA</i></center>
+<p>Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS también se mostrará como una aplicación web, junto al DSS Service y al DSS Web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-014" src="/es/assets/images/image-14-b37c33dc3c92386a81767fad2d58273f.png" width="681" height="537" class="img_ev3q"></p>
+<center><i>Image 14: Módulo ya integrado como aplicación web en IIS</i></center>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="432-configuración-del-módulo-dss-tsa">4.3.2. Configuración del módulo DSS TSA<a href="#432-configuración-del-módulo-dss-tsa" class="hash-link" aria-label="Enlace directo al 4.3.2. Configuración del módulo DSS TSA" title="Enlace directo al 4.3.2. Configuración del módulo DSS TSA" translate="no">​</a></h3>
+<p>Se realiza en el fichero de configuración <em><strong>connectionStrings.config</strong></em>. Este se encuentra ubicado en el directorio
+<em><strong>SealSign DSS TSA</strong></em> del sitio Web donde se haya instalado el producto. Dicho fichero por defecto incluye la cadena
+de conexión a la base de datos creada anteriormente en SQL Server (<em>SealSignDSS</em>).</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">   </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">name</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">SealSignDSSConnectionString</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"></span><br></span><span class="token-line" style="color:#393A34"><span class="token tag" style="color:#00009f">            </span><span class="token tag attr-name" style="color:#00a4db">connectionString</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Data Source=localhost;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            Initial Catalog=SealSignDSS;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            Trusted_Connection=Yes;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            persist security info=False;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            TrustServerCertificate=True</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"> </span><br></span></code></pre></div></div>
+<p>La configuración de la cadena de conexión es exactamente la misma que la realizada anteriormente en el
+módulo DSS Service. El administrador deberá seguir los pasos indicados en ese apartado para establecer la
+conexión adecuada en SQL Server, Oracle o PostGreSQL.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-módulo-dss-revoke-autoridad-de-validación">4.4. Módulo DSS Revoke (Autoridad de Validación)<a href="#44-módulo-dss-revoke-autoridad-de-validación" class="hash-link" aria-label="Enlace directo al 4.4. Módulo DSS Revoke (Autoridad de Validación)" title="Enlace directo al 4.4. Módulo DSS Revoke (Autoridad de Validación)" translate="no">​</a></h2>
+<p>DSS Revoke es una autoridad de validación de certificados digitales local que permite integrar en la
+organización múltiples PSCs externos manteniendo el control del proceso de validación, centralizando la
+comprobación de revocación y aportando funciones de auditoría, caché, descarga de CRLs y respuestas OCSP
+y listas locales de revocación.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="441-instalación-del-módulo-dss-revoke">4.4.1. Instalación del módulo DSS Revoke<a href="#441-instalación-del-módulo-dss-revoke" class="hash-link" aria-label="Enlace directo al 4.4.1. Instalación del módulo DSS Revoke" title="Enlace directo al 4.4.1. Instalación del módulo DSS Revoke" translate="no">​</a></h3>
+<p>La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente. El proceso es el mismo que el llevado a cabo anteriormente al instalar los módulos DSS
+Service y DSS Web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-015" src="/es/assets/images/image-15-71a15a72564582d531308faea14c349a.png" width="551" height="460" class="img_ev3q"></p>
+<center><i>Image 15: Configuración durante la instalación del módulo DSS TSA</i></center>
+<p>Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS también se mostrará como una aplicación web, junto al DSS Service y al DSS Web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-016" src="/es/assets/images/image-16-e195ff3e00ee724f84d95707318e7c2d.png" width="862" height="482" class="img_ev3q"></p>
+<center><i>Image 16: Módulo ya integrado como aplicación web en IIS</i></center>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="442-configuración-del-módulo-dss-revoke">4.4.2. Configuración del módulo DSS Revoke<a href="#442-configuración-del-módulo-dss-revoke" class="hash-link" aria-label="Enlace directo al 4.4.2. Configuración del módulo DSS Revoke" title="Enlace directo al 4.4.2. Configuración del módulo DSS Revoke" translate="no">​</a></h3>
+<p>Se realiza en el fichero de configuración <em><strong>connectionStrings.config</strong></em>. Este se encuentra ubicado en el directorio
+<em><strong>RevokeClientWS</strong></em> del sitio Web donde se haya instalado el producto. Dicho fichero por defecto incluye la cadena
+de conexión a la base de datos creada anteriormente en SQL Server (<em>SealSignDSS</em>).</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">name</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">SealSignDSSConnectionString</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"></span><br></span><span class="token-line" style="color:#393A34"><span class="token tag" style="color:#00009f">            </span><span class="token tag attr-name" style="color:#00a4db">connectionString</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Data Source=localhost;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            Initial Catalog=SealSignDSS;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            Trusted_Connection=Yes;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            persist security info=False;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            TrustServerCertificate=True</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+<p>La configuración de la cadena de conexión es exactamente la misma que la realizada anteriormente en el
+módulo DSS Service. El administrador deberá seguir los pasos indicados en ese apartado para establecer la
+conexión adecuada en SQL Server, Oracle o PostGreSQL.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="45-módulo-otpss-one-time-password-signature-service">4.5. Módulo OTPSS (One Time Password Signature Service)<a href="#45-módulo-otpss-one-time-password-signature-service" class="hash-link" aria-label="Enlace directo al 4.5. Módulo OTPSS (One Time Password Signature Service)" title="Enlace directo al 4.5. Módulo OTPSS (One Time Password Signature Service)" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="451-instalación-del-módulo-otpss">4.5.1. Instalación del módulo OTPSS<a href="#451-instalación-del-módulo-otpss" class="hash-link" aria-label="Enlace directo al 4.5.1. Instalación del módulo OTPSS" title="Enlace directo al 4.5.1. Instalación del módulo OTPSS" translate="no">​</a></h3>
+<p>La instalación del módulo se realiza como muchos programas de Microsoft Windows, es decir, siguiendo los
+pasos de un asistente.</p>
+<p>Durante la instalación, hay que indicar de la lista de sitios web disponibles, aquel en el que se desea instalar el
+servicio de firma electrónica SealSign DSS, el nombre del directorio virtual y el Application Pool de aplicación
+que se configuró en el IIS (SealSignAppPool en este caso).</p>
+<p><img decoding="async" loading="lazy" alt="Image-017" src="/es/assets/images/image-17-bf7038a3ef12e109c2f2bbd8b5fea9ea.png" width="628" height="535" class="img_ev3q"></p>
+<center><i>Image 17: Configuración durante la instalación del módulo OTPSS</i></center>
+<p>Tras la instalación se ha añadido como un programa más en la lista de programas del Panel de Control, y en el
+IIS se mostrará como una aplicación web.</p>
+<p><img decoding="async" loading="lazy" alt="Image-018" src="/es/assets/images/image-18-ae3875adf2eaca13d6f0fe7707ae8d92.png" width="648" height="533" class="img_ev3q"></p>
+<center><i>Image 18: Módulo ya integrado como aplicación web en IIS</i></center>
+<p><img decoding="async" loading="lazy" alt="Image-019" src="/es/assets/images/image-19-876c1a1463d621b4d653020b968e233b.png" width="795" height="636" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="452-configuración-del-módulo-otpss">4.5.2. Configuración del módulo OTPSS<a href="#452-configuración-del-módulo-otpss" class="hash-link" aria-label="Enlace directo al 4.5.2. Configuración del módulo OTPSS" title="Enlace directo al 4.5.2. Configuración del módulo OTPSS" translate="no">​</a></h3>
+<p>Se realiza en el fichero de configuración <em><strong>connectionStrings.config</strong></em>. Este se encuentra ubicado en el directorio
+<em><strong>SealSignOTPSSService</strong></em> del sitio Web donde se haya instalado el producto. Dicho fichero incluye la cadena de
+conexión a la base de datos creada anteriormente en SQL Server (<em>SealSignDSS</em>), además de otros parámetros
+que hay que tener en cuenta:</p>
+<p><strong>\InetPub\wwwroot\SealSignOTPSSService</strong></p>
+<ul>
+<li class="">
+<p><strong>SQL SERVER</strong></p>
+<p>Dicho fichero incluye la cadena de conexión a la base de datos creada anteriormente en SQL Server (SealSignDSS):</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">name</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">SealSignDSSConnectionString</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"></span><br></span><span class="token-line" style="color:#393A34"><span class="token tag" style="color:#00009f">            </span><span class="token tag attr-name" style="color:#00a4db">connectionString</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Data Source=localhost;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            Initial Catalog=SealSignDSS;Trusted_Connection=Yes;</span><br></span><span class="token-line" style="color:#393A34"><span class="token tag attr-value" style="color:#e3116c">            persist security info=False; TrustServerCertificate=True</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p><strong>ORACLE</strong></p>
+<p>En caso de que la base de datos sea Oracle, hay que modificar los siguientes parámetros:</p>
+<ul>
+<li class="">
+<p>Cambiar el valor de la clave <em>FactoryProvider</em> y establecerlo a <em>System.Data.OracleClient</em> en el fichero <em><strong>web.config</strong></em> ubicado en el mismo directorio en el que se encuentra el fichero <em><strong>connectionStrings.config</strong></em>.</p>
+</li>
+<li class="">
+<p>En la etiqueta <em>connectionStrings</em> hay que configurar la cadena de conexión para el acceso a Oracle. En esta dirección es posible informarse sobre la creación de cadenas de conexión en Oracle.</p>
+</li>
+<li class="">
+<p>Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:</p>
+</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=XXX)(HOST=XXX)(PORT=XXX))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">(CONNECT_DATA=(SID=XXX)));User Id=UserID;Password=Password;</span><br></span></code></pre></div></div>
+<p>Un ejemplo de conexión podría ser el siguiente:</p>
+<ul>
+<li class=""><strong>Fichero web.config</strong>:</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">key</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">FactoryProvider</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">value</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">System.Data.OracleClient</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span></code></pre></div></div>
+<ul>
+<li class=""><strong>Fichero connectionStrings.config</strong>:</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;add name=&quot;SealSignDSSConnectionString&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            connectionString=&quot;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            (HOST=172.54.110.112)(PORT=1521))(CONNECT_DATA=(SID=orcl)));</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            User Id=SealSignDSS; Password=1234546;” /&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p><strong>POSTGRESQL</strong></p>
+<p>En caso de que la base de datos sea PostGre, hay que modificar los siguientes parámetros:</p>
+<ul>
+<li class="">
+<p>Cambiar el valor de la clave <em>FactoryProvider</em> y establecerlo a <em>Npgsql</em> en el fichero <em><strong>web.config</strong></em> ubicado en el mismo directorio en el que se encuentra el fichero <em><strong>connectionStrings.config</strong></em>.</p>
+</li>
+<li class="">
+<p>En la etiqueta connectionStrings hay que configurar la cadena de conexión para el acceso a PostGre.
+En esta dirección URL <a href="https://www.connectionstrings.com/npgsql/" target="_blank" rel="noopener noreferrer" class="">https://www.connectionstrings.com/npgsql/</a> es posible informarse sobre la
+creación de cadenas de conexión en Oracle.</p>
+</li>
+<li class="">
+<p>Hay que modificar el atributo connectionString de la etiqueta SealSignDSSConnectionString, y establecerlo con el siguiente formato:</p>
+</li>
+</ul>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">server=XXXX;userid=XXXX;password=XXXX;database=XXXX</span><br></span></code></pre></div></div>
+<p>Un ejemplo de conexión podría ser el siguiente:</p>
+<ul>
+<li class="">
+<p><strong>Fichero web.config</strong>:</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">add</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">key</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">FactoryProvider</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">value</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag attr-value" style="color:#e3116c">Npgsql</span><span class="token tag attr-value punctuation" style="color:#393A34">&quot;</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">appSettings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    ...</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre></div></div>
+</li>
+<li class="">
+<p><strong>Fichero connectionStrings.config</strong>:</p>
+<div class="language-xml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-xml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        &lt;add name=&quot;SealSignDSSConnectionString&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            connectionString=&quot; server=localhost;userid=postgres;password=POSTGRES;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            database=SealSignDSS”/&gt;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">connectionStrings</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<h1>5. Resolución de problemas de instalación</h1>
+<p>El proceso de instalación de los servicios de firma electrónica incluye un sistema de monitorización y
+seguimiento de errores propio de SealSign. De esta forma todos los errores, avisos y mensajes informativos se
+registran en su propio Log de aplicación integrado en Microsoft Windows. En caso de identificar algún
+problema en los servicios se recomienda revisar el log SealSign DSS.</p>
+<p><img decoding="async" loading="lazy" alt="Image-020" src="/es/assets/images/image-20-3c9ce0c6393a67cbe6df839ece735a89.png" width="657" height="261" class="img_ev3q"></p>
+<center><i>Image 20: Visor de eventos de Microsoft Windows</i></center>
+<p>Los problemas más comunes que pueden ocurrir durante la instalación de SealSign DSS son los ocasionados
+por la obtención de la licencia, y su identificador es el 3011.</p>
+<div class="language-note codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-note codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    En la “Guía de monitorización de SealSign”, se incluyen todos los detalles acerca de cómo</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    monitorizar el estado de salud de la plataforma y ver los posibles errores que se pueden dar</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    durante su utilización.</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51-error-80070005">5.1. Error 80070005<a href="#51-error-80070005" class="hash-link" aria-label="Enlace directo al 5.1. Error 80070005" title="Enlace directo al 5.1. Error 80070005" translate="no">​</a></h2>
+<p>Este error se produce generalmente cuando el usuario con el que est á configurado el Application Pool no tiene
+permisos para instanciar el componente de gestión de licencias. Dicho componente se registra en la maquina
+durante el proceso de instalación. El mensaje generado es el siguiente:</p>
+<div class="language-An language-an codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-an codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">    Retrieving the COM class factory for component with CLSID {554A6D3B-2FEF-4C2F-B34C-AF6185EB2759} failed due to the following error: 80070005. at SealSignDSSLibrary.SealSignDSSLicense.InitializeLicense(String licenseFile)</span><br></span></code></pre></div></div>
+<p>Para solucionarlo, basta con proporcionar permisos de activación al usuario del <em>Application Pool</em>. Esto se pude
+hacer con la herramienta <em><strong>DCOMCNFG.EXE</strong></em>, buscando el componente <em><strong>LicProtector Server</strong></em>:</p>
+<p><img decoding="async" loading="lazy" alt="Image-021" src="/es/assets/images/image-21-c62aeec22682a845563e647fe3aff2ff.png" width="706" height="210" class="img_ev3q"></p>
+<center><i>Image 21: Herramienta DCOMCNFG.EXE</i></center>
+<p>A través del botón de derecho se puede acceder a las propiedades de este elemento, donde está la pestaña
+Security, desde la cual se podrá dar permisos al usuario del Application Pool.</p>
+<p><img decoding="async" loading="lazy" alt="Image-022" src="/es/assets/images/image-22-0cfbddee49b086e464b64a94f978b295.png" width="515" height="552" class="img_ev3q"></p>
+<center><i>Image 21: Permission settingsConfiguración de permisos</i></center>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52-error-80040154">5.2. Error 80040154<a href="#52-error-80040154" class="hash-link" aria-label="Enlace directo al 5.2. Error 80040154" title="Enlace directo al 5.2. Error 80040154" translate="no">​</a></h2>
+<p>Este error se produce generalmente en entornos de 64 bits cuando la configuración de activación del
+componente de gestión de licencias se ha modificado o borrado. Dicho componente se registra en la maquina
+durante el proceso de instalación.</p>
+<p>El mensaje generado es el siguiente:</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">An error has occurred obtaining license information:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Retrieving the COM class factory for component with CLSID {554A6D3B-2FEF-4C2F-B34C-AF6185EB2759} failed due to the</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    following error: 80040154. at SealSignDSSLicense.SealSignDSSLicense.InitializeLicense(String licenseFile)</span><br></span></code></pre></div></div>
+<p>Para regenerar la configuración de activación del componente se puede ejecutar el fichero <em><strong>DllSurrogate.reg</strong></em>
+provisto con los módulos de instalación.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/factumid/sealsign-docs/tree/main/docs/dss/installation-guide.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Editar esta página</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Página del documento"><a class="pagination-nav__link pagination-nav__link--prev" href="/es/clickonce/"><div class="pagination-nav__sublabel">Anterior</div><div class="pagination-nav__label">SealSign Signature Client (ClickOnce)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/es/dss/administration-guide"><div class="pagination-nav__sublabel">Siguiente</div><div class="pagination-nav__label">Guía de Administración</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#21-instalación-de-roles-de-sistema-operativo" class="table-of-contents__link toc-highlight">2.1. Instalación de roles de Sistema Operativo</a></li><li><a href="#31-configuración-del-application-pool-de-iis-7-o-iis-75" class="table-of-contents__link toc-highlight">3.1. Configuración del Application Pool de IIS 7 o IIS 7.5</a></li><li><a href="#32-creación-de-la-base-de-datos" class="table-of-contents__link toc-highlight">3.2. Creación de la base de datos</a><ul><li><a href="#321-sql-server" class="table-of-contents__link toc-highlight">3.2.1. SQL Server</a></li><li><a href="#322-oracle" class="table-of-contents__link toc-highlight">3.2.2. Oracle</a></li><li><a href="#323-postgresql" class="table-of-contents__link toc-highlight">3.2.3. PostGreSQL</a></li></ul></li><li><a href="#33-permisos-de-autorización" class="table-of-contents__link toc-highlight">3.3. Permisos de autorización</a></li><li><a href="#41-módulo-dss-service-firma-electrónica" class="table-of-contents__link toc-highlight">4.1. Módulo DSS Service (firma electrónica)</a><ul><li><a href="#411-instalación-del-módulo-dss-service" class="table-of-contents__link toc-highlight">4.1.1. Instalación del módulo DSS Service</a></li><li><a href="#412-configuración-del-módulo-dss-service" class="table-of-contents__link toc-highlight">4.1.2. Configuración del módulo DSS Service</a></li></ul></li><li><a href="#42-módulo-dss-web-administración-y-configuración" class="table-of-contents__link toc-highlight">4.2. Módulo DSS Web (administración y configuración)</a><ul><li><a href="#421-instalación-del-módulo-dss-web" class="table-of-contents__link toc-highlight">4.2.1. Instalación del módulo DSS Web</a></li><li><a href="#422-configuración-del-módulo-dss-web" class="table-of-contents__link toc-highlight">4.2.2. Configuración del módulo DSS Web</a></li><li><a href="#423-configuración-del-módulo-en-el-iis" class="table-of-contents__link toc-highlight">4.2.3. Configuración del módulo en el IIS</a></li></ul></li><li><a href="#43-módulo-dss-tsa" class="table-of-contents__link toc-highlight">4.3. Módulo DSS TSA</a><ul><li><a href="#431-instalación-del-módulo-dss-tsa" class="table-of-contents__link toc-highlight">4.3.1. Instalación del módulo DSS TSA</a></li><li><a href="#432-configuración-del-módulo-dss-tsa" class="table-of-contents__link toc-highlight">4.3.2. Configuración del módulo DSS TSA</a></li></ul></li><li><a href="#44-módulo-dss-revoke-autoridad-de-validación" class="table-of-contents__link toc-highlight">4.4. Módulo DSS Revoke (Autoridad de Validación)</a><ul><li><a href="#441-instalación-del-módulo-dss-revoke" class="table-of-contents__link toc-highlight">4.4.1. Instalación del módulo DSS Revoke</a></li><li><a href="#442-configuración-del-módulo-dss-revoke" class="table-of-contents__link toc-highlight">4.4.2. Configuración del módulo DSS Revoke</a></li></ul></li><li><a href="#45-módulo-otpss-one-time-password-signature-service" class="table-of-contents__link toc-highlight">4.5. Módulo OTPSS (One Time Password Signature Service)</a><ul><li><a href="#451-instalación-del-módulo-otpss" class="table-of-contents__link toc-highlight">4.5.1. Instalación del módulo OTPSS</a></li><li><a href="#452-configuración-del-módulo-otpss" class="table-of-contents__link toc-highlight">4.5.2. Configuración del módulo OTPSS</a></li></ul></li><li><a href="#51-error-80070005" class="table-of-contents__link toc-highlight">5.1. Error 80070005</a></li><li><a href="#52-error-80040154" class="table-of-contents__link toc-highlight">5.2. Error 80040154</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="es-ES" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-dss/administration-guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Guía de Administración | SealSign Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.sealsign.es/es/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://docs.sealsign.es/es/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://docs.sealsign.es/es/dss/administration-guide"><meta data-rh="true" property="og:locale" content="es_ES"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="es"><meta data-rh="true" name="docsearch:language" content="es"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Guía de Administración | SealSign Docs"><meta data-rh="true" name="description" content="SealSign DSS (Digital Signature Services) es un producto desarrollado íntegramente por Factum Identity dirigido a facilitar la integración de la firma electrónica en las aplicaciones corporativas."><meta data-rh="true" property="og:description" content="SealSign DSS (Digital Signature Services) es un producto desarrollado íntegramente por Factum Identity dirigido a facilitar la integración de la firma electrónica en las aplicaciones corporativas."><link data-rh="true" rel="canonical" href="https://docs.sealsign.es/es/dss/administration-guide"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/administration-guide" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/es/dss/administration-guide" hreflang="es-ES"><link data-rh="true" rel="alternate" href="https://docs.sealsign.es/dss/administration-guide" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Guía de Administración","item":"https://docs.sealsign.es/es/dss/administration-guide"}]}</script><link rel="stylesheet" href="/es/assets/css/styles.6c1a53d7.css">
+<script src="/es/assets/js/runtime~main.f1a7feb7.js" defer="defer"></script>
+<script src="/es/assets/js/main.215d9b1d.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Saltar al contenido principal"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Saltar al contenido principal</a></div><nav aria-label="Principal" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Alternar barra lateral" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/es/"><div class="navbar__logo"><img src="/es/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/es/img/sealsign-logo.png" alt="SealSign Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">SealSign</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Español</a><ul class="dropdown__menu"><li><a href="/dss/administration-guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en-US">English</a></li><li><a href="/es/dss/administration-guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="es-ES">Español</a></li></ul></div><a href="https://github.com/factumid/sealsign-docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Cambiar entre modo oscuro y claro (actualmente system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Volver al principio" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Barra lateral de Documentos" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/es/"><span title="Bienvenido a la Documentación de SealSign" class="linkLabel_WmDU">Bienvenido a la Documentación de SealSign</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/es/license/"><span title="On Premise" class="categoryLinkLabel_W154">On Premise</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/license/"><span title="Licencias" class="linkLabel_WmDU">Licencias</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/monitor/"><span title="Guía de monitorización de SealSign (incluye DSS, BSS, CKC)" class="linkLabel_WmDU">Guía de monitorización de SealSign (incluye DSS, BSS, CKC)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/clickonce/"><span title="SealSign Signature Client (ClickOnce)" class="linkLabel_WmDU">SealSign Signature Client (ClickOnce)</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/dss/installation-guide"><span title="DSS Guía de Instalación" class="linkLabel_WmDU">DSS Guía de Instalación</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/es/dss/administration-guide"><span title="Guía de Administración" class="linkLabel_WmDU">Guía de Administración</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/bss/installation-guide"><span title="BSS Guía de Instalación" class="linkLabel_WmDU">BSS Guía de Instalación</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/ckc/central-key-control"><span title="Central Key Control" class="linkLabel_WmDU">Central Key Control</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/changelog/"><span title="Changelog" class="linkLabel_WmDU">Changelog</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/es/cloud/ips"><span title="Cloud" class="categoryLinkLabel_W154">Cloud</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/cloud/ips"><span title="ips" class="linkLabel_WmDU">ips</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/es/cloud/biometric"><span title="Firma Biométrica" class="linkLabel_WmDU">Firma Biométrica</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Rastro de navegación"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Página de Inicio" class="breadcrumbs__link" href="/es/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">On Premise</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Guía de Administración</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">En esta página</button></div><div class="theme-doc-markdown markdown"><header><h1>Guía de Administración</h1></header>
+<h1>1. Introducción</h1>
+<p>SealSign DSS (Digital Signature Services) es un producto desarrollado íntegramente por Factum Identity dirigido a facilitar la integración de la firma electrónica en las aplicaciones corporativas.</p>
+<p>Aunque a priori el procedimiento de firma electrónica es sencillo (calculo y cifrado del hash del documento),
+existen multitud de perfiles/formatos de firma, así como innumerables escenarios que puede resultar complejos y costosos tanto en proceso como en tiempo. Además, muchos de estos perfiles requieren obtener elementos externos al sistema, como CRLs o respuestas OCSP de las entidades certificadoras, sellos de tiempo de terceros, etc. Junto con todo esto, cada vez es más habitual que el documento y la clave privada del firmante están separados en sistemas remotos, por ejemplo, un usuario firmando desde un explorador de Internet un documento residente en el servidor.</p>
+<p>Todo ello redunda en que la adopción de los procesos de firma electrónica en las aplicaciones corporativas suponga un problema a la hora de gestionar todos y cada uno de los elementos implicados en el procedimiento.</p>
+<p>SealSign está formado por un motor de firma electrónica que recibe las peticiones de operaciones de firma, a través de diversos servicios web, desde multitud de aplicaciones cliente, realizando las operaciones requeridas según los parámetros generales configurados por el administrador o según los parámetros personalizados que llegan en la petición del cliente.</p>
+<p>SealSign DSS soporta multitud de perfiles de firma siendo capaz de acceder a proveedores externos para obtener todos y cada uno de los elementos implicados en cada perfil de manera completamente transparente a la aplicación cliente. La versión actual de SealSign DSS soporta los siguientes formatos de firma: CMS, CAdES,
+XMLDigSig, XAdES, PDF, PAdES, Microsoft Office y OpenOffice.</p>
+<p>Una de las ventajas que proporciona SealSign DSS es la firma distribuida, que permite resolver los escenarios planteados de una forma muy flexible y sencilla. La firma distribuida consiste en realizar todo el proceso de firma en el lado del servidor salvo el cifrado del hash que se produce en el lado del cliente, donde reside la clave privada del firmante. De esta forma se unifica y optimiza la obtención de elementos externos y se reduce drásticamente la información intercambiada.</p>
+<p>Además de los servicios de firma SealSign DSS proporciona servicios de validación de firma usando una autoridad de validación de certificados (TrustID Revoke Server) que permite obtener el estado de cualquier certificado, conectándose a multitud de proveedores de certificados externos a la organización de una manera centralizada y configurable por el administrador.</p>
+<p>Una de las problemáticas en los procesos de firma electrónica es la gestión de los certificados y claves usados para la firma de documentos. Para resolver esto, SealSign DSS proporciona un almacén de certificados y claves dentro de su base de datos de configuración. Además, tanto en los procesos de firma en servidor como en los procesos de firma distribuida en cliente, SealSign DSS es capaz de usar certificados guardados en almacenes externos, tanto en los almacenes de certificados de Windows como en almacenes accesibles a través de módulos PKCS#11.</p>
+<p>Otro de los elementos que forman parte de los procesos de firma electrónica es el uso de sellos de tiempo que aseguran el momento exacto en el que se produce una firma. A la hora de gestionar la generación de sellos de tiempo, SealSign DSS permite tanto la creación de sellos mediante el uso de una autoridad local como la invocación de autoridades de sellado de tiempo externos a la organización.</p>
+<p>En la versión 4.3 se incorpora a la solución SealSign OTPSS (One Time Password Signature Services), es un producto desarrollado por Factum Identity dirigido a facilitar la integración de la firma de contraseña única
+(One Time Password Signature) en las aplicaciones corporativas.</p>
+<p>Existen distintas problemáticas a la hora del uso de la firma electrónica que impiden su adopción en algunos escenarios. Tales problemáticas van desde el desconocimiento y reticencia de los usuarios a la hora de utilizar un certificado digital hasta la imposibilidad de uso de dispositivos de almacenamiento seguros, tales como tarjetas inteligentes, en ciertos terminales móviles.</p>
+<p>También existen problemáticas a la hora del uso de la firma biométrica, como puede ser el uso de un dispositivo capaz de capturar los datos biométricos de una firma manuscrita.</p>
+<p>Para la resolución de aquellos escenarios en los que no es fácilmente adaptable el uso de certificados digitales, o el uso de la firma biométrica, SealSign OTPSS provee la tecnología necesaria para el uso de la firma OTP mediante la generación de contraseñas únicas y envío por email o sms.</p>
+<p>Por último, SealSign dispone de un servicio de auditoría configurable que permite trazar todas las operaciones de firma, validación y sello de tiempo realizadas por el servidor.</p>
+<h1>2. Tareas De Configuración</h1>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-herramienta-de-administración">2.1. Herramienta De Administración<a href="#21-herramienta-de-administración" class="hash-link" aria-label="Enlace directo al 2.1. Herramienta De Administración" title="Enlace directo al 2.1. Herramienta De Administración" translate="no">​</a></h2>
+<p>La administración y configuración de SealSign DSS se realiza de manera centralizada mediante la web de administración. Para abrir esta, simplemente será necesario ejecutar una instancia en un navegador hasta la dirección:</p>
+<p><strong><code>http://servername:portnumber/SealSignDSSWeb</code></strong>.</p>
+<p>A la hora de ejecutar la herramienta de administración, por defecto, sólo los usuarios miembros del grupo SealSignDSS Admins del servidor pueden administrar la configuración de SealSign. Por tanto, la primera tarea que debe realizar un administrador antes de poder administrar el servidor es añadir las cuentas de usuario adecuadas a dicho grupo.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-configuración-de-parámetros-del-proxy-corporativo">2.2. Configuración De Parámetros Del Proxy Corporativo<a href="#22-configuración-de-parámetros-del-proxy-corporativo" class="hash-link" aria-label="Enlace directo al 2.2. Configuración De Parámetros Del Proxy Corporativo" title="Enlace directo al 2.2. Configuración De Parámetros Del Proxy Corporativo" translate="no">​</a></h2>
+<p>Para cumplir con los requisitos de los distintos tipos de firma, el servidor de SealSign DSS puede necesitar comunicación con proveedores externos que proporcionan servicios variados como, por ejemplo, servicios de sellado de tiempo o de validación de certificados.</p>
+<p>Si la comunicación con el exterior se realiza a través de un servidor proxy, será necesario configurar los parámetros del proxy corporativo en la web de administración de SealSign. Para configurarlos parámetros del proxy en el servidor de SealSign, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace <strong>Configurar parámetros del proxy corporativo</strong> del grupo</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="7_image_0.png" src="/es/assets/images/7_image_0-15a39e9ed18c45299dddf3b08ac60f9c.png" width="576" height="124" class="img_ev3q"></p>
+<p>Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Configuración del Proxy del menú de la izquierda.</p>
+<ol start="3">
+<li class="">
+<p>Aparecerá la página de parámetros de configuración del proxy.</p>
+</li>
+<li class="">
+<p>Pinchando en el campo Utilizar Proxy se habilitarán el resto de los parámetros de la página.</p>
+</li>
+<li class="">
+<p>Configurar los valores de los campos Nombre del Host y Puerto. En caso de que el proxy sea autenticado se deberá configurar una cuenta de Usuario y una Contraseña.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="8_image_1.png" src="/es/assets/images/8_image_1-9b3a778eb8560edc25564fa2861af819.png" width="696" height="488" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="23-gestión-de-proveedores-pkcs11">2.3. Gestión De Proveedores Pkcs#11<a href="#23-gestión-de-proveedores-pkcs11" class="hash-link" aria-label="Enlace directo al 2.3. Gestión De Proveedores Pkcs#11" title="Enlace directo al 2.3. Gestión De Proveedores Pkcs#11" translate="no">​</a></h2>
+<p>A la hora de acceder a contenedores de certificados externos, SealSign DSS puede utilizar, además de los proveedores de servicios criptográficos (CSPs) instalados en el equipo, otros módulos PKCS#11 desarrollados por terceros. Para ello, además de la instalación del proveedor en el servidor, es necesario configurar la lista de proveedores PKCS#11 que debe manejar SealSign DSS.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="231-consulta-de-los-proveedores-pkcs11-configurados">2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados<a href="#231-consulta-de-los-proveedores-pkcs11-configurados" class="hash-link" aria-label="Enlace directo al 2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados" title="Enlace directo al 2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados" translate="no">​</a></h3>
+<p>Para ver la lista de proveedores PKCS#11 configurados en el servidor se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar el registro de proveedores PKCS#11 del grupo Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Proveedores PKCS#11 del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Aparecerá la lista de todos los proveedores PKCS#11 configurados en el servidor.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="mainmenu-pkcs11.png" src="/es/assets/images/mainmenu-pkcs11-d36865de996351f111082b3ab796cdb9.png" width="799" height="405" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="232-añadir-un-nuevo-proveedor-pkcs11">2.3.2. Añadir Un Nuevo Proveedor Pkcs#11<a href="#232-añadir-un-nuevo-proveedor-pkcs11" class="hash-link" aria-label="Enlace directo al 2.3.2. Añadir Un Nuevo Proveedor Pkcs#11" title="Enlace directo al 2.3.2. Añadir Un Nuevo Proveedor Pkcs#11" translate="no">​</a></h3>
+<p>Para añadir un nuevo proveedor PKCS#11, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal de la web de Administración seleccionar el enlace Registrar un nuevo proveedor PKCS#11 del grupo Tareas Relativas a la Configuración General de la Plataforma. Existe también un enlace desde la lista de proveedores PKCS#11 consultada en el apartado anterior.</p>
+</li>
+<li class="">
+<p>Especificar los parámetros de configuración del proveedor:</p>
+</li>
+<li class="">
+<p>El campo Nombre es un campo obligatorio que sirve de etiqueta para conocer el proveedor que se está tratando.</p>
+</li>
+<li class="">
+<p>El campo Librería es el path completo de la librería de enlace dinámico (DLL) del proveedor PKCS#11. Para su correcto funcionamiento, es necesario asegurarse de que el proveedor esté correctamente instalado en todos los servidores de SealSign DSS.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Insertar.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="233-modificar-un-proveedor-pkcs11">2.3.3. Modificar Un Proveedor Pkcs#11<a href="#233-modificar-un-proveedor-pkcs11" class="hash-link" aria-label="Enlace directo al 2.3.3. Modificar Un Proveedor Pkcs#11" title="Enlace directo al 2.3.3. Modificar Un Proveedor Pkcs#11" translate="no">​</a></h3>
+<p>Para modificar la configuración de un proveedor PKCS#11 se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a la Lista de Proveedores PKCS#11, para ello, en la página principal seleccionar el enlace Gestionar el registro de proveedores PKCS#11 del grupo Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Proveedores PKCS#11 del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de proveedores PKCS#11 seleccionar el enlace del proveedor que se desea modificar.</p>
+</li>
+<li class="">
+<p>Realizar las modificaciones deseadas.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Guardar.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="234-eliminar-un-proveedor-pkcs11">2.3.4. Eliminar Un Proveedor Pkcs#11<a href="#234-eliminar-un-proveedor-pkcs11" class="hash-link" aria-label="Enlace directo al 2.3.4. Eliminar Un Proveedor Pkcs#11" title="Enlace directo al 2.3.4. Eliminar Un Proveedor Pkcs#11" translate="no">​</a></h3>
+<p>Para eliminar un proveedor PKCS#11 se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a la Lista de Proveedores PKCS#11, para ello, en la página principal seleccionar el enlace Gestionar el registro de proveedores PKCS#11 del grupo Tareas Relativas a la Configuración General de la Plataforma o bien seleccionar el enlace Proveedores PKCS#11 del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de proveedores PKCS#11, pulsar la Cruz que se encuentra a la izquierda del proveedor que se desee eliminar.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="211-gestión-de-entidades">2.11. Gestión De Entidades<a href="#211-gestión-de-entidades" class="hash-link" aria-label="Enlace directo al 2.11. Gestión De Entidades" title="Enlace directo al 2.11. Gestión De Entidades" translate="no">​</a></h2>
+<p>Se creará una nueva sección en &quot;Entidades&quot; que será desde donde se podrán visualizar, crear y editar nuevas entidades.</p>
+<p>En esta sección se podrán crear entidades, estas entidades se les podrá asignar una configuración de uso personalizado, como, por ejemplo, el uso de un certificado de apoyo distinto por entidad.</p>
+<p>Los campos que se mostraran en esta sección son:</p>
+<ul>
+<li class="">Key</li>
+<li class="">Name</li>
+<li class="">Description</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="43_image_1.png" src="/es/assets/images/43_image_1-000b4cc003abd48990fd8f43a875e3fe.png" width="287" height="221" class="img_ev3q"></p>
+<p>Al entrar en este apartado se visualizará un listado de entidades con clave única y una descripción, en caso de haber alguna configuración ya creada. Desde el enlace de &quot;Añadir una nueva entidad&quot; se accederá a la pantalla de creación de entidades donde aparecerán dos parámetros de configuración.</p>
+<p><img decoding="async" loading="lazy" alt="44_image_2.png" src="data:image/png;base64,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" width="175" height="233" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>KEY: tiene que ser único ya que es el identificador que utilizarán los clientes para seleccionar la configuración que deseen utilizar. El máximo de caracteres será 150 y obligatorio.</p>
+</li>
+<li class="">
+<p>Name: campo de texto obligatorio de 150 caracteres.</p>
+</li>
+<li class="">
+<p>Description: campo de texto de 255 caracteres, no será obligatorio.</p>
+</li>
+</ul>
+<h1>3. Configuración De Parámetros De Firma Electrónica</h1>
+<p>SealSign DSS permite realizar la configuración de algunos parámetros de firma electrónica de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar parámetros de firma electrónica del grupo Tareas Relativas a la Firma Electrónica y Verificación o bien seleccionar el enlace Parámetros de Firma del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros de firma se pueden configurar los siguientes valores:</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>a: Parámetros Generales de Firma:</p>
+<p>i. El campo Comprobar Cadena de Certificación del Certificado Firmante indica si el servidor deberá construir la cadena de certificados correspondiente al certificado de firma recibido, de manera que, si la cadena no es válida y de confianza en el servidor de SealSign, el servidor retornará un error en el proceso de firma.</p>
+<p>ii. El campo Comprobar Estado de Revocación indica si el servidor deberá verificar si el certificado de firma recibido está revocado o no, de manera que, si el certificado está revocado, el servidor retornará un error en el proceso de firma.</p>
+<p>iii. El campo Servidor de Sellado de Tiempo por Defecto permite seleccionar, de la lista de servidores de sellado de tiempo configurados en SealSign, cuál se utilizará en las operaciones de firma que requieran sellos de tiempo.</p>
+<p>iv. El campo Servidor de Backup de Sellado de Tiempo por Defecto permite seleccionar, de la lista de servidores de sellado de tiempo configurados en SealSign, cuál se utilizará en las operaciones de firma que requieran sellos de tiempo en el servidor de BackUp.</p>
+</li>
+<li class="">
+<p>b: Firma De Documentos Xml (Xades):</p>
+<p>i. El campo Añadir Transformación XPath de Eliminación de Firmas indica si el servidor aplicará la plantilla de transformación XPath para la eliminación de firmas previas antes de realizar la firma de un documento XML.</p>
+<p>ii. El campo Firma XAdES-X de Tipo 2 permite configurar que las firmas con el perfil XAdES-X y XAdES-XL cumplan con el tipo 2 del estándar XAdES-X en lugar de ser de tipo 1 (valor por defecto).</p>
+</li>
+<li class="">
+<p>c: Firma de Mensajes CMS (CAdES):</p>
+<p>i. El campo Firma CAdES-X de Tipo 2 permite configurar que las firmas con el perfil CAdES-X y CAdES-XL cumplan con el tipo 2 del estándar CAdES-X en lugar de ser de tipo 1 (valor por defecto).</p>
+</li>
+<li class="">
+<p>d: Firma de Documentos PDF (PAdES Basic):</p>
+<p>i. El campo Incluir Timestamp permite configurar si se incluir un sello de tiempo a la hora de firmar documentos PDF.</p>
+<p>ii. El campo Incluir Información de Revocación indica si dentro de la firma se incluirán</p>
+<p>las CRLs o respuestas OCSPs relacionadas con los certificados involucrados en el proceso.</p>
+<p>iii. El campo Visualizar Widget de Firma indica si el documento PDF resultante tras la firma mostrará el visualizador (Widget) de firma con la información de la misma.</p>
+<p>iv. El campo Posicionar Widget Automáticamente indica si el visualizador de firma se posiciona automáticamente o si se deben utilizar los valores configurados en los 2 siguientes campos. Si el Widget se posiciona automáticamente aparecerá en la esquina superior derecha del documento PDF resultante.</p>
+<p>v. El campo Posición del Widget - Coordenada X permite configurar la coordenada X
+de la posición del Widget en pixels desde el ángulo inferior izquierdo de la página.</p>
+<p>vi. El campo Posición del Widget - Coordenada Y permite configurar la coordenada Y
+de la posición del Widget en pixels desde el ángulo inferior izquierdo de la página.</p>
+<p>vii. El campo Tamaño Automático del Widget indica si el visualizador de firma se redimensionará automáticamente o si se deben utilizar los valores configurados en los 2 siguientes campos.</p>
+<p>viii. El campo Alto del Widget permite configurar, en pixels, la altura del visualizador de firma.</p>
+<p>ix. El campo Ancho del Widget permite configurar, en pixels, la anchura del visualizador de firma.</p>
+<p>x. El campo Rotación del Widget permite seleccionar el ángulo de rotación del visualizador de firma. Los posibles valores son 0º, 90º, 180º y 270º.</p>
+<p>xi. El campo Incluir Widget en Todas las Páginas indica si el visualizador de firma se mostrará en todas las páginas del documento.</p>
+<p>xii. El campo Incluir Widget Sólo en la Página Número indica el número de la página en la que se mostrará el visualizador de firma.</p>
+<p>xiii. El campo Incluir Imagen de Fondo permite configurar la inclusión de una imagen en el Widget de firma.</p>
+<p>xiv. El campo Imagen de Fondo permite seleccionar un fichero con la imagen que se mostrará como fondo del Widget. Es importante mencionar que el fichero debe estar en formato JPEG 2000 y que un fichero JPEG normal no es válido como imagen de fondo.</p>
+<p>xv. El campo Alto de la Imagen permite configurar, en pixels, la altura que tiene la imagen seleccionada en el campo anterior.</p>
+<p>xvi. El campo Ancho de la Imagen permite configurar, en pixels, la anchura que tiene la imagen seleccionada en el campo Imagen de Fondo.</p>
+<p>xvii. El campo Autoajustar Imagen indica si la imagen de fondo se estirará para cubrir el ancho del visualizador de firma</p>
+</li>
+</ul>
+<ol start="4">
+<li class="">Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="31configuración-de-parámetros-de-verificación-de-firma-electrónica">3.1.Configuración De Parámetros De Verificación De Firma Electrónica<a href="#31configuración-de-parámetros-de-verificación-de-firma-electrónica" class="hash-link" aria-label="Enlace directo al 3.1.Configuración De Parámetros De Verificación De Firma Electrónica" title="Enlace directo al 3.1.Configuración De Parámetros De Verificación De Firma Electrónica" translate="no">​</a></h2>
+<p>SealSign DSS permite realizar la configuración de algunos parámetros que regirán el proceso de verificación de firma electrónica. Dicha configuración se realiza mediante los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar parámetros de verificación de firma electrónica del grupo Tareas Relativas a la Firma Electrónica y Verificación o bien seleccionar el enlace Parámetros de Verificación del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros de verificación firma se pueden configurar los siguientes valores:</p>
+<p>a. El campo Comprobar Cadena de Certificación del Certificado Firmante indica si el servidor deberá construir la cadena de certificados correspondiente al certificado de firma, de manera que, si la cadena no es válida y de confianza en el servidor de SealSign, el servidor retornará un error en el proceso de verificación.</p>
+<p>b. El campo Comprobar Estado de Revocación indica si el servidor deberá verificar si el certificado de firma está revocado o no, de manera que, si el certificado está revocado, el servidor retornará un error en el proceso de verificación.</p>
+<p>c. El campo Incluir información extendida de los sellos de tiempo indica si en la respuesta del proceso de verificación se incluirá la información correspondiente a cada uno de los sellos de tiempo y sus firmas.</p>
+<p>d. El campo Incluir únicamente firmas de tipo documento en los archivos PDF indica si el proceso de verificación de documentos PDF deberá incluir todas las firmas extendidas (por ejemplo, las firmas de cifrado de PDF) o solamente las firmas de tipo documento (las de usuario).</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h1>4. Configuración De Parámetros De Firma Biométrica</h1>
+<p>SealSign BSS permite realizar la configuración de algunos parámetros de firma manuscrita de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar parámetros de firma biométrica del grupo Tareas Relativas a la Firma Biométrica y Verificación o bien seleccionar el enlace Parámetros de Firma del apartado Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros de firma se pueden configurar los siguientes valores:</p>
+<p>a. Parámetros Generales de Firma:</p>
+<p>i. El campo Verificar Identidad Biométrica del Firmante indica si el servidor deberá verificar los datos biométricos de la firma antes de incluirlos en el documento a firmar.</p>
+<p>ii. El campo Incluir Timestamp indica si el servidor deberá añadir un sello de tiempo a la firma biométrica.</p>
+<p>b. Representación Gráfica de la Firma:
+i. El campo Visualizar Widget de Firma indica si el documento resultante tras la firma mostrará el visualizador (Widget) de firma con la información de esta.</p>
+<p>ii. El campo Incluir Hash del Documento Como Marca de Agua indica si en el documento resultante se mostrará el hash como marca de agua en el visualizador de firma.</p>
+<p>iii. El campo Posición del Widget - Coordenada X permite configurar la coordenada X
+de la posición del Widget en píxeles desde el ángulo inferior izquierdo de la página.</p>
+<p>iv. El campo Posición del Widget - Coordenada Y permite configurar la coordenada Y
+de la posición del Widget en pixeles desde el ángulo inferior izquierdo de la página.</p>
+<p>v. El campo Tamaño Automático del Widget indica si el visualizador de firma se redimensionará automáticamente o si se deben utilizar los valores configurados en los 2 siguientes campos.</p>
+<p>vi. El campo Alto del Widget permite configurar, en píxeles, la altura del visualizador de firma.</p>
+<p>vii. El campo Ancho del Widget permite configurar, en píxeles, la anchura del visualizador de firma.</p>
+<p>viii. El campo Rotación del Widget permite seleccionar el ángulo de rotación del visualizador de firma. Los posibles valores son 0º, 90º, 180º y 270º.</p>
+<p>ix. El campo Incluir Widget en Todas las Páginas indica si el visualizador de firma se mostrará en todas las páginas del documento.</p>
+<p>x. El campo Incluir Widget Sólo en la Página Número indica el número de la página en la que se mostrará el visualizador de firma.</p>
+<p>xi. El campo En la última página indica si se ha de añadir el Widget únicamente en la última página.</p>
+<p>xii. El campo Offset sobre la página (positivo o negativo).</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-configuración-de-parámetros-de-verificación-de-firma-biométrica">4.1. Configuración De Parámetros De Verificación De Firma Biométrica<a href="#41-configuración-de-parámetros-de-verificación-de-firma-biométrica" class="hash-link" aria-label="Enlace directo al 4.1. Configuración De Parámetros De Verificación De Firma Biométrica" title="Enlace directo al 4.1. Configuración De Parámetros De Verificación De Firma Biométrica" translate="no">​</a></h2>
+<p>SealSign BSS permite realizar la configuración de algunos parámetros que regirán el proceso de verificación de la firma biométrica. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar parámetros de verificación de firma biométrica del grupo Tareas Relativas a la Firma Biométrica y Verificación o bien seleccionar el enlace Parámetros de Verificación del apartado Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros de verificación firma se pueden configurar los siguientes valores:</p>
+<p>a. El campo Umbral de Reconocimiento Positivo indica cual es el rango que debe aplicar el servidor a la hora de validar una firma biométrica como firma válida.</p>
+<p>b. El campo Umbral de Score Personalizado (Formato 0.00) permite incluir un valor personalizado para el Score aplicable, fuera de los valores establecidos por defecto en el campo anterior.</p>
+<p>c. El campo Incluir Información de Firma Electrónica xxxxx.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="42configuración-de-la-firma-electrónica-de-apoyo">4.2.Configuración De La Firma Electrónica De Apoyo<a href="#42configuración-de-la-firma-electrónica-de-apoyo" class="hash-link" aria-label="Enlace directo al 4.2.Configuración De La Firma Electrónica De Apoyo" title="Enlace directo al 4.2.Configuración De La Firma Electrónica De Apoyo" translate="no">​</a></h2>
+<p>Dentro de las funcionalidades provistas por SealSign BSS está la posibilidad de añadir una firma electrónica en el servidor para asegurar que los datos biométricos son válidos y no se modifican tras la firma.</p>
+<p>Es necesario indicar que el certificado configurado será utilizado para cifrar los datos biométricos almacenados, por esta razón, es importante que el certificado utilizado para la firma de apoyo tenga una longitud de clave que permita salvaguardar los datos biométricos la mayor cantidad de tiempo.</p>
+<p>Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar parámetros de firma electrónica de apoyo a la firma biométrica del grupo Tareas Relativas a la Firma Biométrica y Verificación o bien seleccionar el enlace Firma Electrónica de Apoyo del apartado Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros generales de firma se pueden configurar los siguientes valores:</p>
+<p>a. El campo Incluir Firma Electrónica en el Documento activa la generación de la firma electrónica de apoyo en el documento.</p>
+<p>b. El campo Usar Certificado Para Cifrar Datos Biométricos indica si se utilizará el certificado, no solo para firmar el documento sino también para cifrar los datos biométricos incluidos en él.</p>
+<p>c. El campo Usar Imagen Biométrica Como Fondo de Firma en Formatos Soportados permite utilizar el grafo de la firma manuscrita como fondo de imagen de la firma electrónica.</p>
+<p>d. El campo Tipo de Firma Electrónica indica cuál es el tipo de firma electrónica que se añadirá al documento.</p>
+<p>i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. El campo Algoritmo de Función Resumen (Hash) indica cuál es el tipo de hash que se generará para la firma electrónica de apoyo.</p>
+<p>f. El campo Certificado de Servidor de Firma permite seleccionar el certificado de servidor con el que se realizará la firma electrónica de apoyo. Este certificado deberá haber sido añadido previamente al repositorio central de certificados de SealSign DSS.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="43configuración-del-cifrado-de-datos-biométricos">4.3.Configuración Del Cifrado De Datos Biométricos<a href="#43configuración-del-cifrado-de-datos-biométricos" class="hash-link" aria-label="Enlace directo al 4.3.Configuración Del Cifrado De Datos Biométricos" title="Enlace directo al 4.3.Configuración Del Cifrado De Datos Biométricos" translate="no">​</a></h2>
+<p>A la hora de asegurar los datos biométricos incluidos en un documento, SealSign BSS permite la posibilidad de configurar un certificado emitido por la propia organización o por un tercero de confianza cuya clave pública sea utilizada para cifrar dicha información biométrica. De este modo, la información biométrica se cifrará tanto con el certificado de firma electrónica de apoyo (si se configuró esta posibilidad) como con este nuevo certificado.</p>
+<p>Para configurar el certificado de cifrado de datos biométricos, el administrador debe realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>Seleccionar el enlace Cifrado de Datos Biométricos del apartado Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Habilitar el campo Incluir Certificado de Tercero de Confianza.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Importar.</p>
+</li>
+<li class="">
+<p>En la página de selección de fichero, buscar el fichero con el certificado en cuestión y añadir la información de contacto del certificado</p>
+</li>
+<li class="">
+<p>Pulsar el botón Importar.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="44configuración-personalizada">4.4.Configuración Personalizada<a href="#44configuración-personalizada" class="hash-link" aria-label="Enlace directo al 4.4.Configuración Personalizada" title="Enlace directo al 4.4.Configuración Personalizada" translate="no">​</a></h2>
+<p>Las configuraciones de los parámetros predeterminados de la firma electrónica de respaldo de la firma biométrica. La sección de configuración personalizada permite la individualización de los parámetros de firma para distintas casuísticas.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="441-parámetros-de-firma-para-entidades">4.4.1 Parámetros de firma para entidades<a href="#441-parámetros-de-firma-para-entidades" class="hash-link" aria-label="Enlace directo al 4.4.1 Parámetros de firma para entidades" title="Enlace directo al 4.4.1 Parámetros de firma para entidades" translate="no">​</a></h3>
+<p>Contiene el listado de las entidades con la clave compartida con el cliente para la selección de las configuraciones. Dichos registros tienen un campo identificador, nombre, descripción y certificados asignados para cifrado y firma de apoyo.</p>
+<p><img decoding="async" loading="lazy" alt="52_image_0.png" src="/es/assets/images/52_image_0-116c473a5c972799f68d49666b86f58c.png" width="565" height="241" class="img_ev3q"></p>
+<p>A través de esta pantalla podemos acceder a las siguientes acciones para la parametrización de las firmas:</p>
+<ul>
+<li class="">
+<p>Firma electrónica de apoyo por defecto: Desde aquí podemos crear la configuración que toman como predefinida todas las solicitudes en el sistema. Cuando la petición no lleva consigo explícitamente la identificación de una configuración determinada toma esta.</p>
+</li>
+<li class="">
+<p>Nueva configuración: Desde este panel podemos crear nuevas configuraciones para distintas casuísticas de firma. Cualquier solicitud enviada con el identificador de la configuración creada toma los parámetros de esta.</p>
+</li>
+<li class="">
+<p>Actualizar lista: Refresca los resultados de la tabla.</p>
+</li>
+<li class="">
+<p>Eliminar configuración: Mediante la x presente en la primera columna de toda entrada en la tabla podemos eliminar la configuración creada.</p>
+</li>
+<li class="">
+<p>Modificar configuración: Cada identificador de la columna Clave nos permite pinchar y acceder al panel de modificación de la configuración creada.</p>
+</li>
+<li class="">
+<p>Búsqueda: Filtrado de la tabla con criterio de búsqueda por nombre o clave de identidad.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="442-creación-de-entidad-de-configuración">4.4.2. Creación de Entidad de configuración<a href="#442-creación-de-entidad-de-configuración" class="hash-link" aria-label="Enlace directo al 4.4.2. Creación de Entidad de configuración" title="Enlace directo al 4.4.2. Creación de Entidad de configuración" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="53_image_1.png" src="/es/assets/images/53_image_1-d6d5c7c98c48ba1c245fed27ff4d1a19.png" width="515" height="141" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Configuración personalizada de firma del grupo Tareas Relativas a la Firma Biométrica o bien seleccionar el enlace Configuración personalizada Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de Crear Configuración personalizada de firma se pueden configurar los siguientes valores:</p>
+<p>a. Clave de entidad: Selección de la clave de las Entidades previamente configuradas.</p>
+<p>b. Certificado para la firma de apoyo: Certificado asignado a hacer la firma de apoyo para las firmas biométricas. Certificado para la configuración, debe ser seleccionado uno de los dos que hay. En caso de no seleccionarse ninguno se usará el certificado por defecto.</p>
+<p>c. Algoritmo de Función Resumen (Hash):</p>
+<p>i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>d. Tipo De Firma Electrónica:</p>
+<p>i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. Usar Certificado Para Cifrar Datos de firma biométrica: Selección que indica si queremos que este mismo certificado se use para el cifrado de los datos.</p>
+<p>f. Certificado para el cifrado de datos biométrico: Selección de un certificado distinto para el cifrado de los metadatos de la firma biométrica.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="443-configuración-por-defecto">4.4.3. Configuración por defecto<a href="#443-configuración-por-defecto" class="hash-link" aria-label="Enlace directo al 4.4.3. Configuración por defecto" title="Enlace directo al 4.4.3. Configuración por defecto" translate="no">​</a></h3>
+<p>Este apartado brinda la posibilidad de crear una configuración para las firmas que se aplica a todas aquellas que no especifiquen lo contrario dentro de la petición de la solicitud.</p>
+<p><img decoding="async" loading="lazy" alt="54_image_2.png" src="/es/assets/images/54_image_2-bdca72489d5cff8973ea98fd86bdc3fe.png" width="427" height="250" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Configuración personalizada de firma del grupo Tareas Relativas a la Firma Biométrica o bien seleccionar el enlace Configuración personalizada Firma Biométrica del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de Crear Configuración por defecto de firma se pueden configurar los siguientes valores:</p>
+<p>a. Incluir Firma Electrónica en el Documento: Activa la generación de la firma electrónica de apoyo en el documento.</p>
+<p>b. Usar Certificado Para Cifrar Datos Biometricos: Indica si se utilizará el certificado, no solo para firmar el documento sino también para cifrar los datos biométricos incluidos en él.</p>
+<p>c. Tipo de Firma Electrónica:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal e. Algoritmo de Función Resumen (Hash):
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3 f. Certificado de Servidor de Firma: Selección del certificado para la configuración por defecto de las solicitudes.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para crear o actualizar la configuración.</p>
+</li>
+</ol>
+<h1>5. Configuración De Parámetros De Firma Otp</h1>
+<p>SealSign OTPSS permite realizar la configuración de algunos parámetros de la firma de contraseña única de manera general y centralizada. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Parámetros de Firma del apartado Firma OTP del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros de firma se pueden configurar los siguientes valores:</p>
+<p>a. Parámetros Generales de Firma:
+i. El campo Incluir Proveedor remoto de código OTP indica si el código OTP se va a generar mediante un proveedor remoto o, por el contrario, lo va a generar la propia plataforma.</p>
+<p>ii. El campo Tipo de envío indica el método de envío del código OTP. Se puede elegir entre ninguno, email o SMS.</p>
+<p>iii. El campo Tiempo de expiración indica el tiempo de vida, en segundos, de un código OTP una vez generado.</p>
+<p>iv. El campo Longitud del código indica la longitud de los códigos OTP que se generen desde la plataforma.</p>
+<p>v. El campo Algoritmo de Generación de Código indica que algoritmo se utilizará para generar el código OTP. Se puede seleccionar entre SHA1, SHA256, SHA512.</p>
+<p>vi. EL campo Intentos de verificación permitidos indica el número máximo permitido de verificaciones que se pueden ejecutar sobre el código One Time Password.</p>
+<p>b. Representación Gráfica de la Firma:
+i. El campo Visualizar Widget de Firma indica si el documento resultante tras la firma mostrará el visualizador (Widget) de firma con la información de esta.</p>
+<p>ii. El campo Texto del widget indica el texto que se incluirá como imagen en el widget de firma.</p>
+<p>iii. El campo Incluir Hash del Documento Como Marca de Agua indica si en el documento resultante se mostrará el hash como marca de agua en el visualizador de firma.</p>
+<p>iv. El campo Posición del Widget - Coordenada X permite configurar la coordenada X
+de la posición del Widget en píxeles desde el ángulo inferior izquierdo de la página.</p>
+<p>v. El campo Posición del Widget - Coordenada Y permite configurar la coordenada Y
+de la posición del Widget en pixeles desde el ángulo inferior izquierdo de la página.</p>
+<p>vi. El campo Tamaño Automático del Widget indica si el visualizador de firma se redimensionará automáticamente o si se deben utilizar los valores configurados en los 2 siguientes campos.</p>
+<p>vii. El campo Alto del Widget permite configurar, en píxeles, la altura del visualizador de firma.</p>
+<p>viii. El campo Ancho del Widget permite configurar, en píxeles, la anchura del visualizador de firma.</p>
+<p>ix. El campo Rotación del Widget permite seleccionar el ángulo de rotación del visualizador de firma. Los posibles valores son 0º, 90º, 180º y 270º.</p>
+<p>x. El campo Incluir Widget en Todas las Páginas indica si el visualizador de firma se mostrará en todas las páginas del documento.</p>
+<p>xi. El campo Incluir Widget Sólo en la Página Número indica el número de la página en la que se mostrará el visualizador de firma.</p>
+<p>xii. El campo En la última página indica si se ha de añadir el Widget únicamente en la última página.</p>
+<p>xiii. El campo Offset sobre la página (positivo o negativo).</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="51configuración-de-la-firma-electrónica-de-apoyo">5.1.Configuración De La Firma Electrónica De Apoyo<a href="#51configuración-de-la-firma-electrónica-de-apoyo" class="hash-link" aria-label="Enlace directo al 5.1.Configuración De La Firma Electrónica De Apoyo" title="Enlace directo al 5.1.Configuración De La Firma Electrónica De Apoyo" translate="no">​</a></h2>
+<p>Dentro de las funcionalidades provistas por SealSign OTPSS está la posibilidad de añadir una firma electrónica en el servidor para asegurar que los datos son válidos y no se modifican tras la firma.</p>
+<p>Es necesario indicar que el certificado configurado será utilizado para cifrar los datos del firmante almacenados, por esta razón, es importante que el certificado utilizado para la firma de apoyo tenga una longitud de clave que permita salvaguardar los datos biométricos la mayor cantidad de tiempo.</p>
+<p>Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Firma Electrónica de Apoyo del apartado Firma OTP del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de parámetros generales de firma se pueden configurar los siguientes valores:</p>
+<p>a. El campo Usar Certificado Para Cifrar Datos Biométricos indica si se utilizará el certificado, no solo para firmar el documento sino también para cifrar los datos biométricos incluidos en él.</p>
+<p>b. El campo Tipo de Firma Electrónica indica cuál es el tipo de firma electrónica que se añadirá al documento.</p>
+<p>i. Enveloped
+ii. Enveloping
+iii. Detached<br>
+<!-- -->iv. DetachedInternal</p>
+<p>c. El campo Algoritmo de Función Resumen (Hash) indica cuál es el tipo de hash que se generará para la firma electrónica de apoyo.</p>
+<p>d. El campo Certificado de Servidor de Firma permite seleccionar el certificado de servidor con el que se realizará la firma electrónica de apoyo. Este certificado deberá haber sido añadido previamente al repositorio central de certificados de SealSign DSS.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="52configuración-del-cifrado-de-metadatos">5.2.Configuración Del Cifrado De Metadatos<a href="#52configuración-del-cifrado-de-metadatos" class="hash-link" aria-label="Enlace directo al 5.2.Configuración Del Cifrado De Metadatos" title="Enlace directo al 5.2.Configuración Del Cifrado De Metadatos" translate="no">​</a></h2>
+<p>A la hora de asegurar los datos del firmante incluidos en un documento, SealSign OTPSS permite la posibilidad de configurar un certificado emitido por la propia organización o por un tercero de confianza cuya clave pública sea utilizada para cifrar dicha información biométrica. De este modo, la información se cifrará tanto con el certificado de firma electrónica de apoyo (si se configuró esta posibilidad) como con este nuevo certificado.</p>
+<p>Para configurar el certificado de cifrado de metadatos, el administrador debe realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>Seleccionar el enlace Cifrado de metadatos del apartado Firma OTP del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Habilitar el campo Incluir Certificado de Tercero de Confianza.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Importar.</p>
+</li>
+<li class="">
+<p>En la página de selección de fichero, buscar el fichero con el certificado en cuestión y añadir la información de contacto del certificado</p>
+</li>
+<li class="">
+<p>Pulsar el botón Importar.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="53configuración-personalizada">5.3.Configuración Personalizada<a href="#53configuración-personalizada" class="hash-link" aria-label="Enlace directo al 5.3.Configuración Personalizada" title="Enlace directo al 5.3.Configuración Personalizada" translate="no">​</a></h2>
+<p>Las configuraciones de los parámetros predeterminados de la firma electrónica de respaldo de la firma OTP.</p>
+<p>La sección de configuración personalizada permite la individualización de los parámetros de firma para distintas casuísticas.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="531-parámetros-de-firma-para-entidades">5.3.1. Parámetros de firma para entidades<a href="#531-parámetros-de-firma-para-entidades" class="hash-link" aria-label="Enlace directo al 5.3.1. Parámetros de firma para entidades" title="Enlace directo al 5.3.1. Parámetros de firma para entidades" translate="no">​</a></h2>
+<p>Contiene el listado de las entidades con la clave compartida con el cliente para la selección de las configuraciones. Dichos registros tienen un campo identificador, nombre, descripción y certificados asignados para cifrado y firma de apoyo.</p>
+<p><img decoding="async" loading="lazy" alt="mainmenu-pkcs11.png" src="/es/assets/images/mainmenu-pkcs11-d36865de996351f111082b3ab796cdb9.png" width="799" height="405" class="img_ev3q"></p>
+<p>A través de esta pantalla podemos acceder a las siguientes acciones para la parametrización de las firmas:</p>
+<ul>
+<li class="">
+<p>Firma electrónica de apoyo por defecto: Desde aquí podemos crear la configuración que toman como predefinida todas las solicitudes en el sistema. Cuando la petición no lleva consigo explícitamente la identificación de una configuración determinada toma esta.</p>
+</li>
+<li class="">
+<p>Nueva configuración: Desde este panel podemos crear nuevas configuraciones para distintas casuísticas de firma. Cualquier solicitud enviada con el identificador de la configuración creada toma los parámetros de esta.</p>
+</li>
+<li class="">
+<p>Actualizar lista: Refresca los resultados de la tabla.</p>
+</li>
+<li class="">
+<p>Eliminar configuración: Mediante la x presente en la primera columna de toda entrada en la tabla podemos eliminar la configuración creada.</p>
+</li>
+<li class="">
+<p>Modificar configuración: Cada identificador de la columna Clave nos permite pinchar y acceder al panel de modificación de la configuración creada.</p>
+</li>
+<li class="">
+<p>Búsqueda: Filtrado de la tabla con criterio de búsqueda por nombre o clave de identidad.</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="532-creación-de-entidad-de-configuración">5.3.2. Creación de Entidad de configuración<a href="#532-creación-de-entidad-de-configuración" class="hash-link" aria-label="Enlace directo al 5.3.2. Creación de Entidad de configuración" title="Enlace directo al 5.3.2. Creación de Entidad de configuración" translate="no">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="60_image_1.png" src="/es/assets/images/60_image_1-789bc6bc4b4e45946c81bc0cadc3dfa5.png" width="556" height="156" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Configuración personalizada de firma del grupo Tareas Relativas a la Firma OTP o bien seleccionar el enlace Configuración personalizada Firma OTP del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de Crear Configuración personalizada de firma se pueden configurar los siguientes valores:</p>
+<p>a. Clave de entidad: Selección de la clave de las Entidades previamente configuradas.</p>
+<p>b. Certificado para la firma de apoyo: Certificado asignado a hacer la firma de apoyo para las firmas OTP. Certificado para la configuración, debe ser seleccionado uno de los dos que hay.</p>
+<p>En caso de no seleccionarse ninguno se usará el certificado por defecto.</p>
+<p>c. Algoritmo de Función Resumen (Hash):
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>d. Tipo de Firma Electrónica:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal</p>
+<p>e. Usar Certificado Para Cifrar Datos de firma OTP: Selección que indica si queremos que este mismo certificado se use para el cifrado de los datos.</p>
+<p>f. Certificado One Time Password para el cifrado de metadatos: Selección de un certificado distinto para el cifrado de los metadatos de la firma OTP.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="533-configuración-por-defecto">5.3.3. Configuración por defecto<a href="#533-configuración-por-defecto" class="hash-link" aria-label="Enlace directo al 5.3.3. Configuración por defecto" title="Enlace directo al 5.3.3. Configuración por defecto" translate="no">​</a></h2>
+<p>Este apartado brinda la posibilidad de crear una configuración para las firmas que se aplica a todas aquellas que no especifiquen lo contrario dentro de la petición de la solicitud.</p>
+<p><img decoding="async" loading="lazy" alt="61_image_3.png" src="/es/assets/images/61_image_3-fd467f0ce6ddb98487b65a414808e230.png" width="365" height="184" class="img_ev3q"></p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Configuración personalizada de firma del grupo Tareas Relativas a la Firma OTP o bien seleccionar el enlace Configuración personalizada Firma OTP del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de Crear Configuración por defecto de firma se pueden configurar los siguientes valores:</p>
+<p>a. Usar Certificado Para Cifrar Datos de firma OTP: Indicamos si el certificado por defecto se usa también para cifrar los datos de la firma OTP.</p>
+<p>b. Usar Imagen Biométrica Como Fondo de Firma en Formatos Soportados: Permite utilizar el grafo de la firma manuscrita como fondo de imagen de la firma electrónica.</p>
+<p>c. Tipo de Firma Electrónica:
+i. Enveloped ii. Enveloping iii. Detached iv. DetachedInternal</p>
+<p>d. Algoritmo de Función Resumen (Hash):
+i. RIPEMD160 ii. MD5 iii. SHA1 iv. SHA256 v. SHA382 vi. SHA512 vii. SSL3</p>
+<p>e. Certificado de Servidor de Firma: Selección del certificado para la configuración por defecto de las solicitudes.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para crear o actualizar la configuración.</p>
+</li>
+</ol>
+<h1>6. Gestión De Claves Centralizadas</h1>
+<p>Dentro de las funcionalidades provistas por SealSign DSS está la posibilidad de realizar firma electrónica de documentos con certificados almacenados en el servidor. Los certificados de servidor de SealSign DSS pueden residir dentro de la plataforma de firma o referenciar almacenes externos Windows y PKCS#11. El administrador deberá configurar qué certificados de servidor van a poderse usar y quién va a tener acceso a cada uno de ellos para las operaciones de firma realizadas por la plataforma.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="61gestión-de-certificados-de-servidor">6.1.Gestión De Certificados De Servidor<a href="#61gestión-de-certificados-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.Gestión De Certificados De Servidor" title="Enlace directo al 6.1.Gestión De Certificados De Servidor" translate="no">​</a></h2>
+<p>En este menú de la administración se pueden añadir las referencias a certificados tanto internos como externos que posteriormente estarán disponibles para la creación de Reglas de Uso en los mismos.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="611-consulta-de-la-lista-de-certificados-de-servidor">6.1.1. Consulta De La Lista De Certificados De Servidor<a href="#611-consulta-de-la-lista-de-certificados-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.1. Consulta De La Lista De Certificados De Servidor" title="Enlace directo al 6.1.1. Consulta De La Lista De Certificados De Servidor" translate="no">​</a></h3>
+<p>Para ver la lista de los certificados de servidor disponibles se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar certificados de servidor del grupo Tareas Relativas a Certificados de Servidor o bien seleccionar el enlace Certificados de Servidor del menú de la izquierda llamado Claves Centralizadas.</p>
+</li>
+<li class="">
+<p>Aparecerá la lista de todos los certificados de servidor que podrán ser utilizados en los procesos de firma.</p>
+</li>
+</ol>
+<p><strong>Certificados Caducados:</strong> En el listado, los certificados caducados aparecerán resaltados en rojo, con la fecha de caducidad en un rojo intenso para facilitar su identificación.</p>
+<p>**Icono de Bloqueo: **En el borde lateral izquierdo, aparecerá un ícono de un candado que indicará si el certificado tiene el check de bloqueo activado.</p>
+<p><strong>Acciones sobre los Certificados:</strong> En el listado de certificados, las acciones disponibles ahora están agrupadas en un solo botón. Al presionarlo, se mostrará un menú con las siguientes opciones:</p>
+<ul>
+<li class="">
+<p>Reglas de Uso: Esta opción redirecciona a la sección de reglas de uso, donde se muestra el listado de reglas de uso asociadas a ese certificado.</p>
+</li>
+<li class="">
+<p>Registro de Auditoría: Esta opción redirecciona a la sección de registros de auditoría, donde se muestra un listado con todas las acciones realizadas con ese certificado.</p>
+</li>
+<li class="">
+<p>Descargar Clave Pública: Esta opción permite descargar la clave pública del certificado.</p>
+</li>
+<li class="">
+<p>Borrar Certificado: Esta opción permite eliminar el certificado de la plataforma.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="612-añadir-un-nuevo-certificado-de-servidor">6.1.2. Añadir Un Nuevo Certificado De Servidor<a href="#612-añadir-un-nuevo-certificado-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.2. Añadir Un Nuevo Certificado De Servidor" title="Enlace directo al 6.1.2. Añadir Un Nuevo Certificado De Servidor" translate="no">​</a></h3>
+<p>Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal de la web de Administración se deberá seleccionar el enlace Importar un nuevo certificado de servidor del grupo Tareas Relativas a Certificados de Servidor. Existe también un enlace desde la lista de certificados de servidor consultada en el apartado anterior.</p>
+</li>
+<li class="">
+<p>En la página de certificados de servidor configurar los siguientes valores:</p>
+<p>a. El campo Fichero permite seleccionar el fichero .pfx que contiene el certificado que será importado dentro del almacén de certificados de SealSign.</p>
+<p>b. En el campo Contraseña deberá indicarse la contraseña que tiene el fichero seleccionado en el campo anterior.</p>
+<p>c. En el valor Recordar Contraseña se especificará si el servidor deberá almacenar la contraseña de este fichero para no volver a requerirla cuando se vaya a usar el certificado o si, por el contrario, se requerirá al usuario que proporcione esta contraseña cada vez.</p>
+<p>d. El campo Nombre Descriptivo permite, opcionalmente, indicar una descripción más extensa del certificado.</p>
+<p>e. El campo Administrado Únicamente por el Propietario permite al propietario del certificado restringir la gestión y uso del certificado únicamente a su usuario de Windows. De esta forma, ningún otro usuario ni administrador del sistema podrán hacer uso del mismo.</p>
+<p>f. El campo Propietario indica el nombre de la cuenta de usuario de Windows que actuará como propietario del nuevo certificado y que, por tanto, tendrá acceso al mismo. Además del propietario es posible crear delegados que también podrán hacer uso de este certificado. La creación de delegados se realiza modificando la configuración del certificado de servidor tras añadirlo por primera vez.</p>
+<p>g. En el valor Requerir Contraseña SealSign se puede forzar la necesidad de crear una contraseña específica de SealSign necesaria cada vez que se vaya a usar el certificado dentro de la plataforma.</p>
+<p>h. El campo Contraseña SealSign se configurará la contraseña comentada en el campo anterior.</p>
+</li>
+<li class="">
+<p>Pulsando el botón Importar el certificado quedará guardado dentro del almacén de certificados de SealSign.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="613-añadir-una-referencia-a-un-certificado-externo-de-servidor">6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor<a href="#613-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor" title="Enlace directo al 6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor" translate="no">​</a></h3>
+<p>Cuando el certificado esté almacenado en un lugar externo al almacén de certificados servidor de SealSign, será necesario añadir una referencia al mismo en la configuración de los certificados de servidor. Para ello se deberán realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal de la web de Administración seleccionar el enlace Añadir una referencia a un certificado externo de servidor del grupo Tareas Relativas a Certificados de Servidor. Existe también un enlace desde la lista de certificados de servidor consultada en el apartado anterior.</p>
+</li>
+<li class="">
+<p>En la página de referencias de certificados de servidor configurar los siguientes valores:</p>
+<p>a. En el campo Tipo de Almacén se seleccionará que tipo de almacén contiene el certificado. En concreto se puede seleccionar entre los valores:</p>
+<p>i. WindowsStore para certificados guardados en el almacén de certificados del usuario actual de Windows.</p>
+<p>ii. WindowsSystemStore para certificados guardados en el almacén de certificados de equipo del servidor de SealSign.</p>
+<p>iii. PKCS11Store para certificados guardados en almacenes externos accesibles mediante un módulo PCKS#11.</p>
+<p>b. Tras seleccionar el tipo de almacén, se deberá pulsar el botón Seleccionar Certificado.</p>
+<p>Aparecerá una ventana que o bien mostrará los certificados disponibles (WindowsStore y WindowsSystemStore) o bien solicitará la selección del Proveedor PKCS#11, el Slot y la Contraseña para acceso al certificado (PKCS11Store).</p>
+<p>c. Una vez seleccionado el certificado, la página mostrará el Asunto, Número de Serie, Entidad Emisora, Fechas de Validez y si hay una Contraseña Requerida por el Almacén.</p>
+<p>d. El campo Nombre Descriptivo permite, opcionalmente, indicar una descripción más extensa del certificado.</p>
+<p>e. El campo Propietario indica el nombre de la cuenta de usuario de Windows que actuará como propietario del nuevo certificado y que, por tanto, tendrá acceso al mismo. Además del propietario es posible crear delegados que también podrán hacer uso de este certificado. La creación de delegados se realiza modificando la configuración del certificado de servidor tras añadirlo por primera vez.</p>
+<p>f. En el valor Recordar Contraseña se especificará si el servidor deberá almacenar la contraseña de este certificado para no volver a requerirla cuando se vaya a usar o si, por el contrario, se requerirá al usuario que proporcione esta contraseña cada vez.</p>
+<p>g. En el campo Contraseña deberá indicarse la contraseña que tiene el certificado seleccionado.</p>
+<p>h. En el valor Requerir Contraseña SealSign se puede forzar la necesidad de crear una contraseña específica de SealSign necesaria cada vez que se vaya a usar el certificado dentro de la plataforma.</p>
+<p>i. El campo Contraseña SealSign se configurará la contraseña comentada en el campo anterior.</p>
+</li>
+<li class="">
+<p>Pulsando el botón Insertar el certificado quedará guardado dentro del almacén de certificados de SealSign.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="614-sealsign-certificates-expiration-service-configuración-smtp">6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp<a href="#614-sealsign-certificates-expiration-service-configuración-smtp" class="hash-link" aria-label="Enlace directo al 6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp" title="Enlace directo al 6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp" translate="no">​</a></h3>
+<p>Esta configuración es necesaria para utilizar el servicio de Windows SealSign Certificates Expiration Service.</p>
+<p>El servicio permite de forma automática enviar diariamente un listado por correo de todos los certificados caducados y a punto de caducar de todos los usuarios, así como enviar un listado a cada usuario con sus certificados a punto de caducar.</p>
+<p>Se lleva a cabo desde la web de administración de SealSign:</p>
+<p><img decoding="async" loading="lazy" alt="64_image_0.png" src="/es/assets/images/64_image_0-ce3b256b74eba29d09dffd9ea8b93674.png" width="614" height="293" class="img_ev3q"></p>
+<p>La configuración está dividida en 2 partes. Los parámetros del envío de correos a través de SMTP y los parámetros de expiración de certificados.</p>
+<p>CONFIGURACION DEL SERVIDOR <strong>SMTP</strong></p>
+<p><img decoding="async" loading="lazy" alt="65_image_0.png" src="/es/assets/images/65_image_0-f0cdd227d5228937bac70e6e388e36d9.png" width="369" height="240" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>Email para configurar la cuenta SMTP: Email para configurar la cuenta SMTP.</p>
+</li>
+<li class="">
+<p>Contraseña de la cuenta SMTP: Contraseña del correo de configuración SMTP.</p>
+</li>
+<li class="">
+<p>Dirección del servidor SMTP de la cuenta configurada: Servidor SMTP de la cuenta configurada. - Puerto SMTP: Puerto de servidor SMTP.</p>
+</li>
+<li class="">
+<p>Email que aparece como remitente: Email que aparecerá como remitente.</p>
+</li>
+<li class="">
+<p>Nombre que se mostrará en el remitente: Nombre que se mostrará en el remitente.</p>
+</li>
+<li class="">
+<p>TLS/SSL: Si la cuenta SMTP utiliza esta configuración.</p>
+</li>
+</ul>
+<p><strong>PARÁMETROS DEL SERVICIO DE CADUCIDAD DE CERTIFICADOS</strong></p>
+<p><img decoding="async" loading="lazy" alt="65_image_1.png" src="/es/assets/images/65_image_1-11a5010e47c342562336f467e6ad7b53.png" width="360" height="170" class="img_ev3q"></p>
+<ul>
+<li class="">
+<p>Emails de los usuarios generales, separados por (;): Listado de los correos a los cuales se les enviará diariamente el listado de todos los certificados caducados y a punto de caducar de todos los usuarios.
+Los correos de este listado deben ir separados por punto y coma.</p>
+</li>
+<li class="">
+<p>Número de días de aviso de certificados caducados: Tiempo en días, anterior a la fecha actual en el que se notificará de la existencia de un certificado caducado. Si un certificado lleva caducado más tiempo que el configurado en este campo, se dejará de informar de su caducidad.</p>
+</li>
+<li class="">
+<p>Días de notificación de certificados a punto de caducar: Tiempo en días, posterior a la fecha actual en el que se notificará de la existencia de un certificado a punto de caducar.</p>
+</li>
+<li class="">
+<p>Hora de envío de notificaciones (hh<!-- -->:mm<!-- -->): Es momento en el que se ejecutará el servicio de envío de email. Debe tener el siguiente formato hh<!-- -->:mm<!-- -->.</p>
+</li>
+<li class="">
+<p>Destinatarios de las notificaciones: Configuración de los usuarios a los que se les enviará por correo la información de los certificados caducados y a punto de caducar.</p>
+<ul>
+<li class="">
+<p>Ninguno: A nadie.</p>
+</li>
+<li class="">
+<p>Usuarios de los certificados: Envío de notificaciones de los certificados a punto de caducar a los usuarios de los certificados.</p>
+</li>
+<li class="">
+<p>Usuarios generales: Envío de notificaciones de los certificados caducados y a punto de caducar a los usuarios configurados en &quot;Emails de los usuarios generales separados por (;)&quot;.</p>
+</li>
+<li class="">
+<p>Todos: Tanto a los usuarios de los certificados como a los usuarios generales.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Después de modificar la configuración es recomendable reiniciar el servicio SealSign Certificates Expiration Service.</p>
+<p><strong>PARÁMETROS DEL SERVICIO DE USO DE CERTIFICADOS</strong></p>
+<p>•	Destinatarios de las notificaciones, separados por (;): Listado de los correos a los cuales se les enviará diariamente el listado de todos los certificados que se han usado para firmar con certificado electrónico. Los correos de este listado deben ir separados por punto y coma.</p>
+<p>•	Periodo de envío de notificaciones: Periodo para recuperar el listado de certificados utilizados para firmar. Los periodos disponibles son: diario, semanal y mensual. Al seleccionar un periodo, el listado de certificados que se enviará por correo electrónico corresponderá al periodo anterior, no al actual. Por ejemplo, si se selecciona el periodo diario, el listado de certificados enviado será el del día anterior. Si se selecciona el periodo semanal, el listado será el de la semana anterior, y así sucesivamente.</p>
+<p>NOTA: Las notificaciones semanales se llevarán a cabo cada lunes, y las mensuales cada primero de mes.</p>
+<p>•	Hora de envío de notificaciones (hh<!-- -->:mm<!-- -->): Horario en el que se ejecutará el servicio de notificaciones. Debe tener el siguiente formato hh<!-- -->:mm<!-- -->.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="615-modificar-un-certificado-de-servidor">6.1.5. Modificar Un Certificado De Servidor<a href="#615-modificar-un-certificado-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.5. Modificar Un Certificado De Servidor" title="Enlace directo al 6.1.5. Modificar Un Certificado De Servidor" translate="no">​</a></h3>
+<p>Para modificar la configuración de un proveedor PKCS#11 se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a los certificados de servidor, para ello, en la página principal seleccionar el enlace Gestionar certificados de servidor del grupo Tareas Relativas a Certificados de Servidor o bien seleccionar el enlace Certificados de Servidor del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de certificados de servidor seleccionar el enlace del certificado que se desea modificar.</p>
+</li>
+<li class="">
+<p>Pulsando el botón Guardar se actualizará la configuración del certificado en el servidor.</p>
+</li>
+</ol>
+<p><strong>NUEVAS FUNCIONES DEL CERTIFICADO A MODIFICAR UN CERTIFICADO DE SERVIDOR</strong></p>
+<p>Una vez hemos añadido un certificado en el servidor, el administrador realizar dos operaciones adicionales:</p>
+<ol>
+<li class="">
+<p>Cambiar la contraseña al certificado, pero para ello tiene que conocer la antigua.</p>
+</li>
+<li class="">
+<p>Y puede bloquear el certificado para que no se pueda utilizar.</p>
+</li>
+<li class="">
+<p>Pulsando el botón Guardar se actualizará la configuración del certificado en el servidor.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="67_image_0.png" src="data:image/png;base64,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" width="240" height="214" class="img_ev3q"></p>
+<p><strong>OPERACIONES SOBRE EL CERTIFICADO DE UN USUARIO</strong></p>
+<p>La administración y configuración del certificado de usuario por parte de SealSign DSS se realiza de manera centralizada mediante la web de usuario. Para abrir esta, simplemente será necesario ejecutar una instancia en un navegador hasta la dirección <a href="http://servername.portnumber/SealSignDSSWeb/users/" target="_blank" rel="noopener noreferrer" class="">http://servername.portnumber/SealSignDSSWeb/users/</a> y se pedirá usuario/contraseña para poder acceder a la web de administración del usuario y sus certificados.</p>
+<p><img decoding="async" loading="lazy" alt="user-certificates" src="/es/assets/images/user-certificates-c38adbcfa693f7adf00ffedcde9f0330.png" width="945" height="491" class="img_ev3q"></p>
+<p>Una vez dentro de la web del usuario, él puede realizar diferentes operaciones:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="616-consulta-de-la-lista-de-certificados-de-servidor">6.1.6. Consulta de la lista de Certificados de Servidor<a href="#616-consulta-de-la-lista-de-certificados-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.6. Consulta de la lista de Certificados de Servidor" title="Enlace directo al 6.1.6. Consulta de la lista de Certificados de Servidor" translate="no">​</a></h3>
+<p>Para ver la lista de los certificados de servidor disponibles se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Certificados de Servidor del menú de la izquierda llamado Claves Centralizadas.</p>
+</li>
+<li class="">
+<p>Aparecerá la lista de los certificados de servidor que podrán utilizarse en los procesos de firma.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="certificate-list" src="/es/assets/images/certificate-list-0994caff244f68e49295d29d18e3fd43.png" width="873" height="354" class="img_ev3q"></p>
+<p>Certificados Caducados: En el listado, los certificados caducados aparecerán resaltados en rojo, con la fecha de caducidad en un rojo intenso para facilitar su identificación.</p>
+<p>Icono de Bloqueo: En el borde lateral izquierdo, aparecerá un ícono de un candado que indicará si el certificado tiene el check de bloqueo activado.</p>
+<p>Acciones sobre los Certificados: En el listado de certificados, las acciones disponibles ahora están agrupadas en un solo botón. Al presionarlo, se mostrará un menú con las siguientes opciones:</p>
+<p>•	Reglas de Uso: Esta opción redirecciona a la sección de reglas de uso, donde se muestra el listado de reglas de uso asociadas a ese certificado.</p>
+<p>•	Registro de Auditoría: Esta opción redirecciona a la sección de registros de auditoría, donde se muestra un listado con todas las acciones realizadas con ese certificado.</p>
+<p>•	Descargar Clave Pública: Esta opción permite descargar la clave pública del certificado.</p>
+<p>•	Borrar Certificado: Esta opción permite eliminar el certificado de la plataforma.</p>
+<p><img decoding="async" loading="lazy" alt="certificate-list-menu" src="/es/assets/images/certificate-list-menu-6301364e26445a6418f10ea1a8556272.png" width="881" height="214" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="617-añadir-un-nuevo-certificado-de-servidor">6.1.7. Añadir Un Nuevo Certificado De Servidor<a href="#617-añadir-un-nuevo-certificado-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.7. Añadir Un Nuevo Certificado De Servidor" title="Enlace directo al 6.1.7. Añadir Un Nuevo Certificado De Servidor" translate="no">​</a></h3>
+<p>Para añadir un nuevo certificado de servidor a la lista, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal de la web deberá seleccionar el enlace Importar un nuevo certificado de servidor.</p>
+</li>
+<li class="">
+<p>En la página de certificados de servidor configurar los siguientes valores:</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>El campo Fichero permite seleccionar el fichero .pfx que contiene el certificado que será importado dentro del almacén de certificados de SealSign.</p>
+</li>
+<li class="">
+<p>En el campo Contraseña deberá indicarse la contraseña que tiene el fichero seleccionado en el campo anterior.</p>
+</li>
+<li class="">
+<p>En el valor Recordar Contraseña se especificará si el servidor deberá almacenar la contraseña de este fichero para no volver a requerirla cuando se vaya a usar el certificado o si, por el contrario, se requerirá al usuario que proporcione esta contraseña cada vez.</p>
+</li>
+<li class="">
+<p>El campo Nombre Descriptivo permite, opcionalmente, indicar una descripción más extensa del certificado.</p>
+</li>
+<li class="">
+<p>El campo Administrado Únicamente por el Propietario permite al propietario del certificado restringir la gestión y uso del certificado únicamente a su usuario de Windows. De esta forma, ningún otro usuario ni administrador del sistema podrán hacer uso del mismo.</p>
+</li>
+<li class="">
+<p>El campo Propietario indica el nombre de la cuenta de usuario de Windows que actuará como propietario del nuevo certificado y que, por tanto, tendrá acceso al mismo. Además del propietario es posible crear delegados que también podrán hacer uso de este certificado. La creación de delegados se realiza modificando la configuración del certificado de servidor tras añadirlo por primera vez.</p>
+</li>
+<li class="">
+<p>En el valor Requerir Contraseña SealSign se puede forzar la necesidad de crear una contraseña específica de SealSign necesaria cada vez que se vaya a usar el certificado dentro de la plataforma.</p>
+</li>
+<li class="">
+<p>El campo Contraseña SealSign se configurará la contraseña comentada en el campo anterior.</p>
+</li>
+</ul>
+<ol start="3">
+<li class="">Pulsando el botón Importar el certificado quedará guardado dentro del almacén de certificados de SealSign.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="618-añadir-una-referencia-a-un-certificado-externo-de-servidor">6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor<a href="#618-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="hash-link" aria-label="Enlace directo al 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor" title="Enlace directo al 6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor" translate="no">​</a></h3>
+<p>Cuando el certificado esté almacenado en un lugar externo al almacén de certificados servidor de SealSign, será necesario añadir una referencia al mismo en la configuración de los certificados de servidor. Para ello se deberán realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal de la web de Administración seleccionar el enlace Añadir una referencia a un certificado externo de servidor del grupo Tareas Relativas a Certificados de Servidor. Existe también un enlace desde la lista de certificados de servidor consultada en el apartado anterior.</p>
+</li>
+<li class="">
+<p>En la página de referencias de certificados de servidor configurar los siguientes valores:</p>
+</li>
+<li class="">
+<p>WindowsStore para certificados guardados en el almacén de certificados del usuario actual de Windows.</p>
+</li>
+<li class="">
+<p>WindowsSystemStore para certificados guardados en el almacén de certificados de equipo del servidor de SealSign.</p>
+</li>
+<li class="">
+<p>PKCS11Store para certificados guardados en almacenes externos accesibles mediante un módulo PCKS#11.</p>
+</li>
+</ol>
+<ul>
+<li class="">
+<p>Tras seleccionar el tipo de almacén, se deberá pulsar el botón Seleccionar Certificado. Aparecerá una ventana que o bien mostrará los certificados disponibles (WindowsStore y WindowsSystemStore) o bien solicitará la selección del Proveedor PKCS#11, el Slot y la Contraseña para acceso al certificado (PKCS11Store).</p>
+</li>
+<li class="">
+<p>Una vez seleccionado el certificado, la página mostrará el Asunto, Número de Serie, Entidad Emisora, Fechas de Validez y si hay una Contraseña Requerida por el Almacén.</p>
+</li>
+<li class="">
+<p>El campo Nombre Descriptivo permite, opcionalmente, indicar una descripción más extensa del certificado.</p>
+</li>
+<li class="">
+<p>En el campo Tipo de Almacén se seleccionará que tipo de almacén contiene el certificado. En concreto se puede seleccionar entre los valores:</p>
+</li>
+<li class="">
+<p>El campo Propietario indica el nombre de la cuenta de usuario de Windows que actuará como propietario del nuevo certificado y que, por tanto, tendrá acceso al mismo. Además del propietario es posible crear delegados que también podrán hacer uso de este certificado. La creación de delegados se realiza modificando la configuración del certificado de servidor tras añadirlo por primera vez.</p>
+</li>
+<li class="">
+<p>En el valor Recordar Contraseña se especificará si el servidor deberá almacenar la contraseña de este certificado para no volver a requerirla cuando se vaya a usar o si, por el contrario, se requerirá al usuario que proporcione esta contraseña cada vez.</p>
+</li>
+<li class="">
+<p>En el campo Contraseña deberá indicarse la contraseña que tiene el certificado seleccionado.</p>
+</li>
+<li class="">
+<p>En el valor Requerir Contraseña SealSign se puede forzar la necesidad de crear una contraseña específica de SealSign necesaria cada vez que se vaya a usar el certificado dentro de la plataforma.</p>
+</li>
+<li class="">
+<p>El campo Contraseña SealSign se configurará la contraseña comentada en el campo anterior. - EL campo Emparejar con Latch que permite proteger asociar el certificado a una app móvil Latch, que permite autorizar el uso del certificado.</p>
+</li>
+<li class="">
+<p>Pulsando el botón Insertar el certificado quedará guardado dentro del almacén de certificados de SealSign.</p>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="62reglas-de-uso">6.2.Reglas De Uso<a href="#62reglas-de-uso" class="hash-link" aria-label="Enlace directo al 6.2.Reglas De Uso" title="Enlace directo al 6.2.Reglas De Uso" translate="no">​</a></h2>
+<p>SealSign DSS permite la asociación de los certificados centralizados en las plataformas a reglas de uso que definirán quién y cómo puede utilizarlos.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="621-consulta-de-la-lista-de-reglas-de-uso">6.2.1. Consulta De La Lista De Reglas De Uso<a href="#621-consulta-de-la-lista-de-reglas-de-uso" class="hash-link" aria-label="Enlace directo al 6.2.1. Consulta De La Lista De Reglas De Uso" title="Enlace directo al 6.2.1. Consulta De La Lista De Reglas De Uso" translate="no">​</a></h3>
+<p>Para ver la lista de Reglas de Uso disponibles se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">Abrir la web de administración de SealSign DSS.</li>
+</ol>
+<p>a. En menú de la izquierda seleccionar el enlace Reglas de Uso del grupo Claves Centralizadas.</p>
+<p>b.	Aparecerá la lista de todas las reglas de uso que están disponibles.</p>
+<p>c.	Se podrán filtrar las reglas de uso por criterio (Nombre, Descripción, Creador, Usuario, Nombre de equipo, procesos y URL)</p>
+<p>d.	Se podrán filtrar las reglas de uso por certificado asociado y por rango de fecha.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules" src="/es/assets/images/usage-rules-55ab7570fbc002eac8f0bceb6b747cd7.png" width="995" height="378" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="622-añadir-una-nueva-regla-de-uso">6.2.2. Añadir Una Nueva Regla De Uso<a href="#622-añadir-una-nueva-regla-de-uso" class="hash-link" aria-label="Enlace directo al 6.2.2. Añadir Una Nueva Regla De Uso" title="Enlace directo al 6.2.2. Añadir Una Nueva Regla De Uso" translate="no">​</a></h3>
+<p>Para añadir una nueva Regla de Uso a la lista, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Seleccionamos el enlace Añadir una nueva regla de uso desde la lista de reglas de uso consultada en el apartado anterior.</p>
+</li>
+<li class="">
+<p>Se abrirá un modal donde se podrán configurar los siguientes valores:</p>
+<ol>
+<li class="">El campo Nombre nos permite asignar una clave identificativa a la regla de uso.</li>
+<li class="">El campo Propietario indica el nombre de la cuenta de usuario de Windows que actuará como propietario de la nueva regla de uso.</li>
+<li class="">El campo Descripción permite, opcionalmente, indicar una descripción más extensa de la regla de uso.</li>
+<li class="">El campo Válido Desde indica desde cuando la regla de uso estará vigente, pudiendo usar por tanto los certificados asociados a la misma.</li>
+<li class="">El campo Válido Hasta indica hasta cuando la regla de uso estará vigente.</li>
+</ol>
+</li>
+<li class="">
+<p>Pulsando el botón Insertar la regla de uso quedará guardada.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="add-usage-rule" src="/es/assets/images/add-usage-rule-8e3ca6a3aaacb1485335c8c0cee2f583.png" width="945" height="625" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="623-modificar-una-regla-de-uso">6.2.3. Modificar Una Regla De Uso<a href="#623-modificar-una-regla-de-uso" class="hash-link" aria-label="Enlace directo al 6.2.3. Modificar Una Regla De Uso" title="Enlace directo al 6.2.3. Modificar Una Regla De Uso" translate="no">​</a></h3>
+<p>Para modificar la configuración de una regla de uso se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Seleccionamos la regla de uso a modificar desde la lista consultada en el apartado &#x27;Consulta de la Lista de Reglas de Uso&#x27;, o presionando el botón &#x27;Editar Regla de Uso&#x27; en el menú de acciones que aparece en el lateral derecho de la lista de reglas.</p>
+</li>
+<li class="">
+<p>En el modal de edición de la regla de uso, se pueden gestionar los parámetros Generales que se introdujeron en la inserción de la regla de uso además de los Filtros de Uso.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="usage-rules-general" src="/es/assets/images/usage-rules-general-312e706b5e395a44304cfb3615d409a4.png" width="945" height="623" class="img_ev3q"></p>
+<p>Estos filtros se dividen en las siguientes categorías:</p>
+<p><strong>Certificados:</strong> En este apartado gestionamos que certificados están asociados a la regla de uso.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-certificates" src="/es/assets/images/usage-rules-certificates-ba2c1c64ae4ba500917806f231270413.png" width="945" height="339" class="img_ev3q"></p>
+<p><strong>Usuarios Autorizados:</strong> En este apartado gestionamos que usuarios tienen acceso a la regla de uso además de indicar durante cuánto tiempo mediante las fechas Valido Desde y Valido Hasta.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-users" src="/es/assets/images/usage-rules-users-82ac288ad4469d75db69dd1d64008989.png" width="945" height="327" class="img_ev3q"></p>
+<p><strong>Equipos:</strong> En este apartado gestionamos desde que maquinas se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de máquinas especificadas en la regla. Este filtro admite como carácter comodín el %.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-computers" src="/es/assets/images/usage-rules-computers-e8398821f9dd869cbd682b16eeaddb1a.png" width="945" height="480" class="img_ev3q"></p>
+<p><strong>Procesos:</strong> En este apartado gestionamos desde que procesos (nombre del ejecutable Windows) se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de procesos especificados en la regla. Este filtro admite como carácter comodín el %.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-processes" src="/es/assets/images/usage-rules-processes-5b1b2f1032f956166d4bac68dd3b5572.png" width="945" height="403" class="img_ev3q"></p>
+<p><strong>URLs:</strong> En este apartado gestionamos desde que URL se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de URL especificados en la regla. Este filtro admite como carácter comodín el %. Este filtro aplica a los navegadores Chrome y Edge.</p>
+<p><img decoding="async" loading="lazy" alt="usage-rules-urls" src="/es/assets/images/usage-rules-urls-c83c71161e9b980c46e5d955def37d4e.png" width="945" height="559" class="img_ev3q"></p>
+<ol start="3">
+<li class="">Pulsando el botón Guardar se actualizará la configuración de la regla de uso.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="624-eliminar-una-regla-de-uso">6.2.4. Eliminar Una Regla De Uso<a href="#624-eliminar-una-regla-de-uso" class="hash-link" aria-label="Enlace directo al 6.2.4. Eliminar Una Regla De Uso" title="Enlace directo al 6.2.4. Eliminar Una Regla De Uso" translate="no">​</a></h3>
+<p>Para eliminar una regla de uso se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a la lista de reglas de uso, para ello, en menú de la izquierda seleccionar el enlace Reglas de Uso del grupo Claves Centralizadas.</p>
+</li>
+<li class="">
+<p>En la lista de reglas de uso, se debe acceder a las acciones de la regla de uso y seleccionar la opción &quot;Eliminar regla de uso&quot;.</p>
+</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="remove-usage-rule" src="/es/assets/images/remove-usage-rule-cdceba36d48db7f5becae2b1f639d796.png" width="945" height="353" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="625-eliminar-un-certificado-de-servidor">6.2.5. Eliminar Un Certificado De Servidor<a href="#625-eliminar-un-certificado-de-servidor" class="hash-link" aria-label="Enlace directo al 6.2.5. Eliminar Un Certificado De Servidor" title="Enlace directo al 6.2.5. Eliminar Un Certificado De Servidor" translate="no">​</a></h3>
+<p>Para eliminar un certificado de servidor se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a los certificados de servidor, para ello, en la página principal seleccionar el enlace Gestionar certificados de servidor del grupo Tareas Relativas a Certificados de Servidor o bien seleccionar el enlace Certificados de Servidor del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de certificados de servidor, pulsar la Cruz que se encuentra a la izquierda del certificado que se desee eliminar.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="63repositorio-seguro">6.3.Repositorio Seguro<a href="#63repositorio-seguro" class="hash-link" aria-label="Enlace directo al 6.3.Repositorio Seguro" title="Enlace directo al 6.3.Repositorio Seguro" translate="no">​</a></h2>
+<p>SealSign DSR permite realizar la configuración los parámetros funcionales del repositorio seguro de documentos. Para configurar estos parámetros el administrador puede realizar los siguientes pasos:</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="631-búsqueda-en-el-repositorio-de-dsr">6.3.1. Búsqueda En El Repositorio De DSR<a href="#631-búsqueda-en-el-repositorio-de-dsr" class="hash-link" aria-label="Enlace directo al 6.3.1. Búsqueda En El Repositorio De DSR" title="Enlace directo al 6.3.1. Búsqueda En El Repositorio De DSR" translate="no">​</a></h3>
+<p>Para facilitar la administración de DSR y la gestión de su contenido se ha desarrollado una página específica dentro de la administración para la búsqueda de objetos documentales insertados en DSR.</p>
+<p>Para realizar una búsqueda en DSR:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Búsqueda en Repositorio del grupo Tareas Relativas al Repositorio Seguro de Documentos o bien seleccionar el enlace Búsqueda en Repositorio del apartado Repositorio Seguro del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de búsqueda se pueden configurar los siguientes filtros:</p>
+<p>a. Fecha de Inicio, indica que solo aparecerán en la búsqueda objetos documentales insertados con fecha de inserción mayor o igual a la fecha de inicio indicada.</p>
+<p>b. Fecha de Fin, indica que solo aparecerán en la búsqueda objetos documentales insertados con fecha de inserción menor o igual a la fecha de fin indicada.</p>
+<p>c. Nombre de Fichero, indica que solo aparecerán en la búsqueda objetos documentales insertados cuyo nombre sea igual al nombre indicado. Para facilitar la búsqueda se puede utilizar comodines. El carácter comodín es %.</p>
+<p>d. Path de Fichero, indica que solo aparecerán en la búsqueda objetos documentales insertados cuyo Path de inserción sea igual al Path indicado. Para facilitar la búsqueda se puede utilizar comodines. El carácter comodín es %.</p>
+<p>e. Urn de Fichero, indica que solo aparecerán en la búsqueda objetos documentales insertados cuyo Urn de inserción sea igual al Urn indicado. Para facilitar la búsqueda se puede utilizar comodines. El carácter comodín es %. El Urn es el identificador global que utiliza DSR para los objetos documentales insertados.</p>
+<p>f. Criterio de Búsqueda, que indica una sentencia de búsqueda similar a las utilizadas en las cláusulas WHERE de SQL. Los datos sobre los que se puede establecer un criterio de búsqueda son:
+i. Name ii. Path iii. Uri iv. Owner v. InsertionDate vi. LastAccessDate vii. LastSignedDate viii. UrlSource ix. WebPreview x. MimeType</p>
+</li>
+</ol>
+<p>Un ejemplo de criterio de búsqueda seria:</p>
+<p>&quot;NAME LIKE &#x27;%&#x27; OR PATH LIKE &#x27;%&#x27;&quot;</p>
+<p>Si existen metadatos asociados al repositorio, estos se pueden utilizar en los criterios de búsqueda.</p>
+<p>Ejemplo:</p>
+<p>&quot;NAME LIKE &#x27;%&#x27; AND METADATA1 LIKE &#x27;%&#x27;&quot;</p>
+<p>Pulsar el botón Buscar y aparecerán los resultados de la búsqueda según los filtros proporcionados. Se puede acceder al contenido del documento haciendo click en el link asociado al mismo.</p>
+<h1>7. Configuración De La Autoridad Local De Sellado De Tiempo</h1>
+<p>SealSign DSS permite tanto utilizar una autoridad local para crear los sellos de tiempo de las firmas electrónicas como utilizar proveedores externos de sellado de tiempo. Para configurar la autoridad local de sellado de tiempo de SealSign se deben realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Configurar la autoridad de sellado de tiempo local del grupo Tareas Relativas al Sellado de Tiempo o bien seleccionar el enlace Autoridad Local del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la página de configuración de la autoridad local de sellado de tiempo se pueden configurar los siguientes valores:</p>
+</li>
+<li class="">
+<p>El campo Certificado de Servidor de Sellado de Tiempo permite seleccionar el certificado que se utilizará para firmar los sellos de tiempo emitidos por la autoridad local. Este certificado de servidor deberá haber sido incluido en la lista de certificados de servidor tal y como se explica en el apartado de Gestión de Certificados de Servidor.</p>
+</li>
+<li class="">
+<p>El campo Almacenar Evidencias Digitales Emitidas permite configurar si el servidor deberá guardar una copia de los sellos de tiempo emitidos o no por si es necesario realizar un análisis posterior de los mismos.</p>
+</li>
+<li class="">
+<p>Por último, pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="71gestión-de-servidores-de-sellado-de-tiempo">7.1.Gestión De Servidores De Sellado De Tiempo<a href="#71gestión-de-servidores-de-sellado-de-tiempo" class="hash-link" aria-label="Enlace directo al 7.1.Gestión De Servidores De Sellado De Tiempo" title="Enlace directo al 7.1.Gestión De Servidores De Sellado De Tiempo" translate="no">​</a></h2>
+<p>En aquellos escenarios en los que se deseen utilizar autoridades de sellado de tiempo externas será necesario añadir los parámetros de conexión adecuados en la configuración de SealSign DSS.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="711-consulta-de-la-lista-de-servidores-de-sellado-de-tiempo">7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo<a href="#711-consulta-de-la-lista-de-servidores-de-sellado-de-tiempo" class="hash-link" aria-label="Enlace directo al 7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo" title="Enlace directo al 7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo" translate="no">​</a></h3>
+<p>Para ver la lista de los servidores de sellado de tiempo disponibles se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Abrir la web de administración de SealSign DSS.</p>
+</li>
+<li class="">
+<p>En la página principal seleccionar el enlace Gestionar conexiones a autoridades de sellado del grupo Tareas Relativas al Sellado de Tiempo o bien seleccionar el enlace Servidores TSA del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Aparecerá la lista de todos los servidores de sellado de tiempo que podrán ser utilizados en los procesos de firma.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="712-añadir-un-nuevo-servidor-de-sellado-de-tiempo">7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo<a href="#712-añadir-un-nuevo-servidor-de-sellado-de-tiempo" class="hash-link" aria-label="Enlace directo al 7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo" title="Enlace directo al 7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo" translate="no">​</a></h3>
+<p>Para añadir un nuevo servidor de sellado de tiempo a la lista, se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">En la página principal de la web de Administración seleccionar el enlace Añadir una conexión a una autoridad de sellado de tiempo del grupo Tareas Relativas al Sellado de Tiempo.</li>
+</ol>
+<p>En la página de servidores TSA configurar los siguientes valores:</p>
+<p>a. El campo Nombre indica el nombre que se desea dar al nuevo servidor TSA configurado.</p>
+<p>b. En el campo URL deberá indicarse la dirección URL del servidor de sellado de tiempo.</p>
+<p>c. El valor Incluir Certificados del Servidor en la Respuesta especificará si el servidor incluirá los certificados de generación del sello de tiempo dentro de la respuesta emitida.</p>
+<p>d. El valor Incluir una Semilla (&quot;Nonce&quot;) en la Petición especificará si el servidor de SealSign debe añadir una semilla distinta dentro de cada petición al servidor de TSA.</p>
+<p>e. Si el servidor de sellado de tiempo requiere autenticación en las peticiones HTTP, se deberá habilitar el campo Utilizar Autenticación HTTP y configurar los valores adecuados en los campos Cuenta de Usuario y Contraseña.</p>
+<ol start="2">
+<li class="">Pulsando el botón Insertar la configuración del nuevo servidor de sellado de tiempo se añadirá a SealSign.</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="713-modificar-la-configuración-de-un-servidor-de-sellado-de-tiempo">7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo<a href="#713-modificar-la-configuración-de-un-servidor-de-sellado-de-tiempo" class="hash-link" aria-label="Enlace directo al 7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo" title="Enlace directo al 7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo" translate="no">​</a></h3>
+<p>Para modificar la configuración de un servidor de sellado de tiempo se pueden realizar los siguientes pasos:</p>
+<p>enlace desde la lista de certificados de servidores de sellado de tiempo consultada en el apartado anterior.</p>
+<ol>
+<li class="">
+<p>Acceder a la lista de servidores de sellado de tiempo, para ello, en la página principal el enlace Gestionar conexiones a autoridades de sellado del grupo Tareas Relativas al Sellado de Tiempo o bien seleccionar el enlace Servidores TSA del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de servidores de sellado de tiempo seleccionar el enlace del servidor que se desea modificar.</p>
+</li>
+<li class="">
+<p>Realizar las modificaciones correspondientes.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Guardar para actualizar la configuración del servidor.</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="714-eliminar-un-servidor-de-sellado-de-tiempo">7.1.4. Eliminar Un Servidor De Sellado De Tiempo<a href="#714-eliminar-un-servidor-de-sellado-de-tiempo" class="hash-link" aria-label="Enlace directo al 7.1.4. Eliminar Un Servidor De Sellado De Tiempo" title="Enlace directo al 7.1.4. Eliminar Un Servidor De Sellado De Tiempo" translate="no">​</a></h3>
+<p>Para eliminar un servidor de sellado de tiempo se pueden realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>Acceder a la lista de servidores de sellado de tiempo, para ello, en la página principal el enlace Gestionar conexiones a autoridades de sellado del grupo Tareas Relativas al Sellado de Tiempo o bien seleccionar el enlace Servidores TSA del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>En la lista de servidores TSA, pulsar la Cruz que se encuentra a la izquierda del servidor que se desee eliminar.</p>
+</li>
+</ol>
+<h1>8. Auditoría</h1>
+<p>SealSign DSS dispone de un sistema de auditoría que permitirá al administrador conocer qué operaciones se realizan en el sistema, quien las realiza y el resultado de estas. En este apartado se describe cómo configurar y visualizar la auditoría de SealSign DSS.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="81configuración-de-la-auditoría">8.1.Configuración De La Auditoría<a href="#81configuración-de-la-auditoría" class="hash-link" aria-label="Enlace directo al 8.1.Configuración De La Auditoría" title="Enlace directo al 8.1.Configuración De La Auditoría" translate="no">​</a></h2>
+<p>Para configurar el servicio de auditoría de SealSign DSS se deben realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal seleccionar el enlace Configurar parámetros de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Configuración Auditoría del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Seleccionar las opciones adecuadas según se desee que en la auditoría se incluyan las respuestas con estado de error o con estado de acierto.</p>
+</li>
+<li class="">
+<p>Pulsar el botón Guardar.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="82consultar-el-registro-de-auditoría">8.2.Consultar El Registro De Auditoría<a href="#82consultar-el-registro-de-auditoría" class="hash-link" aria-label="Enlace directo al 8.2.Consultar El Registro De Auditoría" title="Enlace directo al 8.2.Consultar El Registro De Auditoría" translate="no">​</a></h2>
+<p>Para ver el contenido del registro de auditoría se deben realizar los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal seleccionar el enlace Ver registro de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Registro de Auditoría del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Aparecerá una tabla con los registros de auditoría incluidos en el sistema en la fecha actual</p>
+</li>
+<li class="">
+<p>En la parte superior de la página aparecen unos campos de filtrado con los que el administrador podrá refinar el resultado de la búsqueda. Para ello el administrador deberá introducir/seleccionar los valores adecuados en los campos de filtrado y pulsar el botón Buscar.</p>
+</li>
+<li class="">
+<p>Pulsando las flechas que aparecen en la parte inferior de la tabla de resultados se puede navegar por las páginas de resultado de la consulta.</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="83eliminar-el-contenido-del-registro-de-auditoría">8.3.Eliminar El Contenido Del Registro De Auditoría<a href="#83eliminar-el-contenido-del-registro-de-auditoría" class="hash-link" aria-label="Enlace directo al 8.3.Eliminar El Contenido Del Registro De Auditoría" title="Enlace directo al 8.3.Eliminar El Contenido Del Registro De Auditoría" translate="no">​</a></h2>
+<p>Para eliminar el contenido de todas las entradas del registro de auditoría se pueden seguir los siguientes pasos:</p>
+<ol>
+<li class="">
+<p>En la página principal seleccionar el enlace Ver registro de auditoría del grupo Tareas Relativas a Auditoría o bien seleccionar el enlace Registro de Auditoría del menú de la izquierda.</p>
+</li>
+<li class="">
+<p>Pulsar el enlace Borrar todas las entradas del registro de auditoría que se encuentra debajo del resultado de la consulta.</p>
+</li>
+</ol>
+<h1>9. Resolución De Problemas</h1>
+<p>Durante el proceso de instalación de SealSign, en el visor de sucesos de cada servidor se creará un log específico, denominado SealSign DSS. Si sucede algún error en la operativa del servidor, además de reportarse en la auditoría del producto, se irán incluyendo eventos con la descripción completa del error en el log creado a tal fin.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/factumid/sealsign-docs/tree/main/docs/dss/administration-guide.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Editar esta página</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Página del documento"><a class="pagination-nav__link pagination-nav__link--prev" href="/es/dss/installation-guide"><div class="pagination-nav__sublabel">Anterior</div><div class="pagination-nav__label">DSS Guía de Instalación</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/es/bss/installation-guide"><div class="pagination-nav__sublabel">Siguiente</div><div class="pagination-nav__label">BSS Guía de Instalación</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#21-herramienta-de-administración" class="table-of-contents__link toc-highlight">2.1. Herramienta De Administración</a></li><li><a href="#22-configuración-de-parámetros-del-proxy-corporativo" class="table-of-contents__link toc-highlight">2.2. Configuración De Parámetros Del Proxy Corporativo</a></li><li><a href="#23-gestión-de-proveedores-pkcs11" class="table-of-contents__link toc-highlight">2.3. Gestión De Proveedores Pkcs#11</a><ul><li><a href="#231-consulta-de-los-proveedores-pkcs11-configurados" class="table-of-contents__link toc-highlight">2.3.1. Consulta De Los Proveedores Pkcs#11 Configurados</a></li><li><a href="#232-añadir-un-nuevo-proveedor-pkcs11" class="table-of-contents__link toc-highlight">2.3.2. Añadir Un Nuevo Proveedor Pkcs#11</a></li><li><a href="#233-modificar-un-proveedor-pkcs11" class="table-of-contents__link toc-highlight">2.3.3. Modificar Un Proveedor Pkcs#11</a></li><li><a href="#234-eliminar-un-proveedor-pkcs11" class="table-of-contents__link toc-highlight">2.3.4. Eliminar Un Proveedor Pkcs#11</a></li></ul></li><li><a href="#211-gestión-de-entidades" class="table-of-contents__link toc-highlight">2.11. Gestión De Entidades</a></li><li><a href="#31configuración-de-parámetros-de-verificación-de-firma-electrónica" class="table-of-contents__link toc-highlight">3.1.Configuración De Parámetros De Verificación De Firma Electrónica</a></li><li><a href="#41-configuración-de-parámetros-de-verificación-de-firma-biométrica" class="table-of-contents__link toc-highlight">4.1. Configuración De Parámetros De Verificación De Firma Biométrica</a></li><li><a href="#42configuración-de-la-firma-electrónica-de-apoyo" class="table-of-contents__link toc-highlight">4.2.Configuración De La Firma Electrónica De Apoyo</a></li><li><a href="#43configuración-del-cifrado-de-datos-biométricos" class="table-of-contents__link toc-highlight">4.3.Configuración Del Cifrado De Datos Biométricos</a></li><li><a href="#44configuración-personalizada" class="table-of-contents__link toc-highlight">4.4.Configuración Personalizada</a><ul><li><a href="#441-parámetros-de-firma-para-entidades" class="table-of-contents__link toc-highlight">4.4.1 Parámetros de firma para entidades</a></li><li><a href="#442-creación-de-entidad-de-configuración" class="table-of-contents__link toc-highlight">4.4.2. Creación de Entidad de configuración</a></li><li><a href="#443-configuración-por-defecto" class="table-of-contents__link toc-highlight">4.4.3. Configuración por defecto</a></li></ul></li><li><a href="#51configuración-de-la-firma-electrónica-de-apoyo" class="table-of-contents__link toc-highlight">5.1.Configuración De La Firma Electrónica De Apoyo</a></li><li><a href="#52configuración-del-cifrado-de-metadatos" class="table-of-contents__link toc-highlight">5.2.Configuración Del Cifrado De Metadatos</a></li><li><a href="#53configuración-personalizada" class="table-of-contents__link toc-highlight">5.3.Configuración Personalizada</a></li><li><a href="#531-parámetros-de-firma-para-entidades" class="table-of-contents__link toc-highlight">5.3.1. Parámetros de firma para entidades</a></li><li><a href="#532-creación-de-entidad-de-configuración" class="table-of-contents__link toc-highlight">5.3.2. Creación de Entidad de configuración</a></li><li><a href="#533-configuración-por-defecto" class="table-of-contents__link toc-highlight">5.3.3. Configuración por defecto</a></li><li><a href="#61gestión-de-certificados-de-servidor" class="table-of-contents__link toc-highlight">6.1.Gestión De Certificados De Servidor</a><ul><li><a href="#611-consulta-de-la-lista-de-certificados-de-servidor" class="table-of-contents__link toc-highlight">6.1.1. Consulta De La Lista De Certificados De Servidor</a></li><li><a href="#612-añadir-un-nuevo-certificado-de-servidor" class="table-of-contents__link toc-highlight">6.1.2. Añadir Un Nuevo Certificado De Servidor</a></li><li><a href="#613-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="table-of-contents__link toc-highlight">6.1.3. Añadir Una Referencia A Un Certificado Externo De Servidor</a></li><li><a href="#614-sealsign-certificates-expiration-service-configuración-smtp" class="table-of-contents__link toc-highlight">6.1.4. Sealsign Certificates Expiration Service. Configuración Smtp</a></li><li><a href="#615-modificar-un-certificado-de-servidor" class="table-of-contents__link toc-highlight">6.1.5. Modificar Un Certificado De Servidor</a></li><li><a href="#616-consulta-de-la-lista-de-certificados-de-servidor" class="table-of-contents__link toc-highlight">6.1.6. Consulta de la lista de Certificados de Servidor</a></li><li><a href="#617-añadir-un-nuevo-certificado-de-servidor" class="table-of-contents__link toc-highlight">6.1.7. Añadir Un Nuevo Certificado De Servidor</a></li><li><a href="#618-añadir-una-referencia-a-un-certificado-externo-de-servidor" class="table-of-contents__link toc-highlight">6.1.8. Añadir Una Referencia A Un Certificado Externo De Servidor</a></li></ul></li><li><a href="#62reglas-de-uso" class="table-of-contents__link toc-highlight">6.2.Reglas De Uso</a><ul><li><a href="#621-consulta-de-la-lista-de-reglas-de-uso" class="table-of-contents__link toc-highlight">6.2.1. Consulta De La Lista De Reglas De Uso</a></li><li><a href="#622-añadir-una-nueva-regla-de-uso" class="table-of-contents__link toc-highlight">6.2.2. Añadir Una Nueva Regla De Uso</a></li><li><a href="#623-modificar-una-regla-de-uso" class="table-of-contents__link toc-highlight">6.2.3. Modificar Una Regla De Uso</a></li><li><a href="#624-eliminar-una-regla-de-uso" class="table-of-contents__link toc-highlight">6.2.4. Eliminar Una Regla De Uso</a></li><li><a href="#625-eliminar-un-certificado-de-servidor" class="table-of-contents__link toc-highlight">6.2.5. Eliminar Un Certificado De Servidor</a></li></ul></li><li><a href="#63repositorio-seguro" class="table-of-contents__link toc-highlight">6.3.Repositorio Seguro</a><ul><li><a href="#631-búsqueda-en-el-repositorio-de-dsr" class="table-of-contents__link toc-highlight">6.3.1. Búsqueda En El Repositorio De DSR</a></li></ul></li><li><a href="#71gestión-de-servidores-de-sellado-de-tiempo" class="table-of-contents__link toc-highlight">7.1.Gestión De Servidores De Sellado De Tiempo</a><ul><li><a href="#711-consulta-de-la-lista-de-servidores-de-sellado-de-tiempo" class="table-of-contents__link toc-highlight">7.1.1. Consulta De La Lista De Servidores De Sellado De Tiempo</a></li><li><a href="#712-añadir-un-nuevo-servidor-de-sellado-de-tiempo" class="table-of-contents__link toc-highlight">7.1.2. Añadir Un Nuevo Servidor De Sellado De Tiempo</a></li><li><a href="#713-modificar-la-configuración-de-un-servidor-de-sellado-de-tiempo" class="table-of-contents__link toc-highlight">7.1.3. Modificar La Configuración De Un Servidor De Sellado De Tiempo</a></li><li><a href="#714-eliminar-un-servidor-de-sellado-de-tiempo" class="table-of-contents__link toc-highlight">7.1.4. Eliminar Un Servidor De Sellado De Tiempo</a></li></ul></li><li><a href="#81configuración-de-la-auditoría" class="table-of-contents__link toc-highlight">8.1.Configuración De La Auditoría</a></li><li><a href="#82consultar-el-registro-de-auditoría" class="table-of-contents__link toc-highlight">8.2.Consultar El Registro De Auditoría</a></li><li><a href="#83eliminar-el-contenido-del-registro-de-auditoría" class="table-of-contents__link toc-highlight">8.3.Eliminar El Contenido Del Registro De Auditoría</a></li></ul></div></div></div></div></main></div></div></div></div>
+</body>
+</html>
