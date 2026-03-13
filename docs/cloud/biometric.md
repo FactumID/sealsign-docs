@@ -28,7 +28,7 @@ try{
 ```
 
 
-## Offlilne Biometric Signature
+## Offline Biometric Signature
 
 In some scenarios it is possible that there is no connection to the biometric signature server. SealSign allows you to make a preliminary signature to synchronize with the service when the client reconnects. It is necessary to have the document on the client to be able to uniquely associate the captured signature with it.
 
