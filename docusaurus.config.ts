@@ -78,6 +78,11 @@ const config: Config = {
       },
       items: [
         {
+          href: 'https://www.sealsign.es',
+          label: 'SealSign',
+          position: 'left',
+        },
+        {
           type: 'localeDropdown',
           position: 'right',
         },
