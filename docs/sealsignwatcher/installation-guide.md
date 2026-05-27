@@ -26,8 +26,8 @@ The following elements are required for the installation:
 
 ## 3. Installation
 
-To carry out the installation, the user account running the installer must have administrative privileges. The installation does not require restarting the computer to complete.
-The installation is performed by running the file:
+To perform the installation, the user account running the installer must have administrative privileges. A computer restart is not required to complete the installation. 
+The installation is performed by running:
 **SealSignWatcherSetup.msi**
 
 To verify or check if the software is installed on the machine, open the *Control Panel* and go to the *Programs and Features* section. The system will build the list of installed software. One of the items in the list must refer to **SealSignWatcher**, as shown in the following image.
@@ -37,12 +37,12 @@ To verify or check if the software is installed on the machine, open the *Contro
 <center><i>*Image 01: SealSignWatcher*</i></center>
 <br/>
 
-Uninstallation is performed from the *Programs and Features* option in the *Control Panel*, like any other Microsoft Windows application. In the list shown, look for the **SealSignWatcher** entry and uninstall it.
-Please note that only a user with administrative privileges can uninstall the software.
+Uninstallation is performed from the *Programs and Features* option in the *Control Panel*, as with any other Microsoft Windows application. In the displayed list, locate the **SealSignWatcher** entry and select uninstall.
+Please note that only users with administrative privileges can uninstall the software.
 
 ## 4. Administration
 
-Once the SealSignWatcher module is installed, we will show the administrative tasks. To do this, you can run the shortcut created on the desktop or in the start menu called SealSignWatcher.
+Once the SealSignWatcher module is installed, the administrative tasks can be performed. To do so, you can run the SealSignWatcher shortcut created on the desktop or in the Start menu.
 
 The main administrative tasks are:
 1. Configuring the connection to the SealSign DSS service.
@@ -52,23 +52,23 @@ The main administrative tasks are:
 5. Configuring the connection to the SealSign DSR service (Optional).
 
 ### 4.1. Configuring the connection to the SealSign DSS service
-To configure the connection, in the main application window there is a section regarding the Connection Parameters, DSS:
+To configure the connection, go to the Connection Parameters - DSS section on the main application window:
 
 ![sealsign](./images/main.png)
 
 <center><i>*Image 02: Configuring the connection to the DSS service*</i></center>
 <br/>
 
-In the form that appears, enter the URL of the SealSign DSS Service, for example: https://localhost/SealSignDSSService/SignatureServiceBasic.svc/BSSLB and optionally (not required for Integrated Active Directory authentication) the User, Password, and Domain fields.
+Enter the URL of the SealSign DSS Service (for example: https://localhost/SealSignDSSService/SignatureServiceBasic.svc/BSSLB) and optionally (not required for Integrated Active Directory authentication) the User, Password, and Domain fields.
 
 At the bottom, 4 buttons appear with the following functionality:
 
-- Save: Stores the configured profile if the connection is successful.
-- Cancel: Resets the text fields to their default values.
-- Delete: Removes the signing profile.
-- Copy to DSR: Copies the DSS connection configuration to DSR.
+- Save ("Guardar"): Stores the configured profile if the connection is successful.
+- Cancel ("Cancelar"): Resets the text fields to their default values.
+- Delete ("Borrar"): Removes the signing profile.
+- Copy to DSR ("Copiar a DSR"): Copies the DSS connection configuration to DSR.
 
-After entering these details, click the *Test Connection* button. If the configuration is correct, the following window will appear.
+After entering these details, click the *Test Connection* ("Test de conexión") button. If the configuration is correct, the following window appears.
 
 ![sealsign](./images/connect.png)
 
@@ -76,17 +76,17 @@ After entering these details, click the *Test Connection* button. If the configu
 <br/>
 
 ### 4.2. Configuring the signing profiles
-To configure the signing profiles, click the "Configure Signing Profiles" button, and the following window will appear:
+To configure the signing profiles, click *Configure Signing Profiles* ("Configurar los perfiles de firma"), and the following window appears:
 
 ![sealsign](./images/profiles.png)
 
 <center><i>*Image 04: Configuring the signing profiles*</i></center>
 <br/>
 
-These parameters are detailed in sections below:
+These parameters are detailed below:
 
-- Name: Name of the electronic signature profile. This is a unique identifier per profile.
-- Certificate: Associated certificate with which the electronic signing of documents will be performed.
+- Name: Name of the electronic signature profile. This is a unique identifier for each profile.
+- Certificate: The certificate used to perform the electronic signing of documents.
 
 ![sealsign](./images/profilename.png)
 
@@ -116,7 +116,7 @@ These parameters are detailed in sections below:
 20. PAdESXML
 21. Office
 
-• Type: Dropdown menu to select how the signature will be stored.
+• Type: A dropdown menu to select how the signature is stored.
 1. Default: Uses the default signature storage format (Enveloped).
 2. Enveloped: The signature is stored within the document.
 3. Enveloping: The signature is stored in a way that wraps/contains the document inside.
@@ -149,7 +149,7 @@ Image
 <center><i>*Image 07: Configuring the signing profiles (Flags)*</i></center>
 <br/>
 
-• Policy and Other Parameters: Shows a form to include the following parameters associated with advanced signatures.
+• Policy and Other Parameters: Displays a form for configuring the following parameters associated with advanced signatures.
 1. Policy Identifier: Text string that specifies the identifier of the policy applied to the signature.
 2. Policy Summary: Text string that specifies the summary of the policy applied to the signature.
 3. Signer Role: Text string that specifies the role of the signer.
@@ -165,11 +165,11 @@ Image
 <center><i>*Image 08: Configuring the signing profiles (Policy and Other Parameters)*</i></center>
 <br/>
 
-• PDF Options: Exclusive signature parameters if PDF or any of the PAdES formats has been selected in the Signature Profile dropdown:
+• PDF Options: signature parameters available only if PDF or any of the PAdES formats are selected in the Signature Profile dropdown:
 1. Password: PDF decryption password.
 2. Signature Field Name: Allows specifying the name of a field in the PDF document where the signature will be saved.
 3. Visible Signature: Boolean indicating whether the signature widget will be visible in the document resulting from the signing operation.
-4. Image (Add/Delete Image): Background image to be included in the signature widget. The format must be JPG. By default, it will adjust to fit within the widget size while maintaining its aspect ratio.
+4. Image (Add/Delete Image): Background image to be included in the signature widget. The format must be JPG. By default, it automatically scales to fit the widget size while maintaining its aspect ratio.
 5. Scale Background: Boolean indicating whether the background image will automatically adjust to the widget size.
 6. Background Width: Width of the original image specified in PDFSignatureBackground or the width of the original image to crop.
 7. Background Height: Height of the original image specified in PDFSignatureBackground or the height of the original image to crop.
@@ -182,7 +182,7 @@ Image
 14. Widget Rot: Specifies the rotation angle of the signature widget. Its possible values are 0, 90, 180, or 270.
 15. Widget on All Pages: Indicates whether the signature widget should be included on all pages of the document.
 16. Widget Page: Indicates the page number where the signature widget will be included.
-17. Filter signatures only: In signature verification, indicates whether only document-type signatures or any other signature included in the PDF will be validated.
+17. Filter only signatures: In signature verification, indicates whether only document-type signatures or any other signature included in the PDF will be validated.
 18. Hide Widget Text: Boolean indicating whether the widget will hide the automatic text describing the signer.
 
 ![sealsign](./images/profileoptions.png)
@@ -190,10 +190,10 @@ Image
 <center><i>*Image 09: PDF Options*</i></center>
 <br/>
 
-Finally, below the "Flags" list are the "Save" button, which stores the configuration encrypted in the registry, "Cancel", which resets the form fields, and "Delete", which resets the form fields and removes the configuration from the registry.
+Finally, under the "Flags" list, the following buttons are available: *Save* ("Guardar") button, which stores the configuration encrypted in the registry; *Cancel* ("Cancelar"), which resets the form fields; and *Delete* ("Borrar"), which resets the form fields and removes the configuration from the registry.
 
 ### 4.3. Configuring folders to monitor and association with the chosen profile
-The main screen is shown in the following figure:
+The main screen is shown in the figure below:
 
 ![sealsign](./images/folders.png)
 
@@ -210,15 +210,15 @@ In this window, we enter the data of the folder to be monitored, such as:
 
 At the bottom of this window, there are buttons to manage this data:
 
-- The Save button stores the configuration encrypted in the registry.
-- The Cancel button resets the form fields.
-- The Delete button resets the form fields and removes the configuration from the registry.
+- The Save ("Guardar") button stores the configuration encrypted in the registry.
+- The Cancel ("Cancelar") button resets the form fields.
+- The Delete ("Borrar") button resets the form fields and removes the configuration from the registry.
 SealSignWatcher supports multiple configurations, but only one per input folder.
 
 ### 4.4. Configuring the SealSignWatcher agent as a user agent or as a Windows service
 On the initial screen, there is a button responsible for configuring the running mode. There are two options:
 
-- As a user agent, where the agent runs when the user logs in. To activate this mode, click the "View User configuration" button.
+- As a user agent, where the agent runs when the user logs in. To activate this mode, click the *View User configuration* ("Ver configuración usuario) button.
 - As a Windows service, where the agent runs as a service and starts when the computer boots up. To activate this mode, click the "View Service configuration" button.
 
 *Note: It is important to highlight that these two options will be available only if the application is run with administrator privileges; otherwise, they will not appear and the application will run in User Agent mode.*
