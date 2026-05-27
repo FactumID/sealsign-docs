@@ -44,7 +44,7 @@ imagen.
 ![sealsign](./images/uninstall.png)
 
 <center><i>*Image 01: SealSignWatcher*</i></center>
-</br>
+<br/>
 
 La desinstalación se realiza desde la opción *Programas y características* del *Panel de
 Control*, como cualquier otro programa más de Microsoft Windows. En la lista mostrada, hay que buscar la
