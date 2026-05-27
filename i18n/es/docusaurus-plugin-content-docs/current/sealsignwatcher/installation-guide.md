@@ -43,7 +43,7 @@ imagen.
 
 ![sealsign](./images/uninstall.png)
 
-<center><i>*Image 01: SealSignWatcher*</i></center>
+<center><i>*Imagen 01: SealSignWatcher*</i></center>
 <br/>
 
 La desinstalación se realiza desde la opción *Programas y características* del *Panel de
