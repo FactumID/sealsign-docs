@@ -14,7 +14,7 @@
 * [DSS Administration](/en/dss/administration-guide)
 * [BSS](/en/bss/installation-guide)
 * [CKC](/en/ckc/central-key-control)
-* [SmartFolders](/en/smartfolders/installation-guide)
+* [SealSignWatcher](/en/sealsignwatcher/installation-guide)
 * [Changelog](/en/changelog/changelog)
 <!--* [Biosigner](/en-us/biosigner)-->
 

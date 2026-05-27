@@ -16,7 +16,7 @@ Choose the digital signature that best fits your needs: digital signature, certi
 - [DSS](/dss/installation-guide)
 - [BSS](/bss/installation-guide)
 - [CKC](/ckc/central-key-control)
-- [SmartFolders](/smartfolders/installation-guide)
+- [SealSignWatcher](/sealsignwatcher/installation-guide)
 - [Changelog](/changelog/)
 
 ## Cloud

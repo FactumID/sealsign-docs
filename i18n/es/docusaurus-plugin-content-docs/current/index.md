@@ -16,7 +16,7 @@ Elige la firma digital que mejor se adapte a tu necesidad: firma digital, firma 
 - [DSS](/dss/installation-guide)
 - [BSS](/bss/installation-guide)
 - [CKC](/ckc/central-key-control)
-- [SmartFolders](/smartfolders/installation-guide)
+- [SealSignWatcher](/sealsignwatcher/installation-guide)
 - [Changelog](/changelog/)
 
 ## Cloud
