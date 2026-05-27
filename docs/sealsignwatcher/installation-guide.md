@@ -35,6 +35,7 @@ To verify or check if the software is installed on the computer, open the *Contr
 ![sealsign](./images/uninstall.png)
 
 <center><i>*Image 01: SealSignWatcher*</i></center>
+</br>
 
 Uninstallation is done from the *Programs and Features* option in the *Control Panel*, just like any other Microsoft Windows program. In the list displayed, look for the **SealSignWatcher** entry and uninstall it.
 Please note that only a user with administrative permissions can uninstall the application.
