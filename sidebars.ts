@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
         'dss/administration-guide',
         'bss/installation-guide',
         'ckc/central-key-control',
+        'smartfolders/installation-guide',
         'changelog/changelog',
       ],
     },
