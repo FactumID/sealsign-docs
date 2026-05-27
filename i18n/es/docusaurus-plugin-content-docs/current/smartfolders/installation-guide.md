@@ -1,5 +1,5 @@
 ﻿# SmartFolders
-## 1. Introduction
+## 1. Introducción
 
 **SealSign SmartFolders** es una solución de firma masiva asociada a la plataforma SealSign. SealSign SmartFolder
 consta principalmente de dos partes fundamentales: un agente y una herramienta de administración de la
