@@ -3,7 +3,6 @@
 
 SealSign DSS (Digital Signature Services) is a product aimed at facilitating the integration of electronic signatures in corporate applications.
 in corporate applications. The product is made up of a series of modules, whose installation systems are based on MSI 3.0 technology.
-based on MSI 3.0 technology.
 
 The installation of the SealSign DSS module is followed by the installation of other modules, one or several of them depending on the needs.
 depending on the needs, with the DSS Service module being the only one whose installation is mandatory,
