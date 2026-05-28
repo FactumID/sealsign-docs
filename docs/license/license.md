@@ -1,9 +1,9 @@
 ﻿# Licenses
 ## 1. Introduction
 
-This document will describe the licensing tool for the SealSign® family of products as follows:
-like each of its options both from the graphical interface and from the command line.
-This document is valid for any product in the SealSign® family, therefore, valid for:
+This document describes the licensing tool for the SealSign® product family, 
+detailing all available options for both the graphical user interface and the command line. 
+Since this document applies to any product within the SealSign® family, it is valid for:
 
 - SealSign® DSS
 - SealSign® BSS
@@ -12,13 +12,12 @@ This document is valid for any product in the SealSign® family, therefore, vali
 - SealSign® DSR
 - SealSign® BAS
 
-> Although “SealSign® DSS” appears as a product in the images in this document, this This document is applicable to the rest of the SealSign® family products mentioned above.
+> Although “SealSign® DSS” appears as the product shown in the images throughout this document, the content is also applicable to the other products in the SealSign® family mentioned above.
 
 ## 2. SealSign® License Management - Options
 
-SealSign® License Management is located in the Control Panel. If the operating system of the
-computer is Windows 2008 or later, SealSign® License Management is located within the
-Programs category in said control panel.
+SealSign® License Management is located in the Control Panel. If the computer's operating system is Windows 2008 or later, SealSign® License Management can be found under the
+Programs category within the Control Panel.
 
 The tool looks like this:
 
@@ -26,24 +25,23 @@ The tool looks like this:
 
 <center><i>Image 01: SealSign® License Management</i></center>
 
-The interface distinguishes the different options that can be made regarding the licenses. These are:
+The interface provides different options regarding the licenses. These are:
 
-- **Activate**: If a license is in the evaluation period or expired, the Activate button will be enabled and
-Its operation is to invoke the License Activation Wizard as will be seen later.
-Once the product is activated, the license is associated with the computer hardware and cannot be reused.
-on another computer in no way.
+- **Activate**: If a license is in the evaluation period or expired, the Activate button will be enabled.
+Its function is to invoke the License Activation Wizard, as will be seen later.
+Once the product is activated, the license is associated with the computer hardware and cannot be reused
+on another computer under any circumstances.
 
 - **Deactivate**: If a license is activated and you want to deactivate it for migration to another computer, for
 a reinstallation of the server or for any other reason, this action will deactivate the product
-locally and the server will be notified to release said license. So, this released license
-It can be reused on any other equipment.
+locally and the server will be notified to release the license. Therefore, this released license can be reused on any other equipment.
 
 - **Reactivate**: If a license has been deactivated and you want to be reactivated on the same computer,
 We will only have to use this option to associate the license again with the
 local team. Once the process is complete, the license is again associated with the computer's hardware
 and cannot be reused on other equipment in any way.
 
-- **Check**: Perform an online check against the Factum Identity servers of the status of
+- **Check**: Performs an online check against the Factum Identity servers to verify the status of
 the license.
 
 - **Refresh**: Reloads the current license page.
@@ -55,91 +53,86 @@ the license.
 
 #### 3.1 License Activation over the Internet
 
-Once the SealSign® product is installed on a server, it must be activated within 90 days. For
+Once the SealSign® product is installed on a server, it must be activated within 90 days.
 To activate online, the administrator must perform the following steps:
 
-1. Start SealSign® License Management from the control panel. If the operating system
-If your computer is Windows 2008 or later, SealSign® License Management is located
-within the Programs category in said control panel. The following window will appear:
+1. Start SealSign® License Management from the Control panel. If the computer's operating system is Windows 2008 or later, SealSign® License Management is located
+within the Programs category in that Control Panel. The following window will appear:
 
 ![Image-02](./images/image-02.png)
-<center><i>Image 02: Appearance of the "SealSign License Management" window</i></center>
+<center><i>Image 02: Appearance of the "SealSign® License Management" window</i></center>
 
-2. Press the Activate button, select the option I have a serial number and I want to activate SealSign®
-Server and press the Forward button:
+2. Press the Activate button, select the option "I have a serial number and I want to activate SealSign®
+Server" and then click Next ("Adelante"):
 
 ![Image-03](./images/image-03.png)
 <center><i>Image 03: Activation of SealSign® Server with serial number</i></center>
 
-3. Select the Online Activation option and press the Next button:
+3. Select the "Online Activation" option and click the Next ("Adelante") button:
 
 ![Image-04](./images/image-04.png)
 <center><i>Image 04: Activation of SealSign® Server. Online activation</i></center>
 
-4. Fill in the serial number, name/company and email fields and press the button
-Forward. It is important to enter a correct email address to receive future
+4. Fill in the serial number, name/company and email fields and then click Next ("Adelante"). It is important to enter a valid email address to receive future
 Product updates and news:
 
 ![Image-05](./images/image-05.png)
 <center><i>Image 05: Activation of SealSign® Server. Entering the serial number</i></center>
 
 5. In the Online Activation window, if necessary, modify the proxy parameters by clicking the
-link, and press the Next button:
+link, and press the Next ("Adelante") button:
 
 ![Image-06](./images/image-06.png)
 <center><i>Image 06: Activation of SealSign® Server. Final window</i></center>
 
-6. In the result window press the Next button:
+6. In the result window click the Next ("Adelante") button:
 
 ![Image-07](./images/image-07.png)
 <center><i>Image 07: SealSign® Server activation completed</i></center>
 
-If the activation has been correct, the SealSign® License Management tab will show the
-change as shown in the following image:
+If the activation has been correct, the SealSign® License Management tab will display the
+updated status as shown in the following image:
 
 ![Image-08](./images/image-08.png)
-<center><i>Image 08: What the "SealSign License Management" window looks like after activating the license</i></center>
+<center><i>Image 08: "SealSign® License Management" window after license activation</i></center>
 
 #### 3.2 License activation by email or fax
 
-If the computer does not have an internet connection, the administrator can activate the license
-via email or fax. To do this, the following steps must be carried out:
+If the computer does not have an Internet connection, the administrator can activate the license
+via email or fax. To do so, the following steps must be performed:
 
-1. Start SealSign® License Management from the control panel. If the operating system
-If your computer is Windows 2008 or later, License Management is located within the
-Programs category.
+1. Start SealSign® License Management from the Control Panel. If the computer's operating system
+   is Windows 2008 or later, License Management is located within the Programs category.
 
-2. Press the Activate button.
+2. Click the Activate button.
 
-3. Select the option I have a serial number and I want to activate SealSign® Server and press the button
-Forward.
+3. Select the option "I have a serial number and I want to activate SealSign® Server" and click the button
+Next ("Adelante").
 
 4. Select the desired activation type.
 
-5. Fill in the serial number, name/company and email fields and press the button
-Forward.
+5. Fill in the serial number, name/company, and email fields, and then click the Next ("Adelante") button.
 
 6. A fax or email similar to the following will be generated:
 
 ![Image-09](./images/image-09.png)
 <center><i>Image 09: Appearance of a registration fax for SealSign® Server</i></center>
 
-7. Send the e-mail or fax as appropriate and press the Forward button. As a response you will receive
-2 unlock keys to activate.
+7. Send the email or fax as appropriate and click the Next ("Adelante") button. In response, you will receive
+two unlock keys to activate the license.
 
-8. When the response is received, re-enter the wizard using the Activate button on the
+8. When the response is received, re-enter the wizard by clicking the Activate button on the
 SealSign® License Management tool.
 
-9. The activation wizard will now require an activation key that will have been obtained as
-response to e-mail or fax:
+9. The activation wizard will now require the activation key obtained in response to the email or fax:
 
 ![Image-10](./images/image-10.png)
 <center><i>Image 10: Entering the activation key</i></center>
 
-10. Enter one by one each of the activation key(s) sent in the response to the request and
-Press the Apply Key button for each of them.
+10. Enter one by one each of the activation key(s) received in response to the request and
+click the Apply Key button for each of them.
 
-11. When all keys have been entered, press Next.
+11. When all keys have been entered, click Next ("Adelante").
 
 12. If the activation has been correct, the Licensing tab will show the
 
