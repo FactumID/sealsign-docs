@@ -1,23 +1,6 @@
 ﻿# Changelog
 # SealSign Engine
 
-### 20.0.0
-### 20.0.0
-#### Funcionalidades
-- Se Mejora el algoritmo de búsqueda de usuarios del active directoy en el panel de administración de SealSign para que filtre los usuarios por empresa en caso de la tengan asignada.
-- Se añade funcionalidad para ofuscar la información del DNI, NIE y NIF que aparece en el widget de la firma con certificado.
-
-#### Bugs
-- Se arregla problema al eliminar certificados desde el panel de usuarios (power user).
-
-## What's Changed
-* Added validation for TSA fields: if database values are empty or null… by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/190
-* Feature/version 4.12.1 by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/191
-* Feature/version 4.12.1 by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/192
-
-
----
-
 ### 4.10.4
 #### Bugs
 
