@@ -1,18 +1,6 @@
 ﻿# Changelog
 # SealSign Engine
 
-### 20.0.0
-### 20.10.3
-#### Funcionalidades
-- Se Mejora el algoritmo de búsqueda de usuarios del active directoy en el panel de administración de SealSign para que filtre los usuarios por empresa en caso de la tengan asignada.
-- Se añade funcionalidad para ofuscar la información del DNI, NIE y NIF que aparece en el widget de la firma con certificado.
-
-#### Bugs
-- Se arregla problema al eliminar certificados desde el panel de usuarios (power user).
-
-
----
-
 ### 4.10.4
 #### Bugs
 
