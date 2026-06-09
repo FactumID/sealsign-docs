@@ -1,17 +1,6 @@
 ﻿# Changelog
 # SealSign Engine
 
-### 20.0.0
-## What's Changed
-* Added validation for TSA fields: if database values are empty or null… by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/190
-* Feature/version 4.12.1 by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/191
-* Feature/version 4.12.1 by @BeykerRancel in https://github.com/FactumID/SealSignServer4/pull/192
-
-
-**Full Changelog**: https://github.com/FactumID/SealSignServer4/compare/v4.12.0...v20.0.0
-
----
-
 ### 4.10.4
 #### Bugs
 
