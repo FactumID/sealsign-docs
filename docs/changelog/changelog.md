@@ -1,6 +1,31 @@
 ﻿# Changelog
 # SealSign Engine
 
+### 4.12.0
+#### Features
+
+- Improved compliance with eIDAS2 regulation
+- Enhanced certificate validation security
+- Advanced re-signing and preservation functionality
+- Optimized user search and management
+
+#### Technical changes
+
+- Support for CAdES-LTA ENVELOPING signatures
+- New metadata system
+- Improved error handling and traceability
+
+---
+
+### 4.11.0
+#### Features
+
+- Retrieve use case rules by multiple certificate IDs from the service
+- Retrieve filtered certificates from the KeyControl service
+- Retrieve with filters all certificates or those of a user for the Admin service
+
+---
+
 ### 4.10.4
 #### Bugs
 
