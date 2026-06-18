@@ -113,8 +113,8 @@
 ### 4.10.6
 #### Bugs
 
-- Fixed a vulnerability that revealed information when passing data from SaaS to ClickOnce. From this version onwards, a session token is sent to ClickOnce, which is used to invoke the SaaS wrapper instead of making direct calls to the engine.
-- Backward compatibility is included with previous versions, allowing users to continue performing client signing with previous versions without affecting their functionality.
+- Security improvements in the communication between SaaS and ClickOnce.
+- Maintained backward compatibility with previous versions.
 
 ---
 

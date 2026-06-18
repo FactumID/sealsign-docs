@@ -109,8 +109,8 @@
 ### 4.10.6
 #### Bugs
 
-- Se corrige una vulnerabilidad de revelación de información en el paso de datos desde SaaS hacia ClickOnce. A partir de esta versión, se envía a ClickOnce un token de sesión, que se utiliza para invocar el wrapper de SaaS en lugar de realizar llamadas directas al motor.
-- Se incluye retrocompatibilidad con versiones anteriores, permitiendo que los usuarios continúen realizando la firma cliente con versiones previas sin afectar a su funcionamiento.
+- Mejoras de seguridad en la comunicación entre SaaS y ClickOnce.
+- Se mantiene la retrocompatibilidad con versiones anteriores.
 
 ---
 
