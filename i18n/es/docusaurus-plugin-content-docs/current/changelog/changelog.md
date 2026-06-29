@@ -1,6 +1,21 @@
 ﻿# Changelog
 # SealSign Engine
 
+### 4.13.0
+### Nuevas funcionalidades
+- Meter las URL, procesos, equipos en los informes diarios.
+- Recuperar el nombre y apellido desde el AD y mostrarlo en los procesos.
+- Manejo firma PSS para autenticaciones TLS1.3.
+
+### Correcciones
+- Se cambia la instalación de la carpeta del fichero TSL del DSR al DSS, para solucionar un error al verificar una firma cuando el DSR no esta instalado.
+- Se corrigen error en los scripts de migración de la versión 4.12 en Oracle.
+- Se corrige referencia del instalador de OTP para que instale la plantilla por defecto del código OTP.
+
+
+
+---
+
 ### 4.12.0
 #### Funcionalidades
 
