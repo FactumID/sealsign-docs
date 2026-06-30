@@ -7,7 +7,7 @@
 - Retrieve the first and last name from AD (Active Directory) and display them in the processes.
 - Handle PSS signature for TLS 1.3 authentications.
 
-#### Correcciones
+#### Bug Fixes / Corrections
 - Moved the installation of the TSL file folder from the DSR to the DSS to resolve an error when verifying a signature when the DSR is not installed.
 - Fixed errors in the migration scripts for version 4.12 in Oracle.
 - Corrected the OTP installer reference to ensure it installs the default OTP code template.
