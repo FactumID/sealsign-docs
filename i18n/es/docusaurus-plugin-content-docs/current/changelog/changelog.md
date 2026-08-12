@@ -1,6 +1,34 @@
 ﻿# Changelog
 # SealSign Engine
 
+### 4.13.1
+### Funcionalidades
+- Trazas configurables para el servicio de Revoke
+- Mostrar el nombre completo junto al login, Nombre Apellido (dominiousuario), en el buscador de usuarios de las reglas de uso, para poder identificar cuentas con login opaco tipo A30234.
+- Buscar usuarios locales y del dominio en las reglas de uso cuando la máquina está en dominio.
+- Añadir caché de 24 horas a la resolución de nombres contra el Active Directory, para que el buscador de usuarios responda de inmediato.
+- Permitir subir el mismo certificado varias veces desde /users (requiere desplegar también SealSignDSSService).
+- Unificar la tabla de usuarios autorizados de /users con la de administración: una sola columna «Cuenta de Usuario» con el nombre completo, eliminando la columna «Nombre».
+- Ampliar el desplegable del buscador de usuarios para poder distinguir cuentas con nombres parecidos.
+
+### Mejoras
+- Soporte para STARTTLS en la conexión a servidores SMTP
+
+### Correcciones
+- Se corrige el nombre duplicado al añadir usuarios a una regla de uso (DOMINIOusuarioDOMINIOusuario), que impedía a esos usuarios usar el certificado desde el cliente.
+- Se normaliza la cuenta de usuario a su forma canónica DOMINIOusuario al guardarla en la regla de uso, para que coincida con la identidad que compara la autorización al firmar.
+- Se corrige el guardado de las fechas de validez de las reglas de uso, que se enviaban sin convertir a UTC y hacían que una regla creada «desde ahora» naciera inactiva durante el desfase de la zona horaria.
+- Se corrige la visualización de las fechas de validez de los usuarios de las reglas de uso, que se mostraban en UTC en lugar de en la hora del usuario.
+- Se corrige el buscador de las secciones de las reglas de uso —usuarios, certificados, procesos, equipos y URL—, que no filtraba correctamente porque incluía el texto de los botones de acción en la búsqueda.
+- Se corrige el buscador de las secciones de las reglas de uso para que no duplique los manejadores de evento ni oculte la cabecera de la tabla al filtrar.
+- Se corrige el error «Value cannot be null. Parameter name: password» al importar un certificado desde /users.
+- Se corrige la validación de contraseña obligatoria al importar un certificado, que se mostraba aunque la contraseña estuviera introducida.
+- Se corrige el recorte de los botones de aceptar y cancelar aos, procesos, equipos y URL en el modal de reglas de uso.
+- Se corrige la lentitud del buscador de usuarios de las reglas de uso, que tardaba hasta 32 segundos por esperas de red al consultar el directorio.
+
+
+---
+
 ### 4.13.0
 #### Nuevas funcionalidades
 - Meter las URL, procesos, equipos en los informes diarios.
