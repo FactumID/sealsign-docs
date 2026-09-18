@@ -1,5 +1,4 @@
 # Guía de Referencia de Servicios Web SealSign DSS
-*Versión 4.6.1 — Noviembre 2022*
 
 ## 1. Introducción
 
