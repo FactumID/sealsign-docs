@@ -178,6 +178,8 @@ public string PDFSignatureWidgetImageTokenText;
 public string PDFSignatureWidgetDateCaptionFormat;
 public int PDFSignatureWidgetDateOffsetX;
 public int PDFSignatureWidgetDateOffsetY;
+public TextMark TextMark;
+public float? PDFSignatureWidgetDateTextSize;
 }
 ```
 
@@ -207,6 +209,8 @@ public int PDFSignatureWidgetDateOffsetY;
 - PDFSignatureWidgetDateCaptionFormat Cadena de caracteres que indica el formato de fecha que se mostrará en el widget de firma. Se trata de una cadena con formato de fecha/hora estándar, tal y como se describe en el artículo https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx
 - PDFSignatureWidgetDateOffsetX Indica, en pixels, el valor de la coordenada X, tomada desde el ángulo inferior izquierdo del widget, en el que aparecerá la fecha de la firma.
 - PDFSignatureWidgetDateOffsetY Indica, en pixels, el valor de la coordenada Y, tomada desde el ángulo inferior izquierdo del widget, en el que aparecerá la fecha de la firma.
+- TextMark Objeto de la clase TextMark que permite incluir una marca de texto personalizada en el widget de firma. Para más información consultar la descripción de la clase TextMark.
+- PDFSignatureWidgetDateTextSize Tamaño de fuente, en puntos, utilizado para mostrar la fecha de la firma en el widget.
 
 ###### 2.1.5. VerificationParameters
 
@@ -222,11 +226,21 @@ Cada objeto de esta clase representa la información de verificación correspond
 public class SignatureReference
 {
 public string signatureID;
+public string issuerSignature;
+public bool signatureIsQualified;
+public bool isSealQualifiedSignature;
+public bool isTimestampSignature;
 public VerificationStatus signatureStatus;
 public SignatureProfile signatureProfile;
 public SignatureFlags signatureFlags;
 public SignatureType signatureType;
 public byte[] signatureCertificate;
+public string signatureCertificateSubjectDN;
+public string signatureCertificateCommonName;
+public string signatureCertificateOrganization;
+public string signatureCertificateIssuer;
+public string signatureCertificateIssuerOrganization;
+public bool signatureCertificateIsQualified;
 public DateTime signingTime;
 public HashAlgorithm hashAlgorithm;
 public SignatureReference[] counterSignatures;
@@ -238,11 +252,21 @@ public TimestampReference[] validationTimestamps;
 **MIEMBROS**
 
 - signatureID: Identificador de la firma dentro del documento.
+- issuerSignature: Nombre para mostrar del firmante: la organización del certificado cuando la firma es un sello electrónico cualificado, o su nombre común en caso contrario.
+- signatureIsQualified: Indica si la firma cumple los requisitos de la Lista de Confianza de la UE para ser considerada una firma electrónica cualificada.
+- isSealQualifiedSignature: Indica si el certificado de firma corresponde a un sello electrónico cualificado (una persona jurídica) en lugar de a un firmante individual.
+- isTimestampSignature: Indica si esta firma es en realidad una firma sobre un sello de tiempo en lugar de sobre el documento.
 - signatureStatus: Estado de la firma tras el proceso de verificación. Para más información de los posibles valores consultar la descripción del tipo enumerado VerificationStatus.
 - signatureProfile: Indica el perfil que cumple la firma actual, incluso si es un perfil de firma avanzado. Para más información de los posibles valores consultar la descripción del tipo enumerado SignatureProfile.
 - signatureFlags: Contiene algunos flags con información avanzada de la firma. De los valores posibles, tras la verificación de un documento, este campo puede contener uno o varios de los siguientes valores: CMSAdESExplicitPolicy, CMSAdESXType2, XMLAdESExplicitPolicy, XMLAdESXType2, PDFAdESIncludeRevocationInfo, PDFAdESIncludeTimestamp. Para más información de los posibles valores consultar la descripción del tipo enumerado SignatureFlags.
 - signatureType: Indica el formato de almacenamiento de la firma dentro del documento. Su valor puede ser Enveloped, Enveloping o Detached según el documento contenga a la firma, la firma contenga al documento o la firma y el documento se almacenen de manera separada respectivamente.
 - signatureCertificate: Contiene el certificado con el que se realizó la firma.
+- signatureCertificateSubjectDN: Nombre distintivo (Subject DN) completo del certificado con el que se realizó la firma.
+- signatureCertificateCommonName: Nombre común (CN) del sujeto del certificado con el que se realizó la firma.
+- signatureCertificateOrganization: Organización (O) del sujeto del certificado con el que se realizó la firma.
+- signatureCertificateIssuer: Nombre común (CN) del emisor del certificado con el que se realizó la firma.
+- signatureCertificateIssuerOrganization: Organización (O) del emisor del certificado con el que se realizó la firma.
+- signatureCertificateIsQualified: Indica si el certificado con el que se realizó la firma es un certificado cualificado.
 - signingTime: Especifica la fecha y hora en el que se realizó la firma.
 - hashAlgorithm: Especifica el algoritmo de hash usado en la firma.
 - counterSignatures: Si la firma contiene contrafirmas, contendrá un array de objetos de esta misma clase con la información correspondiente a cada una de las co-firmas existentes en este nivel. En caso de no existir contrafirmas, este miembro valdrá null.
@@ -295,7 +319,7 @@ public FieldInfo[] extensions;
 - algorithm: Cadena de caracteres que recoge el algoritmo con el que se firmó el certificado.
 - issuer: Objeto de la clase NameInfo con la información específica del emisor del certificado.
 - subject: Objeto de la clase NameInfo con la información específica del asunto del certificado.
-- algorithm: Cadena de caracteres que recoge el número de serie asignado al certificado.
+- serialNumber: Cadena de caracteres que recoge el número de serie asignado al certificado.
 - validFrom: Indica la fecha de inicio de validez del certificado.
 - validTo: Indica la fecha de fin de validez del certificado.
 - keyUsage: Campo enumerado de tipo KeyUsages. Contendrá uno o varios valores (flags) con los distintos usos asignados al certificado.
@@ -407,6 +431,7 @@ public string providerUrl;
 public string providerDomain;
 public string providerUser;
 public string providerPassword;
+public string providerParameter;
 }
 ```
 
@@ -416,6 +441,7 @@ public string providerPassword;
 - providerDomain: Contendrá el dominio correspondiente a la cuenta de usuario para la conexión con el proveedor remoto de documentos.
 - providerUser: Contendrá la cuenta de usuario para la conexión con el proveedor remoto de documentos.
 - providerPassword: Contendrá la contraseña correspondiente a la cuenta de usuario para la conexión con el proveedor remoto de documentos.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor remoto de documentos para personalizar su comportamiento.
 
 ###### 2.1.13. ShadowMarkInfo
 
@@ -453,6 +479,29 @@ public DateTime Time;
 - ComputerName: Equipo desde el que se realizó la petición para la inserción de la marca de agua.
 - Time: Hora de creación de la marca de agua.
 
+###### 2.1.15. TextMark
+
+Representa una marca de texto personalizada que puede incrustarse en el widget de firma de un PDF, referenciada desde el miembro TextMark de la clase PDFSignatureParameters. La clase TextMark está definida del siguiente modo:
+
+```csharp
+public class TextMark
+{
+public List<string> Text;
+public string FontFamily;
+public float FontSize;
+public string Color;
+public bool Bold;
+}
+```
+
+**MIEMBROS**
+
+- Text: Lista de líneas de texto que se mostrarán en el widget de firma.
+- FontFamily: Nombre de la familia tipográfica utilizada para mostrar el texto.
+- FontSize: Tamaño de fuente, en puntos, utilizado para mostrar el texto.
+- Color: Color del texto, expresado como nombre de color o valor hexadecimal.
+- Bold: Booleano que indica si el texto se muestra en negrita.
+
 #### 2.2. Enumeraciones Comunes
 
 Los siguientes tipos enumerados se utilizan como parámetros en los servicios Web independientemente del interfaz que publiquen.
@@ -484,7 +533,10 @@ PAdESBasic,
 PAdESBES,
 PAdESLTV,
 PAdESXML,
-Office
+Office,
+CAdESLTA,
+PAdESLTA,
+XAdESLTA
 }
 ```
 
@@ -558,7 +610,9 @@ PDFAdESHideTimestampInWidget = 262144,
 XMLAdExcludeCertFromSignedProperties = 524288,
 PDFAdESIncludeFontInWidget = 1048576,
 IncludeShadowMark = 2097152,
-CleanMetadata = 4194304
+CleanMetadata = 4194304,
+PDFAdESHideIdentityDocumentInWidget = 8388608,
+FirmaProfesionalSignature = 16777216
 }
 ```
 
@@ -588,13 +642,15 @@ CleanMetadata = 4194304
 - PDFAdESIncludeFontInWidget: Incluye en el widget de firma, la definición del tipo de letra usado.
 - IncludeShadowMark: Indica al servicio de firma que debe invocar al servidor de Shadow para la inclusión de una marca de agua.
 - CleanMetadata: Indica al servicio de firma que debe invocar al servidor de Metashield para la limpieza de metadados antes de la firma.
+- PDFAdESHideIdentityDocumentInWidget: Oculta el número de documento de identidad del firmante en el widget de firma.
+- FirmaProfesionalSignature: Encamina la operación de firma a través del proveedor de firma remota cualificada "Firma Profesional" en lugar de un certificado local.
 
 ###### 2.2.5. BusinessSignatureProfile
 
 Indica los distintos perfiles de firma de negocio soportados por SealSign DSS.
 
 ```csharp
-public enum SignatureType
+public enum BusinessSignatureProfile
 {
 Default = 0,
 FacturaeEPES = 0,
@@ -682,6 +738,43 @@ NotValidForUsage = 16
 - InvalidPolicy: La política asociada a la firma no es válida.
 - NotValidForUsage: El certificado no es válido para el uso actual.
 
+###### 2.2.8. KeyUsages
+
+Indica los valores de la extensión de uso de clave (key usage) de un certificado X509, tal y como se retornan en el miembro keyUsage de la clase CertificateInfo.
+
+```csharp
+public enum KeyUsages
+{
+None = 0,
+digitalSignature = 1,
+nonRepudiation = 2,
+keyEncipherment = 4,
+dataEncipherment = 8,
+keyAgreement = 16,
+keyCertSign = 32,
+cRLSign = 64,
+encipherOnly = 128,
+decipherOnly = 256
+}
+```
+
+###### 2.2.9. ExtendedKeyUsages
+
+Indica los valores de la extensión de uso extendido de clave (extended key usage) de un certificado X509, tal y como se retornan en el miembro extendedKeyUsage de la clase CertificateInfo.
+
+```csharp
+public enum ExtendedKeyUsages
+{
+None = 0,
+clientAuthentication = 1,
+codeSigning = 2,
+emailProtection = 4,
+serverAuthentication = 8,
+timeStamping = 16,
+customUsages = 32
+}
+```
+
 ## 3. Servicio de Verificación de Firma Biométrica SOAP 1.1
 
 El servicio CertificateServiceBasic.svc de SealSign DSS permite realizar la validación del estado de revocación de un certificado centralizadamente siguiendo las configuraciones realizadas en el servidor de SealSign. Para ello, este servicio expone el método Validate, que será accesible a través de SOAP 1.1.
@@ -763,6 +856,35 @@ En cada uno de los miembros del array de subjectAlternativeName, solo uno de los
 En los miembros de tipo FieldInfo, el campo Value contendrá el valor formateado a cadena de caracteres si el campo tiene un formato conocido por el sistema (según el OID del mismo). En caso contrario contendrá una cadena vacía.
 
 Además, el campo FriendlyName estará localizado según el idioma del sistema, por lo que, a la hora de localizar un campo o extensión se deberá utilizar el OID del mismo y no este campo.
+
+###### 3.1.3. ValidateCustomAudit
+
+Realiza la verificación de revocación de un certificado y retorna su estado, atribuyendo la entrada de auditoría resultante a un usuario indicado explícitamente en lugar de a la cuenta Windows que realiza la llamada.
+
+**SINTAXIS**
+
+```csharp
+public int ValidateCustomAudit(
+string userLogin,
+byte[] validatingCertificate,
+DateTime timeToUse,
+ref int reason);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- userLogin: Login del usuario al que se atribuirá la entrada de auditoría de esta validación.
+- validatingCertificate: Array de bytes con la parte pública del certificado que se desea validar.
+- timeToUse: Fecha y hora en la que debe producirse la validación.
+- reason: Parámetro de salida que indicará, en caso de que el certificado esté revocado, el motivo por el que lo está.
+
+**RETORNO**
+
+Retorna un valor entero que corresponderá con uno de los valores del tipo enumerado X509ChainStatusFlags de .NET, de forma idéntica al método Validate.
+
+**COMENTARIOS**
+
+Este método se comporta exactamente igual que Validate, con la única diferencia de que la entrada de auditoría generada por la operación se atribuye al usuario indicado en userLogin en lugar de a la identidad de quien realiza la llamada.
 
 ## 4. Servicio de Validación y Análisis Sintáctico de Certificados JSON
 
@@ -846,6 +968,35 @@ En los miembros de tipo FieldInfo, el campo Value contendrá el valor formateado
 
 Además, el campo FriendlyName estará localizado según el idioma del sistema, por lo que, a la hora de localizar un campo o extensión se deberá utilizar el OID del mismo y no este campo.
 
+###### 4.1.3. ValidateCustomAudit
+
+Realiza la verificación de revocación de un certificado y retorna su estado, atribuyendo la entrada de auditoría resultante a un usuario indicado explícitamente en lugar de a la cuenta que realiza la llamada.
+
+**SINTAXIS**
+
+```csharp
+public int ValidateCustomAudit(
+string userLogin,
+byte[] validatingCertificate,
+DateTime timeToUse,
+ref int reason);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- userLogin: Login del usuario al que se atribuirá la entrada de auditoría de esta validación.
+- validatingCertificate: Array de bytes con la parte pública del certificado que se desea validar.
+- timeToUse: Fecha y hora en la que debe producirse la validación.
+- reason: Parámetro de salida que indicará, en caso de que el certificado esté revocado, el motivo por el que lo está.
+
+**RETORNO**
+
+Retorna un valor entero que corresponderá con uno de los valores del tipo enumerado X509ChainStatusFlags de .NET, de forma idéntica al método Validate.
+
+**COMENTARIOS**
+
+Este método se comporta exactamente igual que Validate, con la única diferencia de que la entrada de auditoría generada por la operación se atribuye al usuario indicado en userLogin en lugar de a la identidad de quien realiza la llamada.
+
 ## 5. Servicio de Firma y Verificación SOAP 1.1
 
 El servicio SignatureServiceBasic.svc de SealSign DSS expone los métodos necesarios para la generación y validación de firmas electrónicas a través de un servicio web SOAP 1.1 (basicHttpBinding).
@@ -854,7 +1005,9 @@ Los métodos expuestos son los siguientes:
 
 - GetCertificateReferences: Obtiene información de los certificados almacenados en el servidor de SealSign y que pueden ser utilizados por el usuario que invoca al servicio.
 - Sign: Firma un documento de entrada en servidor con las configuraciones recibidas como parámetros.
+- CounterSign: Añade una contrafirma a una firma existente dentro de un documento.
 - SignProvider: Obtiene un documento y los parámetros de configuración de firma mediante un document provider y lo firma con el certificado de servidor recibido.
+- CounterSignProvider: Obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
 - BusinessSign: Firma un documento un documento en servidor mediante un perfil de firma de alto nivel.
 - Verify: Permite verificar y obtener la información de cada una de las firmas incluidas en un documento.
 - HeartBeat: Método que permite comprobar el estado de salud del servicio.
@@ -951,7 +1104,8 @@ string password,
 string passwordSealSign,
 string uri,
 string providerParameter,
-byte[] signingDocument);
+byte[] signingDocument,
+RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
 **PARÁMETROS DE ENTRADA**
@@ -962,6 +1116,7 @@ byte[] signingDocument);
 - uri: Identificador URI del documento en el repositorio.
 - providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
 - signingDocument: Array de bytes con el contenido del documento que se desea firmar.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
 
 **RETORNO**
 
@@ -1078,6 +1233,168 @@ string type);
 
 Devuelve un objeto de la clase ShadowMarksInfo con toda la información asociada a la marca de agua o una excepción en caso de producirse algún tipo de error.
 
+###### 5.1.8. CounterSign
+
+Este método añade una contrafirma a una firma existente dentro del documento recibido como parámetro, usando los perfiles y configuraciones indicados, y retornando un array de bytes con el documento contrafirmado.
+
+**SINTAXIS**
+
+```csharp
+public byte[] CounterSign(
+int idCertificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+string password,
+string passwordSealSign,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento.
+- signatureProfile: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- signatureType: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- hashAlgorithm: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- options: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- parameters: Objeto de tipo SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- password: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- detachedSignature: En caso de tratarse de una contrafirma en la que la firma o firmas anteriores fueran desasociadas, este parámetro recibirá el array con la firma o firmas previas.
+- signingDocument: Array de bytes con el contenido del documento que se desea contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento contrafirmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a Sign, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 5.1.9. Sign (Extendido)
+
+Sobrecarga extendida del método Sign, invocada como SignExtended a nivel de SOAP/JSON, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public byte[] Sign(
+int? idCertificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters[] parameters,
+SignatureData signatureData,
+string password,
+string passwordSealSign,
+byte[] detachedSignature,
+byte[] signingDocument);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el parámetro signatureData.
+- signatureProfile: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- signatureType: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- hashAlgorithm: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- options: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- parameters: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- signatureData: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+- password: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- detachedSignature: En caso de tratarse de una contrafirma en la que la firma o firmas anteriores fueran desasociadas, este parámetro recibirá el array con la firma o firmas previas.
+- signingDocument: Array de bytes con el contenido del documento que se desea firmar.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento firmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error. Si la firma es desasociada, retorna el array de bytes correspondiente únicamente a dicha firma.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como Sign, pero admite un array de SignatureParameters (en lugar de un único objeto) y un objeto SignatureData opcional con metadatos de negocio/trazabilidad (usuario, empresa, identificadores de petición y documento, datos del navegador, información de contacto, geolocalización e información de auditoría).
+
+###### 5.1.10. SignProvider (Extendido)
+
+Sobrecarga extendida del método SignProvider, invocada como SignProviderExtended a nivel de SOAP/JSON, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public byte[] SignProvider(
+int? idCertificate,
+string password,
+string passwordSealSign,
+string uri,
+string providerParameter,
+byte[] signingDocument,
+RemoteProviderConfiguration remoteProviderConfiguration,
+SignatureParameters[] parameters,
+SignatureData signatureData);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el parámetro signatureData.
+- password: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- signingDocument: Array de bytes con el contenido del documento que se desea firmar.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
+- parameters: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas.
+- signatureData: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+
+**RETORNO**
+
+Devuelve un array de bytes una vez que se haya firmado el documento obtenido mediante la llamada al document provider asociado a la uri especificada o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como SignProvider, pero admite un array de SignatureParameters y un objeto SignatureData opcional con metadatos de negocio/trazabilidad.
+
+###### 5.1.11. CounterSignProvider
+
+Este método obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
+
+**SINTAXIS**
+
+```csharp
+public byte[] CounterSignProvider(
+int idCertificate,
+string password,
+string passwordSealSign,
+string uri,
+string providerParameter,
+byte[] signingDocument,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento.
+- password: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- signingDocument: Array de bytes con el contenido del documento que se desea contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
+
+**RETORNO**
+
+Devuelve un array de bytes una vez que se haya contrafirmado el documento obtenido mediante la llamada al document provider asociado a la uri especificada o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta como SignProvider, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
 ## 6. Servicio de Firma y Verificación SOAP 1.2
 
 El servicio SignatureService.svc de SealSign DSS expone todos los métodos necesarios para la generación y validación de firmas de documentos a través de un servicio SOAP 1.2 (wsHttpBinding).
@@ -1086,7 +1403,9 @@ Los métodos expuestos son los siguientes:
 
 - GetCertificateReferences: Obtiene información de los certificados almacenados en el servidor de SealSign y que pueden ser utilizados por el usuario que invoca al servicio.
 - Sign: Firma un documento de entrada con las configuraciones recibidas como parámetros.
+- CounterSign: Añade una contrafirma a una firma existente dentro de un documento.
 - SignProvider: Obtiene un documento y los parámetros de configuración de firma mediante un document provider y lo firma con el certificado de servidor recibido.
+- CounterSignProvider: Obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
 - BusinessSign: Realiza la firma de un documento mediante un perfil de firma de alto nivel.
 - Verify: Permite verificar y obtener la información de cada una de las firmas incluidas en un documento.
 - HeartBeat: Método que permite comprobar el estado de salud del servicio.
@@ -1154,6 +1473,7 @@ public string password;
 public string passwordSealSign;
 public string uri;
 public string providerParameter;
+public RemoteProviderConfiguration remoteProviderConfiguration;
 public Stream signingDocument;
 }
 ```
@@ -1165,6 +1485,7 @@ public Stream signingDocument;
 - passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
 - uri: Identificador URI del documento en el repositorio.
 - providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
 - signingDocument: Array de bytes con el contenido del documento que se desea firmar.
 
 ###### 6.1.4. SignatureResponse
@@ -1245,6 +1566,102 @@ public SignatureVerification signatureVerification;
 
 - signatureVerification: Objeto de la clase SignatureVerification con toda la información de validación obtenida en el proceso de verificación de la firma.
 
+###### 6.1.8. SignatureExtendedRequest
+
+Parámetro de entrada de la sobrecarga extendida del método Sign (invocada como SignExtended a nivel de SOAP).
+
+```csharp
+public class SignatureExtendedRequest
+{
+public int? idCertificate;
+public SignatureProfile signatureProfile;
+public SignatureType signatureType;
+public HashAlgorithm hashAlgorithm;
+public SignatureFlags options;
+public SignatureParameters[] parameters;
+public SignatureData signatureData;
+public string password;
+public string passwordSealSign;
+public byte[] detachedSignature;
+public Stream signingDocument;
+}
+```
+
+**ATRIBUTOS**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el atributo signatureData.
+- signatureProfile: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- signatureType: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- hashAlgorithm: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- options: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- parameters: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas.
+- signatureData: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+- password: Contraseña asociada al archivo .pfx de almacenamiento del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- detachedSignature: En caso de tratarse de una contrafirma en la que la firma o firmas anteriores fueran desasociadas, este parámetro recibirá el array con la firma o firmas previas.
+- signingDocument: Array de bytes con el contenido del documento que se desea firmar.
+
+###### 6.1.9. CounterSignatureRequest
+
+Parámetro de entrada del método CounterSign. Hereda de SignatureRequest, añadiendo el identificador de la firma que se desea contrafirmar.
+
+```csharp
+public class CounterSignatureRequest : SignatureRequest
+{
+public string signatureId;
+}
+```
+
+**ATRIBUTOS**
+
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+###### 6.1.10. SignatureProviderExtendedRequest
+
+Parámetro de entrada de la sobrecarga extendida del método SignProvider (invocada como SignProviderExtended a nivel de SOAP).
+
+```csharp
+public class SignatureProviderExtendedRequest
+{
+public int? idCertificate;
+public string password;
+public string passwordSealSign;
+public string uri;
+public string providerParameter;
+public RemoteProviderConfiguration remoteProviderConfiguration;
+public SignatureParameters[] parameters;
+public SignatureData signatureData;
+public Stream signingDocument;
+}
+```
+
+**ATRIBUTOS**
+
+- idCertificate: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el atributo signatureData.
+- password: Contraseña asociada al archivo .pfx de almacenamiento del certificado seleccionado o null en caso de no ser necesaria.
+- passwordSealSign: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
+- parameters: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas.
+- signatureData: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+- signingDocument: Array de bytes con el contenido del documento que se desea firmar.
+
+###### 6.1.11. CounterSignatureProviderRequest
+
+Parámetro de entrada del método CounterSignProvider. Hereda de SignatureProviderRequest, añadiendo el identificador de la firma que se desea contrafirmar.
+
+```csharp
+public class CounterSignatureProviderRequest : SignatureProviderRequest
+{
+public string signatureId;
+}
+```
+
+**ATRIBUTOS**
+
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
 #### 6.2. Métodos
 
 ###### 6.2.1. GetCertificateReferences
@@ -1314,7 +1731,7 @@ Este método obtiene un documento y los parámetros de configuración de firma m
 **SINTAXIS**
 
 ```csharp
-public SignatureProviderResponse SignProvider(
+public SignatureResponse SignProvider(
 SignatureProviderRequest request);
 ```
 
@@ -1324,7 +1741,7 @@ SignatureProviderRequest request);
 
 **RETORNO**
 
-Este método retorna un objeto de la clase SignatureProviderResponse o una excepción en caso de producirse algún tipo de error.
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error.
 
 **COMENTARIOS**
 
@@ -1419,6 +1836,98 @@ string type);
 
 Devuelve un objeto de la clase ShadowMarksInfo con toda la información asociada a la marca de agua o una excepción en caso de producirse algún tipo de error.
 
+###### 6.2.8. CounterSign
+
+Este método añade una contrafirma a una firma existente dentro del documento recibido como parámetro, retornando un array de bytes con el documento contrafirmado.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse CounterSign(
+CounterSignatureRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Objeto de la clase CounterSignatureRequest.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a Sign, con la adición del atributo signatureId en el request, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 6.2.9. Sign (Extendido)
+
+Sobrecarga extendida del método Sign, invocada como SignExtended a nivel de SOAP, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse Sign(
+SignatureExtendedRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Objeto de la clase SignatureExtendedRequest.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como Sign, pero admite un array de SignatureParameters (en lugar de un único objeto) y un objeto SignatureData opcional con metadatos de negocio/trazabilidad (usuario, empresa, identificadores de petición y documento, datos del navegador, información de contacto, geolocalización e información de auditoría).
+
+###### 6.2.10. SignProvider (Extendido)
+
+Sobrecarga extendida del método SignProvider, invocada como SignProviderExtended a nivel de SOAP, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse SignProvider(
+SignatureProviderExtendedRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Objeto de la clase SignatureProviderExtendedRequest.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como SignProvider, pero admite un array de SignatureParameters y un objeto SignatureData opcional con metadatos de negocio/trazabilidad.
+
+###### 6.2.11. CounterSignProvider
+
+Este método obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse CounterSignProvider(
+CounterSignatureProviderRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Objeto de la clase CounterSignatureProviderRequest.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta como SignProvider, con la adición del atributo signatureId en el request, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
 ## 7. Servicio de Firma y Verificación JSON
 
 El servicio SignatureServiceBasic.svc de SealSign DSS expone todos los métodos necesarios para la generación y validación de firmas de documentos a través de un servicio JSON (WebHttpBinding).
@@ -1427,7 +1936,9 @@ Los métodos expuestos son los siguientes:
 
 - **GetCertificateReferences**: Obtiene información de los certificados almacenados en el servidor de SealSign y que pueden ser utilizados por el usuario que invoca al servicio.
 - **Sign**: Firma un documento de entrada con las configuraciones recibidas como parámetros.
+- **CounterSign**: Añade una contrafirma a una firma existente dentro de un documento.
 - **SignProvider**: Obtiene un documento y los parámetros de configuración de firma mediante un document provider y lo firma con el certificado de servidor recibido.
+- **CounterSignProvider**: Obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
 - **BusinessSign**: Realiza la firma de un documento mediante un perfil de firma de alto nivel.
 - **Verify**: Permite verificar y obtener la información de cada una de las firmas incluidas en un documento.
 - **HeartBeat**: Método que permite comprobar el estado de salud del servicio.
@@ -1522,7 +2033,8 @@ public byte[] SignProvider(
     string passwordSealSign,
     string uri,
     string providerParameter,
-    byte[] signingDocument);
+    byte[] signingDocument,
+    RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
 **PARÁMETROS DE ENTRADA**
@@ -1533,6 +2045,7 @@ public byte[] SignProvider(
 - **uri**: Identificador URI del documento en el repositorio.
 - **providerParameter**: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
 - **signingDocument**: Array de bytes con el contenido del documento que se desea firmar.
+- **remoteProviderConfiguration**: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
 
 **RETORNO**
 
@@ -1648,6 +2161,168 @@ public ShadowMarkInfo GetShadowMarkInfo(
 **RETORNO**
 
 Devuelve un objeto de la clase ShadowMarksInfo con toda la información asociada a la marca de agua o una excepción en caso de producirse algún tipo de error.
+
+###### 7.1.8. CounterSign
+
+Este método añade una contrafirma a una firma existente dentro del documento recibido como parámetro, usando los perfiles y configuraciones indicados, y retornando un array de bytes con el documento contrafirmado.
+
+**SINTAXIS**
+
+```csharp
+public byte[] CounterSign(
+    int idCertificate,
+    SignatureProfile signatureProfile,
+    SignatureType signatureType,
+    HashAlgorithm hashAlgorithm,
+    SignatureFlags options,
+    SignatureParameters parameters,
+    string password,
+    string passwordSealSign,
+    byte[] detachedSignature,
+    byte[] signingDocument,
+    string signatureId);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- **idCertificate**: Identificador del certificado de servidor utilizado para firmar el documento.
+- **signatureProfile**: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- **signatureType**: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- **hashAlgorithm**: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- **options**: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- **parameters**: Objeto de tipo SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- **password**: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- **passwordSealSign**: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- **detachedSignature**: En caso de tratarse de una contrafirma en la que la firma o firmas anteriores fueran desasociadas, este parámetro recibirá el array con la firma o firmas previas.
+- **signingDocument**: Array de bytes con el contenido del documento que se desea contrafirmar.
+- **signatureId**: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento contrafirmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a Sign, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 7.1.9. Sign (Extendido)
+
+Sobrecarga extendida del método Sign, invocada como SignExtended a nivel de JSON, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public byte[] Sign(
+    int? idCertificate,
+    SignatureProfile signatureProfile,
+    SignatureType signatureType,
+    HashAlgorithm hashAlgorithm,
+    SignatureFlags options,
+    SignatureParameters[] parameters,
+    SignatureData signatureData,
+    string password,
+    string passwordSealSign,
+    byte[] detachedSignature,
+    byte[] signingDocument);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- **idCertificate**: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el parámetro signatureData.
+- **signatureProfile**: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- **signatureType**: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- **hashAlgorithm**: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- **options**: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- **parameters**: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- **signatureData**: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+- **password**: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- **passwordSealSign**: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- **detachedSignature**: En caso de tratarse de una contrafirma en la que la firma o firmas anteriores fueran desasociadas, este parámetro recibirá el array con la firma o firmas previas.
+- **signingDocument**: Array de bytes con el contenido del documento que se desea firmar.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento firmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error. Si la firma es desasociada, retorna el array de bytes correspondiente únicamente a dicha firma.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como Sign, pero admite un array de SignatureParameters (en lugar de un único objeto) y un objeto SignatureData opcional con metadatos de negocio/trazabilidad (usuario, empresa, identificadores de petición y documento, datos del navegador, información de contacto, geolocalización e información de auditoría).
+
+###### 7.1.10. SignProvider (Extendido)
+
+Sobrecarga extendida del método SignProvider, invocada como SignProviderExtended a nivel de JSON, que admite un identificador de certificado anulable, varios conjuntos de parámetros de firma e información adicional de trazabilidad.
+
+**SINTAXIS**
+
+```csharp
+public byte[] SignProvider(
+    int? idCertificate,
+    string password,
+    string passwordSealSign,
+    string uri,
+    string providerParameter,
+    byte[] signingDocument,
+    RemoteProviderConfiguration remoteProviderConfiguration,
+    SignatureParameters[] parameters,
+    SignatureData signatureData);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- **idCertificate**: Identificador del certificado de servidor utilizado para firmar el documento. Puede ser null cuando el certificado se resuelve mediante el parámetro signatureData.
+- **password**: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- **passwordSealSign**: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- **uri**: Identificador URI del documento en el repositorio.
+- **providerParameter**: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- **signingDocument**: Array de bytes con el contenido del documento que se desea firmar.
+- **remoteProviderConfiguration**: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
+- **parameters**: Array de objetos SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas.
+- **signatureData**: Objeto de tipo SignatureData con la entidad y los metadatos de trazabilidad asociados a la firma. Para más información consultar la descripción de la clase SignatureData.
+
+**RETORNO**
+
+Devuelve un array de bytes una vez que se haya firmado el documento obtenido mediante la llamada al document provider asociado a la uri especificada o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Esta sobrecarga se comporta como SignProvider, pero admite un array de SignatureParameters y un objeto SignatureData opcional con metadatos de negocio/trazabilidad.
+
+###### 7.1.11. CounterSignProvider
+
+Este método obtiene un documento mediante un document provider y añade una contrafirma a una firma existente dentro de él.
+
+**SINTAXIS**
+
+```csharp
+public byte[] CounterSignProvider(
+    int idCertificate,
+    string password,
+    string passwordSealSign,
+    string uri,
+    string providerParameter,
+    byte[] signingDocument,
+    string signatureId,
+    RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- **idCertificate**: Identificador del certificado de servidor utilizado para firmar el documento.
+- **password**: Contraseña de acceso a la clave privada del certificado seleccionado o null en caso de no ser necesaria.
+- **passwordSealSign**: Contraseña de SealSign asociada al certificado seleccionado o null en caso de no ser necesaria.
+- **uri**: Identificador URI del documento en el repositorio.
+- **providerParameter**: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- **signingDocument**: Array de bytes con el contenido del documento que se desea contrafirmar.
+- **signatureId**: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+- **remoteProviderConfiguration**: Parámetro opcional con la información para la conexión al proveedor de documentos remoto. Para más información consultar la descripción de la clase RemoteProviderConfiguration.
+
+**RETORNO**
+
+Devuelve un array de bytes una vez que se haya contrafirmado el documento obtenido mediante la llamada al document provider asociado a la uri especificada o una excepción en caso de producirse algún tipo de error.
+
+**COMENTARIOS**
+
+Este método se comporta como SignProvider, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
 
 ## 8. Servicio de Timestamp SOAP 1.1
 
@@ -1794,9 +2469,13 @@ En SealSign DSS el tratamiento del hash en cliente se debe realizar a través de
 El servicio DistributedSignatureServiceBasic.svc de SealSign DSS expone los métodos necesarios para implementar firmas de documentos distribuidas a través de un servicio web SOAP 1.1 (basicHttpBinding). Los métodos expuestos son los siguientes:
 
 - BeginSignature: Indica al servicio el comienzo de una firma distribuida. El servidor procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignature: Indica al servicio el comienzo de una contrafirma distribuida sobre una firma existente dentro de un documento.
 - EndSignature: El cliente actualiza la firma en servidor con el resumen del documento cifrado.
+- EndCounterSignature: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado.
 - BeginSignatureProvider: Indica al servicio el comienzo de una firma distribuida con document provider. El servidor obtiene el documento y los parámetros de la firma mediante la llamada a un remote document provider, a partir de ahí, procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignatureProvider: Indica al servicio el comienzo de una contrafirma distribuida con document provider.
 - EndSignatureProvider: El cliente actualiza la firma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
+- EndCounterSignatureProvider: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
 - HeartBeat: Método que permite comprobar el estado de salud del servicio.
 
 En los siguientes apartados, se describen tanto el interfaz de cada uno de estos métodos, así como las clases y tipos relacionados con los mismos.
@@ -1870,7 +2549,7 @@ Inicia un proceso de firma distribuida con document provider.
 **SINTAXIS**
 
 ```csharp
-public SignatureContext BeginSignatureProvider(
+public DistributedSignatureBeginResponseBasic BeginSignatureProvider(
 byte[] certificate,
 string uri,
 string providerParameter,
@@ -1878,7 +2557,7 @@ byte[] document,
 RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
-**PARAMETROS DE ENTRADA**
+**PARÁMETROS DE ENTRADA**
 
 - certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
 - uri: Identificador URI del documento en el repositorio.
@@ -1888,7 +2567,7 @@ RemoteProviderConfiguration remoteProviderConfiguration);
 
 **RETORNO**
 
-Devuelve un objeto de la clase SignatureContext con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
 
 **COMENTARIOS**
 
@@ -1960,6 +2639,130 @@ public void HeartBeat();
 
 Realiza las comprobaciones adecuadas para verificar si el servicio web está funcionando correctamente y retorna una excepción en caso contrario.
 
+###### 11.2.6. BeginCounterSignature
+
+Inicia un proceso de contrafirma distribuida sobre una firma existente dentro de un documento.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignature(
+byte[] certificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
+- signatureProfile: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- signatureType: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- hashAlgorithm: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- options: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- parameters: Objeto de tipo SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- detachedSignature: En caso de tratarse de una firma desasociada, este parámetro retornará el array de bytes correspondientes a dicha firma. En caso de firma no desasociada retornará null.
+- signingDocument: Array de bytes con el contenido del documento que se desea contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignature, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 11.2.7. BeginCounterSignatureProvider
+
+Inicia un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignatureProvider(
+byte[] certificate,
+string uri,
+string providerParameter,
+byte[] document,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- document: Parámetro opcional con el array de bytes del documento a contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignatureProvider, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 11.2.8. EndCounterSignature
+
+Completa un proceso de contrafirma distribuida.
+
+**SINTAXIS**
+
+```csharp
+public byte[] EndCounterSignature(Guid instance,
+byte[] asyncState)
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- instance: Identificador de la transacción de firma retornado por el método BeginCounterSignature.
+- asyncState: Array de bytes del estado de firma distribuida después de haber sido procesado por el componente AsyncStateManager.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento contrafirmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error.
+
+###### 11.2.9. EndCounterSignatureProvider
+
+Completa un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public byte[] EndCounterSignatureProvider(Guid instance,
+byte[] asyncState,
+string uri,
+string providerParameter,
+bool returnSignedDocument,
+RemoteProviderConfiguration remoteProviderConfiguration)
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- instance: Identificador de la transacción de firma retornado por los métodos BeginCounterSignature o BeginCounterSignatureProvider.
+- asyncState: Array de bytes del estado de firma distribuida después de haber sido procesado por el componente AsyncStateManager.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- returnSignedDocument: Booleano que indica si el método debe retornar el documento firmado.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto.
+
+**RETORNO**
+
+Si el parámetro returnSignedDocument es true, devuelve un array de bytes con el documento contrafirmado o un null en caso contrario.
+
+**COMENTARIOS**
+
+El método invocará siempre al remote document provider asociado para que realice el almacenado del documento resultante. Si además se requiere que el documento contrafirmado llegue a la aplicación llamadora, se puede poner a true el parámetro returnSignedDocument.
+
 ## 12. Servicio de Firma Distribuida SOAP 1.2
 
 El servicio DistributedSignatureService.svc de SealSign DSS expone los métodos necesarios para la generación de firmas de documentos distribuidas a través de un servicio SOAP 1.2 (wsHttpBinding).
@@ -1967,9 +2770,13 @@ El servicio DistributedSignatureService.svc de SealSign DSS expone los métodos 
 Los métodos expuestos son los siguientes:
 
 - BeginSignature: Indica al servicio el comienzo de una firma distribuida. El servidor procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignature: Indica al servicio el comienzo de una contrafirma distribuida sobre una firma existente dentro de un documento.
 - EndSignature: El cliente actualiza la firma en servidor con el resumen del documento cifrado.
+- EndCounterSignature: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado.
 - BeginSignatureProvider: Indica al servicio el comienzo de una firma distribuida con document provider. El servidor obtiene el documento y los parámetros de la firma mediante la llamada a un remote document provider, a partir de ahí, procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignatureProvider: Indica al servicio el comienzo de una contrafirma distribuida con document provider.
 - EndSignatureProvider: El cliente actualiza la firma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
+- EndCounterSignatureProvider: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
 - HeartBeat: Método que permite comprobar el estado de salud del servicio.
 
 En los siguientes apartados, se describen tanto el interfaz de cada uno de estos métodos como las clases y tipos relacionados con los mismos.
@@ -2087,6 +2894,36 @@ public bool returnSignedDocument;
 - remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto.
 - returnSignedDocument: Booleano que indica si el método debe retornar el documento firmado.
 
+###### 12.1.6. DistributedCounterSignatureBeginRequest
+
+Parámetro de entrada del método BeginCounterSignature. Hereda de DistributedSignatureBeginRequest, añadiendo el identificador de la firma que se desea contrafirmar.
+
+```csharp
+public class DistributedCounterSignatureBeginRequest : DistributedSignatureBeginRequest
+{
+public string signatureId;
+}
+```
+
+**ATRIBUTOS**
+
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+###### 12.1.7. DistributedCounterSignatureBeginProviderRequest
+
+Parámetro de entrada del método BeginCounterSignatureProvider. Hereda de DistributedSignatureBeginProviderRequest, añadiendo el identificador de la firma que se desea contrafirmar.
+
+```csharp
+public class DistributedCounterSignatureBeginProviderRequest : DistributedSignatureBeginProviderRequest
+{
+public string signatureId;
+}
+```
+
+**ATRIBUTOS**
+
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
 #### 12.2. Métodos
 
 ###### 12.2.1. BeginSignature
@@ -2183,14 +3020,102 @@ public void HeartBeat();
 
 Realiza las comprobaciones adecuadas para verificar si el servicio web está funcionando correctamente y retorna una excepción en caso contrario.
 
+###### 12.2.6. BeginCounterSignature
+
+Inicia un proceso de contrafirma distribuida sobre una firma existente dentro de un documento.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponse BeginCounterSignature(
+DistributedCounterSignatureBeginRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Instancia del tipo DistributedCounterSignatureBeginRequest con los datos de inicio de la transacción de contrafirma.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponse con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignature, con la adición del atributo signatureId en el request, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 12.2.7. BeginCounterSignatureProvider
+
+Inicia un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponse BeginCounterSignatureProvider(
+DistributedCounterSignatureBeginProviderRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Instancia del tipo DistributedCounterSignatureBeginProviderRequest con los datos de inicio de la transacción de contrafirma.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponse con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignatureProvider, con la adición del atributo signatureId en el request, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 12.2.8. EndCounterSignature
+
+Completa un proceso de contrafirma distribuida.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse EndCounterSignature(
+DistributedSignatureEndRequest request);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Instancia del tipo DistributedSignatureEndRequest con los datos necesarios para completar la transacción de contrafirma.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error. La clase SignatureResponse está definida en el apartado de Servicio de Firma y Verificación SOAP 1.2.
+
+###### 12.2.9. EndCounterSignatureProvider
+
+Completa un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public SignatureResponse EndCounterSignatureProvider(
+DistributedSignatureEndProviderRequest request)
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- request: Instancia del tipo DistributedSignatureEndProviderRequest con los datos necesarios para completar la transacción de contrafirma.
+
+**RETORNO**
+
+Este método retorna un objeto de la clase SignatureResponse o una excepción en caso de producirse algún tipo de error. La clase SignatureResponse está definida en el apartado de Servicio de Firma y Verificación SOAP 1.2.
+
 ## 13. Servicio de Firma Distribuida JSON
 
 El servicio DistributedSignatureServiceBasic.svc de SealSign DSS expone los métodos necesarios para implementar firmas de documentos distribuidas a través de un servicio web JSON (WebHttpBinding). Los métodos expuestos son los siguientes:
 
 - BeginSignature: Indica al servicio el comienzo de una firma distribuida. El servidor procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignature: Indica al servicio el comienzo de una contrafirma distribuida sobre una firma existente dentro de un documento.
 - EndSignature: El cliente actualiza la firma en servidor con el resumen del documento cifrado.
+- EndCounterSignature: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado.
 - BeginSignatureProvider: Indica al servicio el comienzo de una firma distribuida con document provider. El servidor obtiene el documento y los parámetros de la firma mediante la llamada a un remote document provider, a partir de ahí, procesa el documento hasta la generación del resumen que se retorna al cliente dentro del contexto de firma para ser cifrado.
+- BeginCounterSignatureProvider: Indica al servicio el comienzo de una contrafirma distribuida con document provider.
 - EndSignatureProvider: El cliente actualiza la firma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
+- EndCounterSignatureProvider: El cliente actualiza la contrafirma en servidor con el resumen del documento cifrado y el servidor invoca a un remote document provider para que almacene el documento final.
 - HeartBeat: Método que permite comprobar el estado de salud del servicio.
 
 En los siguientes apartados, se describen tanto el interfaz de cada uno de estos métodos, así como las clases y tipos relacionados con los mismos.
@@ -2264,7 +3189,7 @@ Inicia un proceso de firma distribuida con document provider.
 **SINTAXIS**
 
 ```csharp
-public SignatureContext BeginSignatureProvider(
+public DistributedSignatureBeginResponseBasic BeginSignatureProvider(
 byte[] certificate,
 string uri,
 string providerParameter,
@@ -2272,7 +3197,7 @@ byte[] document,
 RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
-**PARAMETROS DE ENTRADA**
+**PARÁMETROS DE ENTRADA**
 
 - certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
 - uri: Identificador URI del documento en el repositorio.
@@ -2282,7 +3207,7 @@ RemoteProviderConfiguration remoteProviderConfiguration);
 
 **RETORNO**
 
-Devuelve un objeto de la clase SignatureContext con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
 
 **COMENTARIOS**
 
@@ -2354,6 +3279,130 @@ public void HeartBeat();
 
 Realiza las comprobaciones adecuadas para verificar si el servicio web está funcionando correctamente y retorna una excepción en caso contrario.
 
+###### 13.2.6. BeginCounterSignature
+
+Inicia un proceso de contrafirma distribuida sobre una firma existente dentro de un documento.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignature(
+byte[] certificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
+- signatureProfile: Recibe un valor de tipo SignatureProfile que especifica el tipo de perfil de firma que se desea realizar. Para más información consultar la descripción del tipo enumerado SignatureProfile.
+- signatureType: Recibe un valor de tipo SignatureType que especifica el tipo de formato de almacenamiento de la firma. Para más información sobre los tipos de almacenamiento consultar la descripción del tipo enumerado SignatureType.
+- hashAlgorithm: Recibe un valor de tipo HashAlgorithm que especifica el algoritmo de hash que se utilizará a la hora de realizar la firma. Para más información sobre los algoritmos soportados consultar la descripción del tipo enumerado HashAlgorithm.
+- options: Recibe uno o varios valores de tipo SignatureFlags que permiten configurar algunos parámetros de comportamiento en el proceso de firma de documentos. Para más información sobre los valores soportados consultar la descripción del tipo enumerado SignatureFlags.
+- parameters: Objeto de tipo SignatureParameters que añade algunos parámetros extra necesarios para la realización de algunos tipos de firmas. Este valor puede ser null en caso de no ser necesario configurar ninguno de los parámetros expuestos. Para más información consultar la descripción de la clase SignatureParameters.
+- detachedSignature: En caso de tratarse de una firma desasociada, este parámetro retornará el array de bytes correspondientes a dicha firma. En caso de firma no desasociada retornará null.
+- signingDocument: Array de bytes con el contenido del documento que se desea contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignature, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 13.2.7. BeginCounterSignatureProvider
+
+Inicia un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignatureProvider(
+byte[] certificate,
+string uri,
+string providerParameter,
+byte[] document,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- certificate: Parte pública del certificado con el que se va a realizar la firma en cliente en formato array de bytes.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- document: Parámetro opcional con el array de bytes del documento a contrafirmar.
+- signatureId: Identificador de la firma existente dentro del documento a la que se añadirá la contrafirma.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto.
+
+**RETORNO**
+
+Devuelve un objeto de la clase DistributedSignatureBeginResponseBasic con el identificador de la transacción de firma y un array de bytes con el contexto de firma distribuida para ser tratado en el cliente mediante la clase AsynStateManager.
+
+**COMENTARIOS**
+
+Este método se comporta de forma idéntica a BeginSignatureProvider, con la adición del parámetro signatureId, que identifica la firma dentro del documento a la que se adjuntará la nueva contrafirma.
+
+###### 13.2.8. EndCounterSignature
+
+Completa un proceso de contrafirma distribuida.
+
+**SINTAXIS**
+
+```csharp
+public byte[] EndCounterSignature(Guid instance,
+byte[] asyncState)
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- instance: Identificador de la transacción de firma retornado por el método BeginCounterSignature.
+- asyncState: Array de bytes del estado de firma distribuida después de haber sido procesado por el componente AsyncStateManager.
+
+**RETORNO**
+
+Devuelve un array de bytes con el documento contrafirmado según los parámetros de firma especificados en la llamada a la función o una excepción en caso de producirse algún tipo de error.
+
+###### 13.2.9. EndCounterSignatureProvider
+
+Completa un proceso de contrafirma distribuida con document provider.
+
+**SINTAXIS**
+
+```csharp
+public byte[] EndCounterSignatureProvider(Guid instance,
+byte[] asyncState,
+string uri,
+string providerParameter,
+bool returnSignedDocument,
+RemoteProviderConfiguration remoteProviderConfiguration)
+```
+
+**PARÁMETROS DE ENTRADA**
+
+- instance: Identificador de la transacción de firma retornado por los métodos BeginCounterSignature o BeginCounterSignatureProvider.
+- asyncState: Array de bytes del estado de firma distribuida después de haber sido procesado por el componente AsyncStateManager.
+- uri: Identificador URI del documento en el repositorio.
+- providerParameter: Cadena de texto que permite el paso de información entre el cliente y el proveedor de documentos para personalizar su comportamiento.
+- returnSignedDocument: Booleano que indica si el método debe retornar el documento firmado.
+- remoteProviderConfiguration: Parámetro opcional con la información para la conexión al proveedor de documentos remoto.
+
+**RETORNO**
+
+Si el parámetro returnSignedDocument es true, devuelve un array de bytes con el documento contrafirmado o un null en caso contrario.
+
+**COMENTARIOS**
+
+El método invocará siempre al remote document provider asociado para que realice el almacenado del documento resultante. Si además se requiere que el documento contrafirmado llegue a la aplicación llamadora, se puede poner a true el parámetro returnSignedDocument.
+
 ## 14. Bindings WCF de SealSign
 
 En este apartado se procederá a explicar la configuración de los bindings WCF (Windows Communication Foundation) que es parte fundamental de la arquitectura Windows sobre la que está construida la plataforma SealSign y que son comunes a todos los módulos de dicha plataforma.
@@ -2370,7 +3419,7 @@ Los bindings WCF de los distintos módulos de SealSign pueden ser encontrados en
 - BasicHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL.
 - BasicHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL.
 - BasicHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL.
-- BasicHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
+- BasicHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
 - BasicHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL.
 
 ###### 14.1.2. WSHttpBinding (Soap 1.2)
@@ -2379,7 +3428,8 @@ Los bindings WCF de los distintos módulos de SealSign pueden ser encontrados en
 - WSHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL.
 - WSHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL.
 - WSHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL.
-- WSHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
+- WSHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
+- WSHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL.
 
 ###### 14.1.3. WebHttpBinding (JSON)
 
@@ -2387,7 +3437,8 @@ Los bindings WCF de los distintos módulos de SealSign pueden ser encontrados en
 - WebHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL.
 - WebHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL.
 - WebHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL.
-- WebHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
+- WebHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo).
+- WebHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL.
 
 #### 14.2. Configuración de los Bindings WCF en SealSign sin SSL
 
@@ -2442,7 +3493,7 @@ Para invocar a los servicios de SealSign con un Binding WCF especifico, es neces
 - BasicHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL. `http://host/SealSignDSSService/SignatureService.svc/BI`
 - BasicHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL. `https://host/SealSignDSSService/SignatureService.svc/BSSLB`
 - BasicHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL. `http://host/SealSignDSSService/SignatureService.svc/BB`
-- BasicHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `http://host/SealSignDSSService/SignatureService.svc/B`
+- BasicHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `http://host/SealSignDSSService/SignatureService.svc/B`
 - BasicHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL. `https://host/SealSignDSSService/SignatureService.svc/BSSL`
 
 **WSHttpBinding (Soap 1.2)**
@@ -2450,16 +3501,21 @@ Para invocar a los servicios de SealSign con un Binding WCF especifico, es neces
 - WSHttpBinding_IServiceSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows y SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSLI`
 - WSHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL. `http://host/SealSignDSSService/SignatureService.svc/WSI`
 - WSHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSLB`
-- WSHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL. `http://host/SealSignDSSService/SignatureService.svc/WSB`
-- WSHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `https://host/SealSignDSSService/SignatureService.svc/WSSSL`
+- WSHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `http://host/SealSignDSSService/SignatureService.svc/WS`
+- WSHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSL`
 
 **WebHttpBinding (JSON)**
 
-- WebHttpBinding_IServiceSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows y SSL. `https://host/SealSignDSSService/SignatureService.svc/JSSLI`
-- WebHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL. `http://host/SealSignDSSService/SignatureService.svc/JI`
-- WebHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL. `https://host/SealSignDSSService/SignatureService.svc/JSSLB`
-- WebHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL. `http://host/SealSignDSSService/SignatureService.svc/JB`
-- WebHttpBinding_IServiceSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `https://host/SealSignDSSService/SignatureService.svc/JSSL`
+- WebHttpBinding_IServiceSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows y SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSLI`
+- WebHttpBinding_IServiceNOSSLIntegrated: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación integrada Windows sin SSL. `http://host/SealSignDSSService/SignatureServiceBasic.svc/JBI`
+- WebHttpBinding_IServiceSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica y SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSLB`
+- WebHttpBinding_IServiceNOSSLBasic: Binding WCF cuya comunicación cliente servidor requiere seguridad mediante autenticación básica sin SSL. `http://host/SealSignDSSService/SignatureServiceBasic.svc/JBB`
+- WebHttpBinding_IServiceNOSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo). `http://host/SealSignDSSService/SignatureServiceBasic.svc/JB`
+- WebHttpBinding_IServiceSSLSecNone: Binding WCF cuya comunicación cliente servidor no requiere ningún tipo de seguridad (anónimo) y SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSL`
+
+**COMENTARIOS**
+
+El esquema de sufijos de URL JSON (WebHttpBinding) no es idéntico en todos los servicios de SealSign. Los ejemplos anteriores corresponden a los servicios de validación de certificados y de firma/verificación (CertificateServiceBasic.svc y SignatureServiceBasic.svc), que usan los sufijos JBI/JBB/JB/JSSLI/JSSLB/JSSL mostrados aquí. El servicio de firma distribuida (DistributedSignatureServiceBasic.svc) usa en cambio JI/JB/J para sus variantes sin SSL (Integrada, Básica y anónima respectivamente), manteniendo JSSLI/JSSLB/JSSL para las variantes con SSL. Conviene comprobar siempre el fichero servicesnossl.config/servicesssl.config real del módulo que se esté integrando para confirmar el sufijo exacto en uso.
 
 ###### 14.4.3. Invocación de los servicios de SealSign típica
 
