@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
         'clickonce/clickonce',
         'dss/installation-guide',
         'dss/administration-guide',
+        'dss/web-services-reference',
         'bss/installation-guide',
         'ckc/central-key-control',
         'sealsignwatcher/installation-guide',
