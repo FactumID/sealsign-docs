@@ -178,6 +178,8 @@ public string PDFSignatureWidgetImageTokenText;
 public string PDFSignatureWidgetDateCaptionFormat;
 public int PDFSignatureWidgetDateOffsetX;
 public int PDFSignatureWidgetDateOffsetY;
+public TextMark TextMark;
+public float? PDFSignatureWidgetDateTextSize;
 }
 ```
 
@@ -207,6 +209,8 @@ public int PDFSignatureWidgetDateOffsetY;
 - PDFSignatureWidgetDateCaptionFormat String indicating the date format that will be shown in the signature widget. It is a string using standard date/time format, as described in the article https://msdn.microsoft.com/en-us/library/8kb3ddd4.aspx
 - PDFSignatureWidgetDateOffsetX Indicates, in pixels, the value of the X coordinate, measured from the bottom-left corner of the widget, at which the signature date will appear.
 - PDFSignatureWidgetDateOffsetY Indicates, in pixels, the value of the Y coordinate, measured from the bottom-left corner of the widget, at which the signature date will appear.
+- TextMark Object of the TextMark class that allows including a custom text mark in the signature widget. For more information, see the description of the TextMark class.
+- PDFSignatureWidgetDateTextSize Font size, in points, used to render the signature date in the widget.
 
 ###### 2.1.5. VerificationParameters
 
@@ -222,11 +226,21 @@ Each object of this class represents the verification information corresponding 
 public class SignatureReference
 {
 public string signatureID;
+public string issuerSignature;
+public bool signatureIsQualified;
+public bool isSealQualifiedSignature;
+public bool isTimestampSignature;
 public VerificationStatus signatureStatus;
 public SignatureProfile signatureProfile;
 public SignatureFlags signatureFlags;
 public SignatureType signatureType;
 public byte[] signatureCertificate;
+public string signatureCertificateSubjectDN;
+public string signatureCertificateCommonName;
+public string signatureCertificateOrganization;
+public string signatureCertificateIssuer;
+public string signatureCertificateIssuerOrganization;
+public bool signatureCertificateIsQualified;
 public DateTime signingTime;
 public HashAlgorithm hashAlgorithm;
 public SignatureReference[] counterSignatures;
@@ -238,11 +252,21 @@ public TimestampReference[] validationTimestamps;
 **MEMBERS**
 
 - signatureID: Identifier of the signature within the document.
+- issuerSignature: Display name of the signer: the certificate's organization when the signature is a qualified electronic seal, or its common name otherwise.
+- signatureIsQualified: Indicates whether the signature meets the requirements of the EU Trusted List to be considered a qualified electronic signature.
+- isSealQualifiedSignature: Indicates whether the signing certificate corresponds to a qualified electronic seal (a legal entity) rather than an individual signer.
+- isTimestampSignature: Indicates whether this signature is itself a signature over a time-stamp token rather than over the document.
 - signatureStatus: Status of the signature after the verification process. For more information about the possible values, see the description of the VerificationStatus enumerated type.
 - signatureProfile: Indicates the profile the current signature satisfies, including whether it is an advanced signature profile. For more information about the possible values, see the description of the SignatureProfile enumerated type.
 - signatureFlags: Contains flags with advanced information about the signature. Among the possible values, after verifying a document, this field may contain one or more of the following values: CMSAdESExplicitPolicy, CMSAdESXType2, XMLAdESExplicitPolicy, XMLAdESXType2, PDFAdESIncludeRevocationInfo, PDFAdESIncludeTimestamp. For more information about the possible values, see the description of the SignatureFlags enumerated type.
 - signatureType: Indicates the storage format of the signature within the document. Its value may be Enveloped, Enveloping or Detached, depending on whether the document contains the signature, the signature contains the document, or the signature and the document are stored separately, respectively.
 - signatureCertificate: Contains the certificate used to create the signature.
+- signatureCertificateSubjectDN: Full Subject Distinguished Name of the certificate used to create the signature.
+- signatureCertificateCommonName: Common name (CN) of the subject of the certificate used to create the signature.
+- signatureCertificateOrganization: Organization (O) of the subject of the certificate used to create the signature.
+- signatureCertificateIssuer: Common name (CN) of the issuer of the certificate used to create the signature.
+- signatureCertificateIssuerOrganization: Organization (O) of the issuer of the certificate used to create the signature.
+- signatureCertificateIsQualified: Indicates whether the certificate used to create the signature is a qualified certificate.
 - signingTime: Specifies the date and time at which the signature was created.
 - hashAlgorithm: Specifies the hash algorithm used in the signature.
 - counterSignatures: If the signature contains counter-signatures, this will contain an array of objects of this same class with the information corresponding to each of the co-signatures existing at this level. If there are no counter-signatures, this member will be null.
@@ -295,7 +319,7 @@ public FieldInfo[] extensions;
 - algorithm: String containing the algorithm with which the certificate was signed.
 - issuer: Object of the NameInfo class with the specific information of the certificate's issuer.
 - subject: Object of the NameInfo class with the specific information of the certificate's subject.
-- algorithm: String containing the serial number assigned to the certificate.
+- serialNumber: String containing the serial number assigned to the certificate.
 - validFrom: Indicates the date on which the certificate's validity period begins.
 - validTo: Indicates the date on which the certificate's validity period ends.
 - keyUsage: Enumerated field of type KeyUsages. Will contain one or more values (flags) with the different uses assigned to the certificate.
@@ -407,6 +431,7 @@ public string providerUrl;
 public string providerDomain;
 public string providerUser;
 public string providerPassword;
+public string providerParameter;
 }
 ```
 
@@ -416,6 +441,7 @@ public string providerPassword;
 - providerDomain: Will contain the domain corresponding to the user account used to connect to the remote document provider.
 - providerUser: Will contain the user account used to connect to the remote document provider.
 - providerPassword: Will contain the password corresponding to the user account used to connect to the remote document provider.
+- providerParameter: Text string that allows passing information between the client and the remote document provider to customize its behavior.
 
 ###### 2.1.13. ShadowMarkInfo
 
@@ -453,6 +479,29 @@ public DateTime Time;
 - ComputerName: Machine from which the request to insert the watermark was made.
 - Time: Time at which the watermark was created.
 
+###### 2.1.15. TextMark
+
+Represents a custom text mark that can be embedded in the PDF signature widget, as referenced by the TextMark member of the PDFSignatureParameters class. The TextMark class is defined as follows:
+
+```csharp
+public class TextMark
+{
+public List<string> Text;
+public string FontFamily;
+public float FontSize;
+public string Color;
+public bool Bold;
+}
+```
+
+**MEMBERS**
+
+- Text: List of text lines to be rendered in the signature widget.
+- FontFamily: Name of the font family used to render the text.
+- FontSize: Font size, in points, used to render the text.
+- Color: Text color, expressed as a color name or hexadecimal value.
+- Bold: Boolean indicating whether the text is rendered in bold.
+
 #### 2.2. Common Enumerations
 
 The following enumerated types are used as parameters in the Web Services regardless of the interface through which they are published.
@@ -484,7 +533,10 @@ PAdESBasic,
 PAdESBES,
 PAdESLTV,
 PAdESXML,
-Office
+Office,
+CAdESLTA,
+PAdESLTA,
+XAdESLTA
 }
 ```
 
@@ -558,7 +610,9 @@ PDFAdESHideTimestampInWidget = 262144,
 XMLAdExcludeCertFromSignedProperties = 524288,
 PDFAdESIncludeFontInWidget = 1048576,
 IncludeShadowMark = 2097152,
-CleanMetadata = 4194304
+CleanMetadata = 4194304,
+PDFAdESHideIdentityDocumentInWidget = 8388608,
+FirmaProfesionalSignature = 16777216
 }
 ```
 
@@ -588,13 +642,15 @@ CleanMetadata = 4194304
 - PDFAdESIncludeFontInWidget: Includes the definition of the font used in the signature widget.
 - IncludeShadowMark: Instructs the signature service to invoke the Shadow server in order to include a watermark.
 - CleanMetadata: Instructs the signature service to invoke the Metashield server in order to clean metadata before signing.
+- PDFAdESHideIdentityDocumentInWidget: Hides the signer's identity document number in the signature widget.
+- FirmaProfesionalSignature: Routes the signing operation through the "Firma Profesional" qualified remote signature provider instead of a local certificate.
 
 ###### 2.2.5. BusinessSignatureProfile
 
 Indicates the different business signature profiles supported by SealSign DSS.
 
 ```csharp
-public enum SignatureType
+public enum BusinessSignatureProfile
 {
 Default = 0,
 FacturaeEPES = 0,
@@ -682,6 +738,43 @@ NotValidForUsage = 16
 - InvalidPolicy: The policy associated with the signature is not valid.
 - NotValidForUsage: The certificate is not valid for the current use.
 
+###### 2.2.8. KeyUsages
+
+Indicates the key usage extension values of an X509 certificate, as returned in the keyUsage member of the CertificateInfo class.
+
+```csharp
+public enum KeyUsages
+{
+None = 0,
+digitalSignature = 1,
+nonRepudiation = 2,
+keyEncipherment = 4,
+dataEncipherment = 8,
+keyAgreement = 16,
+keyCertSign = 32,
+cRLSign = 64,
+encipherOnly = 128,
+decipherOnly = 256
+}
+```
+
+###### 2.2.9. ExtendedKeyUsages
+
+Indicates the extended key usage extension values of an X509 certificate, as returned in the extendedKeyUsage member of the CertificateInfo class.
+
+```csharp
+public enum ExtendedKeyUsages
+{
+None = 0,
+clientAuthentication = 1,
+codeSigning = 2,
+emailProtection = 4,
+serverAuthentication = 8,
+timeStamping = 16,
+customUsages = 32
+}
+```
+
 ## 3. SOAP 1.1 Biometric Signature Verification Service
 
 The CertificateServiceBasic.svc service of SealSign DSS allows the revocation status of a certificate to be validated centrally, following the configurations made on the SealSign server. To do this, this service exposes the Validate method, which will be accessible through SOAP 1.1.
@@ -763,6 +856,35 @@ In each of the members of the subjectAlternativeName array, only one of the fiel
 In members of type FieldInfo, the Value field will contain the value formatted as a character string if the field has a format known to the system (according to its OID). Otherwise it will contain an empty string.
 
 In addition, the FriendlyName field will be localized according to the system language, so when identifying a field or extension, its OID must be used and not this field.
+
+###### 3.1.3. ValidateCustomAudit
+
+Performs revocation verification of a certificate and returns its status, attributing the resulting audit entry to an explicitly supplied user rather than to the calling Windows account.
+
+**SYNTAX**
+
+```csharp
+public int ValidateCustomAudit(
+string userLogin,
+byte[] validatingCertificate,
+DateTime timeToUse,
+ref int reason);
+```
+
+**INPUT PARAMETERS**
+
+- userLogin: Login of the user to which the audit entry for this validation will be attributed.
+- validatingCertificate: Byte array containing the public part of the certificate to be validated.
+- timeToUse: Date and time at which the validation must take place.
+- reason: Output parameter that will indicate, if the certificate is revoked, the reason why it is.
+
+**RETURN VALUE**
+
+Returns an integer value corresponding to one of the values of the .NET X509ChainStatusFlags enumerated type, identically to the Validate method.
+
+**REMARKS**
+
+This method behaves exactly like Validate, with the sole difference that the audit entry generated by the operation is attributed to the user specified in userLogin instead of to the identity of the caller.
 
 ## 4. JSON Certificate Validation and Parsing Service
 
@@ -846,6 +968,35 @@ In members of type FieldInfo, the Value field will contain the value formatted a
 
 In addition, the FriendlyName field will be localized according to the system language, so when identifying a field or extension, its OID must be used and not this field.
 
+###### 4.1.3. ValidateCustomAudit
+
+Performs revocation verification of a certificate and returns its status, attributing the resulting audit entry to an explicitly supplied user rather than to the calling account.
+
+**SYNTAX**
+
+```csharp
+public int ValidateCustomAudit(
+string userLogin,
+byte[] validatingCertificate,
+DateTime timeToUse,
+ref int reason);
+```
+
+**INPUT PARAMETERS**
+
+- userLogin: Login of the user to which the audit entry for this validation will be attributed.
+- validatingCertificate: Byte array containing the public part of the certificate to be validated.
+- timeToUse: Date and time at which the validation must take place.
+- reason: Output parameter that will indicate, if the certificate is revoked, the reason why it is.
+
+**RETURN VALUE**
+
+Returns an integer value corresponding to one of the values of the .NET X509ChainStatusFlags enumerated type, identically to the Validate method.
+
+**REMARKS**
+
+This method behaves exactly like Validate, with the sole difference that the audit entry generated by the operation is attributed to the user specified in userLogin instead of to the identity of the caller.
+
 ## 5. SOAP 1.1 Signature and Verification Service
 
 The SignatureServiceBasic.svc service of SealSign DSS exposes the methods necessary for the generation and validation of electronic signatures through a SOAP 1.1 web service (basicHttpBinding).
@@ -854,7 +1005,9 @@ The exposed methods are as follows:
 
 - GetCertificateReferences: Obtains information on the certificates stored on the SealSign server that can be used by the user invoking the service.
 - Sign: Signs an input document on the server with the configurations received as parameters.
+- CounterSign: Adds a counter-signature to an existing signature within a document.
 - SignProvider: Obtains a document and its signature configuration parameters through a document provider and signs it with the received server certificate.
+- CounterSignProvider: Obtains a document through a document provider and adds a counter-signature to an existing signature within it.
 - BusinessSign: Signs a document on the server using a high-level signature profile.
 - Verify: Allows verification and retrieval of the information for each of the signatures included in a document.
 - HeartBeat: Method that allows checking the health status of the service.
@@ -951,7 +1104,8 @@ string password,
 string passwordSealSign,
 string uri,
 string providerParameter,
-byte[] signingDocument);
+byte[] signingDocument,
+RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
 **INPUT PARAMETERS**
@@ -962,6 +1116,7 @@ byte[] signingDocument);
 - uri: URI identifier of the document in the repository.
 - providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
 - signingDocument: Byte array with the content of the document to be signed.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
 
 **RETURN VALUE**
 
@@ -1078,6 +1233,168 @@ string type);
 
 Returns a ShadowMarksInfo class object with all the information associated with the watermark, or an exception if an error occurs.
 
+###### 5.1.8. CounterSign
+
+This method adds a counter-signature to an existing signature within the document received as a parameter, using the indicated profiles and configurations, returning a byte array with the countersigned document.
+
+**SYNTAX**
+
+```csharp
+public byte[] CounterSign(
+int idCertificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+string password,
+string passwordSealSign,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**INPUT PARAMETERS**
+
+- idCertificate: Identifier of the server certificate used to sign the document.
+- signatureProfile: Receives a SignatureProfile value that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- signatureType: Receives a SignatureType value that specifies the storage format type of the signature. For more information about storage types, see the description of the SignatureType enumerated type.
+- hashAlgorithm: Receives a HashAlgorithm value that specifies the hash algorithm to be used when performing the signature. For more information about the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- options: Receives one or more SignatureFlags values that allow configuring some behavior parameters in the document signing process. For more information about the supported values, see the description of the SignatureFlags enumerated type.
+- parameters: SignatureParameters object that adds some extra parameters required for performing certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- password: Password for access to the private key of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- detachedSignature: In the case of a counter-signature in which the previous signature(s) were detached, this parameter will receive the array with the previous signature(s).
+- signingDocument: Byte array with the content of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+**RETURN VALUE**
+
+Returns a byte array with the countersigned document according to the signature parameters specified in the function call, or an exception if an error occurs.
+
+**REMARKS**
+
+This method behaves identically to Sign, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 5.1.9. Sign (Extended)
+
+Extended overload of the Sign method, invoked as SignExtended at the SOAP/JSON level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public byte[] Sign(
+int? idCertificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters[] parameters,
+SignatureData signatureData,
+string password,
+string passwordSealSign,
+byte[] detachedSignature,
+byte[] signingDocument);
+```
+
+**INPUT PARAMETERS**
+
+- idCertificate: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData parameter instead.
+- signatureProfile: Receives a SignatureProfile value that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- signatureType: Receives a SignatureType value that specifies the storage format type of the signature. For more information about storage types, see the description of the SignatureType enumerated type.
+- hashAlgorithm: Receives a HashAlgorithm value that specifies the hash algorithm to be used when performing the signature. For more information about the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- options: Receives one or more SignatureFlags values that allow configuring some behavior parameters in the document signing process. For more information about the supported values, see the description of the SignatureFlags enumerated type.
+- parameters: Array of SignatureParameters objects that adds some extra parameters required for performing certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- signatureData: SignatureData object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+- password: Password for access to the private key of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- detachedSignature: In the case of a counter-signature in which the previous signature(s) were detached, this parameter will receive the array with the previous signature(s).
+- signingDocument: Byte array with the content of the document to be signed.
+
+**RETURN VALUE**
+
+Returns a byte array with the signed document according to the signature parameters specified in the function call, or an exception if an error occurs. If the signature is detached, it returns the byte array corresponding solely to that signature.
+
+**REMARKS**
+
+This overload behaves like Sign, but accepts an array of SignatureParameters (instead of a single object) and an optional SignatureData object carrying business/traceability metadata (user, company, request and document identifiers, browser data, contact information, geolocation, and audit information).
+
+###### 5.1.10. SignProvider (Extended)
+
+Extended overload of the SignProvider method, invoked as SignProviderExtended at the SOAP/JSON level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public byte[] SignProvider(
+int? idCertificate,
+string password,
+string passwordSealSign,
+string uri,
+string providerParameter,
+byte[] signingDocument,
+RemoteProviderConfiguration remoteProviderConfiguration,
+SignatureParameters[] parameters,
+SignatureData signatureData);
+```
+
+**INPUT PARAMETERS**
+
+- idCertificate: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData parameter instead.
+- password: Password for access to the private key of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- signingDocument: Byte array with the content of the document to be signed.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
+- parameters: Array of SignatureParameters objects that adds some extra parameters required for performing certain types of signatures.
+- signatureData: SignatureData object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+
+**RETURN VALUE**
+
+Returns a byte array once the document obtained through the call to the document provider associated with the specified uri has been signed, or an exception if an error occurs.
+
+**REMARKS**
+
+This overload behaves like SignProvider, but accepts an array of SignatureParameters and an optional SignatureData object carrying business/traceability metadata.
+
+###### 5.1.11. CounterSignProvider
+
+This method obtains a document through a document provider and adds a counter-signature to an existing signature within it.
+
+**SYNTAX**
+
+```csharp
+public byte[] CounterSignProvider(
+int idCertificate,
+string password,
+string passwordSealSign,
+string uri,
+string providerParameter,
+byte[] signingDocument,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**INPUT PARAMETERS**
+
+- idCertificate: Identifier of the server certificate used to sign the document.
+- password: Password for access to the private key of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- signingDocument: Byte array with the content of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
+
+**RETURN VALUE**
+
+Returns a byte array once the document obtained through the call to the document provider associated with the specified uri has been countersigned, or an exception if an error occurs.
+
+**REMARKS**
+
+This method behaves like SignProvider, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
 ## 6. SOAP 1.2 Signature and Verification Service
 
 The SignatureService.svc service of SealSign DSS exposes all the methods necessary for the generation and validation of document signatures through a SOAP 1.2 service (wsHttpBinding).
@@ -1086,7 +1403,9 @@ The exposed methods are as follows:
 
 - GetCertificateReferences: Obtains information on the certificates stored on the SealSign server that can be used by the user invoking the service.
 - Sign: Signs an input document with the configurations received as parameters.
+- CounterSign: Adds a counter-signature to an existing signature within a document.
 - SignProvider: Obtains a document and its signature configuration parameters through a document provider and signs it with the received server certificate.
+- CounterSignProvider: Obtains a document through a document provider and adds a counter-signature to an existing signature within it.
 - BusinessSign: Signs a document using a high-level signature profile.
 - Verify: Allows verification and retrieval of the information for each of the signatures included in a document.
 - HeartBeat: Method that allows checking the health status of the service.
@@ -1154,6 +1473,7 @@ public string password;
 public string passwordSealSign;
 public string uri;
 public string providerParameter;
+public RemoteProviderConfiguration remoteProviderConfiguration;
 public Stream signingDocument;
 }
 ```
@@ -1165,6 +1485,7 @@ public Stream signingDocument;
 - passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
 - uri: URI identifier of the document in the repository.
 - providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
 - signingDocument: Byte array with the content of the document to be signed.
 
 ###### 6.1.4. SignatureResponse
@@ -1245,6 +1566,102 @@ public SignatureVerification signatureVerification;
 
 - signatureVerification: Object of the SignatureVerification class with all the validation information obtained in the signature verification process.
 
+###### 6.1.8. SignatureExtendedRequest
+
+Input parameter of the extended overload of the Sign method (invoked as SignExtended at the SOAP level).
+
+```csharp
+public class SignatureExtendedRequest
+{
+public int? idCertificate;
+public SignatureProfile signatureProfile;
+public SignatureType signatureType;
+public HashAlgorithm hashAlgorithm;
+public SignatureFlags options;
+public SignatureParameters[] parameters;
+public SignatureData signatureData;
+public string password;
+public string passwordSealSign;
+public byte[] detachedSignature;
+public Stream signingDocument;
+}
+```
+
+**ATTRIBUTES**
+
+- idCertificate: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData attribute instead.
+- signatureProfile: Receives a SignatureProfile value that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- signatureType: Receives a SignatureType value that specifies the storage format type of the signature. For more information about storage types, see the description of the SignatureType enumerated type.
+- hashAlgorithm: Receives a HashAlgorithm value that specifies the hash algorithm to be used when performing the signature. For more information about the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- options: Receives one or more SignatureFlags values that allow configuring some behavior parameters in the document signing process. For more information about the supported values, see the description of the SignatureFlags enumerated type.
+- parameters: Array of SignatureParameters objects that adds some extra parameters required for performing certain types of signatures.
+- signatureData: SignatureData object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+- password: Password associated with the .pfx storage file of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- detachedSignature: In the case of a counter-signature in which the previous signature(s) were detached, this parameter will receive the array with the previous signature(s).
+- signingDocument: Byte array with the content of the document to be signed.
+
+###### 6.1.9. CounterSignatureRequest
+
+Input parameter of the CounterSign method. Inherits from SignatureRequest, adding the identifier of the signature to be countersigned.
+
+```csharp
+public class CounterSignatureRequest : SignatureRequest
+{
+public string signatureId;
+}
+```
+
+**ATTRIBUTES**
+
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+###### 6.1.10. SignatureProviderExtendedRequest
+
+Input parameter of the extended overload of the SignProvider method (invoked as SignProviderExtended at the SOAP level).
+
+```csharp
+public class SignatureProviderExtendedRequest
+{
+public int? idCertificate;
+public string password;
+public string passwordSealSign;
+public string uri;
+public string providerParameter;
+public RemoteProviderConfiguration remoteProviderConfiguration;
+public SignatureParameters[] parameters;
+public SignatureData signatureData;
+public Stream signingDocument;
+}
+```
+
+**ATTRIBUTES**
+
+- idCertificate: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData attribute instead.
+- password: Password associated with the .pfx storage file of the selected certificate, or null if not necessary.
+- passwordSealSign: SealSign password associated with the selected certificate, or null if not necessary.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
+- parameters: Array of SignatureParameters objects that adds some extra parameters required for performing certain types of signatures.
+- signatureData: SignatureData object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+- signingDocument: Byte array with the content of the document to be signed.
+
+###### 6.1.11. CounterSignatureProviderRequest
+
+Input parameter of the CounterSignProvider method. Inherits from SignatureProviderRequest, adding the identifier of the signature to be countersigned.
+
+```csharp
+public class CounterSignatureProviderRequest : SignatureProviderRequest
+{
+public string signatureId;
+}
+```
+
+**ATTRIBUTES**
+
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
 #### 6.2. Methods
 
 ###### 6.2.1. GetCertificateReferences
@@ -1314,7 +1731,7 @@ This method obtains a document and its signature configuration parameters throug
 **SYNTAX**
 
 ```csharp
-public SignatureProviderResponse SignProvider(
+public SignatureResponse SignProvider(
 SignatureProviderRequest request);
 ```
 
@@ -1324,7 +1741,7 @@ SignatureProviderRequest request);
 
 **RETURN VALUE**
 
-This method returns a SignatureProviderResponse class object, or an exception if an error occurs.
+This method returns a SignatureResponse class object, or an exception if an error occurs.
 
 **REMARKS**
 
@@ -1419,6 +1836,98 @@ string type);
 
 Returns a ShadowMarksInfo class object with all the information associated with the watermark, or an exception if an error occurs.
 
+###### 6.2.8. CounterSign
+
+This method adds a counter-signature to an existing signature within the document received as a parameter, returning a byte array with the countersigned document.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse CounterSign(
+CounterSignatureRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Object of the CounterSignatureRequest class.
+
+**RETURN VALUE**
+
+This method returns a SignatureResponse class object, or an exception if an error occurs.
+
+**REMARKS**
+
+This method behaves identically to Sign, with the addition of the signatureId attribute in the request, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 6.2.9. Sign (Extended)
+
+Extended overload of the Sign method, invoked as SignExtended at the SOAP level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse Sign(
+SignatureExtendedRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Object of the SignatureExtendedRequest class.
+
+**RETURN VALUE**
+
+This method returns a SignatureResponse class object, or an exception if an error occurs.
+
+**REMARKS**
+
+This overload behaves like Sign, but accepts an array of SignatureParameters (instead of a single object) and an optional SignatureData object carrying business/traceability metadata (user, company, request and document identifiers, browser data, contact information, geolocation, and audit information).
+
+###### 6.2.10. SignProvider (Extended)
+
+Extended overload of the SignProvider method, invoked as SignProviderExtended at the SOAP level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse SignProvider(
+SignatureProviderExtendedRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Object of the SignatureProviderExtendedRequest class.
+
+**RETURN VALUE**
+
+This method returns a SignatureResponse class object, or an exception if an error occurs.
+
+**REMARKS**
+
+This overload behaves like SignProvider, but accepts an array of SignatureParameters and an optional SignatureData object carrying business/traceability metadata.
+
+###### 6.2.11. CounterSignProvider
+
+This method obtains a document through a document provider and adds a counter-signature to an existing signature within it.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse CounterSignProvider(
+CounterSignatureProviderRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Object of the CounterSignatureProviderRequest class.
+
+**RETURN VALUE**
+
+This method returns a SignatureResponse class object, or an exception if an error occurs.
+
+**REMARKS**
+
+This method behaves like SignProvider, with the addition of the signatureId attribute in the request, which identifies the signature within the document to which the new counter-signature will be attached.
+
 ## 7. JSON Signature and Verification Service
 
 The SignatureServiceBasic.svc service of SealSign DSS exposes all the methods necessary for generating and validating document signatures through a JSON service (WebHttpBinding).
@@ -1427,7 +1936,9 @@ The exposed methods are as follows:
 
 - **GetCertificateReferences**: Obtains information about the certificates stored on the SealSign server that can be used by the user invoking the service.
 - **Sign**: Signs an input document with the configurations received as parameters.
+- **CounterSign**: Adds a counter-signature to an existing signature within a document.
 - **SignProvider**: Obtains a document and the signature configuration parameters through a document provider and signs it with the received server certificate.
+- **CounterSignProvider**: Obtains a document through a document provider and adds a counter-signature to an existing signature within it.
 - **BusinessSign**: Signs a document using a high-level signature profile.
 - **Verify**: Allows verifying and obtaining the information of each of the signatures included in a document.
 - **HeartBeat**: Method that allows checking the health status of the service.
@@ -1522,7 +2033,8 @@ public byte[] SignProvider(
     string passwordSealSign,
     string uri,
     string providerParameter,
-    byte[] signingDocument);
+    byte[] signingDocument,
+    RemoteProviderConfiguration remoteProviderConfiguration);
 ```
 
 **INPUT PARAMETERS**
@@ -1533,6 +2045,7 @@ public byte[] SignProvider(
 - **uri**: URI identifier of the document in the repository.
 - **providerParameter**: Text string that allows passing information between the client and the document provider to customize its behavior.
 - **signingDocument**: Byte array with the content of the document to be signed.
+- **remoteProviderConfiguration**: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
 
 **RETURN VALUE**
 
@@ -1648,6 +2161,168 @@ public ShadowMarkInfo GetShadowMarkInfo(
 **RETURN VALUE**
 
 Returns a ShadowMarksInfo class object with all the information associated with the watermark, or an exception if any type of error occurs.
+
+###### 7.1.8. CounterSign
+
+This method adds a counter-signature to an existing signature within the document received as a parameter, using the indicated profiles and configurations, returning a byte array with the countersigned document.
+
+**SYNTAX**
+
+```csharp
+public byte[] CounterSign(
+    int idCertificate,
+    SignatureProfile signatureProfile,
+    SignatureType signatureType,
+    HashAlgorithm hashAlgorithm,
+    SignatureFlags options,
+    SignatureParameters parameters,
+    string password,
+    string passwordSealSign,
+    byte[] detachedSignature,
+    byte[] signingDocument,
+    string signatureId);
+```
+
+**INPUT PARAMETERS**
+
+- **idCertificate**: Identifier of the server certificate used to sign the document.
+- **signatureProfile**: Receives a SignatureProfile type value that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- **signatureType**: Receives a SignatureType type value that specifies the storage format type of the signature. For more information about the storage types, see the description of the SignatureType enumerated type.
+- **hashAlgorithm**: Receives a HashAlgorithm type value that specifies the hash algorithm to be used when performing the signature. For more information about the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- **options**: Receives one or more SignatureFlags type values that allow configuring some behavior parameters in the document signing process. For more information about the supported values, see the description of the SignatureFlags enumerated type.
+- **parameters**: SignatureParameters type object that adds some extra parameters needed to perform certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- **password**: Password to access the private key of the selected certificate, or null if not necessary.
+- **passwordSealSign**: SealSign password associated with the selected certificate, or null if not necessary.
+- **detachedSignature**: In the case of a counter-signature in which the previous signature(s) were detached, this parameter will receive the array with the previous signature(s).
+- **signingDocument**: Byte array with the content of the document to be countersigned.
+- **signatureId**: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+**RETURN VALUE**
+
+Returns a byte array with the countersigned document according to the signature parameters specified in the function call, or an exception if any type of error occurs.
+
+**REMARKS**
+
+This method behaves identically to Sign, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 7.1.9. Sign (Extended)
+
+Extended overload of the Sign method, invoked as SignExtended at the JSON level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public byte[] Sign(
+    int? idCertificate,
+    SignatureProfile signatureProfile,
+    SignatureType signatureType,
+    HashAlgorithm hashAlgorithm,
+    SignatureFlags options,
+    SignatureParameters[] parameters,
+    SignatureData signatureData,
+    string password,
+    string passwordSealSign,
+    byte[] detachedSignature,
+    byte[] signingDocument);
+```
+
+**INPUT PARAMETERS**
+
+- **idCertificate**: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData parameter instead.
+- **signatureProfile**: Receives a SignatureProfile type value that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- **signatureType**: Receives a SignatureType type value that specifies the storage format type of the signature. For more information about the storage types, see the description of the SignatureType enumerated type.
+- **hashAlgorithm**: Receives a HashAlgorithm type value that specifies the hash algorithm to be used when performing the signature. For more information about the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- **options**: Receives one or more SignatureFlags type values that allow configuring some behavior parameters in the document signing process. For more information about the supported values, see the description of the SignatureFlags enumerated type.
+- **parameters**: Array of SignatureParameters type objects that adds some extra parameters needed to perform certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- **signatureData**: SignatureData type object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+- **password**: Password to access the private key of the selected certificate, or null if not necessary.
+- **passwordSealSign**: SealSign password associated with the selected certificate, or null if not necessary.
+- **detachedSignature**: In the case of a counter-signature in which the previous signature(s) were detached, this parameter will receive the array with the previous signature(s).
+- **signingDocument**: Byte array with the content of the document to be signed.
+
+**RETURN VALUE**
+
+Returns a byte array with the signed document according to the signature parameters specified in the function call, or an exception if any type of error occurs. If the signature is detached, it returns the byte array corresponding solely to that signature.
+
+**REMARKS**
+
+This overload behaves like Sign, but accepts an array of SignatureParameters (instead of a single object) and an optional SignatureData object carrying business/traceability metadata (user, company, request and document identifiers, browser data, contact information, geolocation, and audit information).
+
+###### 7.1.10. SignProvider (Extended)
+
+Extended overload of the SignProvider method, invoked as SignProviderExtended at the JSON level, which accepts a nullable certificate identifier, several sets of signature parameters, and additional traceability metadata.
+
+**SYNTAX**
+
+```csharp
+public byte[] SignProvider(
+    int? idCertificate,
+    string password,
+    string passwordSealSign,
+    string uri,
+    string providerParameter,
+    byte[] signingDocument,
+    RemoteProviderConfiguration remoteProviderConfiguration,
+    SignatureParameters[] parameters,
+    SignatureData signatureData);
+```
+
+**INPUT PARAMETERS**
+
+- **idCertificate**: Identifier of the server certificate used to sign the document. It can be null when the certificate is resolved through the signatureData parameter instead.
+- **password**: Password to access the private key of the selected certificate, or null if not necessary.
+- **passwordSealSign**: SealSign password associated with the selected certificate, or null if not necessary.
+- **uri**: URI identifier of the document in the repository.
+- **providerParameter**: Text string that allows passing information between the client and the document provider to customize its behavior.
+- **signingDocument**: Byte array with the content of the document to be signed.
+- **remoteProviderConfiguration**: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
+- **parameters**: Array of SignatureParameters type objects that adds some extra parameters needed to perform certain types of signatures.
+- **signatureData**: SignatureData type object with the entity and traceability metadata associated with the signature. For more information, see the description of the SignatureData class.
+
+**RETURN VALUE**
+
+Returns a byte array once the document obtained through the call to the document provider associated with the specified uri has been signed, or an exception if any type of error occurs.
+
+**REMARKS**
+
+This overload behaves like SignProvider, but accepts an array of SignatureParameters and an optional SignatureData object carrying business/traceability metadata.
+
+###### 7.1.11. CounterSignProvider
+
+This method obtains a document through a document provider and adds a counter-signature to an existing signature within it.
+
+**SYNTAX**
+
+```csharp
+public byte[] CounterSignProvider(
+    int idCertificate,
+    string password,
+    string passwordSealSign,
+    string uri,
+    string providerParameter,
+    byte[] signingDocument,
+    string signatureId,
+    RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**INPUT PARAMETERS**
+
+- **idCertificate**: Identifier of the server certificate used to sign the document.
+- **password**: Password to access the private key of the selected certificate, or null if not necessary.
+- **passwordSealSign**: SealSign password associated with the selected certificate, or null if not necessary.
+- **uri**: URI identifier of the document in the repository.
+- **providerParameter**: Text string that allows passing information between the client and the document provider to customize its behavior.
+- **signingDocument**: Byte array with the content of the document to be countersigned.
+- **signatureId**: Identifier of the existing signature within the document to which the counter-signature will be added.
+- **remoteProviderConfiguration**: Optional parameter with the information for the connection to the remote document provider. For more information, see the description of the RemoteProviderConfiguration class.
+
+**RETURN VALUE**
+
+Returns a byte array once the document obtained through the call to the document provider associated with the specified uri has been countersigned, or an exception if any type of error occurs.
+
+**REMARKS**
+
+This method behaves like SignProvider, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
 
 ## 8. SOAP 1.1 Timestamp Service
 
@@ -1794,9 +2469,13 @@ In SealSign DSS, hash handling on the client must be performed through the Async
 The DistributedSignatureServiceBasic.svc service of SealSign DSS exposes the methods necessary to implement distributed document signing through a SOAP 1.1 (basicHttpBinding) web service. The exposed methods are as follows:
 
 - BeginSignature: Indicates to the service the start of a distributed signature. The server processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignature: Indicates to the service the start of a distributed counter-signature over an existing signature within a document.
 - EndSignature: The client updates the signature on the server with the encrypted document digest.
+- EndCounterSignature: The client updates the counter-signature on the server with the encrypted document digest.
 - BeginSignatureProvider: Indicates to the service the start of a distributed signature with a document provider. The server obtains the document and the signature parameters by calling a remote document provider; from there, it processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignatureProvider: Indicates to the service the start of a distributed counter-signature with a document provider.
 - EndSignatureProvider: The client updates the signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
+- EndCounterSignatureProvider: The client updates the counter-signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
 - HeartBeat: Method that allows checking the health status of the service.
 
 The following sections describe both the interface of each of these methods, as well as the classes and types related to them.
@@ -1870,7 +2549,7 @@ Starts a distributed signature process with a document provider.
 **SYNTAX**
 
 ```csharp
-public SignatureContext BeginSignatureProvider(
+public DistributedSignatureBeginResponseBasic BeginSignatureProvider(
 byte[] certificate,
 string uri,
 string providerParameter,
@@ -1888,7 +2567,7 @@ RemoteProviderConfiguration remoteProviderConfiguration);
 
 **RETURN VALUE**
 
-Returns an object of the SignatureContext class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
 
 **REMARKS**
 
@@ -1960,6 +2639,130 @@ public void HeartBeat();
 
 Performs the appropriate checks to verify whether the web service is functioning correctly, and returns an exception otherwise.
 
+###### 11.2.6. BeginCounterSignature
+
+Starts a distributed counter-signature process over an existing signature within a document.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignature(
+byte[] certificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**INPUT PARAMETERS**
+
+- certificate: Public part of the certificate with which the signature will be performed on the client, in byte array format.
+- signatureProfile: Receives a value of type SignatureProfile that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- signatureType: Receives a value of type SignatureType that specifies the storage format type of the signature. For more information on the storage types, see the description of the SignatureType enumerated type.
+- hashAlgorithm: Receives a value of type HashAlgorithm that specifies the hash algorithm to be used when performing the signature. For more information on the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- options: Receives one or more values of type SignatureFlags that allow configuring certain behavior parameters in the document signing process. For more information on the supported values, see the description of the SignatureFlags enumerated type.
+- parameters: Object of type SignatureParameters that adds some extra parameters necessary to perform certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- detachedSignature: In the case of a detached signature, this parameter will return the byte array corresponding to said signature. In the case of a non-detached signature, it will return null.
+- signingDocument: Byte array with the content of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignature, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 11.2.7. BeginCounterSignatureProvider
+
+Starts a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignatureProvider(
+byte[] certificate,
+string uri,
+string providerParameter,
+byte[] document,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**INPUT PARAMETERS**
+
+- certificate: Public part of the certificate with which the signature will be performed on the client, in byte array format.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- document: Optional parameter with the byte array of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignatureProvider, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 11.2.8. EndCounterSignature
+
+Completes a distributed counter-signature process.
+
+**SYNTAX**
+
+```csharp
+public byte[] EndCounterSignature(Guid instance,
+byte[] asyncState)
+```
+
+**INPUT PARAMETERS**
+
+- instance: Signature transaction identifier returned by the BeginCounterSignature method.
+- asyncState: Byte array of the distributed signature state after having been processed by the AsyncStateManager component.
+
+**RETURN VALUE**
+
+Returns a byte array with the countersigned document according to the signature parameters specified in the function call, or an exception if an error occurs.
+
+###### 11.2.9. EndCounterSignatureProvider
+
+Completes a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public byte[] EndCounterSignatureProvider(Guid instance,
+byte[] asyncState,
+string uri,
+string providerParameter,
+bool returnSignedDocument,
+RemoteProviderConfiguration remoteProviderConfiguration)
+```
+
+**INPUT PARAMETERS**
+
+- instance: Signature transaction identifier returned by the BeginCounterSignature or BeginCounterSignatureProvider methods.
+- asyncState: Byte array of the distributed signature state after having been processed by the AsyncStateManager component.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- returnSignedDocument: Boolean indicating whether the method should return the signed document.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider.
+
+**RETURN VALUE**
+
+If the returnSignedDocument parameter is true, returns a byte array with the countersigned document, or null otherwise.
+
+**REMARKS**
+
+The method will always invoke the associated remote document provider so that it stores the resulting document. If, in addition, the countersigned document is required to reach the calling application, the returnSignedDocument parameter can be set to true.
+
 ## 12. SOAP 1.2 Distributed Signature Service
 
 The DistributedSignatureService.svc service of SealSign DSS exposes the methods necessary for generating distributed document signatures through a SOAP 1.2 (wsHttpBinding) service.
@@ -1967,9 +2770,13 @@ The DistributedSignatureService.svc service of SealSign DSS exposes the methods 
 The exposed methods are as follows:
 
 - BeginSignature: Indicates to the service the start of a distributed signature. The server processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignature: Indicates to the service the start of a distributed counter-signature over an existing signature within a document.
 - EndSignature: The client updates the signature on the server with the encrypted document digest.
+- EndCounterSignature: The client updates the counter-signature on the server with the encrypted document digest.
 - BeginSignatureProvider: Indicates to the service the start of a distributed signature with a document provider. The server obtains the document and the signature parameters by calling a remote document provider; from there, it processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignatureProvider: Indicates to the service the start of a distributed counter-signature with a document provider.
 - EndSignatureProvider: The client updates the signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
+- EndCounterSignatureProvider: The client updates the counter-signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
 - HeartBeat: Method that allows checking the health status of the service.
 
 The following sections describe both the interface of each of these methods, as well as the classes and types related to them.
@@ -2087,6 +2894,36 @@ public bool returnSignedDocument;
 - remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider.
 - returnSignedDocument: Boolean indicating whether the method should return the signed document.
 
+###### 12.1.6. DistributedCounterSignatureBeginRequest
+
+Input parameter of the BeginCounterSignature method. Inherits from DistributedSignatureBeginRequest, adding the identifier of the signature to be countersigned.
+
+```csharp
+public class DistributedCounterSignatureBeginRequest : DistributedSignatureBeginRequest
+{
+public string signatureId;
+}
+```
+
+**ATTRIBUTES**
+
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+###### 12.1.7. DistributedCounterSignatureBeginProviderRequest
+
+Input parameter of the BeginCounterSignatureProvider method. Inherits from DistributedSignatureBeginProviderRequest, adding the identifier of the signature to be countersigned.
+
+```csharp
+public class DistributedCounterSignatureBeginProviderRequest : DistributedSignatureBeginProviderRequest
+{
+public string signatureId;
+}
+```
+
+**ATTRIBUTES**
+
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
 #### 12.2. Methods
 
 ###### 12.2.1. BeginSignature
@@ -2183,14 +3020,102 @@ public void HeartBeat();
 
 Performs the appropriate checks to verify whether the web service is functioning correctly, and returns an exception otherwise.
 
+###### 12.2.6. BeginCounterSignature
+
+Starts a distributed counter-signature process over an existing signature within a document.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponse BeginCounterSignature(
+DistributedCounterSignatureBeginRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Instance of type DistributedCounterSignatureBeginRequest with the counter-signature transaction start data.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponse class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignature, with the addition of the signatureId attribute in the request, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 12.2.7. BeginCounterSignatureProvider
+
+Starts a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponse BeginCounterSignatureProvider(
+DistributedCounterSignatureBeginProviderRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Instance of type DistributedCounterSignatureBeginProviderRequest with the counter-signature transaction start data.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponse class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignatureProvider, with the addition of the signatureId attribute in the request, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 12.2.8. EndCounterSignature
+
+Completes a distributed counter-signature process.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse EndCounterSignature(
+DistributedSignatureEndRequest request);
+```
+
+**INPUT PARAMETERS**
+
+- request: Instance of type DistributedSignatureEndRequest with the data necessary to complete the counter-signature transaction.
+
+**RETURN VALUE**
+
+This method returns an object of the SignatureResponse class, or an exception if an error occurs. The SignatureResponse class is defined in the SOAP 1.2 Signature and Verification Service section.
+
+###### 12.2.9. EndCounterSignatureProvider
+
+Completes a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public SignatureResponse EndCounterSignatureProvider(
+DistributedSignatureEndProviderRequest request)
+```
+
+**INPUT PARAMETERS**
+
+- request: Instance of type DistributedSignatureEndProviderRequest with the data necessary to complete the counter-signature transaction.
+
+**RETURN VALUE**
+
+This method returns an object of the SignatureResponse class, or an exception if an error occurs. The SignatureResponse class is defined in the SOAP 1.2 Signature and Verification Service section.
+
 ## 13. JSON Distributed Signature Service
 
 The DistributedSignatureServiceBasic.svc service of SealSign DSS exposes the methods necessary to implement distributed document signing through a JSON (WebHttpBinding) web service. The exposed methods are as follows:
 
 - BeginSignature: Indicates to the service the start of a distributed signature. The server processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignature: Indicates to the service the start of a distributed counter-signature over an existing signature within a document.
 - EndSignature: The client updates the signature on the server with the encrypted document digest.
+- EndCounterSignature: The client updates the counter-signature on the server with the encrypted document digest.
 - BeginSignatureProvider: Indicates to the service the start of a distributed signature with a document provider. The server obtains the document and the signature parameters by calling a remote document provider; from there, it processes the document up to the generation of the digest, which is returned to the client within the signature context to be encrypted.
+- BeginCounterSignatureProvider: Indicates to the service the start of a distributed counter-signature with a document provider.
 - EndSignatureProvider: The client updates the signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
+- EndCounterSignatureProvider: The client updates the counter-signature on the server with the encrypted document digest, and the server invokes a remote document provider to store the final document.
 - HeartBeat: Method that allows checking the health status of the service.
 
 The following sections describe both the interface of each of these methods, as well as the classes and types related to them.
@@ -2264,7 +3189,7 @@ Starts a distributed signature process with a document provider.
 **SYNTAX**
 
 ```csharp
-public SignatureContext BeginSignatureProvider(
+public DistributedSignatureBeginResponseBasic BeginSignatureProvider(
 byte[] certificate,
 string uri,
 string providerParameter,
@@ -2282,7 +3207,7 @@ RemoteProviderConfiguration remoteProviderConfiguration);
 
 **RETURN VALUE**
 
-Returns an object of the SignatureContext class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
 
 **REMARKS**
 
@@ -2354,6 +3279,130 @@ public void HeartBeat();
 
 Performs the appropriate checks to verify whether the web service is functioning correctly, and returns an exception otherwise.
 
+###### 13.2.6. BeginCounterSignature
+
+Starts a distributed counter-signature process over an existing signature within a document.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignature(
+byte[] certificate,
+SignatureProfile signatureProfile,
+SignatureType signatureType,
+HashAlgorithm hashAlgorithm,
+SignatureFlags options,
+SignatureParameters parameters,
+byte[] detachedSignature,
+byte[] signingDocument,
+string signatureId);
+```
+
+**INPUT PARAMETERS**
+
+- certificate: Public part of the certificate with which the signature will be performed on the client, in byte array format.
+- signatureProfile: Receives a value of type SignatureProfile that specifies the type of signature profile to be performed. For more information, see the description of the SignatureProfile enumerated type.
+- signatureType: Receives a value of type SignatureType that specifies the storage format type of the signature. For more information on the storage types, see the description of the SignatureType enumerated type.
+- hashAlgorithm: Receives a value of type HashAlgorithm that specifies the hash algorithm to be used when performing the signature. For more information on the supported algorithms, see the description of the HashAlgorithm enumerated type.
+- options: Receives one or more values of type SignatureFlags that allow configuring certain behavior parameters in the document signing process. For more information on the supported values, see the description of the SignatureFlags enumerated type.
+- parameters: Object of type SignatureParameters that adds some extra parameters necessary to perform certain types of signatures. This value can be null if it is not necessary to configure any of the exposed parameters. For more information, see the description of the SignatureParameters class.
+- detachedSignature: In the case of a detached signature, this parameter will return the byte array corresponding to said signature. In the case of a non-detached signature, it will return null.
+- signingDocument: Byte array with the content of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignature, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 13.2.7. BeginCounterSignatureProvider
+
+Starts a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public DistributedSignatureBeginResponseBasic BeginCounterSignatureProvider(
+byte[] certificate,
+string uri,
+string providerParameter,
+byte[] document,
+string signatureId,
+RemoteProviderConfiguration remoteProviderConfiguration);
+```
+
+**INPUT PARAMETERS**
+
+- certificate: Public part of the certificate with which the signature will be performed on the client, in byte array format.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- document: Optional parameter with the byte array of the document to be countersigned.
+- signatureId: Identifier of the existing signature within the document to which the counter-signature will be added.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider.
+
+**RETURN VALUE**
+
+Returns an object of the DistributedSignatureBeginResponseBasic class with the signature transaction identifier and a byte array with the distributed signature context, to be processed on the client through the AsynStateManager class.
+
+**REMARKS**
+
+This method behaves identically to BeginSignatureProvider, with the addition of the signatureId parameter, which identifies the signature within the document to which the new counter-signature will be attached.
+
+###### 13.2.8. EndCounterSignature
+
+Completes a distributed counter-signature process.
+
+**SYNTAX**
+
+```csharp
+public byte[] EndCounterSignature(Guid instance,
+byte[] asyncState)
+```
+
+**INPUT PARAMETERS**
+
+- instance: Signature transaction identifier returned by the BeginCounterSignature method.
+- asyncState: Byte array of the distributed signature state after having been processed by the AsyncStateManager component.
+
+**RETURN VALUE**
+
+Returns a byte array with the countersigned document according to the signature parameters specified in the function call, or an exception if an error occurs.
+
+###### 13.2.9. EndCounterSignatureProvider
+
+Completes a distributed counter-signature process with a document provider.
+
+**SYNTAX**
+
+```csharp
+public byte[] EndCounterSignatureProvider(Guid instance,
+byte[] asyncState,
+string uri,
+string providerParameter,
+bool returnSignedDocument,
+RemoteProviderConfiguration remoteProviderConfiguration)
+```
+
+**INPUT PARAMETERS**
+
+- instance: Signature transaction identifier returned by the BeginCounterSignature or BeginCounterSignatureProvider methods.
+- asyncState: Byte array of the distributed signature state after having been processed by the AsyncStateManager component.
+- uri: URI identifier of the document in the repository.
+- providerParameter: Text string that allows passing information between the client and the document provider to customize its behavior.
+- returnSignedDocument: Boolean indicating whether the method should return the signed document.
+- remoteProviderConfiguration: Optional parameter with the information for the connection to the remote document provider.
+
+**RETURN VALUE**
+
+If the returnSignedDocument parameter is true, returns a byte array with the countersigned document, or null otherwise.
+
+**REMARKS**
+
+The method will always invoke the associated remote document provider so that it stores the resulting document. If, in addition, the countersigned document is required to reach the calling application, the returnSignedDocument parameter can be set to true.
+
 ## 14. SealSign WCF Bindings
 
 This section explains the configuration of WCF (Windows Communication Foundation) bindings, which is a fundamental part of the Windows architecture on which the SealSign platform is built and which is common to all modules of that platform.
@@ -2370,7 +3419,7 @@ The WCF bindings of the different SealSign modules can be found in the directori
 - BasicHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL.
 - BasicHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL.
 - BasicHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL.
-- BasicHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
+- BasicHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
 - BasicHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL.
 
 ###### 14.1.2. WSHttpBinding (Soap 1.2)
@@ -2379,7 +3428,8 @@ The WCF bindings of the different SealSign modules can be found in the directori
 - WSHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL.
 - WSHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL.
 - WSHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL.
-- WSHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
+- WSHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
+- WSHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL.
 
 ###### 14.1.3. WebHttpBinding (JSON)
 
@@ -2387,7 +3437,8 @@ The WCF bindings of the different SealSign modules can be found in the directori
 - WebHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL.
 - WebHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL.
 - WebHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL.
-- WebHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
+- WebHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous).
+- WebHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL.
 
 #### 14.2. Configuring SealSign WCF Bindings without SSL
 
@@ -2442,7 +3493,7 @@ To invoke SealSign services with a specific WCF binding, it is necessary to add 
 - BasicHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/BI`
 - BasicHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL. `https://host/SealSignDSSService/SignatureService.svc/BSSLB`
 - BasicHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/BB`
-- BasicHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `http://host/SealSignDSSService/SignatureService.svc/B`
+- BasicHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `http://host/SealSignDSSService/SignatureService.svc/B`
 - BasicHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL. `https://host/SealSignDSSService/SignatureService.svc/BSSL`
 
 **WSHttpBinding (Soap 1.2)**
@@ -2450,16 +3501,21 @@ To invoke SealSign services with a specific WCF binding, it is necessary to add 
 - WSHttpBinding_IServiceSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication and SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSLI`
 - WSHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/WSI`
 - WSHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSLB`
-- WSHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/WSB`
-- WSHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `https://host/SealSignDSSService/SignatureService.svc/WSSSL`
+- WSHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `http://host/SealSignDSSService/SignatureService.svc/WS`
+- WSHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL. `https://host/SealSignDSSService/SignatureService.svc/WSSSL`
 
 **WebHttpBinding (JSON)**
 
-- WebHttpBinding_IServiceSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication and SSL. `https://host/SealSignDSSService/SignatureService.svc/JSSLI`
-- WebHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/JI`
-- WebHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL. `https://host/SealSignDSSService/SignatureService.svc/JSSLB`
-- WebHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL. `http://host/SealSignDSSService/SignatureService.svc/JB`
-- WebHttpBinding_IServiceSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `https://host/SealSignDSSService/SignatureService.svc/JSSL`
+- WebHttpBinding_IServiceSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication and SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSLI`
+- WebHttpBinding_IServiceNOSSLIntegrated: WCF binding whose client-server communication requires security through integrated Windows authentication without SSL. `http://host/SealSignDSSService/SignatureServiceBasic.svc/JBI`
+- WebHttpBinding_IServiceSSLBasic: WCF binding whose client-server communication requires security through basic authentication and SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSLB`
+- WebHttpBinding_IServiceNOSSLBasic: WCF binding whose client-server communication requires security through basic authentication without SSL. `http://host/SealSignDSSService/SignatureServiceBasic.svc/JBB`
+- WebHttpBinding_IServiceNOSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous). `http://host/SealSignDSSService/SignatureServiceBasic.svc/JB`
+- WebHttpBinding_IServiceSSLSecNone: WCF binding whose client-server communication does not require any kind of security (anonymous) and uses SSL. `https://host/SealSignDSSService/SignatureServiceBasic.svc/JSSL`
+
+**REMARKS**
+
+The JSON (WebHttpBinding) URL suffix scheme is not identical across all SealSign services. The examples above correspond to the certificate validation and signature/verification services (CertificateServiceBasic.svc and SignatureServiceBasic.svc), which use the JBI/JBB/JB/JSSLI/JSSLB/JSSL suffixes shown here. The distributed signature service (DistributedSignatureServiceBasic.svc) instead uses JI/JB/J for its NOSSL variants (Integrated, Basic and anonymous respectively), keeping JSSLI/JSSLB/JSSL for the SSL variants. Always check the actual servicesnossl.config/servicesssl.config file of the module being integrated to confirm the exact suffix in use.
 
 ###### 14.4.3. Typical Invocation of SealSign Services
 
