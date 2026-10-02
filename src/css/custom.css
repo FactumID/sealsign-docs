@@ -60,6 +60,15 @@ blockquote {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
+/* Infima's default 1.25 line-height on sidebar links is too tight for some
+   fonts/renderers and clips descenders (e.g. the tail of "g") inside the
+   flex-centered row. Give it a bit more room. */
+.menu__link,
+.menu__list-item-collapsible {
+  line-height: 1.5;
+  overflow: visible;
+}
+
 /* Match the footer to the brand navy instead of Infima's generic dark gray */
 .footer--dark {
   --ifm-footer-background-color: #030022;
