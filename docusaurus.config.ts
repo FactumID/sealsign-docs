@@ -1,8 +1,60 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { PrismTheme } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+// Tokyo Night (the classic VS Code dark palette) for dark-mode code blocks.
+// prism-react-renderer doesn't ship it, so it's defined here directly.
+const tokyoNightTheme: PrismTheme = {
+  plain: {
+    color: '#a9b1d6',
+    backgroundColor: '#1a1b26',
+  },
+  styles: [
+    {
+      types: ['comment', 'prolog', 'doctype', 'cdata'],
+      style: { color: '#565f89', fontStyle: 'italic' },
+    },
+    {
+      types: ['namespace'],
+      style: { opacity: 0.7 },
+    },
+    {
+      types: ['string', 'attr-value', 'inserted'],
+      style: { color: '#9ece6a' },
+    },
+    {
+      types: ['punctuation', 'operator'],
+      style: { color: '#89ddff' },
+    },
+    {
+      types: ['entity', 'url', 'symbol', 'number', 'boolean', 'variable', 'constant', 'property', 'regex'],
+      style: { color: '#ff9e64' },
+    },
+    {
+      types: ['atrule', 'keyword', 'attr-name', 'selector'],
+      style: { color: '#bb9af7' },
+    },
+    {
+      types: ['function', 'class-name'],
+      style: { color: '#7aa2f7' },
+    },
+    {
+      types: ['tag', 'deleted'],
+      style: { color: '#f7768e' },
+    },
+    {
+      types: ['important', 'bold'],
+      style: { fontWeight: 'bold' },
+    },
+    {
+      types: ['italic'],
+      style: { fontStyle: 'italic' },
+    },
+  ],
+};
 
 const config: Config = {
   title: 'SealSign Docs',
@@ -95,7 +147,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      darkTheme: tokyoNightTheme,
       additionalLanguages: ['csharp', 'java'],
     },
     footer: {
