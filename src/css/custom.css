@@ -14,7 +14,15 @@
   --ifm-color-primary-lighter: #040028;
   --ifm-color-primary-lightest: #04002e;
   --ifm-code-font-size: 95%;
+  --ifm-line-height-base: 1.65;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* SealSign brand red (from the logo mark) used as the accent/link color,
+     since the near-black primary above is too close to body text to read as a link. */
+  --sealsign-accent: #d6001c;
+  --sealsign-accent-dark: #a90016;
+  --ifm-link-color: var(--sealsign-accent);
+  --ifm-link-hover-color: var(--sealsign-accent-dark);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -27,12 +35,43 @@
   --ifm-color-primary-lighter: #839bff;
   --ifm-color-primary-lightest: #a9b9ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* The brand red is too dark to read on a dark background; use the logo's
+     lighter blue badge tone instead so links stay distinguishable from text. */
+  --sealsign-accent: #7fb0ff;
+  --sealsign-accent-dark: #a9c9ff;
+  --ifm-link-color: var(--sealsign-accent);
+  --ifm-link-hover-color: var(--sealsign-accent-dark);
 }
 
 /* Round code blocks corners */
 pre {
   border-radius: 12px !important;
   padding: 15px !important;
+}
+
+/* Brand-colored accents for blockquotes and admonition-style left borders */
+blockquote {
+  border-left-color: var(--sealsign-accent) !important;
+}
+
+/* Subtle separation between navbar and content */
+.navbar {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Match the footer to the brand navy instead of Infima's generic dark gray */
+.footer--dark {
+  --ifm-footer-background-color: #030022;
+}
+
+/* Slightly friendlier table styling for the API/error reference tables */
+table {
+  display: table;
+  width: 100%;
+}
+table thead tr {
+  background-color: var(--ifm-table-stripe-background);
 }
 
 /* Hide navbar title */
