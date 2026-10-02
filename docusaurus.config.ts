@@ -98,6 +98,10 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['csharp', 'java'],
     },
+    footer: {
+      style: 'dark',
+      copyright: `Copyright © ${new Date().getFullYear()} Factum Identity. SealSign Docs.`,
+    },
   } satisfies Preset.ThemeConfig,
 };
 
