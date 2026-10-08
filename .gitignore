@@ -38,3 +38,8 @@ yarn-error.log*
 # Temporary files
 *.tmp
 /docsify-backup/
+
+# Local tooling (AI assistant config, task tracking)
+/.claude/
+/.atl/
+/odd/
