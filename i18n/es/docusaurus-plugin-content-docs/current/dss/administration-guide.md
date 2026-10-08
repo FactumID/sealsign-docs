@@ -882,16 +882,84 @@ Para ver la lista de Reglas de Uso disponibles se pueden realizar los siguientes
 
 a. En menú de la izquierda seleccionar el enlace Reglas de Uso del grupo Claves Centralizadas.
 
-b.	Aparecerá la lista de todas las reglas de uso que están disponibles.
+b.	Aparecerá la página "Reglas de Uso de los Certificados de Servidor". Con el Tipo de búsqueda "Reglas de uso", la lista muestra las reglas de uso disponibles, con las columnas Nombre, Descripción, Válido desde, Válido hasta, Propietario y Estado de la regla de uso (Habilitada o Deshabilitada). Las reglas caducadas se resaltan en rojo, con la fecha de Válido hasta en rojo.
 
-c.	Se podrán filtrar las reglas de uso por criterio (Nombre, Descripción, Creador, Usuario, Nombre de equipo, procesos y URL)
+c.	Se podrá filtrar la lista por rango de fecha (Fecha inicio / Fecha fin) y por Criterio de búsqueda (Nombre, Descripción, Creador, Usuarios, Nombre de equipo, Nombres de procesos y URLs), mediante el botón Buscar.
 
-d.	Se podrán filtrar las reglas de uso por certificado asociado y por rango de fecha.
+d.	El botón Exportar Excel permite exportar la lista, y la paginación permite recorrer los resultados y elegir el número de resultados por página.
+
+e.	Al pulsar sobre el nombre de una regla de uso se abre su detalle y edición.
 
 ![usage-rules](./images/usage-rules.png)
 
+###### 6.2.2. Búsqueda Avanzada Por Entidad
 
-###### 6.2.2. Añadir Una Nueva Regla De Uso
+El selector Tipo de búsqueda cambia la lista a una entidad concreta. La siguiente tabla muestra, para cada tipo, por qué se puede buscar y qué columnas se muestran:
+
+| Tipo | Se busca por | Columnas |
+|------|--------------|----------|
+| Reglas de uso | Nombre, Descripción, Creador, Usuarios, Nombre de equipo, Procesos, URLs y rango de fecha | Las descritas en el apartado 6.2.1 |
+| Certificados | Asunto, Nombre amigable, Propietario | Certificado, Propietario, Número de reglas asociadas |
+| Usuarios | Usuario/Login | Login, Nombre, Tipo de usuario (SaaS o Active Directory), Número de reglas asociadas |
+| Procesos | Nombre del proceso | Proceso, Número de reglas asociadas |
+| Equipos | Nombre de equipo | Equipo, Número de reglas asociadas |
+| URLs | URL | URL, Número de reglas asociadas |
+
+El rango de fecha solo aparece con el tipo "Reglas de uso". El botón Exportar Excel está disponible para todos los tipos.
+
+Para cada entidad, la lista permite:
+
+- Ver todas las entidades de ese tipo asociadas a las reglas de uso del servidor.
+- Ver el detalle y las reglas de uso en las que aparece la entidad seleccionada.
+- Consultar las entidades relacionadas y las reglas de uso que tienen en común con ella.
+
+Las siguientes imágenes muestran la búsqueda de cada tipo de entidad.
+
+Certificados:
+
+![usage-rules-search-certificates](./images/usage-rules-search-certificates.png)
+
+Usuarios:
+
+![usage-rules-search-users](./images/usage-rules-search-users.png)
+
+Procesos:
+
+![usage-rules-search-processes](./images/usage-rules-search-processes.png)
+
+Equipos:
+
+![usage-rules-search-computers](./images/usage-rules-search-computers.png)
+
+URLs:
+
+![usage-rules-search-urls](./images/usage-rules-search-urls.png)
+
+El menú ⋮ de cada fila de entidad ofrece las opciones "Ver detalle" (que abre la ventana descrita en el apartado 6.2.3) y "Eliminar".
+
+![usage-rules-entity-menu](./images/usage-rules-entity-menu.png)
+
+###### 6.2.3. Detalle De La Entidad
+
+La ventana de detalle de la entidad se abre desde la opción "Ver detalle" o pulsando sobre el nombre de la entidad. Su título es "Detalle del `<entidad>` `<nombre>`" (por ejemplo, el detalle de un certificado), con la ruta de navegación "Búsqueda / `<entidad>`".
+
+La ventana muestra pestañas con la información relacionada: Reglas de uso, Usuarios, Procesos, Equipos y URLs (no se muestra la pestaña del tipo de la propia entidad). Cada pestaña dispone de un cuadro "Buscar en esta pestaña".
+
+La pestaña Reglas de uso lista las reglas de uso asociadas a la entidad, con las columnas Nombre, Descripción, Propietario, Válido desde, Válido hasta y Estado.
+
+![usage-rules-entity-detail](./images/usage-rules-entity-detail.png)
+
+Las demás pestañas listan las entidades relacionadas con una columna "Reglas en común". El menú de cada fila ofrece las opciones Deshabilitar, Eliminar y "Ver reglas en común".
+
+![usage-rules-entity-detail-actions](./images/usage-rules-entity-detail-actions.png)
+
+"Ver reglas en común" muestra las reglas de uso compartidas por la entidad cuyo detalle se consulta y la entidad de esa fila (por ejemplo, las reglas en común entre el proceso 2test.exe y un certificado). La ruta de navegación pasa a "Búsqueda / `<entidad>` / Reglas en común" y permite volver atrás. Esta vista tiene su propio cuadro de búsqueda, las columnas de reglas (Nombre, Descripción, Propietario, Válido desde, Válido hasta y Estado) y un menú de acciones por fila.
+
+![usage-rules-common-rules](./images/usage-rules-common-rules.png)
+
+El botón Cerrar cierra la ventana.
+
+###### 6.2.4. Añadir Una Nueva Regla De Uso
 
 Para añadir una nueva Regla de Uso a la lista, se pueden realizar los siguientes pasos:
 1. Seleccionamos el enlace Añadir una nueva regla de uso desde la lista de reglas de uso consultada en el apartado anterior.
@@ -909,15 +977,19 @@ Para añadir una nueva Regla de Uso a la lista, se pueden realizar los siguiente
 
 ![add-usage-rule](./images/add-usage-rule.png)
 
-###### 6.2.3. Modificar Una Regla De Uso
+###### 6.2.5. Modificar Una Regla De Uso
 
 Para modificar la configuración de una regla de uso se pueden realizar los siguientes pasos:
 
-1.	Seleccionamos la regla de uso a modificar desde la lista consultada en el apartado 'Consulta de la Lista de Reglas de Uso', o presionando el botón 'Editar Regla de Uso' en el menú de acciones que aparece en el lateral derecho de la lista de reglas. 
+1.	Seleccionamos la regla de uso a modificar pulsando sobre su nombre en la lista consultada en el apartado 'Consulta De La Lista De Reglas De Uso', o presionando la opción 'Editar regla de uso' en el menú ⋮ que aparece en el lateral derecho de cada fila de la lista.
 
-2.	En el modal de edición de la regla de uso, se pueden gestionar los parámetros Generales que se introdujeron en la inserción de la regla de uso además de los Filtros de Uso.
+![usage-rules-edit-menu](./images/usage-rules-edit-menu.png)
+
+2.	Se abrirá el modal "Editar regla de uso `<nombre>`", con secciones en el lateral izquierdo. En la sección General se pueden gestionar los parámetros que se introdujeron en la inserción de la regla de uso: Nombre (obligatorio), Descripción, Válido desde, Válido hasta y Propietario (obligatorio). Incluye además el campo Estado, con la casilla "Deshabilitar regla".
 
 ![usage-rules-general](./images/usage-rules-general.png)
+
+El resto de secciones son los Filtros de Uso. En cada una de ellas hay un cuadro de búsqueda, un botón "Añadir ..." (Añadir certificado, Añadir usuario, Añadir proceso, Añadir nombre de equipo o Añadir URL) y una tabla con una columna Estado. El menú ⋮ de cada fila ofrece las opciones Editar, Deshabilitar y Eliminar.
 
 Estos filtros se dividen en las siguientes categorías:
 
@@ -929,21 +1001,32 @@ Estos filtros se dividen en las siguientes categorías:
 
 ![usage-rules-users](./images/usage-rules-users.png)
 
-**Equipos:** En este apartado gestionamos desde que maquinas se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de máquinas especificadas en la regla. Este filtro admite como carácter comodín el %. 
-
-![usage-rules-computers](./images/usage-rules-computers.png)
-
 **Procesos:** En este apartado gestionamos desde que procesos (nombre del ejecutable Windows) se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de procesos especificados en la regla. Este filtro admite como carácter comodín el %. 
 
 ![usage-rules-processes](./images/usage-rules-processes.png)
+
+**Equipos:** En este apartado gestionamos desde que maquinas se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de máquinas especificadas en la regla. Este filtro admite como carácter comodín el %. 
+
+![usage-rules-computers](./images/usage-rules-computers.png)
 
 **URLs:** En este apartado gestionamos desde que URL se tiene acceso a la regla de uso. Con este filtro podemos configurar que un certificado para firmar una transacción se pueda utilizar únicamente desde una serie de URL especificados en la regla. Este filtro admite como carácter comodín el %. Este filtro aplica a los navegadores Chrome y Edge.
 
 ![usage-rules-urls](./images/usage-rules-urls.png)
 
-3.	Pulsando el botón Guardar se actualizará la configuración de la regla de uso.
+3.	Pulsando el botón Guardar se actualizará la configuración de la regla de uso. Pulsando el botón Cancelar se descartan los cambios.
 
-###### 6.2.4. Eliminar Una Regla De Uso
+###### 6.2.6. Habilitar O Deshabilitar Una Regla De Uso
+
+Una regla de uso se puede deshabilitar de dos formas:
+
+- Desde el menú ⋮ de la fila de la regla en la lista, seleccionando la opción "Deshabilitar".
+- En la sección General de la ventana de edición de la regla, marcando "Deshabilitar regla".
+
+![usage-rules-disable](./images/usage-rules-disable.png)
+
+Una regla deshabilitada deja de aplicarse sin eliminarse, y su estado se muestra como deshabilitada en la lista. Para volver a habilitarla, se utiliza la misma opción.
+
+###### 6.2.7. Eliminar Una Regla De Uso
 
 Para eliminar una regla de uso se pueden realizar los siguientes pasos:
 1. Acceder a la lista de reglas de uso, para ello, en menú de la izquierda seleccionar el enlace Reglas de Uso del grupo Claves Centralizadas.
@@ -952,7 +1035,7 @@ Para eliminar una regla de uso se pueden realizar los siguientes pasos:
 
 ![remove-usage-rule](./images/remove-usage-rule.png)
 
-###### 6.2.5. Eliminar Un Certificado De Servidor
+###### 6.2.8. Eliminar Un Certificado De Servidor
 
 Para eliminar un certificado de servidor se pueden realizar los siguientes pasos:
 

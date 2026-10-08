@@ -860,15 +860,84 @@ To view the list of available Usage Rules, the following steps can be performed:
 
 a. In the left menu select the Usage Rules link from the Centralized Keys group.
 
-b.	The list of all the usage rules that are available will appear.
+b.	The page "Reglas de Uso de los Certificados de Servidor" (Server Certificates Usage Rules) will appear. With the Search type "Usage rules", the list shows the usage rules available, with the columns Name, Description, Valid from, Valid until, Owner and Usage rule status (Enabled or Disabled). Expired rules are highlighted in red, with the Valid until date in red.
 
-c.	The usage rules can be filtered by criteria (Name, Description, Creator, User, Team name, Processes and URL).
+c.	The list can be filtered by date range (Start date / End date) and by Search criteria (Name, Description, Creator, Users, Machine name, Process names and URLs), using the Search button.
 
-d.	The usage rules can be filtered by associated certificate and by date range.
+d.	The Export Excel button exports the list, and the pagination controls allow navigating the results and choosing the number of results per page.
+
+e.	Clicking on the name of a usage rule opens its detail and edit window.
 
 ![usage-rules](./images/usage-rules.png)
 
-###### 6.2.2. Adding a New Usage Rule
+###### 6.2.2. Advanced Search by Entity
+
+The Search type selector switches the list to a specific entity. The following table shows, for each type, what can be searched and which columns are displayed:
+
+| Type | Searched by | Columns |
+|------|-------------|---------|
+| Usage rules | Name, Description, Creator, Users, Machine name, Processes, URLs and date range | Those described in section 6.2.1 |
+| Certificates | Subject, Friendly name, Owner | Certificate, Owner, Number of associated rules |
+| Users | User/Login | Login, Name, User type (SaaS or Active Directory), Number of associated rules |
+| Processes | Process name | Process, Number of associated rules |
+| Machines | Machine name | Machine, Number of associated rules |
+| URLs | URL | URL, Number of associated rules |
+
+The date range only appears with the "Usage rules" type. The Export Excel button is available for every type.
+
+For each entity, the list allows you to:
+
+- View all the entities of that type associated to the usage rules of the server.
+- View the detail and the usage rules in which the selected entity appears.
+- Consult the related entities and the usage rules they have in common with it.
+
+The following images show the search for each entity type.
+
+Certificates:
+
+![usage-rules-search-certificates](./images/usage-rules-search-certificates.png)
+
+Users:
+
+![usage-rules-search-users](./images/usage-rules-search-users.png)
+
+Processes:
+
+![usage-rules-search-processes](./images/usage-rules-search-processes.png)
+
+Machines:
+
+![usage-rules-search-computers](./images/usage-rules-search-computers.png)
+
+URLs:
+
+![usage-rules-search-urls](./images/usage-rules-search-urls.png)
+
+The ⋮ menu of each entity row offers the options "View detail" (which opens the window described in section 6.2.3) and "Delete".
+
+![usage-rules-entity-menu](./images/usage-rules-entity-menu.png)
+
+###### 6.2.3. Entity Detail
+
+The entity detail window is opened from the "View detail" option or by clicking on the name of the entity. Its title is "Detalle del `<entity>` `<name>`" (for example, the certificate detail), with the breadcrumb "Búsqueda / `<entity>`".
+
+The window shows tabs with the related information: Usage rules, Users, Processes, Machines and URLs (the tab of the entity's own type is not shown). Each tab has a "Search in this tab" box.
+
+The Usage rules tab lists the usage rules associated with the entity, with the columns Name, Description, Owner, Valid from, Valid until and Status.
+
+![usage-rules-entity-detail](./images/usage-rules-entity-detail.png)
+
+The other tabs list the related entities with a "Common rules" column. The menu of each row offers the options Disable, Delete and "View common rules".
+
+![usage-rules-entity-detail-actions](./images/usage-rules-entity-detail-actions.png)
+
+"View common rules" shows the usage rules shared by the entity whose detail is being consulted and the entity of that row (for example, the rules in common between the process 2test.exe and a certificate). The breadcrumb becomes "Búsqueda / `<entity>` / Reglas en común" and allows going back. This view has its own search box, the rule columns (Name, Description, Owner, Valid from, Valid until and Status) and a row action menu.
+
+![usage-rules-common-rules](./images/usage-rules-common-rules.png)
+
+The Close button closes the window.
+
+###### 6.2.4. Adding a New Usage Rule
 
 To add a new Usage Rule to the list, the following steps can be performed:
 1. Select the Add a new usage rule link from the list of usage rules consulted in the previous section.
@@ -885,15 +954,19 @@ To add a new Usage Rule to the list, the following steps can be performed:
 
 ![add-usage-rule](./images/add-usage-rule.png)
 
-###### 6.2.3. Modify the Configuration of a Usage Rule
+###### 6.2.5. Modifying a Usage Rule
 
 To modify the configuration of a usage rule the following steps can be performed:
 
-1. Select the usage rule to be modified from the list consulted in the 'Consultation of the Usage Rules List' section, or by pressing the 'Edit Usage Rule' button in the action menu that appears on the right side of the list of rules. 
+1. Select the usage rule to be modified by clicking on its name in the list consulted in the 'Viewing the List of Usage Rules' section, or by pressing the 'Edit usage rule' option in the ⋮ menu that appears on the right side of each row of the list.
 
-2.	In the edit mode of the usage rule, you can manage the General parameters that were entered when inserting the usage rule as well as the Usage Filters.
+![usage-rules-edit-menu](./images/usage-rules-edit-menu.png)
+
+2.	The modal "Editar regla de uso `<name>`" (Edit usage rule) will open, with sections on the left. In the General section you can manage the parameters that were entered when inserting the usage rule: Name (required), Description, Valid from, Valid until and Owner (required). It also includes the Status field, with the "Disable rule" checkbox.
 
 ![usage-rules-general](./images/usage-rules-general.png)
+
+The remaining sections are the Usage Filters. In each of them there is a search box, an "Add ..." button (Add certificate, Add user, Add process, Add computer name or Add URL) and a table with a Status column. The ⋮ menu of each row offers the options Edit, Disable and Delete.
 
 These filters are divided into the following categories:
 
@@ -905,22 +978,32 @@ These filters are divided into the following categories:
 
 ![usage-rules-users](./images/usage-rules-users.png)
 
-**Computers:** In this section we manage from which machines have access to the usage rule. With this filter we can configure that a certificate to sign a transaction can only be used from a series of machines specified in the rule. This filter admits as wildcard character the %. 
-
-![usage-rules-computers](./images/usage-rules-computers.png)
-
 **Processes:** In this section we manage from which processes (Windows executable name) the usage rule can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of processes specified in the rule. This filter supports % as a wildcard character. 
 
 ![usage-rules-processes](./images/usage-rules-processes.png)
+
+**Computers:** In this section we manage from which machines have access to the usage rule. With this filter we can configure that a certificate to sign a transaction can only be used from a series of machines specified in the rule. This filter admits as wildcard character the %. 
+
+![usage-rules-computers](./images/usage-rules-computers.png)
 
 **URLs:** In this section we manage from which URL the rule of use can be accessed. With this filter we can configure that a certificate to sign a transaction can only be used from a series of URLs specified in the rule. This filter admits as wildcard character the %. This filter applies to Chrome and Edge browsers.
 
 ![usage-rules-urls](./images/usage-rules-urls.png)
 
-3.	Pressing the Save button will update the usage rule configuration.
+3.	Pressing the Save button will update the usage rule configuration. Pressing the Cancel button discards the changes.
 
+###### 6.2.6. Enabling or Disabling a Usage Rule
 
-###### 6.2.4. Deleting a Usage Rule
+A usage rule can be disabled in two ways:
+
+- From the ⋮ menu of the rule row in the list, selecting the "Disable" option.
+- In the General section of the rule edit window, checking "Disable rule".
+
+![usage-rules-disable](./images/usage-rules-disable.png)
+
+A disabled rule stops applying without being deleted, and its status is shown as disabled in the list. To enable it again, use the same option.
+
+###### 6.2.7. Deleting a Usage Rule
 
 To delete a usage rule you can perform the following steps:
 1. Access the list of usage rules, to do so, in the left menu select the Usage Rules link from the Centralized Keys group.
@@ -929,7 +1012,7 @@ To delete a usage rule you can perform the following steps:
 
 ![remove-usage-rule](./images/remove-usage-rule.png)
 
-###### 6.2.5. Deleting a Server Certificate
+###### 6.2.8. Deleting a Server Certificate
 
 To delete a server certificate you can perform the following steps:
 1. Access the server certificates, to do this, on the main page select the Manage Server Certificates link from the Server Certificate Related Tasks group or select the Server Certificates link from the left menu.
