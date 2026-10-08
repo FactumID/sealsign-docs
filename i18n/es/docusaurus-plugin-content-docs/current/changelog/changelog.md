@@ -147,6 +147,32 @@
 
 # Clickonce
 
+### 4.11.1
+#### Funcionalidades
+
+- Firma con certificados de curva elíptica (ECDSA).
+- Mensajes mejorados para los fallos del SDK de Wacom al ejecutar con privilegios elevados (componente COM no registrado) y cuando falta el entorno de ejecución de Java.
+
+#### Bugs
+
+- Se corrige el error al pulsar los botones de la pantalla de firma en la firma biométrica externa y se controla una respuesta nula de BeginSignatureProvider.
+- Se muestra un mensaje claro al intentar una firma biométrica interna en un tenant SaaS, en lugar de un error de referencia nula.
+- Se restaura la versión del servidor al restablecer la configuración de la tableta.
+
+---
+
+### 4.11.0
+#### Funcionalidades
+
+- Nuevo instalador MSI: instalación silenciosa, parámetros UPDATEURL, AUTOMATICUPDATES, SIGNALR_HTTP_PORT y SIGNALR_HTTPS_PORT, y despliegue masivo por GPO, Intune o SCCM.
+- Puertos locales configurables desde la ventana de la bandeja, los parámetros del instalador o la directiva de grupo.
+- Orígenes de sitio web permitidos (AllowedOrigins).
+- Actualizaciones automáticas con control del administrador.
+- Configuración de HTTPS local integrada (sin scripts).
+- Migración automática desde la instalación ClickOnce anterior.
+
+---
+
 ### 4.10.6
 #### Bugs
 

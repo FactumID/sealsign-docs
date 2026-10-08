@@ -10,7 +10,7 @@
 
 ## 2. Requisitos mínimos
 
-  - El cliente funciona con .Net Framework 4.5
+  - El cliente funciona con .Net Framework 4.7.2 o superior
   - Los sistemas operativos soportados son:
     - Windows 7
     - Windows 8
@@ -24,39 +24,248 @@
 
 ## 3. Tareas comunes
 
-  #### 3.1. Instalación off-premises
+  #### 3.1. Instalación
 
-  El cliente de ClickOnce está hospedado en los servidores de Factum ID. En la página de descarga se puede instalar tanto el cliente como los prerrequisitos del mismo. Una vez instalado aparecerá el icono en el escritorio.
+  El cliente se distribuye como un **instalador MSI** que se instala **por equipo**, por lo que requiere elevación (permisos de administrador). La instalación:
+
+  - Crea el icono de SealSign Signature Client en el escritorio.
+  - Crea un acceso directo en el menú Inicio.
+  - Configura el cliente para que arranque al iniciar sesión en Windows para todos los usuarios.
 
   ![Image-01](./images/Image-01.png)
 
   *Imagen 01: Icono de SealSign ClickOnce*
 
-  #### 3.2. Instalación on-premises
+  El instalador se puede ejecutar de tres formas:
 
-  Si  es  necesario  desplegar  el  cliente  en  otro  servidor  que  no sea  el  de  Factum  Identity,  hay  que  seguir  los siguientes pasos.
+  - Haciendo doble clic sobre el fichero `.msi`.
+  - Desde la línea de comandos: `msiexec /i SealSign-Signature-Client-Setup.msi`
+  - De forma silenciosa, sin interfaz de usuario: `msiexec /i SealSign-Signature-Client-Setup.msi /qn`
 
-  - Descomprimir el cliente que se encuentra en la descarga del SDK de la versión 4.6
-  - Para  modificar  los  archivos  de  despliegue  de ClickOnce hay  que  descargar  e  instalar  el SDK  de Windows
-  - Cambiar  la  URL  de  publicación  con  el  siguiente  comando: `mage -u  SealSignClient.application -pu http://[URL]/SealSignClient.application`
-  - Reasignar  el  manifiesto  de  la  aplicación  con: `mage -u  SealSignClient.application -AppManifest "Application Files\SealSignClient_1_0_0_0\SealSignClient.exe.manifest"`
-  - Finalmente,  firmar  el  archivo  con  el  comando: `mage -sign  SealSignClient.application -cf  [ruta  del certificado] -pwd [contraseña del certificado]`
+  ###### Parámetros del instalador
 
-  Una vez hechos estos pasos se puede desplegar en el servidor el cliente de ClickOnce. Para que todo funcione correctamente hay que comprobar que el servidor web tiene los siguientes tipos MIME configurados:
+  El instalador acepta las siguientes propiedades en la línea de comandos. Todas son opcionales.
 
-  - .application –> application/x-ms-application
-  - .manifest –> application/x-ms-manifest
-  - .deploy –> application/octet-stream
+  | Parámetro | Finalidad |
+  |---|---|
+  | `UPDATEURL` | Dirección `https` del fichero `installer-version.json` donde el cliente comprueba si hay una versión nueva. El instalador debe estar en el mismo servidor y puerto que ese fichero. Si se omite, el equipo conserva el valor que ya tuviera y, si no, la dirección incluida en el paquete (si la hay). |
+  | `AUTOMATICUPDATES` | `1` = este equipo busca actualizaciones, `0` = no las busca. Prevalece sobre la preferencia del usuario y bloquea la opción del menú. Si se omite, decide el usuario. |
+  | `SIGNALR_HTTP_PORT` | Puerto HTTP local en el que escucha el cliente. Por defecto: `8081`. La web lo usa en `http://localhost:<puerto>/signalr`. Debe estar entre 1 y 65535, sin ceros a la izquierda, y ser distinto del puerto HTTPS. |
+  | `SIGNALR_HTTPS_PORT` | Puerto HTTPS local en el que escucha el cliente. Por defecto: `8082`. La web lo usa en `https://localhost:<puerto>/signalr`. Mismas reglas que el puerto HTTP. Al cambiarlo se reconfigura automáticamente el enlace del certificado. |
 
-  #### 3.3. Configuración del cliente JavaScript
+  Todos los parámetros se conservan al actualizar o reparar: reinstalar sin ellos mantiene lo que el equipo ya tuviera. Si un puerto no es válido, el instalador se detiene con un mensaje.
 
-  En este tutorial se explica en detalle cómo configurar un entorno con SignalR, y en el ejemplo alojado en el gitHub de Factum se encuentra todo el código necesario para hacerlo funcionar. Hay  que  tener  en  cuenta  que  una  vez  que  el  cliente  se  ha  lanzado  se  queda  escuchando  en  el  puerto  8081 cuando es http y 8082 cuando se ha configurado la conexión por https. En la parte de JavaScript habrá que:
+  Ejemplos:
 
-  - Referenciar al código JavaScript del hub, situada en la URL: http://localhost:8081/signalr/hubs
+  ```cmd
+  msiexec /i SealSign-Signature-Client-Setup.msi UPDATEURL=https://firma.miempresa.com/sealsign/installer-version.json AUTOMATICUPDATES=1
+  ```
+
+  ```cmd
+  msiexec /i SealSign-Signature-Client-Setup.msi SIGNALR_HTTP_PORT=9081 SIGNALR_HTTPS_PORT=9082 /qn
+  ```
+
+  :::warning
+  En entornos on-premise es obligatorio configurar el origen del sitio web permitido; de lo contrario la firma no funcionará. Ver el apartado 3.2.
+  :::
+
+  ###### Migración desde la versión anterior de ClickOnce
+
+  En el primer arranque de cada usuario, el cliente elimina automáticamente los restos de la instalación ClickOnce antigua:
+
+  - Su proceso en ejecución.
+  - Su entrada en Programas y características.
+  - Los accesos directos `.appref-ms` (escritorio y menú Inicio).
+  - Su entrada de arranque con Windows.
+
+  No hay que hacer nada manualmente.
+
+  ###### Desinstalación
+
+  Desinstale el cliente desde Programas y características. Se eliminan el enlace SSL, los certificados que creó el cliente y la directiva de Firefox (solo si la creó el propio cliente).
+
+  #### 3.2. Autorizar el origen del sitio web (AllowedOrigins)
+
+  El cliente solo atiende a sitios web autorizados. Con el valor vacío, acepta por defecto `https://sealsign.es`, `https://pre.sealsign.es` y `https://cert.sealsign.es`, por lo que **en SaaS no hay que hacer nada**. En entornos **on-premise** es **obligatorio** autorizar el origen de su sitio web.
+
+  :::warning
+  Rellenar este valor **sustituye** a los valores por defecto, no se suma a ellos. Si también utiliza sealsign.es, inclúyalo en la lista.
+  :::
+
+  El cliente lo lee del registro de Windows:
+
+  - Clave: `HKEY_CURRENT_USER\Software\Factum Identity\SealSign Signature Client`
+  - Valor: `AllowedOrigins`
+  - Tipo: `REG_SZ` (un origen) o `REG_MULTI_SZ` (varios orígenes). El cliente lo crea vacío la primera vez que se abre.
+
+  Un origen es el esquema, el dominio y el puerto si lo lleva, sin ruta. La comparación es exacta y no distingue mayúsculas de minúsculas: sin comodines y sin barra final.
+
+  | Correcto | Incorrecto |
+  |---|---|
+  | `https://firma.miempresa.com` | `https://firma.miempresa.com/firmar` (lleva ruta) |
+  | `http://localhost:4200` | `firma.miempresa.com` (falta el esquema) |
+
+  Un solo origen:
+
+  ```cmd
+  reg add "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins /t REG_SZ /d "https://firma.miempresa.com" /f
+  ```
+
+  Varios orígenes, separados por `\0`:
+
+  ```cmd
+  reg add "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins /t REG_MULTI_SZ /d "https://firma.miempresa.com\0http://localhost:4200" /f
+  ```
+
+  Para comprobar cómo ha quedado:
+
+  ```cmd
+  reg query "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins
+  ```
+
+  También puede editarse a mano con `regedit`.
+
+  A tener en cuenta:
+
+  - Es por usuario de Windows: cada persona que use el cliente en el equipo necesita el valor en su propio perfil.
+  - Hay que cerrar y volver a abrir el cliente después de cambiarlo; la lista se lee al arrancar.
+  - Un origen no autorizado recibe un HTTP 403, que el navegador muestra como un error de conexión o de CORS.
+
+  #### 3.3. Despliegue masivo (GPO, Intune, SCCM)
+
+  ###### Instalación del MSI
+
+  - Con `msiexec` y los parámetros del apartado 3.1, lanzado desde Intune, SCCM o un script.
+  - Con **instalación de software por GPO**. **No** admite propiedades del MSI, por lo que en ese caso los puertos se imponen mediante la directiva de registro (ver apartado 3.4) y los ajustes de actualización se pueden escribir en HKLM mediante script o preferencias de GPO (ver apartado 3.5).
+
+  ###### Distribución de AllowedOrigins
+
+  **Opción A - Preferencias de directiva de grupo (recomendada)**. Es declarativa, no necesita ningún script y se revierte con la misma facilidad con la que se aplica.
+
+  1. Abrir la Consola de administración de directivas de grupo (GPMC) y editar el GPO que se aplique a los usuarios afectados.
+  2. Ir a: Configuración de usuario → Preferencias → Configuración de Windows → Registro → Nuevo → Elemento de Registro.
+  3. Rellenar la ficha:
+
+  | Campo | Valor |
+  |---|---|
+  | Acción | Actualizar |
+  | Subárbol | `HKEY_CURRENT_USER` |
+  | Ruta de la clave | `Software\Factum Identity\SealSign Signature Client` |
+  | Nombre de valor | `AllowedOrigins` |
+  | Tipo de valor | `REG_MULTI_SZ` |
+  | Datos del valor | `https://firma.miempresa.com` (un origen por línea) |
+
+  4. Aceptar y enlazar el GPO a la unidad organizativa que contenga a esos usuarios.
+
+  Se aplica en el siguiente inicio de sesión. Para forzarlo en el momento, ejecutar `gpupdate /force` en el equipo.
+
+  **Opción B - Script de inicio de sesión**. El mismo resultado se consigue con un script de inicio de sesión, publicado desde Configuración de usuario → Directivas → Scripts, o desde Intune o SCCM ejecutándolo en contexto de usuario, usando `reg add` como se muestra en el apartado 3.2.
+
+  #### 3.4. Puertos de conexión
+
+  El cliente escucha en dos puertos locales, HTTP y HTTPS (por defecto 8081 y 8082). Se pueden cambiar desde el icono de la bandeja: clic derecho sobre el icono y "Configuración" → "Puertos de conexión".
+
+  ![Image-23](./images/Image-23.png)
+
+  *Imagen 23: Submenú "Configuración" del cliente*
+
+  ![Image-24](./images/Image-24.png)
+
+  *Imagen 24: Ventana "Puertos de conexión"*
+
+  - Guardar requiere permisos de administrador (aviso de UAC).
+  - El cliente reinicia su servidor local en caliente; no hace falta cerrarlo.
+  - Se muestra una confirmación antes de aplicar el cambio.
+  - Si el cliente no puede escuchar en los nuevos puertos, ofrece restaurar los anteriores.
+  - Al cambiar el puerto HTTPS se reconfigura automáticamente el enlace del certificado.
+
+  La ventana puede mostrar estos mensajes:
+
+  | Mensaje | Significado |
+  |---|---|
+  | Número no válido | El puerto debe ser un entero entre 1 y 65535. |
+  | Los puertos deben ser distintos | HTTP y HTTPS no pueden usar el mismo puerto. |
+  | Puerto en uso por otra aplicación | Solo es un aviso: permite guardar igualmente. |
+  | "Gestionado por la organización" | El campo está bloqueado por una directiva. |
+
+  ###### Dónde se guardan los puertos
+
+  - Clave: `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client`
+  - Valores: `SignalRHttpPort` y `SignalRHttpsPort`, de tipo `DWORD`. Solo se acepta un DWORD entre 1 y 65535.
+
+  ###### Orden de prioridad
+
+  Para cada puerto, gana el primer valor válido:
+
+  | Orden | Origen | Ubicación |
+  |---|---|---|
+  | 1 | Directiva | `HKLM\SOFTWARE\Policies\Factum Identity\SealSign Signature Client` (mismos nombres DWORD) |
+  | 2 | Equipo | `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client` (lo escribe el instalador) |
+  | 3 | Usuario | `HKCU\Software\Factum Identity\SealSign Signature Client` |
+  | 4 | Por defecto | 8081 y 8082 |
+
+  La directiva es la forma en que un GPO impone los puertos, y bloquea el campo en la ventana. Si los puertos se cambian en el registro o por directiva, hay que reiniciar el cliente; guardar desde la ventana no lo requiere.
+
+  #### 3.5. Actualizaciones
+
+  El cliente puede buscar versiones nuevas y actualizarse.
+
+  ![Image-21](./images/Image-21.png)
+
+  *Imagen 21: Menú del icono de la bandeja*
+
+  "Comprobar actualizaciones" lanza una comprobación manual. Muestra "Ya tienes la última versión" o la ventana de actualización.
+
+  ![Image-22](./images/Image-22.png)
+
+  *Imagen 22: Menú con "Comprobar actualizaciones" en gris*
+
+  La opción aparece en gris cuando las actualizaciones automáticas están desactivadas (el usuario desmarcó "Buscar actualizaciones automáticamente", o se instaló con `AUTOMATICUPDATES=0`) o cuando el equipo no tiene dirección de actualización (`UpdateManifestUrl` vacío).
+
+  La opción "Buscar actualizaciones automáticamente" está en el submenú "Configuración" (Imagen 23). Cuando la fija el administrador, aparece en gris con el aviso "Gestionado por el administrador".
+
+  ###### Cómo funciona
+
+  - Al arrancar, el cliente comprueba en silencio. Si hay una versión más reciente, la opción del menú pasa a decir "Actualización disponible".
+  - Al iniciar una firma aparece una ventana no bloqueante, sin interrumpir la firma.
+  - La ventana tiene una casilla "No volver a mostrar este mensaje", que silencia solo esa versión.
+  - "Actualizar" descarga el instalador, verifica su firma, pide UAC, cierra el cliente y lo vuelve a abrir tras instalar.
+
+  ![Image-25](./images/Image-25.png)
+
+  *Imagen 25: Ventana "Actualización disponible"*
+
+  ###### Quién decide
+
+  Gana la primera fuente que tenga valor:
+
+  | Orden | Origen | Ubicación |
+  |---|---|---|
+  | 1 | Equipo | `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client`, valor `AutomaticUpdates` (`REG_SZ` "0" o "1", lo escribe `AUTOMATICUPDATES`) |
+  | 2 | Usuario | `HKCU\Software\Factum Identity\SealSign Signature Client`, valor `AutomaticUpdates` |
+  | 3 | Ninguno | Se buscan actualizaciones |
+
+  Vacío no es lo mismo que 0: vacío significa que el equipo no dice nada, y entonces decide el usuario. Use `REG_SZ`, no `DWORD`.
+
+  ###### Dirección de actualización
+
+  `UpdateManifestUrl`, en la misma clave `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client`, escrito por `UPDATEURL`. La rama `WOW6432Node` es obligatoria: el cliente es una aplicación de 32 bits.
+
+  ###### Requisitos del servidor de actualizaciones on-premise
+
+  - Tanto el manifiesto como el instalador deben servirse por `https`.
+  - El instalador debe estar en el mismo servidor y puerto que `installer-version.json`.
+  - El MSI debe llevar una firma Authenticode válida de Factum; en caso contrario se rechaza.
+
+  #### 3.6. Configuración del cliente JavaScript
+
+  En este tutorial se explica en detalle cómo configurar un entorno con SignalR, y en el ejemplo alojado en el gitHub de Factum se encuentra todo el código necesario para hacerlo funcionar. Una vez lanzado, el cliente se queda escuchando en los puertos configurados (por defecto 8081 HTTP y 8082 HTTPS, ver apartado 3.4). En la parte de JavaScript habrá que:
+
+  - Referenciar al código JavaScript del hub, situada en la URL: `http://localhost:<puerto http>/signalr/hubs` o `https://localhost:<puerto https>/signalr/hubs` (por defecto 8081 y 8082)
 
   - Indicar cuál es la URL del hub. 
   ```javascript
-  $.connection.hub.url = "http://localhost:8081/signalr";
+  $.connection.hub.url = "http://localhost:8081/signalr"; // o "https://localhost:8082/signalr" (use los puertos configurados)
   ```
 
   - El nombre del hub de SignalR es sealSignHub. 
@@ -100,7 +309,7 @@
       hub.client.AsyncOperationInProgress = function(){ }
       ```
 
-  #### 3.4. Configuración de la versión del servidor
+  #### 3.7. Configuración de la versión del servidor
 
   El  cliente  soporta  tanto  la  versión  3.2  como  la  4.0  de  SealSign,  pero  hay  que  indicar  qué  versión  se  está utilizando. Para configurar la versión que se está utilizando hay que llamar al método setServerVersion con alguno de estos dos valores:
 
@@ -119,17 +328,81 @@
 
   *Imagen 02: Mensaje del Cliente*
 
-  El cliente se puede configurar para que se arranque cuando se inicie sesión en Windows, para ello hay que hacer click con el botón derecho sobre el icono y pulsar sobre la opción “Ejecutar al arrancar el equipo”.
+  El cliente se puede configurar para que se arranque cuando se inicie sesión en Windows, para ello hay que hacer click con el botón derecho sobre el icono de la bandeja e ir a “Configuración” → “Ejecutar al arrancar el equipo”. El MSI deja esta opción activada para todos los usuarios. Un usuario estándar la ve en gris; un administrador puede cambiarla (aviso de UAC).
 
-  ![Image-03](./images/Image-03.png)
+  ![Image-23](./images/Image-23.png)
 
-  *Imagen 03: Menú contextual de la herramienta*
+  *Imagen 23: Submenú “Configuración” del cliente*
 
   #### 4.2. Utilizar conexión SSL
 
+  Para utilizar la conexión segura **SSL (HTTPS)** es necesario tener **instalado el SealSign Signature Client**.
+
+  Con el instalador MSI, HTTPS se configura durante la instalación sin pedir nada al usuario.
+
+  El cliente prepara lo siguiente:
+
+  - Un certificado autofirmado `CN=localhost` en el almacén del equipo local, de confianza como certificado raíz.
+  - El enlace de ese certificado al puerto HTTPS.
+  - La directiva de Firefox `EnterpriseRootsEnabled`, solo si no existía ya.
+
+  Si el cliente se instala de otra forma, o SSL aún no se ha configurado, la primera vez que se lance el cliente aparecerá una ventana del sistema solicitando permiso para realizar cambios en el equipo:
+
+  - **Usuarios con privilegios de administrador**  
+      Se les pedirá confirmar la autorización.
+
+  - **Usuarios sin privilegios de administrador**  
+      Se les pedirá introducir credenciales de administrador.
+
+  ---
+
+  #### Comportamiento cuando no se autoriza la configuración SSL
+
+  Si la autorización **no se acepta** o **no se proporcionan** las credenciales necesarias, la configuración SSL **no se aplicará** y el cliente de firma funcionará mediante una **conexión HTTP**.
+
+  Además, **cada vez que se cierre y se vuelva a abrir el cliente de firma**, volverá a aparecer la solicitud de autorización o de credenciales. Si el usuario rechaza el aviso de UAC, no se le vuelve a preguntar para ese puerto.
+
+  ---
+
+  #### Cómo evitar que aparezca la solicitud de autorización
+
+  Para evitar que esta solicitud aparezca repetidamente, puede **desactivar la gestión automática de SSL**:
+
+  1. Localice el icono del cliente de firma en la **bandeja del sistema**.
+
+  2. Vaya a “Configuración” y desmarque la opción **“Configurar HTTPS local automáticamente”**.
+
+  Con esto el cliente dejará de solicitar autorización en cada arranque.
+
+  ---
+
+  #### Activación correcta de la conexión SSL (HTTPS)
+
+  Si la autorización se acepta o las credenciales se introducen correctamente:
+
+  - El cliente de firma configurará SSL automáticamente.
+
+  - A partir de ese momento se conectará mediante **HTTPS** por **el puerto HTTPS configurado (8082 por defecto)**.
+
+  ---
+
+  #### Nota importante para entornos con muchos usuarios sin privilegios
+
+  En entornos donde **la mayoría de usuarios no tiene privilegios de administrador** y **introducir credenciales manualmente en cada equipo no es viable**, se recomienda el siguiente procedimiento:
+
+  1. Instale el cliente de firma SealSign.
+
+  2. **No introduzca credenciales** cuando se le soliciten.
+
+  3. Desactive **“Configurar HTTPS local automáticamente”** desde el submenú “Configuración” de la bandeja del sistema.
+
+     ![Image-20](./images/Image-20.png)
+
+  4. Ejecute el apartado **4.2.1** de esta documentación.
+
   ###### 4.2.1. Configuración del certificado
 
-  Para poder utilizar una conexión SSL entre la web y el cliente de SealSign hay que instalar un certificado en el equipo cliente y enlazarlo al puerto 8082.
+  Para poder utilizar una conexión SSL entre la web y el cliente de SealSign hay que instalar un certificado en el equipo cliente y enlazarlo al puerto HTTPS configurado (8082 por defecto).
 
   Instalación del certificado en el almacén. El certificado a instalar tiene que contener la clave pública y la clave privada. Para instalarlo hacemos doble click sobre el archivo. Se muestra un asistente para hacer la instalación.
 
@@ -187,17 +460,17 @@
 
   Con ese valor, hay que abrir la consola en modo administrador y ejecutar el siguiente comando: 
   ```
-  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
+  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:<https port> appid={00112233-4455-6677-8899-AABBCCDDEEFF}
   ```
-  Con esta última instrucción se asocia el certificado al puerto 8082.
+  Con esta última instrucción se asocia el certificado al puerto HTTPS.
 
   ![Image-13](./images/Image-13.png)
 
   ###### 4.2.2. Utilizar SSL
 
   Para que el cliente utilice una conexión SSL hay que seleccionar la opción.
-  - Referenciar al código JavaScript del hub, situada en la URL: https://localhost:8082/signalr/hubs
-  - Indicar cuál es la URL del hub. $.connection.hub.url = "https://localhost:8082/signalr";
+  - Referenciar al código JavaScript del hub, situada en la URL: `https://localhost:<puerto https>/signalr/hubs` (el puerto HTTPS configurado, 8082 por defecto)
+  - Indicar cuál es la URL del hub. `$.connection.hub.url = "https://localhost:<puerto https>/signalr";`
 
   #### 4.3. Firma Digital
 
@@ -384,7 +657,27 @@
 
 Para solventar posibles errores con el cliente de firma **SealSign Signature Client**, intente aplicar alguna de las acciones de la siguiente lista:
 
-#### 1. Cierre y Reinicie el Cliente de Firma
+#### 1. La web no consigue conectar con el cliente
+- Compruebe que el origen del sitio web está autorizado en `AllowedOrigins` (ver apartado 3.2). Un origen no autorizado recibe un HTTP 403, que el navegador muestra como un error de conexión o de CORS.
+- Compruebe que el cliente está en ejecución (icono en la bandeja del sistema).
+- Compruebe que los puertos configurados en el cliente (apartado 3.4) coinciden con los que usa la web.
+
+---
+
+#### 2. Avisos de "problema de conexión SignalR"
+El cliente muestra un aviso en la bandeja del sistema cuando no puede arrancar su servidor local. Según la causa:
+- **Puerto en uso por otra aplicación**: cambie los puertos (apartado 3.4).
+- **Acceso denegado**: ejecute o reconfigure el cliente con permisos de administrador.
+- **Certificado SSL no enlazado al puerto**: vuelva a activar “Configurar HTTPS local automáticamente” o siga el apartado 4.2.1.
+
+---
+
+#### 3. El instalador se detiene con un error de puerto
+El instalador valida `SIGNALR_HTTP_PORT` y `SIGNALR_HTTPS_PORT` y se detiene con un mensaje si no son válidos. Compruebe que cada uno es un número entre 1 y 65535, sin ceros a la izquierda (`09081` se rechaza), y que los dos son distintos.
+
+---
+
+#### 4. Cierre y Reinicie el Cliente de Firma
 - Cierre el aplicativo **SealSign Signature Client** manualmente desde la barra de tareas.
 - Refresque la caché del navegador y lance el proceso de firma nuevamente.  
 
@@ -404,35 +697,37 @@ Haga **clic derecho** en el icono de **SealSign** que se encuentra en ejecución
 
 ---
 
-#### 2. Reinstale el Cliente de Firma
-- Desinstale el aplicativo **SealSign Signature Client**.  
-- Proceda a instalarlo nuevamente.  
+#### 5. Reinstale el Cliente de Firma
+- Desinstale el aplicativo **SealSign Signature Client** desde Programas y características.  
+- Vuelva a ejecutar el instalador MSI.  
 - Refresque la caché del navegador (CTRL + SHIFT + R en [sealsign.es](https://sealsign.es)).  
 - Lance el proceso de firma de nuevo.
 
 ---
 
-#### 3. Pruebe con un Navegador Distinto
+#### 6. Pruebe con un Navegador Distinto
 - Intente realizar la firma con un navegador distinto al que se está usando.  
 - **Si funciona con el nuevo navegador**, notifique al soporte el error, indicando el nombre del navegador donde se produjo el problema.
 
 ---
 
-#### 4. Eliminación Completa del Cliente de Firma (Última Opción)
+#### 7. Eliminación Completa del Cliente de Firma (Última Opción)
 Si las opciones anteriores no solucionan el problema, elimine todo rastro del cliente de firma siguiendo estos pasos:
 
 1. Verifique que el aplicativo `SealSign Signature Client` no se encuentra en ejecución.  
-2. Elimine el contenido de las siguientes rutas en el explorador de archivos de Windows:  
+2. Desinstálelo desde Programas y características.
+3. Si el equipo fue migrado desde la versión anterior de ClickOnce y quedan restos de ella, elimine además el contenido de las siguientes rutas en el explorador de archivos de Windows:  
   - ```plaintext
     %UserProfile%\AppData\Local\Apps
     ```
   - ```plaintext
     %UserProfile%\AppData\Roaming\11paths
     ```
-3. Ejecute un CMD como administrador y ejecute el siguiente comando:  
+4. Ejecute un CMD como administrador y ejecute el siguiente comando (también solo para instalaciones migradas desde la versión anterior de ClickOnce):  
    ```bash
    reg delete HKCU\SOFTWARE\Classes\clickonce
    ```
+
 #### Información a Remitir al Departamento de Soporte
 
 En caso de que ninguna de las acciones anteriormente comentadas haya solventado el problema, se deberá remitir la siguiente información al departamento de soporte:
@@ -443,5 +738,7 @@ En caso de que ninguna de las acciones anteriormente comentadas haya solventado 
 - 🖼️ **Evidencias o capturas del error** que se está produciendo.  
 - 📝 **Breve descripción de los pasos** que ejecutó el firmante al momento de realizar la firma.  
 - 📂 **Adjunte el log** que se encuentra en la siguiente ruta:  
-  ```plaintext
-  %UserProfile%\AppData\Roaming\sealsignBSSClient
+
+```plaintext
+%APPDATA%\SealSignBSSClient\SealSignBSSLog.log
+```

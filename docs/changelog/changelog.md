@@ -123,6 +123,32 @@
 
 # Clickonce
 
+### 4.11.1
+#### Features
+
+- Signing with elliptic-curve (ECDSA) certificates.
+- Improved messages for Wacom SDK failures when running elevated (COM component not registered) and when the Java runtime is missing.
+
+#### Bugs
+
+- Fixed the error when pressing the signature screen buttons in external biometric signature and handled a null BeginSignatureProvider response.
+- A clear message is shown when attempting internal biometric signature in a SaaS tenant instead of a null reference error.
+- Server version restored when resetting tablet configuration.
+
+---
+
+### 4.11.0
+#### Features
+
+- New MSI installer: silent installation, parameters UPDATEURL, AUTOMATICUPDATES, SIGNALR_HTTP_PORT and SIGNALR_HTTPS_PORT, and mass deployment by GPO, Intune or SCCM.
+- Configurable local ports from the tray window, installer parameters or group policy.
+- Allowed website origins (AllowedOrigins).
+- Automatic updates with administrator control.
+- Built-in local HTTPS configuration (no script required).
+- Automatic migration from the previous ClickOnce installation.
+
+---
+
 ### 4.10.6
 #### Bugs
 
