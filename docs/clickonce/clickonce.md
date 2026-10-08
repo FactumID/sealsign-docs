@@ -10,7 +10,7 @@
 
 ## 2. Minimum requirements
 
-- The client runs on .Net Framework 4.5.
+- The client runs on .Net Framework 4.7.2 or later.
   - Supported operating systems are:
     - Windows 7
     - Windows 8
@@ -24,39 +24,248 @@
 
 ## 3. Common tasks
 
-  #### 3.1. Off-premises Installation
+  #### 3.1. Installation
 
-  The ClickOnce client is hosted on Factum ID servers. On the download page you can install both the client and the client prerequisites. Once installed, the icon will appear on the desktop.
+  The client is distributed as an **MSI installer** that is installed **per machine**, so it requires elevation (administrator rights). The installation:
+
+  - Creates the SealSign Signature Client icon on the desktop.
+  - Creates a shortcut in the Start menu.
+  - Configures the client to start at Windows logon for all users.
 
   ![Image-01](./images/Image-01.png)
 
   *Image 01: SealSign ClickOnce icon.*
 
-  #### 3.2. On-premises installation
+  The installer can be run in three ways:
 
-  If it is necessary to deploy the client on a server other than the Factum Identity server, the following steps must be followed.
+  - Double-clicking the `.msi` file.
+  - From the command line: `msiexec /i SealSign-Signature-Client-Setup.msi`
+  - Silently, with no user interface: `msiexec /i SealSign-Signature-Client-Setup.msi /qn`
 
-  - Unzip the client found in the version 4.6 SDK download.
-  - To modify the ClickOnce deployment files, download and install the Windows SDK.
-  - Change the publishing URL with the following command: `mage -u SealSignClient.application -pu http://[URL]/SealSignClient.application`
-  - Reassign the application manifest with: `mage -u SealSignClient.application -AppManifest "Application Files "Application Files SealSignClient_1_0_0_0_0SealSignClient.exe.manifest"`
-  - Finally, sign the file with the command: `mage -sign SealSignClient.application -cf [certificate path] -pwd [certificate password]`
+  ###### Installer parameters
 
-  Once these steps are done, the ClickOnce client can be deployed on the server. For everything to work correctly you have to check that the web server has the following MIME types configured:
+  The installer accepts the following properties on the command line. All of them are optional.
 
-  - .application -> application/x-ms-application
-  - .manifest -> application/x-ms-manifest
-  - .deploy -> application/octet-stream
+  | Parameter | Purpose |
+  |---|---|
+  | `UPDATEURL` | `https` address of the `installer-version.json` file where the client checks for a new version. The installer must be on the same server and port as that file. If omitted, the machine keeps its existing value, otherwise the address built into the package (if any). |
+  | `AUTOMATICUPDATES` | `1` = this machine checks for updates, `0` = it does not. It overrides the user preference and locks the menu option. If omitted, the user decides. |
+  | `SIGNALR_HTTP_PORT` | Local HTTP port the client listens on. Default: `8081`. The web uses it at `http://localhost:<port>/signalr`. Must be between 1 and 65535, with no leading zeros, and different from the HTTPS port. |
+  | `SIGNALR_HTTPS_PORT` | Local HTTPS port the client listens on. Default: `8082`. The web uses it at `https://localhost:<port>/signalr`. Same rules as the HTTP port. Changing it reconfigures the certificate binding automatically. |
 
-  #### 3.3. JavaScript client configuration
+  All parameters are preserved on upgrade or repair: reinstalling without them keeps what the machine already had. If a port is invalid, the installer stops with a message.
 
-  This tutorial explains in detail how to configure an environment with SignalR, and in the example hosted on Factum's gitHub you will find all the necessary code to make it work, it should be noted that once the client has been launched, it listens on port 8081 when it is http and 8082 when the connection has been configured by https. In the JavaScript part it will be necessary to:
+  Examples:
 
-  - Refer to the JavaScript code of the hub, located in the URL: https://localhost:8082/signalr/hubs and http://localhost:8081/signalr/hubs
+  ```cmd
+  msiexec /i SealSign-Signature-Client-Setup.msi UPDATEURL=https://firma.miempresa.com/sealsign/installer-version.json AUTOMATICUPDATES=1
+  ```
+
+  ```cmd
+  msiexec /i SealSign-Signature-Client-Setup.msi SIGNALR_HTTP_PORT=9081 SIGNALR_HTTPS_PORT=9082 /qn
+  ```
+
+  :::warning
+  In on-premise environments it is mandatory to configure the allowed website origin, otherwise signing will not work. See section 3.2.
+  :::
+
+  ###### Migration from the previous ClickOnce version
+
+  On each user's first launch, the client automatically removes the leftovers of the old ClickOnce installation:
+
+  - Its running process.
+  - Its entry in Programs and Features.
+  - The `.appref-ms` shortcuts (desktop and Start menu).
+  - Its startup entry.
+
+  There is nothing to do manually.
+
+  ###### Uninstall
+
+  Uninstall the client from Programs and Features. This removes the SSL binding, the certificates the client created and the Firefox policy (only if the client created it).
+
+  #### 3.2. Authorizing the website origin (AllowedOrigins)
+
+  The client only answers authorized websites. With the value empty, it accepts by default `https://sealsign.es`, `https://pre.sealsign.es` and `https://cert.sealsign.es`, so **SaaS needs nothing**. In **on-premise** environments it is **mandatory** to authorize the origin of your website.
+
+  :::warning
+  Filling in this value **replaces** the defaults, it does not add to them. If you also use sealsign.es, include it in the list.
+  :::
+
+  The client reads it from the Windows registry:
+
+  - Key: `HKEY_CURRENT_USER\Software\Factum Identity\SealSign Signature Client`
+  - Value: `AllowedOrigins`
+  - Type: `REG_SZ` (one origin) or `REG_MULTI_SZ` (several origins). The client creates it empty on first launch.
+
+  An origin is the scheme, the domain and the port if there is one, with no path. The match is exact and case-insensitive: no wildcards and no trailing slash.
+
+  | Correct | Incorrect |
+  |---|---|
+  | `https://firma.miempresa.com` | `https://firma.miempresa.com/firmar` (has a path) |
+  | `http://localhost:4200` | `firma.miempresa.com` (scheme missing) |
+
+  Single origin:
+
+  ```cmd
+  reg add "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins /t REG_SZ /d "https://firma.miempresa.com" /f
+  ```
+
+  Several origins, separated by `\0`:
+
+  ```cmd
+  reg add "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins /t REG_MULTI_SZ /d "https://firma.miempresa.com\0http://localhost:4200" /f
+  ```
+
+  To check the result:
+
+  ```cmd
+  reg query "HKCU\Software\Factum Identity\SealSign Signature Client" /v AllowedOrigins
+  ```
+
+  It can also be edited manually with `regedit`.
+
+  Notes:
+
+  - It is per Windows user: each person using the client on the machine needs the value in their own profile.
+  - Restart the client after changing it; the list is read at startup.
+  - An unauthorized origin receives an HTTP 403, which the browser shows as a connection or CORS error.
+
+  #### 3.3. Mass deployment (GPO, Intune, SCCM)
+
+  ###### Installing the MSI
+
+  - With `msiexec` and the parameters from section 3.1, launched from Intune, SCCM or a script.
+  - With **GPO software installation**. It does **not** accept MSI properties, so in that case the ports are enforced through the registry policy (see section 3.4), and the update settings can be written to HKLM by script or GPO preferences (see section 3.5).
+
+  ###### Distributing AllowedOrigins
+
+  **Option A - Group Policy Preferences (recommended)**. It is declarative, needs no script and is reverted as easily as it is applied.
+
+  1. Open the Group Policy Management Console (GPMC) and edit the GPO that applies to the affected users.
+  2. Go to: User Configuration → Preferences → Windows Settings → Registry → New → Registry Item.
+  3. Fill in the form:
+
+  | Field | Value |
+  |---|---|
+  | Action | Update |
+  | Hive | `HKEY_CURRENT_USER` |
+  | Key path | `Software\Factum Identity\SealSign Signature Client` |
+  | Value name | `AllowedOrigins` |
+  | Value type | `REG_MULTI_SZ` |
+  | Value data | `https://firma.miempresa.com` (one origin per line) |
+
+  4. Accept and link the GPO to the OU that contains those users.
+
+  It is applied at the next logon. To force it immediately, run `gpupdate /force` on the machine.
+
+  **Option B - Logon script**. The same result can be achieved with a logon script, published from User Configuration → Policies → Scripts, or from Intune or SCCM running in user context, using `reg add` as shown in section 3.2.
+
+  #### 3.4. Connection ports
+
+  The client listens on two local ports, HTTP and HTTPS (8081 and 8082 by default). They can be changed from the tray icon: right-click the icon and choose "Configuración" (Settings) → "Puertos de conexión" (Connection ports).
+
+  ![Image-23](./images/Image-23.png)
+
+  *Image 23: "Configuración" (Settings) submenu of the client.*
+
+  ![Image-24](./images/Image-24.png)
+
+  *Image 24: "Puertos de conexión" (Connection ports) window.*
+
+  - Saving requires administrator rights (UAC prompt).
+  - The client restarts its local server in place; there is no need to close it.
+  - A confirmation prompt is shown before applying the change.
+  - If the client cannot listen on the new ports, it offers to restore the previous ones.
+  - Changing the HTTPS port reconfigures the certificate binding automatically.
+
+  The window can show these messages:
+
+  | Message | Meaning |
+  |---|---|
+  | Invalid number | The port must be an integer between 1 and 65535. |
+  | Ports must differ | HTTP and HTTPS cannot use the same port. |
+  | Port in use by another application | Warning only: it still lets you save. |
+  | "Gestionado por la organización" (Managed by the organization) | The field is locked by a policy. |
+
+  ###### Where the ports are stored
+
+  - Key: `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client`
+  - Values: `SignalRHttpPort` and `SignalRHttpsPort`, type `DWORD`. Only a DWORD between 1 and 65535 is accepted.
+
+  ###### Precedence
+
+  For each port, the first valid value wins:
+
+  | Order | Source | Location |
+  |---|---|---|
+  | 1 | Policy | `HKLM\SOFTWARE\Policies\Factum Identity\SealSign Signature Client` (same DWORD names) |
+  | 2 | Machine | `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client` (written by the installer) |
+  | 3 | User | `HKCU\Software\Factum Identity\SealSign Signature Client` |
+  | 4 | Default | 8081 and 8082 |
+
+  The policy is how a GPO enforces the ports, and it locks the field in the window. If the ports are changed in the registry or by policy, restart the client; saving from the window does not require it.
+
+  #### 3.5. Updates
+
+  The client can check for new versions and update itself.
+
+  ![Image-21](./images/Image-21.png)
+
+  *Image 21: Tray icon menu.*
+
+  "Comprobar actualizaciones" (Check for updates) runs a manual check. It shows "Ya tienes la última versión" (You already have the latest version) or the update window.
+
+  ![Image-22](./images/Image-22.png)
+
+  *Image 22: Menu with "Comprobar actualizaciones" greyed out.*
+
+  The option is greyed out when automatic updates are off (the user unticked "Buscar actualizaciones automáticamente" (Check for updates automatically), or it was installed with `AUTOMATICUPDATES=0`) or when the machine has no update address (`UpdateManifestUrl` empty).
+
+  The option "Buscar actualizaciones automáticamente" is in the "Configuración" submenu (Image 23). When the administrator sets it, it is greyed out with the tooltip "Gestionado por el administrador" (Managed by the administrator).
+
+  ###### How it works
+
+  - At startup the client checks silently. If there is a newer version, the menu item reads "Actualización disponible" (Update available).
+  - When a signature is started, a non-blocking window appears without interrupting the signature.
+  - The window has a checkbox "No volver a mostrar este mensaje" (Do not show this message again), which silences only that version.
+  - "Actualizar" (Update) downloads the installer, verifies its signature, asks for UAC, closes the client and reopens it after installing.
+
+  ![Image-25](./images/Image-25.png)
+
+  *Image 25: "Actualización disponible" (Update available) window.*
+
+  ###### Who decides
+
+  The first source with a value wins:
+
+  | Order | Source | Location |
+  |---|---|---|
+  | 1 | Machine | `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client`, value `AutomaticUpdates` (`REG_SZ` "0" or "1", written by `AUTOMATICUPDATES`) |
+  | 2 | User | `HKCU\Software\Factum Identity\SealSign Signature Client`, value `AutomaticUpdates` |
+  | 3 | Neither | Updates are checked |
+
+  Empty is not the same as 0: empty means the machine says nothing, so the user decides. Use `REG_SZ`, not `DWORD`.
+
+  ###### Update address
+
+  `UpdateManifestUrl`, in the same `HKLM\SOFTWARE\WOW6432Node\Factum Identity\SealSign Signature Client` key, written by `UPDATEURL`. The `WOW6432Node` branch is mandatory: the client is a 32-bit application.
+
+  ###### On-premise update server requirements
+
+  - Both the manifest and the installer must be served over `https`.
+  - The installer must be on the same server and port as `installer-version.json`.
+  - The MSI must carry a valid Factum Authenticode signature, otherwise it is refused.
+
+  #### 3.6. JavaScript client configuration
+
+  This tutorial explains in detail how to configure an environment with SignalR, and in the example hosted on Factum's gitHub you will find all the necessary code to make it work. Once the client has been launched, it listens on the configured ports (8081 HTTP and 8082 HTTPS by default, see section 3.4). In the JavaScript part it will be necessary to:
+
+  - Refer to the JavaScript code of the hub, located in the URL: `https://localhost:<https port>/signalr/hubs` or `http://localhost:<http port>/signalr/hubs` (by default 8082 and 8081)
 
   - Indicate the URL of the hub.
     ```javascript
-    $.connection.hub.url = "http://localhost:8081/signalr" o "https://localhost:8082/signalr";
+    $.connection.hub.url = "http://localhost:8081/signalr"; // or "https://localhost:8082/signalr" (use the configured ports)
     ```
 
   - The SignalR's hub name is sealSignHub. 
@@ -101,7 +310,7 @@
       hub.client.AsyncOperationInProgress = function(){ }
       ```
 
-#### 3.4. Server version configuration
+#### 3.7. Server version configuration
 
   The client supports both SealSign version 3.2 and 4.0, but it is necessary to indicate which version is being used. To configure the version being used, the setServerVersion method must be called with one of these two values:
 
@@ -120,17 +329,25 @@
 
   *Image 02: Client message*
 
-  The client can be configured to start when logged on to Windows, to do this right click on the icon and click on the option "Run on computer startup".
+  The client can be configured to start when logged on to Windows. To do this, right click on the tray icon and go to "Configuración" (Settings) → "Ejecutar al arrancar el equipo" (Run on computer startup). The MSI enables this option for all users. A standard user sees it greyed out; an administrator can change it (UAC prompt).
 
-  ![Image-03](./images/Image-03.png)
+  ![Image-23](./images/Image-23.png)
 
-  *Image 03: Contextual menu of the tool*
+  *Image 23: "Configuración" (Settings) submenu of the client.*
 
 #### 4.2. Using SSL connection
 
   To use the secure **SSL (HTTPS)** connection, the **SealSign Signature Client must be installed**.
 
-  During installation or the first time the client is launched, a system window will appear requesting permission to make changes to the computer:
+  With the MSI installer, HTTPS is configured during installation with no prompt to the user.
+
+  The client sets up the following:
+
+  - A self-signed certificate `CN=localhost` in the local machine store, trusted as a root certificate.
+  - The binding of that certificate to the HTTPS port.
+  - The Firefox policy `EnterpriseRootsEnabled`, only if it did not already exist.
+
+  If the client is installed another way, or SSL has not been configured yet, the first time the client is launched a system window will appear requesting permission to make changes to the computer:
 
   - **Users with administrator privileges**  
       Will be asked to confirm the authorization.
@@ -144,7 +361,7 @@
 
   If the authorization is **not accepted** or the required credentials are **not provided**, the SSL configuration **will not be applied** and the Signing Client will operate using an **HTTP connection**.
 
-  Additionally, **each time the Signing Client is closed and reopened**, the authorization or credential prompt will appear again.
+  Additionally, **each time the Signing Client is closed and reopened**, the authorization or credential prompt will appear again. If the user declines the UAC prompt, it is not asked again for that port.
 
   ---
 
@@ -154,7 +371,11 @@
 
   1. Locate the Signing Client icon in the **system tray**.
       
-  2. Uncheck the option **“Automatic SSL Management”**.     
+  2. Go to "Configuración" (Settings) and uncheck the option **“Configurar HTTPS local automáticamente”** (Configure local HTTPS automatically).     
+
+  ![Image-20](./images/Image-20.png)
+
+  *Image 20: "Configurar HTTPS local automáticamente" option in the "Configuración" submenu.*
 
   This will stop the client from requesting authorization on each startup.
 
@@ -166,95 +387,19 @@
 
   - The Signing Client will automatically configure SSL.
       
-  - From that moment on, it will connect using **HTTPS** through **port 8082**.
+  - From that moment on, it will connect using **HTTPS** through **the configured HTTPS port (8082 by default)**.
       
   ---
 
   #### Important note for environments with many non-privileged users
 
-  In environments where **most users do not have administrator privileges** and **manually entering credentials on each machine is not feasible**, the following procedure is recommended:
+  In environments where **most users do not have administrator privileges**, install the client with the MSI installer (by an administrator, or through a mass deployment, see section 3.3). The installation already configures HTTPS with administrator rights, so users are never asked for authorization.
 
-  1. Install the SealSign Signing Client.
-      
-  2. **Do not enter credentials** when prompted.
-      
-  3. Disable **“Automatic SSL Management”** from the system tray.
-
-     ![Image-20](./images/Image-20.png)      
-
-  4. Execute section **4.2.1** of this documentation.
-
-  ###### 4.2.1. Certificate Configuration
-
-  In order to use an SSL connection between the web and the SealSignh client, a certificate must be installed on the client computer and bound to port 8082.
-
-  Installing the certificate in the store. The certificate to be installed must contain the public key and the private key. To install it, double click on the file. An installation wizard is displayed.
-
-  ![Image-04](./images/Image-04.png)
-
-  *Image 04: Certificate import wizard*
-
-  Select the "Local computer" store and click "Next". On the next screen, click "Next".
-
-  ![Image-05](./images/Image-05.png)
-
-  *Image 05: Selection of the certificate to import*
-
-  In the next screen we enter the certificate password and click "Next".
-
-  ![Image-06](./images/Image-06.png)
-
-  *Image 06: Protection of the private key*
-
-  On the next screen check the option "Place all certificates in the following store" and select the "Personal" store and click "Next".
-
-  ![Image-07](./images/Image-07.png)
-
-  *Image 07: Location of the certificates*
-
-  In the summary window, click "Finish".
-
-  ![Image-08](./images/Image-08.png)
-
-  *Image 08: Completion of the import*
-
-  If there is no problem we should see the following message:
-
-  ![Image-09](./images/Image-09.png)
-
-  *Image 09: Certificate successfully imported*
-
-  Once the certificate is installed, the certificate manager is launched, for this we press the Windows+ R key and enter "certlm.msc", inside the Personal store we look for the certificate we imported previously.
-
-  ![Image-10](./images/Image-10.png)
-
-  *Image 10: Certificate Store*
-
-  Double-clicking on the certificate will display the certificate details.
-
-  ![Image-11](./images/Image-11.png)
-
-  *Image 11: Certificate properties*
-
-  In the tab details select the property "Fingerprint".
-
-  ![Image-12](./images/Image-12.png)
-
-  *Image 12: Fingerprint of the certificate*
-
-  With that value, you have to open the console in administrator mode and execute the following command: 
-  ```
-  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0.0:8082 appid={00112233-4455-6677-8899-AABBCCDDEEFF}
-  ```
-  This last instruction associates the certificate to port 8082.
-
-  ![Image-13](./images/Image-13.png)
-
-  ###### 4.2.2. Use SSL
+  ###### 4.2.1. Use SSL
 
   In order for the client to use an SSL connection, the option must be selected.
-  - Refer to the JavaScript code of the hub, located in the URL: https://localhost:8082/signalr/hubs
-  - Indicate the URL of the hub. $.connection.hub.url = "https://localhost:8082/signalr";
+  - Refer to the JavaScript code of the hub, located in the URL: `https://localhost:<https port>/signalr/hubs` (the configured HTTPS port, 8082 by default)
+  - Indicate the URL of the hub. `$.connection.hub.url = "https://localhost:<https port>/signalr";`
 
   #### 4.3. Digital Signature
 
@@ -441,7 +586,27 @@ Function that executes a command and allows launching external processes from th
 
 To resolve potential issues with the **SealSign Signature Client**, try applying one of the actions from the following list:
 
-#### 1. Close and Restart the Signature Client
+#### 1. The website cannot connect to the client
+- Check that the website's origin is authorized in `AllowedOrigins` (see section 3.2). An unauthorized origin gets an HTTP 403, which the browser shows as a connection or CORS error.
+- Check that the client is running (icon in the system tray).
+- Check that the ports configured in the client (section 3.4) match the ones the website uses.
+
+---
+
+#### 2. "SignalR connection problem" notices
+The client shows a balloon notice from the system tray when it cannot start its local server. Depending on the cause:
+- **Port in use by another application**: change the ports (section 3.4).
+- **Access denied**: run or reconfigure the client with administrator rights.
+- **SSL certificate not bound to the port**: re-enable "Configurar HTTPS local automáticamente" (Configure local HTTPS automatically) and restart the client, or repair the installation from Programs and Features.
+
+---
+
+#### 3. The installer stops with a port error
+The installer validates `SIGNALR_HTTP_PORT` and `SIGNALR_HTTPS_PORT` and stops with a message if they are invalid. Check that each one is a number between 1 and 65535, with no leading zeros (`09081` is rejected), and that the two are different.
+
+---
+
+#### 4. Close and Restart the Signature Client
 - Manually close the **SealSign Signature Client** application from the taskbar.  
 - Refresh the browser cache and launch the signing process again.  
 
@@ -461,35 +626,37 @@ Right-click on the **SealSign** icon running in the taskbar and select it to clo
 
 ---
 
-#### 2. Reinstall the Signature Client
-- Uninstall the **SealSign Signature Client** application.  
-- Proceed to reinstall it.  
+#### 5. Reinstall the Signature Client
+- Uninstall the **SealSign Signature Client** application from Programs and Features.  
+- Run the MSI installer again.  
 - Refresh the browser cache (CTRL + SHIFT + R on [sealsign.es](https://sealsign.es)).  
 - Launch the signing process again.
 
 ---
 
-#### 3. Try a Different Browser
+#### 6. Try a Different Browser
 - Attempt the signing process using a different browser.  
 - **If it works with the new browser**, report the issue to support, indicating the name of the browser where the problem occurred.
 
 ---
 
-#### 4. Complete Removal of the Signature Client (Last Resort)
+#### 7. Complete Removal of the Signature Client (Last Resort)
 If the previous options do not resolve the issue, remove all traces of the signature client by following these steps:
 
 1. Verify that the `SealSign Signature Client` application is not running.  
-2. Delete the contents of the following paths in the Windows File Explorer:  
+2. Uninstall it from Programs and Features.
+3. If the machine was migrated from the previous ClickOnce version and traces of it remain, also delete the contents of the following paths in the Windows File Explorer:  
   - ```plaintext
     %UserProfile%\AppData\Local\Apps
     ```
   - ```plaintext
     %UserProfile%\AppData\Roaming\11paths
     ```
-3. Run CMD as an administrator and execute the following command:  
+4. Run CMD as an administrator and execute the following command (also only for installs migrated from the previous ClickOnce version):  
     ```bash
     reg delete HKCU\SOFTWARE\Classes\clickonce
     ```
+
 #### Information to Send to the Support Department
 
 If none of the previously mentioned actions resolve the issue, the following information must be sent to the support department:
@@ -502,4 +669,5 @@ If none of the previously mentioned actions resolve the issue, the following inf
 - 📂 **Attach the log file** located at the following path:  
 
 ```plaintext
-%UserProfile%\AppData\Roaming\sealsignBSSClient
+%APPDATA%\SealSignBSSClient\SealSignBSSLog.log
+```
