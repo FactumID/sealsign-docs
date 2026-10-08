@@ -373,6 +373,10 @@
       
   2. Go to "Configuración" (Settings) and uncheck the option **“Configurar HTTPS local automáticamente”** (Configure local HTTPS automatically).     
 
+  ![Image-20](./images/Image-20.png)
+
+  *Image 20: "Configurar HTTPS local automáticamente" option in the "Configuración" submenu.*
+
   This will stop the client from requesting authorization on each startup.
 
   ---
@@ -389,85 +393,9 @@
 
   #### Important note for environments with many non-privileged users
 
-  In environments where **most users do not have administrator privileges** and **manually entering credentials on each machine is not feasible**, the following procedure is recommended:
+  In environments where **most users do not have administrator privileges**, install the client with the MSI installer (by an administrator, or through a mass deployment, see section 3.3). The installation already configures HTTPS with administrator rights, so users are never asked for authorization.
 
-  1. Install the SealSign Signing Client.
-      
-  2. **Do not enter credentials** when prompted.
-      
-  3. Disable **“Configurar HTTPS local automáticamente”** from the "Configuración" submenu of the system tray.
-
-     ![Image-20](./images/Image-20.png)      
-
-  4. Execute section **4.2.1** of this documentation.
-
-  ###### 4.2.1. Certificate Configuration
-
-  In order to use an SSL connection between the web and the SealSignh client, a certificate must be installed on the client computer and bound to the configured HTTPS port (8082 by default).
-
-  Installing the certificate in the store. The certificate to be installed must contain the public key and the private key. To install it, double click on the file. An installation wizard is displayed.
-
-  ![Image-04](./images/Image-04.png)
-
-  *Image 04: Certificate import wizard*
-
-  Select the "Local computer" store and click "Next". On the next screen, click "Next".
-
-  ![Image-05](./images/Image-05.png)
-
-  *Image 05: Selection of the certificate to import*
-
-  In the next screen we enter the certificate password and click "Next".
-
-  ![Image-06](./images/Image-06.png)
-
-  *Image 06: Protection of the private key*
-
-  On the next screen check the option "Place all certificates in the following store" and select the "Personal" store and click "Next".
-
-  ![Image-07](./images/Image-07.png)
-
-  *Image 07: Location of the certificates*
-
-  In the summary window, click "Finish".
-
-  ![Image-08](./images/Image-08.png)
-
-  *Image 08: Completion of the import*
-
-  If there is no problem we should see the following message:
-
-  ![Image-09](./images/Image-09.png)
-
-  *Image 09: Certificate successfully imported*
-
-  Once the certificate is installed, the certificate manager is launched, for this we press the Windows+ R key and enter "certlm.msc", inside the Personal store we look for the certificate we imported previously.
-
-  ![Image-10](./images/Image-10.png)
-
-  *Image 10: Certificate Store*
-
-  Double-clicking on the certificate will display the certificate details.
-
-  ![Image-11](./images/Image-11.png)
-
-  *Image 11: Certificate properties*
-
-  In the tab details select the property "Fingerprint".
-
-  ![Image-12](./images/Image-12.png)
-
-  *Image 12: Fingerprint of the certificate*
-
-  With that value, you have to open the console in administrator mode and execute the following command: 
-  ```
-  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:<https port> appid={00112233-4455-6677-8899-AABBCCDDEEFF}
-  ```
-  This last instruction associates the certificate to the HTTPS port.
-
-  ![Image-13](./images/Image-13.png)
-
-  ###### 4.2.2. Use SSL
+  ###### 4.2.1. Use SSL
 
   In order for the client to use an SSL connection, the option must be selected.
   - Refer to the JavaScript code of the hub, located in the URL: `https://localhost:<https port>/signalr/hubs` (the configured HTTPS port, 8082 by default)
@@ -669,7 +597,7 @@ To resolve potential issues with the **SealSign Signature Client**, try applying
 The client shows a balloon notice from the system tray when it cannot start its local server. Depending on the cause:
 - **Port in use by another application**: change the ports (section 3.4).
 - **Access denied**: run or reconfigure the client with administrator rights.
-- **SSL certificate not bound to the port**: re-enable "Configurar HTTPS local automáticamente" (Configure local HTTPS automatically) or follow section 4.2.1.
+- **SSL certificate not bound to the port**: re-enable "Configurar HTTPS local automáticamente" (Configure local HTTPS automatically) and restart the client, or repair the installation from Programs and Features.
 
 ---
 

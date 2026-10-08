@@ -372,6 +372,10 @@
 
   2. Vaya a “Configuración” y desmarque la opción **“Configurar HTTPS local automáticamente”**.
 
+  ![Image-20](./images/Image-20.png)
+
+  *Imagen 20: opción “Configurar HTTPS local automáticamente” en el submenú “Configuración”.*
+
   Con esto el cliente dejará de solicitar autorización en cada arranque.
 
   ---
@@ -388,85 +392,9 @@
 
   #### Nota importante para entornos con muchos usuarios sin privilegios
 
-  En entornos donde **la mayoría de usuarios no tiene privilegios de administrador** y **introducir credenciales manualmente en cada equipo no es viable**, se recomienda el siguiente procedimiento:
+  En entornos donde **la mayoría de los usuarios no tienen privilegios de administrador**, instale el cliente con el instalador MSI (lo ejecuta un administrador o se distribuye mediante un despliegue masivo, ver apartado 3.3). La instalación ya configura HTTPS con derechos de administrador, por lo que nunca se pide autorización a los usuarios.
 
-  1. Instale el cliente de firma SealSign.
-
-  2. **No introduzca credenciales** cuando se le soliciten.
-
-  3. Desactive **“Configurar HTTPS local automáticamente”** desde el submenú “Configuración” de la bandeja del sistema.
-
-     ![Image-20](./images/Image-20.png)
-
-  4. Ejecute el apartado **4.2.1** de esta documentación.
-
-  ###### 4.2.1. Configuración del certificado
-
-  Para poder utilizar una conexión SSL entre la web y el cliente de SealSign hay que instalar un certificado en el equipo cliente y enlazarlo al puerto HTTPS configurado (8082 por defecto).
-
-  Instalación del certificado en el almacén. El certificado a instalar tiene que contener la clave pública y la clave privada. Para instalarlo hacemos doble click sobre el archivo. Se muestra un asistente para hacer la instalación.
-
-  ![Image-04](./images/Image-04.png)
-
-  *Imagen 04: Asistente de importación de certificados*
-
-  Seleccionamos el almacén “Equipo local” y pulsamos “Siguiente”. En la siguiente pantalla, pulsamos “Siguiente”.
-
-  ![Image-05](./images/Image-05.png)
-
-  *Imagen 05: Elección del certificado a importar*
-
-  En la siguiente pantalla introducimos la contraseña del certificado y pulsamos “Siguiente”
-
-  ![Image-06](./images/Image-06.png)
-
-  *Imagen 06: Protección de la clave privada*
-
-  En la siguiente pantalla marcar la opción “Colocar todos los certificados en el siguiente almacén” y seleccionar el almacén “Personal” y pulsar “Siguiente”.
-
-  ![Image-07](./images/Image-07.png)
-
-  *Imagen 07: Ubicación de los certificados*
-
-  En la ventana de resumen, pulsar “Finalizar”
-
-  ![Image-08](./images/Image-08.png)
-
-  *Imagen 08: Finalización de la importación*
-
-  Si no hay ningún problema deberíamos ver el siguiente mensaje:
-
-  ![Image-09](./images/Image-09.png)
-
-  *Imagen 09: Certificado importado correctamente*
-
-  Una vez instalado el certificado, se lanza el administrador de certificados, para ello pulsamos la tecla Windows + R  e  introducimos  “certlm.msc”,  dentro  del  almacén Personal buscamos  el  certificado  que  importamos anteriormente.
-
-  ![Image-10](./images/Image-10.png)
-
-  *Imagen 10: Almacén de certificados*
-
-  Haciendo doble click sobre el certificado se mostrarán los detalles del mismo.
-
-  ![Image-11](./images/Image-11.png)
-
-  *Imagen 11: Propiedades del certificado*
-
-  En la pestaña detalles seleccionar la propiedad “Huella digital”
-
-  ![Image-12](./images/Image-12.png)
-
-  *Imagen 12: Huella digital del certificado*
-
-  Con ese valor, hay que abrir la consola en modo administrador y ejecutar el siguiente comando: 
-  ```
-  netsh http add sslcert certhash=<certificate hash> ipport=0.0.0.0:<https port> appid={00112233-4455-6677-8899-AABBCCDDEEFF}
-  ```
-  Con esta última instrucción se asocia el certificado al puerto HTTPS.
-
-  ![Image-13](./images/Image-13.png)
-
-  ###### 4.2.2. Utilizar SSL
+  ###### 4.2.1. Utilizar SSL
 
   Para que el cliente utilice una conexión SSL hay que seleccionar la opción.
   - Referenciar al código JavaScript del hub, situada en la URL: `https://localhost:<puerto https>/signalr/hubs` (el puerto HTTPS configurado, 8082 por defecto)
@@ -668,7 +596,7 @@ Para solventar posibles errores con el cliente de firma **SealSign Signature Cli
 El cliente muestra un aviso en la bandeja del sistema cuando no puede arrancar su servidor local. Según la causa:
 - **Puerto en uso por otra aplicación**: cambie los puertos (apartado 3.4).
 - **Acceso denegado**: ejecute o reconfigure el cliente con permisos de administrador.
-- **Certificado SSL no enlazado al puerto**: vuelva a activar “Configurar HTTPS local automáticamente” o siga el apartado 4.2.1.
+- **Certificado SSL no enlazado al puerto**: vuelva a activar “Configurar HTTPS local automáticamente” y reinicie el cliente, o repare la instalación desde Programas y características.
 
 ---
 
