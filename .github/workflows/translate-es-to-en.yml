@@ -1,0 +1,79 @@
+name: Translate ES docs to EN
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'i18n/es/docusaurus-plugin-content-docs/current/**/*.md'
+      - 'i18n/es/docusaurus-plugin-content-docs/current/**/*.mdx'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: translate-es-to-en
+  cancel-in-progress: false
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List changed Spanish pages
+        id: changed
+        run: |
+          BEFORE="${{ github.event.before }}"
+          # ponytail: workflow_dispatch / new branch have no usable "before", fall back to the last commit
+          if [ -z "$BEFORE" ] || ! git cat-file -e "$BEFORE" 2>/dev/null; then BEFORE=HEAD~1; fi
+          git diff --name-only --diff-filter=AMR "$BEFORE" HEAD -- 'i18n/es/docusaurus-plugin-content-docs/current/' \
+            | grep -E '\.mdx?$' > changed.txt || true
+          echo "range=$BEFORE..HEAD" >> "$GITHUB_OUTPUT"
+          echo "count=$(wc -l < changed.txt)" >> "$GITHUB_OUTPUT"
+          cat changed.txt
+          echo "No review notes." > review-notes.md
+
+      - name: Review and translate with Claude
+        if: steps.changed.outputs.count != '0'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: --allowedTools "Read,Write,Edit,Glob,Grep,Bash(git diff:*),Bash(git log:*),Bash(git show:*)"
+          prompt: |
+            You maintain the SealSign documentation (Docusaurus). Spanish pages live in
+            `i18n/es/docusaurus-plugin-content-docs/current/<path>` and their English
+            counterpart in `docs/<path>` (same relative path).
+
+            These Spanish pages changed in commit range ${{ steps.changed.outputs.range }}
+            (listed in `changed.txt`). For each one:
+
+            1. Run `git diff ${{ steps.changed.outputs.range }} -- <spanish file>` to see what changed.
+            2. Update `docs/<path>` so the English page says the same as the Spanish one.
+               - If the English page already reflects the change, leave it alone.
+               - If it does not exist, create it as a full translation.
+               - Touch only the sections that changed; keep the rest of the English text as is.
+               - Keep front matter keys, headings structure, anchors/ids, links, image paths,
+                 code blocks, admonitions (:::note etc.) and HTML/JSX exactly; translate only prose,
+                 front matter `title`/`sidebar_label`/`description`, and image alt text.
+               - Keep product names, UI labels that appear in English in the product, and
+                 technical terms untranslated. Match the tone and terminology of the existing English docs.
+            3. Do NOT modify the Spanish files. Instead, review them and write any problems you find
+               (typos, broken links, inconsistencies, missing images) to `review-notes.md`
+               as a bullet list per file. Write "No issues found." if there are none.
+
+            Do not edit any other files.
+
+      - name: Open pull request
+        if: steps.changed.outputs.count != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: auto/translate-es-to-en-${{ github.run_id }}
+          add-paths: docs/
+          commit-message: 'docs: sync English pages from Spanish changes'
+          title: 'docs: sync English pages from Spanish changes'
+          body-path: review-notes.md
+          labels: translation
