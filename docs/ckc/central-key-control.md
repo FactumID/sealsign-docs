@@ -39,3 +39,4 @@ General parameters can be configured at both the machine and user levels. If bot
 ## 3. Troubleshooting
 
 - For correct operation, check that `KeyControlSrv` and `KeyControlReg` are enabled in the Windows Startup Apps section, this configuration can be checked from the Task Manager. If with the current windows user the option to enable is not available, it is necessary to do it with a local administrator user of the machine.
+- **AutoFirma opens and closes immediately on a specific e-government site, but works on other pages.** Check the site permissions in Chrome: click the icon to the left of the address bar on the site's domain, open the site settings and make sure **Apps on device** is not blocked. Allow it and reload the page. With that permission blocked, Chrome prevents the page from talking to AutoFirma on the local machine, and AutoFirma closes when it gets no response. Chrome version compatibility warnings shown by the site are unrelated to this issue.
